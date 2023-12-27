@@ -1,0 +1,7 @@
+user menggunakan 2 role (administrator & operator)
+crud product kategori -> crud kategori
+
+media type -> inject
+deskripsi product -> deskripsi tipe data long text (ckeditor)
+
+sebelum product variant -> spesifikation terlebih dahulu

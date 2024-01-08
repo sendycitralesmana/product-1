@@ -7,19 +7,6 @@
         </li>
     </ul>
 
-    @if (auth()->user()->role_id == 1)
-    <h3>Admin</h3>
-    @endif
-    @if (auth()->user()->role_id == 2)
-    <h3>{{ auth()->user()->supplier->nama }}</h3>
-    @endif
-    @if (auth()->user()->role_id == 3)
-    <h3>{{ auth()->user()->dealer->nama }}</h3>
-    @endif
-    @if (auth()->user()->role_id == 4)
-    <h3>{{ auth()->user()->biller->nama }}</h3>
-    @endif
-
     <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
         <!-- Notifications Dropdown Menu -->
@@ -42,11 +29,11 @@
             </div>
         </li>
         @endif
-        <li class="nav-item">
+        {{-- <li class="nav-item">
             <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
                 <i class="fas fa-th-large"></i>
             </a>
-        </li>
+        </li> --}}
     </ul>
 </nav>
 <!-- /.navbar -->
@@ -61,7 +48,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="update-profile">
+            <form method="post" action="/user/update-profile">
                 <div class="modal-body">
                     @csrf
                     @method('put')
@@ -70,13 +57,6 @@
                         <input type="name" name="name" class="form-control" value="{{ auth()->user()->name }}">
                         @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
-                        @endif
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Email</label>
-                        <input type="email" name="email" class="form-control" value="{{ auth()->user()->email }}">
-                        @if($errors->has('email'))
-                            <span class="help-block" style="color: red">{{ $errors->first('email') }}</span>
                         @endif
                     </div>
                 </div>

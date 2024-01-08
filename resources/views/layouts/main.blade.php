@@ -19,6 +19,10 @@
     <link rel="stylesheet" href="{{asset('assets/adminlte/dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+
+    <script src="{{asset('assets/ckeditor5/ckeditor.js')}}"></script>
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -37,7 +41,7 @@
         <!-- end content -->
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="http://adminlte.io">FERI RIFKI</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="http://adminlte.io">Lesmana</a>.</strong>
             
         </footer>
 
@@ -49,8 +53,17 @@
     </div>
     <!-- ./wrapper -->
 
+    <script>
+        ClassicEditor
+            .create( document.querySelector( '#editor' ) )
+            .catch( error => {
+                console.error( error );
+            } );
+    </script>
+
     <!-- jQuery -->
     <script src="{{asset('assets/adminlte/plugins/jquery/jquery.min.js')}}"></script>
+    
     <!-- jQuery UI 1.11.4 -->
     <script src="{{asset('assets/adminlte/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
     <!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
@@ -72,6 +85,23 @@
     <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
     <!-- page script -->
+
+    <script>
+        function previewImage() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+
+            imgPreview.style.display = 'block';
+
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFReader.target.result;
+            }
+        }
+    </script>
+
     <script>
         $(function () {
             $("#example1").DataTable({

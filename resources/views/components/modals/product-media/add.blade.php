@@ -10,50 +10,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    {{-- <div class="card-body">
-                        <input type="hidden" name="product_id" value="{{ $product->id }}">
-                        @if ($mediaTypesC < 0 )
-                            hello
-                        @endif
-                        <div class="form-group">
-                            <label>Type</label>
-                            <select name="type_id" class="form-control">
-                                <option value="">-- Select Type --</option>
-                                @foreach ($mediaTypes as $mediaType)
-                                    <option value="{{ $mediaType->id }}">{{ $mediaType->name }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('type_id'))
-                            <span class="help-block" style="color: red">{{ $errors->first('type_id') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" placeholder="Enter name">
-                            @if($errors->has('name'))
-                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Url</label>
-                            <input type="text" name="url" class="form-control" placeholder="Enter url">
-                            @if($errors->has('url'))
-                            <span class="help-block" style="color: red">{{ $errors->first('url') }}</span>
-                            @endif
-                        </div>
-                    </div> --}}
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
                             <th>Type</th>
-                            <th>Name</th>
-                            <th>Url</th>
+                            <th>Media</th>
                             <th>Action</th>
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="product_id[]" value="{{ $product->id }}">
-                                <select name="type_id[]" id="" class="form-control" required>
+                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+                                <select name="type_id[]" id="media" onchange="changeMedia()" class="form-control" required>
                                     <option value="">-- Select Type --</option>
                                     @foreach ($mediaTypes as $mediaType)
                                         <option value="{{ $mediaType->id }}">{{ $mediaType->name }}</option>
@@ -64,15 +30,9 @@
                                 @endif
                             </td>
                             <td>
-                                <input type="text" name="name[]" class="form-control" placeholder="Enter Name" required>
-                                @if($errors->has('name[]'))
-                                <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
-                                @endif
-                            </td>
-                            <td>
-                                <input type="text" name="url[]" class="form-control" placeholder="Enter url" required>
-                                @if($errors->has('url[]'))
-                                <span class="help-block" style="color: red">{{ $errors->first('url[]') }}</span>
+                                <input type="file" name="media[]" id="file" accept="" class="form-control" placeholder="Enter media" required>
+                                @if($errors->has('media[]'))
+                                <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                                 @endif
                             </td>
                             <td><button type="button" name="add" id="add-btn" class="btn btn-success">+</button></td>
@@ -92,6 +52,16 @@
 
 {{--  --}}
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script>
+    function changeMedia() {
+        var input = document.getElementById('media').value
+        if (input == 1) {
+            document.getElementById('file').accept=".jpg, .jpeg, .png"
+        } else if (input == 2) {
+            document.getElementById('file').accept=".xls, .pdf, .doc"
+        }
+    }
+</script>
 <script type="text/javascript">
     var i = 0;
 
@@ -102,7 +72,6 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="hidden" name="product_id[]" value="{{ $product->id }}">
                     <select name="type_id[]" id="" class="form-control" required>
                         <option value="">-- Select Type --</option>
                         @foreach ($mediaTypes as $mediaType)
@@ -114,15 +83,9 @@
                     @endif
                 </td>
                 <td>
-                    <input type="text" name="name[]" class="form-control" placeholder="Enter Name" required>
-                    @if($errors->has('name[]'))
-                    <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
-                    @endif
-                </td>
-                <td>
-                    <input type="text" name="url[]" class="form-control" placeholder="Enter url" required>
-                    @if($errors->has('url[]'))
-                    <span class="help-block" style="color: red">{{ $errors->first('url[]') }}</span>
+                    <input type="file" name="media[]" accept=".jpeg, .jpg, .png, .xls, .pdf, .doc" class="form-control" placeholder="Enter media" required>
+                    @if($errors->has('media[]'))
+                    <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                     @endif
                 </td>
                 <td>

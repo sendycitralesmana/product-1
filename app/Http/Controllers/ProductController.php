@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MediaProduct;
-use App\Models\MediaType;
 use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductVariant;
+use App\Models\MediaType;
+use App\Models\Application;
+use App\Models\MediaProduct;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
+use App\Models\ProductVariant;
+use App\Models\ProductCategory;
+use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
@@ -16,8 +18,12 @@ class ProductController extends Controller
     public function index()
     {
         $products = Product::all();
+        $productCategories = ProductCategory::get();
+        $applications = Application::get();
         return view('product.index', [
-            'products' => $products
+            'products' => $products,
+            'productCategories' => $productCategories,
+            'applications' => $applications
         ]);
     }
     
@@ -27,32 +33,18 @@ class ProductController extends Controller
         $videoProductsC = ProductVideo::where('product_id', $id)->count();
         $productVariantsC = ProductVariant::where('product_id', $id)->count();
 
-        $product = Product::with(['category'])->find($id);
+        $product = Product::with(['category', 'application'])->find($id);
         $productCategory = ProductCategory::get();
         $mediaTypes = MediaType::get();
-        $mediaTypesC = MediaType::count();
-        $mediaProducts = MediaProduct::where('product_id', $id)->with(['mediaType'])->paginate(2);
-        $videoProducts = ProductVideo::where('product_id', $id)->paginate(2);
-        $productVariants = ProductVariant::where('product_id', $id)->paginate(2);
+        $applications = Application::get();
         return view('product.detail', [
             'product' => $product,
+            'applications' => $applications,
             'productCategory' => $productCategory,
             'mediaTypes' => $mediaTypes,
-            'mediaTypesC' => $mediaTypesC,
             'mediaProductsC' => $mediaProductsC,
             'videoProductsC' => $videoProductsC,
             'productVariantsC' => $productVariantsC,
-            'mediaProducts' => $mediaProducts,
-            'videoProducts' => $videoProducts,
-            'productVariants' => $productVariants,
-        ]);
-    }
-
-    public function add()
-    {
-        $productCategory = ProductCategory::get();
-        return view('product.add', [
-            'productCategory' => $productCategory
         ]);
     }
 
@@ -69,6 +61,18 @@ class ProductController extends Controller
         $product->name = $request->name;
         $product->description = $request->description;
         $product->save();
+
+        $productId = Product::orderBy('id', 'desc')->first();
+
+        if ($request->application_id) {
+            foreach ($request->application_id as $item => $value) {
+                $data2 = array(
+                    'product_id' => $productId->id,
+                    'application_id' => $request->application_id[$item]
+                );
+                ProductApplication::create($data2);
+            }
+        }
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
@@ -115,6 +119,16 @@ class ProductController extends Controller
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
         return redirect('/product');
+    }
+
+    public function applicationByProduct($id) {
+        $product = Product::with(['application'])->find($id);
+        $applications = Application::get();
+
+        return view('product.application.applicationByProduct', [
+            'product' => $product,
+            'applications' => $applications
+        ]);
     }
 
 }

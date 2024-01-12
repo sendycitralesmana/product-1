@@ -11,53 +11,13 @@ use Illuminate\Support\Facades\Session;
 
 class PVSpecificationController extends Controller
 {
-    public function index()
-    {
-        $pvSpecification = PVSpecification::with(['productVariant', 'specification'])->get();
-        return view('pvspecification.index', [
-            'pvSpecification' => $pvSpecification
-        ]);
-    }
-
-    public function add()
-    {
-        $product = Product::get();
-        $specification = Specification::get();
-        return view('pvspecification.add',[
-            'product' => $product,
-            'specification' => $specification
-        ]);
-    }
-
     public function create(Request $request)
-    {
-        $validated = $request->validate([
-            'product_id' => 'required',
-            'specification_id' => 'required',
-            'value' => 'required',
-        ]);
-
-        $specification = new PVSpecification;
-        $specification->product_id = $request->product_id;
-        $specification->specification_id = $request->specification_id;
-        $specification->value = $request->value;
-        $specification->save();
-
-        Session::flash('status', 'success');
-        Session::flash('message', 'Add data success');
-        return redirect('/pv-specification');
-    }
-
-    public function createMultiple(Request $request)
     {
         $validated = $request->validate([
             'product_variant_id.*' => 'required',
             'specification_id.*' => 'required',
             'value.*' => 'required',
         ]);
-
-        // dd($request->all());
-        $productVariant = ProductVariant::find($request->product_variant_id[0]);
 
         if (count($request->specification_id) > 0) {
             foreach ($request->specification_id as $item => $value) {
@@ -72,31 +32,25 @@ class PVSpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/pv-specification/variant:'. $productVariant->id);
-    }
-    
-    public function edit($id)
-    {
-        $pvSpecification = PVSpecification::with(['product', 'specification'])->find($id);
-        return view('pvspecification.edit', [
-            'pvSpecification' => $pvSpecification
-        ]);
+        return redirect('/product/vs/'. $request->product_variant_id[0]);
     }
 
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
+            'specification_id' => 'required',
             'value' => 'required',
         ]);
 
         $pvSpecification = PVSpecification::find($id);
+        $pvSpecification->specification_id = $request->specification_id;
         $pvSpecification->value = $request->value;
         // dd($pvSpecification);
         $pvSpecification->save();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/pv-specification/variant:'. $request->product_variant_id);
+        return redirect('/product/vs/'. $request->product_variant_id);
     }
 
     public function delete($id)
@@ -106,14 +60,14 @@ class PVSpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/pv-specification/variant:'. $pvSpecification->product_variant_id);
+        return redirect('/product/vs/'. $pvSpecification->product_variant_id);
     }
 
-    public function detail($id) {
+    public function specByVariant($id) {
         $productVariant = ProductVariant::find($id);
         $specifications = Specification::get();
         $pvSpecifications = PVSpecification::where('product_variant_id', $id)->with(['productVariant', 'specification'])->get();
-        return view('pvspecification.variant-detail', [
+        return view('product.variant.specification.specByVariant', [
             'productVariant' => $productVariant,
             'specifications' => $specifications,
             'pvSpecifications' => $pvSpecifications,

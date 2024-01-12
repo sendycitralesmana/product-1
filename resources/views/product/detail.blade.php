@@ -80,7 +80,7 @@
         {{-- Media Type Start--}}
         <div class="row">
 
-            <div class="col-md-4">
+            <div class="col-md-6">
                 {{-- Media Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -101,14 +101,14 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="/media-product/product:{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/product/media/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
                 {{-- Media End --}}
             </div>
             
-            <div class="col-md-4">
+            <div class="col-md-6">
                 {{-- Video Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -129,14 +129,19 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="/product-video/product:{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/product/video/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
                 {{-- Video End --}}
             </div>
-            
-            <div class="col-md-4">
+
+        </div>
+        {{-- Media Type End --}}
+        
+        <div class="row">
+
+            <div class="col-md-6">
                 {{-- Variant Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -157,17 +162,42 @@
                             <div class="icon">
                                 <i class="ion ion-bag"></i>
                             </div>
-                            <a href="/product-variant/product:{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
+                            <a href="/product/variant/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
                     </div>
                 </div>
                 {{-- Variant End --}}
             </div>
+            
+            <div class="col-md-6">
+                {{-- Application Start --}}
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Application</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <div class="small-box">
+                            <div class="inner">
+                                <h3>{{ $product->application->count() }}</h3>
+                                <p>Data</p>
+                            </div>
+                            <div class="icon">
+                                <i class="ion ion-bag"></i>
+                            </div>
+                            <a href="/product/application/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                {{-- Application End --}}
+            </div>
 
         </div>
-        {{-- Media Type End --}}
-        
-        
 
     </section>
     <!-- /.content -->

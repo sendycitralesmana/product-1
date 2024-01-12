@@ -44,8 +44,6 @@
                 </div>
                 @endif
 
-
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

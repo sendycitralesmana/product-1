@@ -9,24 +9,6 @@ use Illuminate\Support\Facades\Session;
 
 class ProductVideoController extends Controller
 {
-    public function index()
-    {
-        $product = null;
-        $videoProducts = ProductVideo::with('product')->get();
-        return view('product-video.index', [
-            'product' => $product,
-            'videoProducts' => $videoProducts
-        ]);
-    }
-
-    public function add()
-    {
-        $product = Product::get();
-        return view('product-video.add', [
-            'product' => $product
-        ]);
-    }
-
     public function create(Request $request)
     {
         $validated = $request->validate([
@@ -49,17 +31,7 @@ class ProductVideoController extends Controller
         Session::flash('video', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-video');
-        return redirect('/product-video/product:'. $request->product_id[0]);
-    }
-    
-    public function edit($id)
-    {
-        $productVideo = ProductVideo::find($id);
-        $product = Product::get();
-        return view('product-video.edit', [
-            'productVideo' => $productVideo,
-            'product' => $product,
-        ]);
+        return redirect('/product/video/'. $request->product_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -78,7 +50,7 @@ class ProductVideoController extends Controller
         if (!$request->product_id) {
             return redirect('/product-video');
         }
-        return redirect('/product-video/product:'. $request->product_id[0]);
+        return redirect('/product/video/'. $request->product_id[0]);
     }
 
     public function delete($id)
@@ -88,14 +60,14 @@ class ProductVideoController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product-video');
+        return redirect('/product/video/'. $productVideo->product_id);
     }
 
-    public function detailByProduct($id) {
+    public function videoByProduct($id) {
         $product = Product::find($id);
         $videoProducts = ProductVideo::where('product_id', $id)->get();
 
-        return view('product-video.detailByProduct', [
+        return view('product.video.videoByProduct', [
             'product' => $product,
             'videoProducts' => $videoProducts,
         ]);

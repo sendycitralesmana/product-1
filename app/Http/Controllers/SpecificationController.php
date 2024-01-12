@@ -11,27 +11,9 @@ class SpecificationController extends Controller
     public function index()
     {
         $specifications = Specification::all();
-        return view('specification.index', [
+        return view('product.specification.index', [
             'specifications' => $specifications
         ]);
-    }
-
-    public function add()
-    {
-        return view('specification.add');
-    }
-
-    public function store(Request $request)
-    {
-        $request->validate([
-            'moreFields.*.title' => 'required'
-        ]);
-    
-        foreach ($request->moreFields as $key => $value) {
-            Specification::create($value);
-        }
-    
-        return back()->with('success', 'Todos Has Been Created Successfully.');
     }
 
     public function create(Request $request)
@@ -53,15 +35,7 @@ class SpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/specification');
-    }
-    
-    public function edit($id)
-    {
-        $specification = Specification::find($id);
-        return view('specification.edit', [
-            'specification' => $specification
-        ]);
+        return redirect('/product/specification');
     }
 
     public function update(Request $request, $id)
@@ -77,7 +51,7 @@ class SpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/specification');
+        return redirect('/product/specification');
     }
 
     public function delete($id)
@@ -87,7 +61,7 @@ class SpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/specification');
+        return redirect('/product/specification');
     }
 
 }

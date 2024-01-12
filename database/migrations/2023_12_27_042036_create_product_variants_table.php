@@ -17,10 +17,10 @@ return new class extends Migration
             $table->foreign('product_id')->references('id')->on('products');
             $table->string('name');
             $table->bigInteger('price');
-            $table->integer('long');
-            $table->integer('weight');
-            $table->integer('width');
-            $table->integer('height');
+            $table->string('long');
+            $table->string('weight');
+            $table->string('width');
+            $table->string('height');
             $table->timestamps();
         });
     }

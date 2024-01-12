@@ -13,33 +13,16 @@
                 <div class="modal-body">
 
                     <div class="card-body">
-                        @if ($product != null)
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
-                            
-                        @endif
+                        <input type="hidden" name="type_id" value="{{ $mediaProduct->type_id }}">
                         <div class="form-group">
-                            <label>Media Type</label>
-                            <select name="type_id" class="form-control">
-                                @foreach ($mediaTypes as $mediaType)
-                                    <option value="{{ $mediaType->id }}" {{ ($mediaType->id == $mediaProduct->type_id) ? 'selected' : '' }}>{{ $mediaType->name }}</option>
-                                @endforeach
-                            </select>
-                            @if($errors->has('type_id'))
-                            <span class="help-block" style="color: red">{{ $errors->first('type_id') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $mediaProduct->name}}">
-                            @if($errors->has('name'))
-                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Url</label>
-                            <input type="text" name="url" class="form-control" value="{{ $mediaProduct->url}}">
-                            @if($errors->has('url'))
-                            <span class="help-block" style="color: red">{{ $errors->first('url') }}</span>
+                            <label>Media</label>
+                            <input type="hidden" name="oldName" value="{{ $mediaProduct->name }}">
+                            <input type="hidden" name="oldUrl" value="{{ $mediaProduct->url }}">
+                            <p> {{ $mediaProduct->url }} </p>
+                            <input type="file" accept=".jpeg, .jpg, .png, .xls, .doc, .pdf" name="media" class="form-control" value="{{ $mediaProduct->name}}">
+                            @if($errors->has('media'))
+                            <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>
                             @endif
                         </div>
                     </div>

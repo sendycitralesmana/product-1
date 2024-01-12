@@ -42,119 +42,49 @@
                     </a>
                 </li>
                 @endif
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link {{ request()->is(
-                        'product-category', 'product-category/*',
-                        'product', 'product/*',
-                        'specification', 'specification/*',
-                        'pv-specification', 'pv-specification/*',
-                        'product-variant', 'product-variant/*',
-                        'media-type', 'media-type/*',
-                        'media-product', 'media-product/*',
-                        'product-video', 'product-video/*',
-                        ) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            List Products
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/product-category"
-                                class="nav-link {{ request()->is('product-category') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Category</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/product"
-                                class="nav-link {{ request()->is('product') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Product</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/specification"
-                                class="nav-link {{ request()->is('specification') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Specification</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/product-variant"
-                                class="nav-link {{ request()->is('product-variant') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Variant</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/pv-specification"
-                                class="nav-link {{ request()->is('pv-specification') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Variant Specification</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/media-type"
-                                class="nav-link {{ request()->is('media-type') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Media Type</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/media-product"
-                                class="nav-link {{ request()->is('media-product') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Media Product</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/product-video"
-                                class="nav-link {{ request()->is('product-video') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Product Video</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item has-treeview">
-                    <a href="#" class="nav-link {{ request()->is(
-                        'application', 'application/*',
-                        'media', 'media/*',
-                        'video', 'video/*',
-                        ) ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-copy"></i>
-                        <p>
-                            List Applications
-                            <i class="fas fa-angle-left right"></i>
-                        </p>
-                    </a>
-                    <ul class="nav nav-treeview">
-                        <li class="nav-item">
-                            <a href="/application"
-                                class="nav-link {{ request()->is('application') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Application</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/application-media"
-                                class="nav-link {{ request()->is('application-media') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Media</p>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="/application-video"
-                                class="nav-link {{ request()->is('application-video') ? 'active' : '' }}">
-                                <i class="nav-icon fas fa-th"></i>
-                                <p>Video</p>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-
+                @if (auth()->user()->role_id == 2)
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link {{ request()->is(
+                            'product', 'product/*',
+                            ) ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-copy"></i>
+                            <p>
+                                List Products
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/product/category"
+                                    class="nav-link {{ request()->is('product/category') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Category</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/product"
+                                    class="nav-link {{ request()->is('product') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Product</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/product/specification"
+                                    class="nav-link {{ request()->is('product/specification') ? 'active' : '' }}">
+                                    <i class="nav-icon fas fa-th"></i>
+                                    <p>Specification</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/application"
+                            class="nav-link {{ request()->is('application', 'application/*', 'media-application/*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Application</p>
+                        </a>
+                    </li>
+                @endif
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

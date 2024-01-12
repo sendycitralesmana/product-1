@@ -58,7 +58,7 @@
                             <td> {!! html_entity_decode($data->description) !!} </td>
                             <td> 
                                 @if( $data->thumbnail != '' )
-                                    <img src="{{asset('storage/image/'.$data->thumbnail)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('storage/image/category/'.$data->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
                                 @endif

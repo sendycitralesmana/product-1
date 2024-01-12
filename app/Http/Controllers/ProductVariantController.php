@@ -9,24 +9,6 @@ use Illuminate\Support\Facades\Session;
 
 class ProductVariantController extends Controller
 {
-    public function index()
-    {
-        $product = null;
-        $productVariants =ProductVariant::all();
-        return view('product-variant.index', [
-            'product' => $product,
-            'productVariants' => $productVariants
-        ]);
-    }
-
-    public function add()
-    {
-        $product = Product::get();
-        return view('product-variant.add', [
-            'product' => $product
-        ]);
-    }
-
     public function create(Request $request)
     {
         $validated = $request->validate([
@@ -57,15 +39,7 @@ class ProductVariantController extends Controller
         Session::flash('variant', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/product-variant/product:'. $request->product_id[0]);
-    }
-    
-    public function edit($id)
-    {
-        $productVariant =ProductVariant::with('product')->find($id);
-        return view('product-variant.edit', [
-            'productVariant' => $productVariant
-        ]);
+        return redirect('/product/variant'. $request->product_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -94,7 +68,7 @@ class ProductVariantController extends Controller
         if(!$request->product_id) {
             return redirect('/product-variant');
         }
-        return redirect('/product-variant/product:'. $request->product_id[0]);
+        return redirect('/product/variant/'. $request->product_id[0]);
     }
 
     public function delete($id)
@@ -104,14 +78,15 @@ class ProductVariantController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product-variant');
+        return redirect('/product/variant/'. $productVariant->product_id);
     }
 
-    public function detailByProduct($id) {
+    public function variantByProduct($id) 
+    {
         $product = Product::find($id);
         $productVariants = ProductVariant::where('product_id', $id)->get();
 
-        return view('product-variant.detailByProduct', [
+        return view('product.variant.variantByProduct', [
             'product' => $product,
             'productVariants' => $productVariants
         ]);

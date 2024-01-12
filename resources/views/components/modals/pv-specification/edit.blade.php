@@ -11,12 +11,16 @@
                     </button>
                 </div>
                 <div class="modal-body">
-
                     <div class="card-body">
                         <input type="hidden" name="product_variant_id" value="{{ $productVariant->id }}">
                         <div class="form-group">
                             <label>Specification</label>
-                            <input type="text" name="specification_id" class="form-control" value="{{ $pvSpecification->specification->name}}" readonly>
+                            {{-- <input type="text" name="specification_id" class="form-control" value="{{ $pvSpecification->specification->name}}" readonly> --}}
+                            <select name="specification_id" required class="form-control">
+                                @foreach ($specifications as $specification)
+                                    <option value="{{ $specification->id }}" {{ $specification->id == $pvSpecification->specification_id ? 'selected' : '' }}>{{ $specification->name }}</option>
+                                @endforeach
+                            </select>
                         </div>
                     </div>
                     <div class="card-body">

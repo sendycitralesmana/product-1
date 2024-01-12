@@ -5,28 +5,16 @@ namespace App\Http\Controllers;
 use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProductCategoryController extends Controller
 {
     public function index()
     {
         $productsCategories = ProductCategory::all();
-        return view('product-category.index', [
+        return view('product.category.index', [
             'productsCategories' => $productsCategories
         ]);
-    }
-    
-    public function detail($id)
-    {
-        $productCategory = ProductCategory::find($id);
-        return view('product-category.detail', [
-            'productCategory' => $productCategory
-        ]);
-    }
-
-    public function add()
-    {
-        return view('product-category.add');
     }
 
     public function create(Request $request)
@@ -34,70 +22,76 @@ class ProductCategoryController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
-            // 'thumbnail' => 'image',
+            'thumbnail' => 'image',
         ]);
 
         $newName = "";
         if($request->file('thumbnail')) {
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
-            $request->file('thumbnail')->storeAs('image', $newName);
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/category', $newName);
         }
 
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
         $productCategory->description = $request->description;
         $productCategory->thumbnail = $newName;
-        // dd($productCategory);
         $productCategory->save();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/product-category');
-    }
-    
-    public function edit($id)
-    {
-        $productCategory = ProductCategory::find($id);
-        return view('product-category.edit', [
-            'productCategory' => $productCategory
-        ]);
+        return redirect('/product/category');
     }
 
     public function update(Request $request, $id)
-    {
+    {   
         $validated = $request->validate([
             'name' => 'required',
             'description' => 'required',
+            'thumbnail' => 'image'
         ]);
 
         $newName = "";
         if($request->file('thumbnail')) {
-            $extension = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
-            $request->file('thumbnail')->storeAs('image', $newName);
+            if ($request->oldImage) {
+                Storage::delete('image/category/' . $request->oldImage);
+            }
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/category/', $newName);
         }
 
         $productCategory = ProductCategory::find($id);
         $productCategory->name = $request->name;
         $productCategory->description = $request->description;
-        $productCategory->thumbnail = $newName;
-        // dd($productCategory);
+        if ($request->oldImage != null) {
+            if ($request->file('thumbnail') == "") {
+                $productCategory->thumbnail = $request->oldImage;
+            } else {
+                $productCategory->thumbnail = $newName;
+            }
+        } else {
+            $productCategory->thumbnail = $newName;
+        }
         $productCategory->save();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/product-category');
+        return redirect('/product/category');
     }
 
     public function delete($id)
     {
+        
         $productCategory = ProductCategory::find($id);
+        if ($productCategory->thumbnail) {
+            Storage::delete('image/category/' . $productCategory->thumbnail);
+        }
         $productCategory->delete();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product-category');
+        return redirect('/product/category');
     }
 
 }

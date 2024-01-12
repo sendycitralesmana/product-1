@@ -1,12 +1,15 @@
 <?php
 
+use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\MediaProductController;
 use App\Http\Controllers\MediaTypeController;
+use App\Http\Controllers\ProductApplicationController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\VariantProductController;
@@ -14,6 +17,8 @@ use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\ProductMediaController;
 use App\Http\Controllers\ProductVideoController;
 use App\Http\Controllers\PVSpecificationController;
+use App\Http\Controllers\VideoApplicationController;
+use App\Models\ProductApplication;
 
 /*
 |--------------------------------------------------------------------------
@@ -58,15 +63,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/user/{id}/delete', [UserController::class, 'delete']);
     Route::put('/user/update-profile', [UserController::class, 'updateProfile']);
     
-    // Product Categories
-    Route::get('/product-category', [ProductCategoryController::class, 'index']);
-    Route::get('/product-category/add', [ProductCategoryController::class, 'add']);
-    Route::post('/product-category/create', [ProductCategoryController::class, 'create']);
-    Route::get('/product-category/{id}/edit', [ProductCategoryController::class, 'edit']);
-    Route::put('/product-category/{id}/update', [ProductCategoryController::class, 'update']);
-    Route::get('/product-category/{id}/delete', [ProductCategoryController::class, 'delete']);
-    Route::get('/product-category/{id}/detail', [ProductCategoryController::class, 'detail']);
-    
     // Product
     Route::get('/product', [ProductController::class, 'index']);
     Route::get('/product/add', [ProductController::class, 'add']);
@@ -75,34 +71,62 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/product/{id}/update', [ProductController::class, 'update']);
     Route::get('/product/{id}/delete', [ProductController::class, 'delete']);
     Route::get('/product/{id}/detail', [ProductController::class, 'detail']);
+        
+        Route::get('/product/application/{id}', [ProductController::class, 'applicationByProduct']);
+        
+        Route::post('/product/application/create', [ProductApplicationController::class, 'createApplication']);
 
-    // Specification
-    Route::get('/specification', [SpecificationController::class, 'index']);
-    Route::get('/specification/add', [SpecificationController::class, 'add']);
-    Route::post('/specification/create', [SpecificationController::class, 'create']);
-    Route::get('/specification/{id}/edit', [SpecificationController::class, 'edit']);
-    Route::put('/specification/{id}/update', [SpecificationController::class, 'update']);
-    Route::get('/specification/{id}/delete', [SpecificationController::class, 'delete']);
+        Route::get('/product/category', [ProductCategoryController::class, 'index']);
+        Route::get('/product/category/add', [ProductCategoryController::class, 'add']);
+        Route::post('/product/category/create', [ProductCategoryController::class, 'create']);
+        Route::get('/product/category/{id}/edit', [ProductCategoryController::class, 'edit']);
+        Route::put('/product/category/{id}/update', [ProductCategoryController::class, 'update']);
+        Route::get('/product/category/{id}/delete', [ProductCategoryController::class, 'delete']);
+        Route::get('/product/category/{id}/detail', [ProductCategoryController::class, 'detail']);
+
+        Route::get('/product/variant', [ProductVariantController::class, 'index']);
+        Route::get('/product/variant/add', [ProductVariantController::class, 'add']);
+        Route::post('/product/variant/create', [ProductVariantController::class, 'create']);
+        Route::post('/product/variant/store', [ProductVariantController::class, 'store']);
+        Route::get('/product/variant/{id}/edit', [ProductVariantController::class, 'edit']);
+        Route::put('/product/variant/{id}/update', [ProductVariantController::class, 'update']);
+        Route::get('/product/variant/{id}/delete', [ProductVariantController::class, 'delete']);
+        Route::get('/product/variant/{id}', [ProductVariantController::class, 'variantByProduct']);
+
+        Route::get('/product/specification', [SpecificationController::class, 'index']);
+        Route::get('/product/specification/add', [SpecificationController::class, 'add']);
+        Route::post('/product/specification/create', [SpecificationController::class, 'create']);
+        Route::get('/product/specification/{id}/edit', [SpecificationController::class, 'edit']);
+        Route::put('/product/specification/{id}/update', [SpecificationController::class, 'update']);
+        Route::get('/product/specification/{id}/delete', [SpecificationController::class, 'delete']);
+
+        Route::get('/product/media', [MediaProductController::class, 'index']);
+        Route::get('/product/media/add', [MediaProductController::class, 'add']);
+        Route::post('/product/media/create', [MediaProductController::class, 'create']);
+        Route::post('/product/media/createMultiple', [MediaProductController::class, 'createMultiple']);
+        Route::get('/product/media/{id}/edit', [MediaProductController::class, 'edit']);
+        Route::put('/product/media/{id}/update', [MediaProductController::class, 'update']);
+        Route::get('/product/media/{id}/delete', [MediaProductController::class, 'delete']);
+        Route::get('/product/media/{id}', [MediaProductController::class, 'mediaByProduct']);
+
+        Route::get('/product/video', [ProductVideoController::class, 'index']);
+        Route::get('/product/video/add', [ProductVideoController::class, 'add']);
+        Route::post('/product/video/create', [ProductVideoController::class, 'create']);
+        Route::get('/product/video/{id}/edit', [ProductVideoController::class, 'edit']);
+        Route::put('/product/video/{id}/update', [ProductVideoController::class, 'update']);
+        Route::get('/product/video/{id}/delete', [ProductVideoController::class, 'delete']);
+        Route::get('/product/video/{id}', [ProductVideoController::class, 'videoByProduct']);
+
+        Route::get('/product/vs', [PVSpecificationController::class, 'index']);
+        Route::get('/product/vs/add', [PVSpecificationController::class, 'add']);
+        Route::post('/product/vs/create', [PVSpecificationController::class, 'create']);
+        Route::get('/product/vs/{id}/edit', [PVSpecificationController::class, 'edit']);
+        Route::put('/product/vs/{id}/update', [PVSpecificationController::class, 'update']);
+        Route::get('/product/vs/{id}/delete', [PVSpecificationController::class, 'delete']);
+        Route::get('/product/vs/{id}', [PVSpecificationController::class, 'specByVariant']);
     
-    // Variant
-    Route::get('/product-variant', [ProductVariantController::class, 'index']);
-    Route::get('/product-variant/add', [ProductVariantController::class, 'add']);
-    Route::post('/product-variant/create', [ProductVariantController::class, 'create']);
-    Route::post('/product-variant/store', [ProductVariantController::class, 'store']);
-    Route::get('/product-variant/{id}/edit', [ProductVariantController::class, 'edit']);
-    Route::put('/product-variant/{id}/update', [ProductVariantController::class, 'update']);
-    Route::get('/product-variant/{id}/delete', [ProductVariantController::class, 'delete']);
-    Route::get('/product-variant/product:{id}', [ProductVariantController::class, 'detailByProduct']);
-    
-    // Product Variant Specification
-    Route::get('/pv-specification', [PVSpecificationController::class, 'index']);
-    Route::get('/pv-specification/add', [PVSpecificationController::class, 'add']);
-    Route::post('/pv-specification/create', [PVSpecificationController::class, 'create']);
-    // Route::post('/pv-specification/create-multiple', [PVSpecificationController::class, 'createMultiple']);
-    Route::get('/pv-specification/{id}/edit', [PVSpecificationController::class, 'edit']);
-    Route::put('/pv-specification/{id}/update', [PVSpecificationController::class, 'update']);
-    Route::get('/pv-specification/{id}/delete', [PVSpecificationController::class, 'delete']);
-    Route::get('/pv-specification/variant:{id}', [PVSpecificationController::class, 'detail']);
+        Route::get('/product/media/download/{id}', [MediaProductController::class, 'downloadFile']);
+    // Product End
     
     // Media Type 
     Route::get('/media-type', [MediaTypeController::class, 'index']);
@@ -112,22 +136,32 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/media-type/{id}/update', [MediaTypeController::class, 'update']);
     Route::get('/media-type/{id}/delete', [MediaTypeController::class, 'delete']);
     
-    // Product Media
-    Route::get('/media-product', [MediaProductController::class, 'index']);
-    Route::get('/media-product/add', [MediaProductController::class, 'add']);
-    Route::post('/media-product/create', [MediaProductController::class, 'create']);
-    Route::post('/media-product/createMultiple', [MediaProductController::class, 'createMultiple']);
-    Route::get('/media-product/{id}/edit', [MediaProductController::class, 'edit']);
-    Route::put('/media-product/{id}/update', [MediaProductController::class, 'update']);
-    Route::get('/media-product/{id}/delete', [MediaProductController::class, 'delete']);
-    Route::get('/media-product/product:{id}', [MediaProductController::class, 'detailByproduct']);
+    // Application
+    Route::get('/application', [ApplicationController::class, 'index']);
+    Route::get('/application/add', [ApplicationController::class, 'add']);
+    Route::post('/application/create', [ApplicationController::class, 'create']);
+    Route::get('/application/{id}/edit', [ApplicationController::class, 'edit']);
+    Route::put('/application/{id}/update', [ApplicationController::class, 'update']);
+    Route::get('/application/{id}/delete', [ApplicationController::class, 'delete']);
+    Route::get('/application/{id}/detail', [ApplicationController::class, 'detail']);
+    Route::get('/application/product/{id}', [ApplicationController::class, 'productByApplication']);
     
-    // Product Video
-    Route::get('/product-video', [ProductVideoController::class, 'index']);
-    Route::get('/product-video/add', [ProductVideoController::class, 'add']);
-    Route::post('/product-video/create', [ProductVideoController::class, 'create']);
-    Route::get('/product-video/{id}/edit', [ProductVideoController::class, 'edit']);
-    Route::put('/product-video/{id}/update', [ProductVideoController::class, 'update']);
-    Route::get('/product-video/{id}/delete', [ProductVideoController::class, 'delete']);
-    Route::get('/product-video/product:{id}', [ProductVideoController::class, 'detailByProduct']);
+    Route::post('/application/media/create', [MediaApplicationController::class, 'create']);
+    Route::get('/application/media/{id}/edit', [MediaApplicationController::class, 'edit']);
+    Route::put('/application/media/{id}/update', [MediaApplicationController::class, 'update']);
+    Route::get('/application/media/{id}/delete', [MediaApplicationController::class, 'delete']);
+    Route::get('/application/media/{id}', [MediaApplicationController::class, 'mediaByApplication']);
+    Route::get('/application/media/download/{id}', [MediaApplicationController::class, 'downloadFile']);
+
+    Route::post('application/video/create', [VideoApplicationController::class, 'create']);
+    Route::get('application/video/{id}/edit', [VideoApplicationController::class, 'edit']);
+    Route::put('application/video/{id}/update', [VideoApplicationController::class, 'update']);
+    Route::get('application/video/{id}/delete', [VideoApplicationController::class, 'delete']);
+    Route::get('application/video/{id}', [VideoApplicationController::class, 'videoByApplication']);
+    
+    Route::post('application/product/create', [ProductApplicationController::class, 'createProduct']);
+
+    Route::get('/application/product-application/{id}', [ProductApplicationController::class, 'productByApplication']);
+    // Application End
+
 });

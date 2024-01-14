@@ -14,6 +14,13 @@
 
                     <div class="card-body">
                         <div class="form-group">
+                            <label>Name</label>
+                            <input type="text" name="name" required class="form-control" value="{{ $product->name}}">
+                            @if($errors->has('name'))
+                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group">
                             <label>Category</label>
                             <select name="product_category_id" class="form-control" required>
                                 @foreach ($productCategories as $productCategory)
@@ -22,13 +29,6 @@
                             </select>
                             @if($errors->has('product_category_id'))
                             <span class="help-block" style="color: red">{{ $errors->first('product_category_id') }}</span>
-                            @endif
-                        </div>
-                        <div class="form-group">
-                            <label>Name</label>
-                            <input type="text" name="name" required class="form-control" value="{{ $product->name}}">
-                            @if($errors->has('name'))
-                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">

@@ -53,6 +53,7 @@
                             <th>Name</th>
                             <th>Area</th>
                             <th>Time</th>
+                            <th>Client</th>
                             <th>Option</th>
                         </tr>
                     </thead>
@@ -60,14 +61,15 @@
                         <tr>
                             <td> {{ $application->id }} </td>
                             <td> {{ $application->name }} </td>
-                            {{-- <td>
-                                {{ $application->product->count() }}
-                                @foreach ($application->product as $product)
-                                    - {{ $product->name }} <br>
-                                @endforeach
-                            </td> --}}
                             <td> {{ $application->area }} </td>
                             <td> {{ $application->time }} </td>
+                            <td>
+                                @if ( $application->client_id != null )
+                                <a title="See More" href="/client/{{ $application->client_id }}/detail">{{ $application->client->name }}</a>
+                                @else
+                                -
+                                @endif
+                            </td>
                             <td> 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#applicationEdit{{ $application->id }}">
@@ -78,15 +80,6 @@
                             </td>
                         </tr>
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            <th>Area</th>
-                            <th>Time</th>
-                            <th>Option</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

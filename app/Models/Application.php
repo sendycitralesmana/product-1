@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
@@ -12,14 +13,25 @@ class Application extends Model
     use HasFactory;
 
     protected $fillable = [
-        'product_id', 'name', 'area', 'time'
+        'client_id', 'name', 'area', 'time'
     ];
 
-    /**
-     * The roles that belong to the Application
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class, 'client_id', 'id');
+    }
+
+    public function media(): HasMany
+    {
+        return $this->hasMany(MediaApplication::class, 'application_id', 'id');
+    }
+
+    
+    public function video(): HasMany
+    {
+        return $this->hasMany(VideoApplication::class, 'application_id', 'id');
+    }
+
     public function product(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'product_applications', 'application_id', 'product_id');

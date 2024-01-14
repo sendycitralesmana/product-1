@@ -3,12 +3,17 @@
 use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ClientController;
+use App\Http\Controllers\ContentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\MediaProductController;
 use App\Http\Controllers\MediaTypeController;
+use App\Http\Controllers\PostCategoryController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\ProductApplicationController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\ProductVariantController;
@@ -73,7 +78,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/product/{id}/detail', [ProductController::class, 'detail']);
         
         Route::get('/product/application/{id}', [ProductController::class, 'applicationByProduct']);
-        
         Route::post('/product/application/create', [ProductApplicationController::class, 'createApplication']);
 
         Route::get('/product/category', [ProductCategoryController::class, 'index']);
@@ -108,6 +112,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/product/media/{id}/update', [MediaProductController::class, 'update']);
         Route::get('/product/media/{id}/delete', [MediaProductController::class, 'delete']);
         Route::get('/product/media/{id}', [MediaProductController::class, 'mediaByProduct']);
+        Route::get('/product/media/download/{id}', [MediaProductController::class, 'downloadFile']);
 
         Route::get('/product/video', [ProductVideoController::class, 'index']);
         Route::get('/product/video/add', [ProductVideoController::class, 'add']);
@@ -124,8 +129,6 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/product/vs/{id}/update', [PVSpecificationController::class, 'update']);
         Route::get('/product/vs/{id}/delete', [PVSpecificationController::class, 'delete']);
         Route::get('/product/vs/{id}', [PVSpecificationController::class, 'specByVariant']);
-    
-        Route::get('/product/media/download/{id}', [MediaProductController::class, 'downloadFile']);
     // Product End
     
     // Media Type 
@@ -160,8 +163,42 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('application/video/{id}', [VideoApplicationController::class, 'videoByApplication']);
     
     Route::post('application/product/create', [ProductApplicationController::class, 'createProduct']);
-
     Route::get('/application/product-application/{id}', [ProductApplicationController::class, 'productByApplication']);
     // Application End
 
+
+    // Post
+    Route::get('/post', [PostController::class, 'index']);
+    Route::post('/post/create', [PostController::class, 'create']);
+    Route::put('/post/{id}/update', [PostController::class, 'update']);
+    Route::get('/post/{id}/delete', [PostController::class, 'delete']);
+    Route::get('/post/{id}/detail', [PostController::class, 'detail']);
+    Route::get('/post/user/{id}', [PostController::class, 'postByUser']);
+    
+        Route::get('/post/category/{id}', [PostCategoryController::class, 'postByCategory']);
+        Route::get('/post/category', [PostCategoryController::class, 'index']);
+        Route::post('/post/category/create', [PostCategoryController::class, 'create']);
+        Route::put('/post/category/{id}/update', [PostCategoryController::class, 'update']);
+        Route::get('/post/category/{id}/delete', [PostCategoryController::class, 'delete']);
+        Route::get('/post/category/{id}/detail', [PostCategoryController::class, 'detail']);
+    // Post End
+
+    // Post
+    Route::get('/client', [ClientController::class, 'index']);
+    Route::post('/client/create', [ClientController::class, 'create']);
+    Route::put('/client/{id}/update', [ClientController::class, 'update']);
+    Route::get('/client/{id}/delete', [ClientController::class, 'delete']);
+    Route::get('/client/{id}/detail', [ClientController::class, 'detail']);
+    
+    // Content
+    Route::get('/about/content', [ContentController::class, 'index']);
+    Route::post('/about/content/create', [ContentController::class, 'create']);
+    Route::put('/about/content/{id}/update', [ContentController::class, 'update']);
+    Route::get('/about/content/{id}/delete', [ContentController::class, 'delete']);
+    
+    // History
+    Route::get('/about/history', [HistoryController::class, 'index']);
+    Route::post('/about/history/create', [HistoryController::class, 'create']);
+    Route::put('/about/history/{id}/update', [HistoryController::class, 'update']);
+    Route::get('/about/history/{id}/delete', [HistoryController::class, 'delete']);
 });

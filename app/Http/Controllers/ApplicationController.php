@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Product;
 use App\Models\Application;
+use App\Models\Client;
 use App\Models\MediaApplication;
 use App\Models\ProductApplication;
 use App\Models\VideoApplication;
@@ -15,23 +16,25 @@ class ApplicationController extends Controller
     public function index() {
         $applications = Application::get();
         $products = Product::get();
+        $clients = Client::get();
 
         return view('application.index', [
             'applications' => $applications,
             'products' => $products,
+            'clients' => $clients
         ]);
     }
 
     public function create(Request $request)
     {
         $validated = $request->validate([
-            'product_id.*' => 'required',
-            'name.*' => 'required',
-            'area.*' => 'required|min:1',
-            'time.*' => 'required|min:1',
+            'name' => 'required',
+            'area' => 'required',
+            'time' => 'required',
         ]);
 
         $application = new Application;
+        $application->client_id = $request->client_id;
         $application->name = $request->name;
         $application->area = $request->area;
         $application->time = $request->time;
@@ -58,16 +61,16 @@ class ApplicationController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|min:1',
-            'area' => 'required|min:1',
-            'time' => 'required|min:1',
+            'name' => 'required',
+            'area' => 'required',
+            'time' => 'required',
         ]);
 
         $application = Application::find($id);
+        $application->client_id = $request->client_id;
         $application->name = $request->name;
         $application->area = $request->area;
         $application->time = $request->time;
-        // dd($application);
         $application->save();
 
         Session::flash('application', 'success');
@@ -77,18 +80,20 @@ class ApplicationController extends Controller
     }
 
     public function detail($id) {
-        $application = Application::with(['product'])->find($id);
+        $application = Application::with(['product', 'client'])->find($id);
         $productsC = Product::count();
         $products = Product::get();
         $mediaApplicationsC = MediaApplication::where('application_id', $id)->count();
         $videoApplicationsC = VideoApplication::where('application_id', $id)->count();
+        $clients = Client::get();
 
         return view('application.detail', [
             'application' => $application,
             'productsC' => $productsC,
             'products' => $products,
             'mediaApplicationsC' => $mediaApplicationsC,
-            'videoApplicationsC' => $videoApplicationsC
+            'videoApplicationsC' => $videoApplicationsC,
+            'clients' => $clients
         ]);
     }
 

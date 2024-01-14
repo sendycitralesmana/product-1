@@ -29,22 +29,16 @@ class ProductController extends Controller
     
     public function detail($id)
     {
-        $mediaProductsC = MediaProduct::where('product_id', $id)->count();
-        $videoProductsC = ProductVideo::where('product_id', $id)->count();
-        $productVariantsC = ProductVariant::where('product_id', $id)->count();
+        $product = Product::with(['category', 'application', 'variant', 'media', 'video'])->find($id);
 
-        $product = Product::with(['category', 'application'])->find($id);
-        $productCategory = ProductCategory::get();
+        $productCategories = ProductCategory::get();
         $mediaTypes = MediaType::get();
         $applications = Application::get();
         return view('product.detail', [
             'product' => $product,
             'applications' => $applications,
-            'productCategory' => $productCategory,
+            'productCategories' => $productCategories,
             'mediaTypes' => $mediaTypes,
-            'mediaProductsC' => $mediaProductsC,
-            'videoProductsC' => $videoProductsC,
-            'productVariantsC' => $productVariantsC,
         ]);
     }
 

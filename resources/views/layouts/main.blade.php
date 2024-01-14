@@ -68,6 +68,7 @@
             } );
     </script>
 
+
     <!-- jQuery -->
     <script src="{{asset('assets/adminlte/plugins/jquery/jquery.min.js')}}"></script>
     

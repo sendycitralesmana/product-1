@@ -84,6 +84,59 @@
                             <p>Application</p>
                         </a>
                     </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <p>
+                            List Post
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/post/category" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Post Category</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/post" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Post</p>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/client"
+                            class="nav-link {{ request()->is('client', 'client/*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Client</p>
+                        </a>
+                    </li>
+                    <li class="nav-item has-treeview">
+                        <a href="#" class="nav-link">
+                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <p>
+                            List About
+                            <i class="right fas fa-angle-left"></i>
+                          </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                          <li class="nav-item">
+                            <a href="/about/content" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>Content</p>
+                            </a>
+                          </li>
+                          <li class="nav-item">
+                            <a href="/about/history" class="nav-link">
+                              <i class="far fa-circle nav-icon"></i>
+                              <p>History</p>
+                            </a>
+                          </li>
+                        </ul>
+                    </li>
                 @endif
             </ul>
         </nav>

@@ -33,6 +33,18 @@
                                 <span class="help-block" style="color: red">{{ $errors->first('time') }}</span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                                <label>Client</label>
+                                <select name="client_id" class="form-control" id="">
+                                    <option value="">-- Select Client --</option>
+                                    @foreach ($clients as $client)
+                                        <option value="{{ $client->id }}">{{ $client->name }}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('client'))
+                                <span class="help-block" style="color: red">{{ $errors->first('client') }}</span>
+                                @endif
+                            </div>
                         </div>
                         <div class="col-md-5">
                             <table class="table" id="dynamicAddRemoveVariant">

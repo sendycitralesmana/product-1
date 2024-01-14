@@ -64,11 +64,11 @@
                             <td> {!! html_entity_decode($product->description) !!} </td>
                             <td>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#edit-product">
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#productEdit{{ $product->id }}">
                                     <span>Edit</span>
                                 </button>
                                 {{-- Modal --}}
-                                @include('components.modals.products.edit')
+                                @include('product.modal.edit')
                             </td>
                         </tr>
                     </tbody>
@@ -80,7 +80,7 @@
         {{-- Media Type Start--}}
         <div class="row">
 
-            <div class="col-md-6">
+            <div class="col-md-3">
                 {{-- Media Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -95,7 +95,8 @@
                     <div class="card-body">
                         <div class="small-box">
                             <div class="inner">
-                                <h3>{{ $mediaProductsC }}</h3>
+                                {{-- <h3>{{ $mediaProductsC }}</h3> --}}
+                                <h3>{{ $product->media->count() }}</h3>
                                 <p>Data</p>
                             </div>
                             <div class="icon">
@@ -108,7 +109,7 @@
                 {{-- Media End --}}
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-3">
                 {{-- Video Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -123,7 +124,8 @@
                     <div class="card-body">
                         <div class="small-box">
                             <div class="inner">
-                                <h3>{{ $videoProductsC }}</h3>
+                                {{-- <h3>{{ $videoProductsC }}</h3> --}}
+                                <h3>{{ $product->video->count() }}</h3>
                                 <p>Data</p>
                             </div>
                             <div class="icon">
@@ -136,12 +138,7 @@
                 {{-- Video End --}}
             </div>
 
-        </div>
-        {{-- Media Type End --}}
-        
-        <div class="row">
-
-            <div class="col-md-6">
+            <div class="col-md-3">
                 {{-- Variant Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -156,7 +153,8 @@
                     <div class="card-body">
                         <div class="small-box">
                             <div class="inner">
-                                <h3>{{ $productVariantsC }}</h3>
+                                {{-- <h3>{{ $productVariantsC }}</h3> --}}
+                                <h3>{{ $product->variant->count() }}</h3>
                                 <p>Data</p>
                             </div>
                             <div class="icon">
@@ -169,7 +167,7 @@
                 {{-- Variant End --}}
             </div>
             
-            <div class="col-md-6">
+            <div class="col-md-3">
                 {{-- Application Start --}}
                 <div class="card">
                     <div class="card-header">
@@ -198,6 +196,7 @@
             </div>
 
         </div>
+        {{-- Media Type End --}}
 
     </section>
     <!-- /.content -->

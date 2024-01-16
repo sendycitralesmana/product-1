@@ -35,7 +35,7 @@
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="image" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg, , .webp" onchange="previewImgP()" id="imageP" name="image" class="form-control" placeholder="Enter Password" id="image">
                             @if($errors->has('image'))
                             <span class="help-block" style="color: red">{{ $errors->first('image') }}</span>
                             @endif

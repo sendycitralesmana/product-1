@@ -38,7 +38,7 @@ class ApplicationController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/application', $newName);
+            $request->file('thumbnail')->storeAs('image/application/', $newName);
         }
 
         $application = new Application;

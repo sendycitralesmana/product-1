@@ -134,5 +134,13 @@ class HomepageController extends Controller
             'variantProduct' => $variantProduct
         ]);
     }
+
+    public function about() {
+        $productCategories = ProductCategory::get();
+
+        return view('frontend.about.about', [
+            'productCategories' => $productCategories,
+        ]);
+    }
     
 }

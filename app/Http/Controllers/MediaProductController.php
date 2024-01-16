@@ -25,7 +25,7 @@ class MediaProductController extends Controller
             $type = $request->type_id[$key];
             $fileName = $file->getClientOriginalName();
             $url = now()->timestamp . '-' . str_replace(' ', '_', $fileName);
-            $file->storeAs('product/media', $url);
+            $file->storeAs('product/media/', $url);
             $data2 = array(
                 'product_id' => $request->product_id,
                 'type_id' => $type,
@@ -56,7 +56,7 @@ class MediaProductController extends Controller
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $url = now()->timestamp . '-' . $fileName;
-            $request->file('media')->storeAs('product/media', str_replace(' ', '_', $url));
+            $request->file('media')->storeAs('product/media/', str_replace(' ', '_', $url));
         }
 
         $productCategory = MediaProduct::find($id);

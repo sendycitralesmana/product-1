@@ -36,6 +36,12 @@
                     <h4 class="message-head">{{ session('message') }}</h4>
                 </div>
                 @endif
+                @if(session('register'))
+                <div class="alert alert-success">
+                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
+                    <h4 class="message-head">{{ session('message') }}</h4>
+                </div>
+                @endif
                 <form action="/login-process" method="POST">
                     {{ csrf_field() }}
                     <div class="input-group mb-3">

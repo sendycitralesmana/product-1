@@ -52,16 +52,7 @@
 
 {{--  --}}
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script>
-    function changeMedia() {
-        var input = document.getElementById('media').value
-        if (input == 1) {
-            document.getElementById('file').accept=".jpg, .jpeg, .png"
-        } else if (input == 2) {
-            document.getElementById('file').accept=".xls, .pdf, .doc"
-        }
-    }
-</script>
+
 <script type="text/javascript">
     var i = 0;
 
@@ -99,5 +90,15 @@
         $(this).parents('tr').remove();
     });
 
+</script>
+<script>
+    function changeMedia() {
+        var input = document.getElementById('media').value
+        if (input == 1) {
+            document.getElementById('file').accept=".jpg, .jpeg, .png"
+        } else if (input == 2) {
+            document.getElementById('file').accept=".xls, .pdf, .doc"
+        }
+    }
 </script>
 {{--  --}}

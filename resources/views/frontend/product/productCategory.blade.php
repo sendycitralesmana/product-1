@@ -56,7 +56,7 @@
                         <div class="service-cap">
                             <h4><a href="/product/{{ $product->id }}">{{ $product->name }}</a></h4>
                             <a href="/product/{{ $product->id }}" class="more-btn">Read More <i
-                                    class="ti-plus"></i></a>
+                                    class="ti-info" title="info"></i></a>
                         </div>
                         <div class="service-icon">
                             <img src=" {{ asset('assets/front-end/img/icon/services_icon1.png') }} " alt="">

@@ -17,7 +17,7 @@
                 {{-- <p class="pera-top">Mollit anim laborum duis au dolor in voluptcate velit ess cillum dolore eu lore dsu quality mollit anim laborumuis au dolor in voluptate velit cillu.</p>
                 <p>Mollit anim laborum.Dvcuis aute iruxvfg dhjkolohr in re voluptate velit esscillumlore eu quife nrulla parihatur. Excghcepteur sfwsignjnt occa cupidatat non aute iruxvfg dhjinulpadeserunt mollitemnth incididbnt ut;o5tu layjobore mofllit anim.</p>
                 <a href="about.html" class="btn red-btn2">read more</a> --}}
-                <p>{{ $client->link }}</p>
+                <a href="{{ $client->link }}" target="_blank" class="btn">{{ $client->link }}</a>
             </div>
         </div>
         <div class="right-content">

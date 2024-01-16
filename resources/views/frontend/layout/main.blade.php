@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>Construction HTML-5 Template</title>
+    <title>Matahari LED</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="manifest" href="site.webmanifest">
@@ -99,14 +99,14 @@
                                             </li>
                                             <li><a href="/application">Application</a></li>
                                             <li><a href="/client">Client</a></li>
-                                            <li><a href="contact.html">Contact</a></li>
+                                            {{-- <li><a href="/about">About</a></li> --}}
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-xl-2 col-lg-2 col-md-3">
                                 <div class="header-right-btn f-right d-none d-lg-block">
-                                    <a href="#" class="btn">Contact Now</a>
+                                    <a href="/contact" class="btn">Contact Now</a>
                                 </div>
                             </div>
                             <!-- Mobile Menu -->

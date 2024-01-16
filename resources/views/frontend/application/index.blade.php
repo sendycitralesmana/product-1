@@ -36,8 +36,10 @@
                 </div>
             </div>
             @endforeach
-            <a href="/application" class="btn red-btn2 ml-2">see more</a>
         </div>
+        @if ( $applications->count() > 3  )
+        <a href="/application" class="btn red-btn2 ml-2">see more</a>
+        @endif
     </div>
 </div>
 <!-- Services Area End -->

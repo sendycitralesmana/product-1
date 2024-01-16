@@ -1,7 +1,7 @@
 <div class="modal fade" id="categoryAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/product/category/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
@@ -21,7 +21,7 @@
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <textarea name="description" required id="editor" value="{{ old('description') }}" class="form-control"></textarea>
+                            <textarea name="description" id="editor" value="{{ old('description') }}" class="form-control"></textarea>
                             @if($errors->has('description'))
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                             @endif

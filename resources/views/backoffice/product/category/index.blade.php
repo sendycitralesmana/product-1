@@ -45,6 +45,14 @@
                     {{Session::get('message')}}
                 </div>
                 @endif
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
+                        @foreach ($errors->all() as $error)
+                            Add data unsuccessfully {{ $error }}
+                        @endforeach
+                    </div>
+                @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>

@@ -26,7 +26,7 @@
                                 <div class="col-lg-3 col-md-4">
                                     <div class="single-project mb-30">
                                         <div class="project-img">
-                                            <img src="{{asset('storage/image/client/'. $client->image)}}" alt="" width="150px" height="150px">
+                                            <img src="{{asset('storage/image/client/'. $client->image)}}" class="object-fit-contain" alt="" width="150px" height="150px">
                                         </div>
                                         <div class="project-cap">
                                             <a href="/client/{{ $client->id }}" class="plus-btn"><i>info</i></a>

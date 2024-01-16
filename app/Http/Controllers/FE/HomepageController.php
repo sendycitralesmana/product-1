@@ -19,7 +19,7 @@ class HomepageController extends Controller
     public function index() {
         $productCategories = ProductCategory::get();
         $products = Product::with('media')->get();
-        $applications = Application::with(['media'])->get()->random(3);
+        $applications = Application::with(['media'])->get();
         $clients = Client::get();
         return view('frontend.homepage.index', [
             'productCategories' => $productCategories,

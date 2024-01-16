@@ -20,10 +20,10 @@
                         
                     @endforeach --}}
                     <div class="service-img">
+                        @if ( $application->thumbnail != '')
+                        <img src="{{asset('storage/image/application/'. $application->thumbnail)}}" alt="" width="290px" height="210px">
+                        @else
                         <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px">
-                        {{-- <img src="{{asset('storage/application/media'. $application->media->url)}}" alt="" width="290px" height="210px"> --}}
-                        @if ( $application->media->count() > 0 )
-                            
                         @endif
                     </div>
                     <div class="service-cap">

@@ -76,7 +76,7 @@
                         <div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">           
                             <div class="project-caption">
                                 <div class="row">
-                                    @foreach ($application->product()->paginate(1) as $product)
+                                    @foreach ($application->product()->paginate(3) as $product)
                                     <div class="col-lg-4 col-md-6">
                                         <div class="single-project mb-30">
                                             <div class="project-img">

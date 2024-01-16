@@ -40,7 +40,7 @@ class MediaApplicationController extends Controller
         Session::flash('media', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/application/media/'. $request->application_id[0]);
+        return redirect('/backoffice/application/media/'. $request->application_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -80,7 +80,7 @@ class MediaApplicationController extends Controller
         Session::flash('media', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/application/media/'. $request->application_id);
+        return redirect('/backoffice/application/media/'. $request->application_id);
     }
 
     public function mediaByApplication($id) {
@@ -88,7 +88,7 @@ class MediaApplicationController extends Controller
         $mediaApplications = MediaApplication::where('application_id', $id)->get();
         $mediaTypes = MediaType::get();
 
-        return view('application.media.mediaByApplication', [
+        return view('backoffice.application.media.mediaByApplication', [
             'application' => $application,
             'mediaApplications' => $mediaApplications,
             'mediaTypes' => $mediaTypes
@@ -103,7 +103,7 @@ class MediaApplicationController extends Controller
 
         Session::flash('media', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/application/media/'. $mediaApplication->application_id);
+        return redirect('/backoffice/application/media/'. $mediaApplication->application_id);
     }
 
     public function downloadFile($id) {

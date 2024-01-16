@@ -39,22 +39,13 @@ class ProductController extends Controller
             $sortOrder = 'asc';
         }
 
-        if ($request->perPage) {
-            $perPage = $request->perPage;
-        } else {
-            $perPage = 2;
-        }
-
         if ($request->paginate) {
-            $list = $products->orderBy($sortBy, $sortOrder)->paginate($perPage);
+            $list = $products->orderBy($sortBy, $sortOrder)->paginate($request->paginate);
         } else {
             $list = $products->orderBy($sortBy, $sortOrder)->get();
         }
-
-        $total = $products->count();
         
         return response()->json([
-            'total' => $total,
             'data' => $list,
         ], 200);
     }

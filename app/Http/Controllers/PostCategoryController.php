@@ -12,7 +12,7 @@ class PostCategoryController extends Controller
     public function index()
     {
         $postsCategories = PostCategory::all();
-        return view('post.category.index', [
+        return view('backoffice.post.category.index', [
             'postsCategories' => $postsCategories
         ]);
     }
@@ -34,7 +34,7 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/post/category');
+        return redirect('/backoffice/post/category');
     }
 
     public function update(Request $request, $id)
@@ -49,7 +49,7 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/post/category/' . $postCategory->id . '/detail');
+        return redirect('/backoffice/post/category/' . $postCategory->id . '/detail');
     }
 
     public function delete($id)
@@ -60,12 +60,12 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/post/category');
+        return redirect('/backoffice/post/category');
     }
 
     public function detail($id) {
         $postCategory = PostCategory::with(['post'])->find($id);
-        return view('post.category.detail', [
+        return view('backoffice.post.category.detail', [
             'postCategory' => $postCategory
         ]);
     }
@@ -74,7 +74,7 @@ class PostCategoryController extends Controller
     {
         $posts = PostCategory::find($id);
 
-        return view('post.category.post.postByCategory', [
+        return view('backoffice.post.category.post.postByCategory', [
             'posts' => $posts,
         ]);
     }

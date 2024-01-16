@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Client;
 use App\Models\Product;
 use App\Models\Application;
-use App\Models\Client;
-use App\Models\MediaApplication;
-use App\Models\ProductApplication;
-use App\Models\VideoApplication;
 use Illuminate\Http\Request;
+use App\Models\MediaApplication;
+use App\Models\VideoApplication;
+use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
@@ -18,7 +19,7 @@ class ApplicationController extends Controller
         $products = Product::get();
         $clients = Client::get();
 
-        return view('application.index', [
+        return view('backoffice.application.index', [
             'applications' => $applications,
             'products' => $products,
             'clients' => $clients
@@ -33,11 +34,19 @@ class ApplicationController extends Controller
             'time' => 'required',
         ]);
 
+        $newName = "";
+        if($request->file('thumbnail')) {
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/application', $newName);
+        }
+
         $application = new Application;
         $application->client_id = $request->client_id;
         $application->name = $request->name;
         $application->area = $request->area;
         $application->time = $request->time;
+        $application->thumbnail = $newName;
         $application->save();
 
         $applicationId = Application::orderBy('id', 'desc')->first();
@@ -55,7 +64,7 @@ class ApplicationController extends Controller
         Session::flash('application', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/application');
+        return redirect('/backoffice/application');
     }
 
     public function update(Request $request, $id)
@@ -66,17 +75,36 @@ class ApplicationController extends Controller
             'time' => 'required',
         ]);
 
+        $newName = "";
+        if($request->file('thumbnail')) {
+            if ($request->oldImage) {
+                Storage::delete('image/application/' . $request->oldImage);
+            }
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/application/', $newName);
+        }
+
         $application = Application::find($id);
         $application->client_id = $request->client_id;
         $application->name = $request->name;
         $application->area = $request->area;
         $application->time = $request->time;
+        if ($request->oldImage != null) {
+            if ($request->file('thumbnail') == "") {
+                $application->thumbnail = $request->oldImage;
+            } else {
+                $application->thumbnail = $newName;
+            }
+        } else {
+            $application->thumbnail = $newName;
+        }
         $application->save();
 
         Session::flash('application', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/application/'. $request->application_id .'/detail');
+        return redirect('/backoffice/application/'. $application->id .'/detail');
     }
 
     public function detail($id) {
@@ -87,7 +115,7 @@ class ApplicationController extends Controller
         $videoApplicationsC = VideoApplication::where('application_id', $id)->count();
         $clients = Client::get();
 
-        return view('application.detail', [
+        return view('backoffice.application.detail', [
             'application' => $application,
             'productsC' => $productsC,
             'products' => $products,
@@ -102,7 +130,7 @@ class ApplicationController extends Controller
         $product = Product::find($id);
         $applications = Application::where('product_id', $id)->get();
 
-        return view('product-variant.detailByProduct', [
+        return view('backoffice.product-variant.detailByProduct', [
             'product' => $product,
             'app$applications' => $applications
         ]);
@@ -111,7 +139,7 @@ class ApplicationController extends Controller
     public function productByApplication($id) {
         $applications = Application::with(['product'])->find($id);
         $products = Product::get();
-        return view('application.product.productByApplication', [
+        return view('backoffice.application.product.productByApplication', [
             'applications' => $applications,
             'products' => $products
         ]);

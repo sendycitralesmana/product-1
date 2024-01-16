@@ -12,7 +12,7 @@ class ClientController extends Controller
     public function index() {
         $clients = Client::get();
 
-        return view('client.index', [
+        return view('backoffice.client.index', [
             'clients' => $clients
             ,
         ]);
@@ -42,7 +42,7 @@ class ClientController extends Controller
         Session::flash('client', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/client');
+        return redirect('/backoffice/client');
     }
 
     public function update(Request $request, $id)
@@ -80,13 +80,13 @@ class ClientController extends Controller
         Session::flash('client', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/client/'. $client->id .'/detail');
+        return redirect('/backoffice/client/'. $client->id .'/detail');
     }
 
     public function detail($id) {
         $client = Client::with(['application'])->find($id);
 
-        return view('client.detail', [
+        return view('backoffice.client.detail', [
             'client' => $client,
         ]);
     }

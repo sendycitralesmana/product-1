@@ -11,7 +11,7 @@ class ContentController extends Controller
     public function index() {
         $contents = Content::get();
 
-        return view('about.content.index', [
+        return view('backoffice.about.content.index', [
             'contents' => $contents
             ,
         ]);
@@ -32,7 +32,7 @@ class ContentController extends Controller
         Session::flash('content', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/about/content');
+        return redirect('/backoffice/about/content');
     }
 
     public function update(Request $request, $id)
@@ -50,7 +50,7 @@ class ContentController extends Controller
         Session::flash('content', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/about/content');
+        return redirect('/backoffice/about/content');
     }
 
     public function delete($id) {
@@ -60,6 +60,6 @@ class ContentController extends Controller
         Session::flash('content', 'success');
         Session::flash('message', 'Delete data success');
         
-        return redirect('/about/content');
+        return redirect('/backoffice/about/content');
     }
 }

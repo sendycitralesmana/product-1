@@ -10,7 +10,7 @@ class AuthController extends Controller
 {
     public function login()
     {
-        return view('auth/login');
+        return view('backoffice/auth/login');
     }
 
     public function loginProcess(Request $request) {
@@ -23,7 +23,7 @@ class AuthController extends Controller
         if (Auth::attempt($credentials)) {
 
             $request->session()->regenerate();
-            return redirect('/dashboard');
+            return redirect('/backoffice/dashboard');
         }
 
         Session::flash('status', 'failed');

@@ -39,7 +39,7 @@ class ProductVariantController extends Controller
         Session::flash('variant', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/product/variant'. $request->product_id[0]);
+        return redirect('/backoffice/product/variant'. $request->product_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -66,9 +66,9 @@ class ProductVariantController extends Controller
         Session::flash('variant', 'success');
         Session::flash('message', 'Update data success');
         if(!$request->product_id) {
-            return redirect('/product-variant');
+            return redirect('/backoffice/product-variant');
         }
-        return redirect('/product/variant/'. $request->product_id[0]);
+        return redirect('/backoffice/product/variant/'. $request->product_id[0]);
     }
 
     public function delete($id)
@@ -78,7 +78,7 @@ class ProductVariantController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product/variant/'. $productVariant->product_id);
+        return redirect('/backoffice/product/variant/'. $productVariant->product_id);
     }
 
     public function variantByProduct($id) 
@@ -86,7 +86,7 @@ class ProductVariantController extends Controller
         $product = Product::find($id);
         $productVariants = ProductVariant::where('product_id', $id)->get();
 
-        return view('product.variant.variantByProduct', [
+        return view('backoffice.product.variant.variantByProduct', [
             'product' => $product,
             'productVariants' => $productVariants
         ]);

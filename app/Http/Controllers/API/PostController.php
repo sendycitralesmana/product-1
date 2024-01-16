@@ -8,10 +8,18 @@ use Illuminate\Http\Request;
 
 class PostController extends Controller
 {
-    public function index() {
-        $posts = Post::with(['category']);
+    public function index(Request $request) {
+        $posts = Post::with(['user', 'category']);
 
-        $list = $posts->get();
+        if ($request->search) {
+            $posts->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
+        }
+
+        if ($request->paginate) {
+            $list = $posts->paginate($request->paginate);
+        } else {
+            $list = $posts->get();
+        }
 
         return response()->json(
             $list, 200

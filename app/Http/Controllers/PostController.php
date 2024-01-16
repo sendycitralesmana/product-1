@@ -14,7 +14,7 @@ class PostController extends Controller
         $postCategories = PostCategory::get();
         $posts = Post::get();
 
-        return view('post.index', [
+        return view('backoffice.post.index', [
             'postCategories' => $postCategories,
             'posts' => $posts
             ,
@@ -46,7 +46,7 @@ class PostController extends Controller
         Session::flash('post', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/post');
+        return redirect('/backoffice/post');
     }
 
     public function update(Request $request, $id)
@@ -85,14 +85,14 @@ class PostController extends Controller
         Session::flash('post', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/post/'. $post->id .'/detail');
+        return redirect('/backoffice/post/'. $post->id .'/detail');
     }
 
     public function detail($id) {
         $post = Post::with(['user', 'category'])->find($id);
         $postCategories = PostCategory::get();
 
-        return view('post.detail', [
+        return view('backoffice.post.detail', [
             'post' => $post,
             'postCategories' => $postCategories
         ]);

@@ -29,7 +29,7 @@ class VideoApplicationController extends Controller
         Session::flash('video', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/application/video/'. $request->application_id[0]);
+        return redirect('/backoffice/application/video/'. $request->application_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -48,14 +48,14 @@ class VideoApplicationController extends Controller
         Session::flash('video', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/application/video/'. $request->application_id);
+        return redirect('/backoffice/application/video/'. $request->application_id);
     }
 
     public function videoByApplication($id) {
         $application = Application::find($id);
         $videoApplications = VideoApplication::where('application_id', $id)->get();
 
-        return view('application.video.videoByApplication', [
+        return view('backoffice.application.video.videoByApplication', [
             'application' => $application,
             'videoApplications' => $videoApplications,
         ]);
@@ -68,6 +68,6 @@ class VideoApplicationController extends Controller
 
         Session::flash('video', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/application/video/'. $videoApplication->application_id);
+        return redirect('/backoffice/application/video/'. $videoApplication->application_id);
     }
 }

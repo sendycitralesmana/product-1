@@ -39,7 +39,7 @@ class MediaProductController extends Controller
         Session::flash('media', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/media-product');
-        return redirect('/product/media/'. $request->product_id[0]);
+        return redirect('/backoffice/product/media/'. $request->product_id[0]);
 
     }
 
@@ -79,7 +79,7 @@ class MediaProductController extends Controller
 
         Session::flash('media', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/product/media/'. $request->product_id);
+        return redirect('/backoffice/product/media/'. $request->product_id);
 
 
     }
@@ -92,14 +92,14 @@ class MediaProductController extends Controller
 
         Session::flash('media', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product/media/'. $mediaProduct->product_id);
+        return redirect('/backoffice/product/media/'. $mediaProduct->product_id);
     }
 
     public function mediaByProduct($id) {
         $product = Product::find($id);
         $mediaTypes = MediaType::get();
         $mediaProducts = MediaProduct::where('product_id', $id)->with(['product'])->get();
-        return view('product.media.mediaByProduct', [
+        return view('backoffice.product.media.mediaByProduct', [
             'product' => $product,
             'mediaTypes' => $mediaTypes,
             'mediaProducts' => $mediaProducts,

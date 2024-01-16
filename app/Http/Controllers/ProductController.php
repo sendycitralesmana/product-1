@@ -12,6 +12,7 @@ use App\Models\ProductVariant;
 use App\Models\ProductCategory;
 use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
@@ -20,7 +21,7 @@ class ProductController extends Controller
         $products = Product::all();
         $productCategories = ProductCategory::get();
         $applications = Application::get();
-        return view('product.index', [
+        return view('backoffice.product.index', [
             'products' => $products,
             'productCategories' => $productCategories,
             'applications' => $applications
@@ -34,7 +35,7 @@ class ProductController extends Controller
         $productCategories = ProductCategory::get();
         $mediaTypes = MediaType::get();
         $applications = Application::get();
-        return view('product.detail', [
+        return view('backoffice.product.detail', [
             'product' => $product,
             'applications' => $applications,
             'productCategories' => $productCategories,
@@ -50,10 +51,18 @@ class ProductController extends Controller
             'description' => 'required',
         ]);
 
+        $newName = "";
+        if($request->file('thumbnail')) {
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/product', $newName);
+        }
+
         $product = new product;
         $product->product_category_id = $request->product_category_id;
         $product->name = $request->name;
         $product->description = $request->description;
+        $product->thumbnail = $newName;
         $product->save();
 
         $productId = Product::orderBy('id', 'desc')->first();
@@ -70,14 +79,14 @@ class ProductController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/product');
+        return redirect('/backoffice/product');
     }
 
     public function edit($id)
     {
         $product = Product::find($id);
         $productCategory = ProductCategory::get();
-        return view('product.edit', [
+        return view('backoffice.product.edit', [
             'product' => $product,
             'productCategory' => $productCategory
         ]);
@@ -91,17 +100,36 @@ class ProductController extends Controller
             'description' => 'required',
         ]);
 
+        $newName = "";
+        if($request->file('thumbnail')) {
+            if ($request->oldImage) {
+                Storage::delete('image/product/' . $request->oldImage);
+            }
+            $fileName = $request->file('thumbnail')->getClientOriginalName();
+            $newName = now()->timestamp . '-' . $fileName;
+            $request->file('thumbnail')->storeAs('image/product/', $newName);
+        }
+
         $product = product::find($id);
         $product->product_category_id = $request->product_category_id;
         $product->name = $request->name;
         $product->description = $request->description;
+        if ($request->oldImage != null) {
+            if ($request->file('thumbnail') == "") {
+                $product->thumbnail = $request->oldImage;
+            } else {
+                $product->thumbnail = $newName;
+            }
+        } else {
+            $product->thumbnail = $newName;
+        }
         // dd($product);
         $product->save();
 
         Session::flash('product', 'success');
         Session::flash('message', 'Update data success');
         // return redirect('/product');
-        return redirect('/product/'. $request->product_id .'/detail');
+        return redirect('/backoffice/product/'. $product->id .'/detail');
 
     }
 
@@ -112,14 +140,14 @@ class ProductController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product');
+        return redirect('/backoffice/product');
     }
 
     public function applicationByProduct($id) {
         $product = Product::with(['application'])->find($id);
         $applications = Application::get();
 
-        return view('product.application.applicationByProduct', [
+        return view('backoffice.product.application.applicationByProduct', [
             'product' => $product,
             'applications' => $applications
         ]);

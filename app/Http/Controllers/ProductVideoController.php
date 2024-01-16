@@ -31,7 +31,7 @@ class ProductVideoController extends Controller
         Session::flash('video', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-video');
-        return redirect('/product/video/'. $request->product_id[0]);
+        return redirect('/backoffice/product/video/'. $request->product_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -48,9 +48,9 @@ class ProductVideoController extends Controller
         Session::flash('video', 'success');
         Session::flash('message', 'Update data success');
         if (!$request->product_id) {
-            return redirect('/product-video');
+            return redirect('/backoffice/product-video');
         }
-        return redirect('/product/video/'. $request->product_id[0]);
+        return redirect('/backoffice/product/video/'. $request->product_id[0]);
     }
 
     public function delete($id)
@@ -60,14 +60,14 @@ class ProductVideoController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product/video/'. $productVideo->product_id);
+        return redirect('/backoffice/product/video/'. $productVideo->product_id);
     }
 
     public function videoByProduct($id) {
         $product = Product::find($id);
         $videoProducts = ProductVideo::where('product_id', $id)->get();
 
-        return view('product.video.videoByProduct', [
+        return view('backoffice.product.video.videoByProduct', [
             'product' => $product,
             'videoProducts' => $videoProducts,
         ]);

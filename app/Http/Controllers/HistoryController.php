@@ -12,7 +12,7 @@ class HistoryController extends Controller
     public function index() {
         $histories = History::get();
 
-        return view('about.history.index', [
+        return view('backoffice.about.history.index', [
             'histories' => $histories
             ,
         ]);
@@ -44,7 +44,7 @@ class HistoryController extends Controller
         Session::flash('history', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/about/history');
+        return redirect('/backoffice/about/history');
     }
 
     public function update(Request $request, $id)
@@ -84,7 +84,7 @@ class HistoryController extends Controller
         Session::flash('history', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/about/history');
+        return redirect('/backoffice/about/history');
     }
 
     public function delete($id) {
@@ -97,6 +97,6 @@ class HistoryController extends Controller
         Session::flash('history', 'success');
         Session::flash('message', 'Delete data success');
         
-        return redirect('/about/history');
+        return redirect('/backoffice/about/history');
     }
 }

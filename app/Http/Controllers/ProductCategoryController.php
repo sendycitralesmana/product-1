@@ -12,7 +12,7 @@ class ProductCategoryController extends Controller
     public function index()
     {
         $productsCategories = ProductCategory::all();
-        return view('product.category.index', [
+        return view('backoffice.product.category.index', [
             'productsCategories' => $productsCategories
         ]);
     }
@@ -40,7 +40,7 @@ class ProductCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/product/category');
+        return redirect('/backoffice/product/category');
     }
 
     public function update(Request $request, $id)
@@ -77,7 +77,7 @@ class ProductCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/product/category');
+        return redirect('/backoffice/product/category');
     }
 
     public function delete($id)
@@ -91,7 +91,7 @@ class ProductCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product/category');
+        return redirect('/backoffice/product/category');
     }
 
 }

@@ -25,7 +25,7 @@ class ProductApplicationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/product/application/'. $request->product_id);
+        return redirect('/backoffice/product/application/'. $request->product_id);
     }
     
     public function createProduct(Request $request)
@@ -44,6 +44,6 @@ class ProductApplicationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/application/product/'. $request->application_id);
+        return redirect('/backoffice/application/product/'. $request->application_id);
     }
 }

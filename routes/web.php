@@ -41,6 +41,7 @@ use App\Models\ProductApplication;
 //     return view('user/index');
 // });
 
+
 // All role
 Route::group(['middleware' => 'guest'], function(){
     
@@ -60,6 +61,8 @@ Route::get('/application/{id}', [HomepageController::class, 'applicationDetail']
 
 Route::get('/client', [HomepageController::class, 'client']);
 Route::get('/client/{id}', [HomepageController::class, 'clientDetail']);
+
+Route::get('/about', [HomepageController::class, 'about']);
 
 Route::get('/product', [HomepageController::class, 'product']);
 Route::get('/product/category/{id}', [HomepageController::class, 'productCategory']);

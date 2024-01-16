@@ -4,7 +4,7 @@
     <div class="slider-area ">
         <div class="slider-active">
             <div class="single-slider  hero-overly slider-height d-flex align-items-center"
-                data-background="{{ asset('storage/image/banner.webp') }}" height="900">
+                data-background="{{ asset('storage/image/banner.jpg') }}" height="900">
                 <div class="container">
                     <div class="row">
                         <div class="col-lg-11">

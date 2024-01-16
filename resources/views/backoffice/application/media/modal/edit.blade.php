@@ -1,7 +1,7 @@
 <div class="modal fade" id="mediaEdit{{ $mediaApplication->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/media-application/{{ $mediaApplication->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/application/media/{{ $mediaApplication->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">

@@ -35,7 +35,7 @@ class ProductCategoryController extends Controller
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
         $productCategory->description = $request->description;
-        $productCategory->thumbnail = $newName;
+        $productCategory->thumbnail = str_replace(' ', '_', $newName);
         $productCategory->save();
 
         Session::flash('status', 'success');
@@ -68,10 +68,10 @@ class ProductCategoryController extends Controller
             if ($request->file('thumbnail') == "") {
                 $productCategory->thumbnail = $request->oldImage;
             } else {
-                $productCategory->thumbnail = $newName;
+                $productCategory->thumbnail = str_replace(' ', '_', $newName);
             }
         } else {
-            $productCategory->thumbnail = $newName;
+            $productCategory->thumbnail = str_replace(' ', '_', $newName);
         }
         $productCategory->save();
 

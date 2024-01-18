@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductVariant;
+use App\Models\PVSpecification;
 use Illuminate\Support\Facades\Session;
 
 class ProductVariantController extends Controller
@@ -73,10 +74,16 @@ class ProductVariantController extends Controller
 
     public function delete($id)
     {
+        // $pvSpecs = PVSpecification::where('product_variant_id', $id)->get();
+        // if ($pvSpecs->count() != 0) {
+        //     $pvSpecs->delete();
+        // }
+
         $productVariant =ProductVariant::find($id);
+        $productVariant->spec()->delete();
         $productVariant->delete();
 
-        Session::flash('status', 'success');
+        Session::flash('variant', 'success');
         Session::flash('message', 'Delete data success');
         return redirect('/backoffice/product/variant/'. $productVariant->product_id);
     }

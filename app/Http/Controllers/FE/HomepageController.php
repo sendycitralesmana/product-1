@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FE;
 use App\Http\Controllers\Controller;
 use App\Models\Application;
 use App\Models\Client;
+use App\Models\Content;
 use App\Models\MediaApplication;
 use App\Models\MediaProduct;
 use App\Models\Product;
@@ -19,6 +20,8 @@ class HomepageController extends Controller
     public function index() {
         $productCategories = ProductCategory::get();
         $products = Product::with('media')->get();
+        $aboutC = Content::where('page_id', 1)->first();
+        $vimiC = Content::where('page_id', 2)->first();
         $applicationC = Application::count();
         if ($applicationC > 2) {
             $applications = Application::with(['media'])->get()->random(2);
@@ -31,7 +34,9 @@ class HomepageController extends Controller
             'productCategories' => $productCategories,
             'products' => $products,
             'applications' => $applications,
-            'clients' => $clients
+            'clients' => $clients,
+            'aboutC' => $aboutC,
+            'vimiC' => $vimiC,
         ]);
     }
 
@@ -83,7 +88,7 @@ class HomepageController extends Controller
     }
 
     public function product() {
-        $products = Product::paginate(6);
+        $products = Product::paginate(9);
         $productCategories = ProductCategory::get();
         return view('frontend.product.product', [
             'products' => $products,
@@ -92,7 +97,7 @@ class HomepageController extends Controller
     }
     
     public function productCategory($id) {
-        $products = Product::where('product_category_id', $id)->paginate(6);
+        $products = Product::where('product_category_id', $id)->paginate(9);
         $productCategories = ProductCategory::get();
         $productCategory = ProductCategory::find($id);
 

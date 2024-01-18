@@ -42,8 +42,26 @@ class ProductApplicationController extends Controller
             ProductApplication::create($data2);
         }
 
-        Session::flash('status', 'success');
+        Session::flash('product', 'success');
         Session::flash('message', 'Add data success');
         return redirect('/backoffice/application/product/'. $request->application_id);
     }
+
+    public function deleteApplication($id) {
+        $application = ProductApplication::find($id);
+        $application->delete();
+
+        Session::flash('application', 'success');
+        Session::flash('message', 'Delete data success');
+        return redirect('/backoffice/product/application/'. $application->product_id);
+    } 
+    
+    public function deleteProduct($id) {
+        $product = ProductApplication::find($id);
+        $product->delete();
+
+        Session::flash('product', 'success');
+        Session::flash('message', 'Delete data success');
+        return redirect('/backoffice/application/product/'. $product->application_id);
+    } 
 }

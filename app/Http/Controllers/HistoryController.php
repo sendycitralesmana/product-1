@@ -31,14 +31,14 @@ class HistoryController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/history', $newName);
+            $request->file('thumbnail')->storeAs('image/history/', $newName);
         }
 
         $history = new History();
         $history->title = $request->title;
         $history->year = $request->year;
         $history->description = $request->description;
-        $history->thumbnail = $newName;
+        $history->thumbnail = str_replace(' ', '_', $newName);
         $history->save();
 
         Session::flash('history', 'success');
@@ -74,10 +74,10 @@ class HistoryController extends Controller
             if ($request->file('thumbnail') == "") {
                 $history->thumbnail = $request->oldImage;
             } else {
-                $history->thumbnail = $newName;
+                $history->thumbnail = str_replace(' ', '_', $newName);
             }
         } else {
-            $history->thumbnail = $newName;
+            $history->thumbnail = str_replace(' ', '_', $newName);
         }
         $history->save();
 

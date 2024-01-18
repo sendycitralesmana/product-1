@@ -32,28 +32,28 @@
                         </div>
                         <div class="form-group">
                             <label>Long</label>
-                            <input type="number" name="long" class="form-control" value="{{ $productVariant->long}}">
+                            <input type="teks" name="long" class="form-control" value="{{ $productVariant->long}}">
                             @if($errors->has('long'))
                             <span class="help-block" style="color: red">{{ $errors->first('long') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Weight</label>
-                            <input type="number" name="weight" class="form-control" value="{{ $productVariant->weight}}">
+                            <input type="teks" name="weight" class="form-control" value="{{ $productVariant->weight}}">
                             @if($errors->has('weight'))
                             <span class="help-block" style="color: red">{{ $errors->first('weight') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Width</label>
-                            <input type="number" name="width" class="form-control" value="{{ $productVariant->width}}">
+                            <input type="teks" name="width" class="form-control" value="{{ $productVariant->width}}">
                             @if($errors->has('width'))
                             <span class="help-block" style="color: red">{{ $errors->first('width') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Height</label>
-                            <input type="number" name="height" class="form-control" value="{{ $productVariant->height}}">
+                            <input type="teks" name="height" class="form-control" value="{{ $productVariant->height}}">
                             @if($errors->has('height'))
                             <span class="help-block" style="color: red">{{ $errors->first('height') }}</span>
                             @endif

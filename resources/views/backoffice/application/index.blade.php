@@ -40,10 +40,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('application'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -73,9 +78,12 @@
                             <td>
                                 @if (auth()->user()->role_id == 2)
                                 <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
-                                
-                                {{-- <a href="/product/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a> --}}
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.application.modal.delete')  
                                 @endif
                             </td>
                         </tr>
@@ -84,6 +92,7 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
+                            <th>Thumbnail</th>
                             <th>Name</th>
                             <th>Area</th>
                             <th>Time</th>

@@ -25,12 +25,12 @@
                 <h3 class="card-title">Content</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
-                    <!-- Button trigger modal -->
+                    {{-- Button trigger modal
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#contentAdd">
                         <span>+</span>
                     </button>
-                    {{-- Modal --}}
-                    @include('backoffice.about.content.modal.add')
+                    Modal
+                    @include('backoffice.about.content.modal.add') --}}
                     @endif
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -40,10 +40,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('content'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 @if ($errors->any())
                 <div class="alert alert-danger" role="alert">
@@ -60,6 +65,8 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Thumbnail</th>
+                            <th>Page</th>
                             <th>Title</th>
                             <th>Description</th>
                             <th>Option</th>
@@ -69,6 +76,8 @@
                         @foreach ($contents as $content)
                         <tr>
                             <td> {{ $content->id }} </td>
+                            <td> {{ $content->thumbnail }} </td>
+                            <td> {{ $content->page->name }} </td>
                             <td> {{ $content->title }} </td>
                             <td> <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#contentDesc{{ $content->id }}">
@@ -84,8 +93,8 @@
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.about.content.modal.edit')
-                                <a href="/backoffice/about/content/{{ $content->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a>
+                                {{-- <a href="/backoffice/about/content/{{ $content->id }}/delete" onclick="return confirm('Are you sure?')"
+                                    class="btn btn-danger btn-sm">Delete</a> --}}
                                 @endif
                             </td>
                         </tr>
@@ -94,6 +103,8 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
+                            <th>Thumbnail</th>
+                            <th>Page</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Option</th>

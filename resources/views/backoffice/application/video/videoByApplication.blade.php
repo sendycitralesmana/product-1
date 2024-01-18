@@ -42,10 +42,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('video'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -72,8 +77,12 @@
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.video.modal.edit')
-                                <a href="/backoffice/application/video/{{ $videoApplication->id }}/delete"
-                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#videoDelete{{ $videoApplication->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.application.video.modal.delete')
                             </td>
                             @endif
                         </tr>

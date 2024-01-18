@@ -37,11 +37,16 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                @if (Session::has('product'))
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -52,12 +57,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($applications->product as $product)
+                        @foreach ($productApps as $product)
                         <tr>
-                            <td> {{ $product->id }} </td>
-                            <td> {{ $product->name }} </td>
+                            <td> {{ $product->product->id }} </td>
+                            <td> {{ $product->product->name }} </td>
                             <td>
-                                <a href="/backoffice/product/{{ $product->id }}/detail" class="btn btn-primary btn-sm">Detail</a>
+                                <a href="/backoffice/product/{{ $product->product->id }}/detail" class="btn btn-primary btn-sm">Detail</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productDelete{{ $product->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.application.product.modal.delete')
                             </td>
                         </tr>
                         @endforeach

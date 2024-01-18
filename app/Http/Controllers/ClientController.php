@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Application;
 use App\Models\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -35,7 +36,7 @@ class ClientController extends Controller
 
         $client = new Client();
         $client->name = $request->name;
-        $client->image = $newName;
+        $client->image = str_replace(' ', '_', $newName);
         $client->link = $request->link;
         $client->save();
 
@@ -69,10 +70,10 @@ class ClientController extends Controller
             if ($request->file('image') == "") {
                 $client->image = $request->oldImage;
             } else {
-                $client->image = $newName;
+                $client->image = str_replace(' ', '_', $newName);
             }
         } else {
-            $client->image = $newName;
+            $client->image = str_replace(' ', '_', $newName);
         }
         $client->link = $request->link;
         $client->save();
@@ -89,5 +90,16 @@ class ClientController extends Controller
         return view('backoffice.client.detail', [
             'client' => $client,
         ]);
+    }
+
+    public function delete($id) {
+
+        $client = Client::find($id);
+        $client->application()->update();
+        $client->delete(); 
+        
+        Session::flash('client', 'success');
+        Session::flash('message', 'Delete data success');
+        return redirect('/backoffice/client');
     }
 }

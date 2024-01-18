@@ -102,6 +102,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/product/{id}/detail', [ProductController::class, 'detail']);
         
         Route::get('/backoffice/product/application/{id}', [ProductController::class, 'applicationByProduct']);
+        Route::get('/backoffice/product/application/{id}/delete', [ProductApplicationController::class, 'deleteApplication']);
         Route::post('/backoffice/product/application/create', [ProductApplicationController::class, 'createApplication']);
 
         Route::get('/backoffice/product/category', [ProductCategoryController::class, 'index']);
@@ -187,7 +188,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/application/video/{id}', [VideoApplicationController::class, 'videoByApplication']);
     
     Route::post('/backoffice/application/product/create', [ProductApplicationController::class, 'createProduct']);
-    Route::get('/backoffice/application/product-application/{id}', [ProductApplicationController::class, 'productByApplication']);
+    Route::get('/backoffice/application/product/{id}/delete', [ProductApplicationController::class, 'deleteProduct']);
+    // Route::get('/backoffice/application/product-application/{id}', [ProductApplicationController::class, 'productByApplication']);
     // Application End
 
 
@@ -207,7 +209,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/backoffice/post/category/{id}/detail', [PostCategoryController::class, 'detail']);
     // Post End
 
-    // Post
+    // Client
     Route::get('/backoffice/client', [ClientController::class, 'index']);
     Route::post('/backoffice/client/create', [ClientController::class, 'create']);
     Route::put('/backoffice/client/{id}/update', [ClientController::class, 'update']);

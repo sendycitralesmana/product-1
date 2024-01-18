@@ -40,10 +40,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('client'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 @if ($errors->any())
                 <div class="alert alert-danger" role="alert">
@@ -73,13 +78,12 @@
                                 <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm">Detail</a>
                                 @if (auth()->user()->role_id == 2)
                                 <!-- Button trigger modal -->
-                                {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#clientEdit{{ $client->id }}">
-                                    <span>Edit</span>
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clientDelete{{$client->id}}">
+                                    <span>Delete</span>
                                 </button>
-                                Modal
-                                @include('client.modal.edit') --}}
-                                {{-- <a href="/client/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a> --}}
+                                {{-- Modal --}}
+                                @include('backoffice.client.modal.delete')
+                                    
                                 @endif
                             </td>
                         </tr>

@@ -65,8 +65,12 @@
                             <td>
                                 @if (auth()->user()->role_id == 2)
                                 <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
-                                {{-- <a href="/product/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a> --}}
+                                <!-- Button trigger modal -->
+                                <button title="Delete" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.product.application.modal.delete')
                                 @endif
                             </td>
                         </tr>

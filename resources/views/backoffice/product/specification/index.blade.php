@@ -1,4 +1,4 @@
-@extends('layouts/main')
+@extends('backoffice.layouts/main')
 
 @section('title', 'Specification')
 
@@ -30,7 +30,7 @@
                         <span>+</span>
                     </button>
                     {{-- Modal --}}
-                    @include('product.specification.modal.add')
+                    @include('backoffice.product.specification.modal.add')
 
                     @endif
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -41,10 +41,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -69,9 +74,9 @@
                                     <span>Edit</span>
                                 </button>
                                 {{-- Modal --}}
-                                @include('product.specification.modal.edit')
-                                {{-- <a href="/specification/{{ $data->id }}/delete"
-                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a> --}}
+                                @include('backoffice.product.specification.modal.edit')
+                                <a href="/backoffice/product/specification/{{ $specification->id }}/delete"
+                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
                             </td>
 
                             @endif

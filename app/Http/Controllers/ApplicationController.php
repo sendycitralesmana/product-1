@@ -139,9 +139,25 @@ class ApplicationController extends Controller
     public function productByApplication($id) {
         $applications = Application::with(['product'])->find($id);
         $products = Product::get();
+        $productApps = ProductApplication::where('application_id', $id)->get();
         return view('backoffice.application.product.productByApplication', [
             'applications' => $applications,
-            'products' => $products
+            'products' => $products,
+            'productApps' => $productApps
         ]);
+    }
+
+    public function delete($id) {
+
+        $application = Application::find($id);
+        $application->media()->delete();
+        $application->video()->delete();
+        $application->applicationPivot()->delete();
+        $application->delete();
+
+        Session::flash('application', 'success');
+        Session::flash('message', 'Delete data success');
+        
+        return redirect('/backoffice/application');
     }
 }

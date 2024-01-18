@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\PVSpecification;
 use App\Models\Specification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -11,7 +12,7 @@ class SpecificationController extends Controller
     public function index()
     {
         $specifications = Specification::all();
-        return view('product.specification.index', [
+        return view('backoffice.product.specification.index', [
             'specifications' => $specifications
         ]);
     }
@@ -35,7 +36,7 @@ class SpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/product/specification');
+        return redirect('/backoffice/product/specification');
     }
 
     public function update(Request $request, $id)
@@ -51,17 +52,18 @@ class SpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/product/specification');
+        return redirect('/backoffice/product/specification');
     }
 
     public function delete($id)
     {
         $specification = specification::find($id);
+        $specification->specV()->delete();
         $specification->delete();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/product/specification');
+        return redirect('/backoffice/product/specification');
     }
 
 }

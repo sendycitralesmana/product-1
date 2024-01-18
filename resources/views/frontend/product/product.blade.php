@@ -26,20 +26,25 @@
     </div>
     <!-- slider Area End-->
 
-    <!-- Services Area Start -->
-    <div class="services-area1 section-padding30">
-        <div class="container">
-            {{-- section tittle --}}
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section-tittle mb-55">
-                        <div class="front-text">
-                            <h2 class="">Our Product</h2>
-                        </div>
-                        <span class="back-text">Product</span>
-                    </div>
+    <section style="padding: 20px; margin-top: 140px">
+        <h2 class="text-center">Product Category</h2>
+        <div class="row text-center" style="padding: 20px;">
+            {{-- <div class="col" style="margin: 3px">
+                <a href="/product" class="btn btn-block">Show all</a>
+            </div> --}}
+            @foreach ($productCategories as $productCategory)
+                <div class="col" style="margin: 3px">
+                    <a href="/product/category/{{ $productCategory->id }}" class="btn btn-block">
+                        {{ $productCategory->name }}
+                    </a>
                 </div>
-            </div>
+            @endforeach
+        </div>
+    </section>
+
+    <!-- Services Area Start -->
+    <div class="services-area1 mt-20">
+        <div class="container">
             <div class="row">
                 @foreach ($products as $product)
                 <div class="col-xl-4 col-lg-4 col-md-6">

@@ -58,7 +58,7 @@ class ProductVideoController extends Controller
         $productVideo = ProductVideo::find($id);
         $productVideo->delete();
 
-        Session::flash('status', 'success');
+        Session::flash('video', 'success');
         Session::flash('message', 'Delete data success');
         return redirect('/backoffice/product/video/'. $productVideo->product_id);
     }

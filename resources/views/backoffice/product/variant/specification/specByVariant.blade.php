@@ -72,8 +72,12 @@
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.edit')
-                                <a href="/backoffice/product/vs/{{ $pvSpecification->id }}/delete"
-                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#variantSpecDelete{{ $pvSpecification->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.product.variant.specification.modal.delete')
                             </td>
                             @endif
                         </tr>

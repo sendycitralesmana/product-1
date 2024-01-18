@@ -25,7 +25,6 @@ class Application extends Model
     {
         return $this->hasMany(MediaApplication::class, 'application_id', 'id');
     }
-
     
     public function video(): HasMany
     {
@@ -35,5 +34,10 @@ class Application extends Model
     public function product(): BelongsToMany
     {
         return $this->belongsToMany(Product::class, 'product_applications', 'application_id', 'product_id');
+    }
+
+    public function applicationPivot(): HasMany
+    {
+        return $this->hasMany(ProductApplication::class, 'application_id', 'id');
     }
 }

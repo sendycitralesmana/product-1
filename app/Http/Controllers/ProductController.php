@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductVariant;
 use App\Models\ProductCategory;
 use App\Models\ProductApplication;
+use App\Models\PVSpecification;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -55,14 +56,14 @@ class ProductController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product', $newName);
+            $request->file('thumbnail')->storeAs('image/product/', $newName);
         }
 
         $product = new product;
         $product->product_category_id = $request->product_category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->thumbnail = $newName;
+        $product->thumbnail = str_replace(' ', '_', $newName);
         $product->save();
 
         $productId = Product::orderBy('id', 'desc')->first();
@@ -118,10 +119,10 @@ class ProductController extends Controller
             if ($request->file('thumbnail') == "") {
                 $product->thumbnail = $request->oldImage;
             } else {
-                $product->thumbnail = $newName;
+                $product->thumbnail = str_replace(' ', '_', $newName);
             }
         } else {
-            $product->thumbnail = $newName;
+            $product->thumbnail = str_replace(' ', '_', $newName);
         }
         // dd($product);
         $product->save();
@@ -136,6 +137,18 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::find($id);
+        $product->media()->delete();
+        $product->video()->delete();
+        // $product->variant()->delete();
+        
+        $variantProds = ProductVariant::with(['spec'])->where('product_id', $id)->get();
+        if ($variantProds->count() != 0) {
+            foreach ($variantProds as $variant) {
+                $variant->spec()->delete();
+                $variant->delete();
+            }
+        }
+        $product->productApp()->delete();
         $product->delete();
 
         Session::flash('status', 'success');

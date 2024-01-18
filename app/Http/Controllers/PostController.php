@@ -32,7 +32,7 @@ class PostController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/post', $newName);
+            $request->file('thumbnail')->storeAs('image/post/', $newName);
         }
 
         $application = new Post();
@@ -40,7 +40,7 @@ class PostController extends Controller
         $application->user_id = auth()->user()->id;
         $application->title = $request->title;
         $application->content = $request->content;
-        $application->thumbnail = $newName;
+        $application->thumbnail = str_replace(' ', '_', $newName);
         $application->save();
 
         Session::flash('post', 'success');
@@ -75,10 +75,10 @@ class PostController extends Controller
             if ($request->file('thumbnail') == "") {
                 $post->thumbnail = $request->oldImage;
             } else {
-                $post->thumbnail = $newName;
+                $post->thumbnail = str_replace(' ', '_', $newName);
             }
         } else {
-            $post->thumbnail = $newName;
+            $post->thumbnail = str_replace(' ', '_', $newName);
         }
         $post->save();
 

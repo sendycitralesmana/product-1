@@ -30,7 +30,7 @@
                 <div class="col-lg-12">
                     <div class="section-tittle mb-55">
                         <div class="front-text">
-                            <h2 class="">Tentang Kami</h2>
+                            <h2 class=""> {{ $aboutC->title }} </h2>
                         </div>
                         <span class="back-text">Matahari Led</span>
                     </div>
@@ -41,18 +41,7 @@
             <div class="left-content">
                 <!-- section tittle -->
                 <div class="support-caption">
-                    <p >PT. Matahari Teknologi Jaya merupakan perusahaan perdagangan 
-                        besar elektronik serta importir untuk berbagai produk seputar Display 
-                        & IT Solution. Lebih spesik kami bertindak sebagai Distributor & Agen 
-                        untuk produk-produk display seperti Videotron, Videowall, Digital 
-                        Signage, IT Solution serta digital display lainnya sebagai media periklanan, media digital, smart oce solution dan smart monitoring system 
-                        untuk menunjang kebutuhan pasar yang selalu mengikuti perkembangan teknologi.</p>
-                    <p>Dalam perjalanannya PT. Matahari Teknologi Jaya berhasil 
-                        membuat produk yang memiliki nilai Tingkat Komponen Dalam 
-                        Negeri dengan merek dagang “UAPIC” yang telah dipatenkan dengan 
-                        mendaftarkan merek dagang tersebut pada Direktorat Jenderal 
-                        Kekayaan Intelektual (DJKI) Kementerian Hukum dan Hak Asasi Manusia. Merek “UAPIC” terus berkembang dengan berbagai produk Digital 
-                        Display dan sudah terpasang pada berbagai public area di Indonesia</p>
+                    {!! html_entity_decode($aboutC->description) !!}
                 </div>
             </div>
             <div class="right-content">
@@ -81,23 +70,11 @@
                             <!-- Section Tittle -->
                             <div class="section-tittle section-tittle4">
                                 <div class="front-text">
-                                    <h2 class="">Visi & Misi</h2>
+                                    <h2 class=""> {{ $vimiC->title }} </h2>
                                 </div>
                                 {{-- <span class="back-text">Matahari LED</span> --}}
                             </div>
-                            <p>Menjadi perusahaan terkemuka yang mengedepankan inovasi 
-                                teknologi dengan memberi solusi dan nilai tambah bagi mitra bisnis 
-                                dan masyarakat luas</p>
-                            <p>
-                                1. Menjalankan kegiatan usaha dengan mengedepankan integritas 
-                                dan kejujuran dengan memberikan sesuatu yang lebih dari ekspektasi 
-                                mitra bisnis
-                                <br>
-                                2. Menjaga komitmen purna jual demi kepuasan pelanggan <br>
-                                3. Secara berkelanjutan selalu melahirkan produk baru yang inovatif 
-                                melalui R&D <br>
-                                4. Membangun SDM yang berkompeten dan berakhlak mulia
-                            </p>
+                            {!! html_entity_decode($vimiC->description) !!}
                         </div>
                     </div>
                 </div>

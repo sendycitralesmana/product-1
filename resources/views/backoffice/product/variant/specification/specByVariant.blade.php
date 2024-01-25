@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Variant {{ $productVariant->name }} Specification Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $productVariant->id }}" class="text-secondary">Variant</a></li>
+                    <li class="breadcrumb-item active">Specification</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -40,10 +47,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -68,13 +80,13 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#variantSpecEdit{{ $pvSpecification->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#variantSpecDelete{{ $pvSpecification->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-trash-a"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.delete')

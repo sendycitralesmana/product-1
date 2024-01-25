@@ -6,7 +6,7 @@
 
     <!-- slider Area Start-->
     <div class="slider-area ">
-        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background=" {{ asset('assets/front-end/img/hero/about.jpg') }} ">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background=" {{ asset('storage/image/banner.jpg') }} ">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -60,8 +60,7 @@
                         </div>
                         <div class="service-cap">
                             <h4><a href="/application/{{ $application->id }}">{{ $application->name }}</a></h4>
-                            <a href="/application/{{ $application->id }}" class="more-btn">Read More <i
-                                    class="ti-plus"></i></a>
+                            <a href="/application/{{ $application->id }}" class="more-btn">Read More </a>
                         </div>
                         <div class="service-icon">
                             <img src=" {{ asset('assets/front-end/img/icon/services_icon1.png') }} " alt="">

@@ -9,17 +9,14 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Detail Post</h1>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/post" class="text-secondary">Post</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -36,10 +33,16 @@
                     @if ( $post->user_id == auth()->user()->id )
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postEdit{{ $post->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.post.modal.edit')
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#postDelete{{ $post->id }}">
+                                    <span>Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.post.modal.delete')
                                 @else
                                 -
                                 @endif
@@ -50,25 +53,127 @@
                 </div>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 @if (Session::has('post'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 <div class="row">
-                    <div class="col-md-3">
-                        @if( $post->thumbnail != '' )
-                            <img src="{{asset('storage/image/post/'.$post->thumbnail)}}" alt="" width="300px" height="300px">
-                        @else
-                            <img src="{{asset('storage/image/default.png')}}" alt="" width="300px" height="300px">
-                        @endif
+                    <div class="col-md-8">
+                      <!-- Box Comment -->
+                      <div class="card card-widget">
+                        <div class="card-header">
+                          <div class="user-block">
+                            @if ( $post->user->avatar != null )
+                                <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
+                            @endif
+                            {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
+                            <span class="username"><a href="#">{{ $post->user->name }}</a></span>
+                            <span class="description">Added post - {{ $post->created_at->diffForHumans() }}</span>
+                          </div>
+                          <!-- /.user-block -->
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                            </button>
+                          </div>
+                          <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                            @if ( $post->thumbnail != null )
+                                <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid" alt="" height="300px">
+                            @endif
+                            <h4 class="mt-3"> {{ $post->title }} </h4>
+                          <p> {!! html_entity_decode($post->content) !!} </p>
+                          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
+                          <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
+                          <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer card-comments">
+                          <div class="card-comment">
+                            <!-- User image -->
+                            <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image">
+          
+                            <div class="comment-text">
+                              <span class="username">
+                                Maria Gonzales
+                                <span class="text-muted float-right">8:03 PM Today</span>
+                              </span><!-- /.username -->
+                              It is a long established fact that a reader will be distracted
+                              by the readable content of a page when looking at its layout.
+                            </div>
+                            <!-- /.comment-text -->
+                          </div>
+                          <!-- /.card-comment -->
+                          <div class="card-comment">
+                            <!-- User image -->
+                            <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="User Image">
+          
+                            <div class="comment-text">
+                              <span class="username">
+                                Luna Stark
+                                <span class="text-muted float-right">8:03 PM Today</span>
+                              </span><!-- /.username -->
+                              It is a long established fact that a reader will be distracted
+                              by the readable content of a page when looking at its layout.
+                            </div>
+                            <!-- /.comment-text -->
+                          </div>
+                          <!-- /.card-comment -->
+                        </div>
+                        <!-- /.card-footer -->
+                        <div class="card-footer">
+                        </div>
+                        
+                      </div>
+                      
                     </div>
-                    <div class="col-md-9">
-                        <h2>{{ $post->title }}</h2>
-                        <small>Ditulis oleh : {{ $post->user->name }}</small>
-                        <div style="margin-top:20px">{!! html_entity_decode($post->content) !!}</div>
+
+                    <div class="col-md-4">
+                      <!-- Box Comment -->
+                      <div class="card card-widget">
+                        <div class="card-header">
+                          <div class="user-block">
+                            <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image">
+                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                            <span class="description">Shared publicly - 7:30 PM Today</span>
+                          </div>
+                          <!-- /.user-block -->
+                          <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                            </button>
+                          </div>
+                          <!-- /.card-tools -->
+                        </div>
+                        <!-- /.card-header -->
+                        <div class="card-body">
+                        
+                        </div>
+                        <!-- /.card-body -->
+                        <div class="card-footer">
+                            
+                        </div>
+                        <!-- /.card-footer -->
+                      </div>
+                      <!-- /.card -->
                     </div>
+
                 </div>
             </div>
         </div>

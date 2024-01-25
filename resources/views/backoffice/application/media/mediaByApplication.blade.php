@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>{{ $application->name }} Media Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/application" class="text-secondary">Application</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $application->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item active">Media</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -74,7 +81,7 @@
                                 @if ($mediaApplication->type->name == "Image")
                                 <img src="{{asset('storage/application/media/'.$mediaApplication->url)}}" alt="" width="80px" height="80px">
                                 @else
-                                    <a href="/backoffice/application/media/download/{{ $mediaApplication->id }}" class="btn btn-sm btn-success">Download</a>
+                                    <a href="/backoffice/application/media/download/{{ $mediaApplication->id }}" class="btn btn-sm btn-success"> <i class="ion ion-android-archive"></i> Download</a>
                                 @endif    
                             </td>
                             <td> {{ $mediaApplication->type->name }} </td>
@@ -85,13 +92,13 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#mediaEdit{{ $mediaApplication->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.media.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediaDelete{{ $mediaApplication->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.media.modal.delete')

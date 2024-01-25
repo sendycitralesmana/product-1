@@ -28,7 +28,7 @@ class PostController extends Controller
             'content' => 'required',
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
@@ -57,7 +57,7 @@ class PostController extends Controller
             'thumbnail' => 'image'
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             if ($request->oldImage) {
                 Storage::delete('image/post/' . $request->oldImage);
@@ -96,5 +96,14 @@ class PostController extends Controller
             'post' => $post,
             'postCategories' => $postCategories
         ]);
+    }
+
+    public function delete($id) {
+        $post = Post::find($id);
+        $post->delete();
+
+        Session::flash('post', 'success');
+        Session::flash('message', 'Delete data success');
+        return redirect('/backoffice/post');
     }
 }

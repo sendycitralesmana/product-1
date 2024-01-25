@@ -70,7 +70,7 @@
                             <td> {{ $postCategory->id }} </td>
                             <td> {{ $postCategory->name }} </td>
                             <td>
-                                <a href="/backoffice/post/category/{{ $postCategory->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/post/category/{{ $postCategory->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                 @if (auth()->user()->role_id == 2)
                                 <!-- Button trigger modal -->
                                 {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#PostCategoryEdit{{ $postCategory->id }}">

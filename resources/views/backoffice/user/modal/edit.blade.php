@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <div class="form-group">
                             <label>Name</label>
-                            <input type="text" name="name" class="form-control" value="{{ $user->name }}">
+                            <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
@@ -23,11 +23,11 @@
                             <label>Avatar</label>
                             <input type="hidden" name="oldImage" value="{{ $user->avatar }}">
                             @if ($user->avatar)
-                                <img src="{{ asset('storage/image/category/'. $user->avatar) }}" name="oldValue" value="$user->avatar" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('storage/image/user/'. $user->avatar) }}" name="oldValue" value="$user->avatar" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
-                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImage()" id="image" name="avatar" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="avatar" class="form-control" placeholder="Enter Password">
                             @if($errors->has('avatar'))
                             <span class="help-block" style="color: red">{{ $errors->first('avatar') }}</span>
                             @endif
@@ -44,3 +44,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImgP() {
+        const image = document.querySelector('#imageP')
+        const imgPreview = document.querySelector('.img-previewP')
+
+        imgPreview.style.display = 'block'
+
+        const oFReader = new FileReader()
+        oFReader.readAsDataURL(image.files[0])
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result
+        }
+    }
+</script>

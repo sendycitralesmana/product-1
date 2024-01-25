@@ -1,5 +1,5 @@
 <!-- Services Area Start -->
-<div class="services-area1 section-padding30">
+<div class="services-area1 mt-140">
     <div class="container">
         {{-- section tittle --}}
         <div class="row">
@@ -20,7 +20,7 @@
                         
                     @endforeach --}}
                     <div class="service-img">
-                        @if ( $application->thumbnail != '')
+                        @if ( $application->thumbnail != null)
                         <img src="{{asset('storage/image/application/'. $application->thumbnail)}}" alt="" width="290px" height="210px">
                         @else
                         <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px">

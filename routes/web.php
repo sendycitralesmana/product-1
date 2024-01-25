@@ -4,6 +4,7 @@ use App\Http\Controllers\ApplicationController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ClientController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
@@ -50,7 +51,7 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/login-process', [AuthController::class, 'loginProcess']);
     Route::get('/register', [AuthController::class, 'register']);
     Route::post('/register-process', [AuthController::class, 'registerProcess']);
-    
+     
 });
 // front end
 
@@ -68,7 +69,13 @@ Route::get('/product', [HomepageController::class, 'product']);
 Route::get('/product/category/{id}', [HomepageController::class, 'productCategory']);
 Route::get('/product/{id}', [HomepageController::class, 'productDetail']);
 
-Route::get('/product/variant/{id}', [HomepageController::class, 'productVariant']);
+Route::get('/product/variant/{id}', [HomepageController::class, 'variantDetail']);
+
+Route::get('/post', [HomepageController::class, 'post']);
+Route::get('/post/category/{id}', [HomepageController::class, 'postCategory']);
+Route::get('/post/{id}', [HomepageController::class, 'postDetail']);
+
+Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
 
 // front end
 

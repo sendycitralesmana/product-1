@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>{{ $product->name }} Media Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item active">Media</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -85,13 +92,13 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#store_media{{ $mediaProduct->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.media.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediaDelete{{ $mediaProduct->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.media.modal.delete')

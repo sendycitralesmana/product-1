@@ -14,7 +14,6 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
                         <li class="breadcrumb-item active">Dashboard</li>
                     </ol>
                 </div>
@@ -37,29 +36,8 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
-                @endif
-
-                {{-- <script type="text/javascript">
-                    document.addEventListener('DOMContentLoaded', function () {
-                        Swal.fire({
-                        title: "Good job!",
-                        text: "You clicked the button!",
-                        icon: "success"
-                        });
-                    });
-                </script> --}}
-
+                
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

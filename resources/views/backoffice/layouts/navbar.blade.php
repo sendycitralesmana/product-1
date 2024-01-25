@@ -19,13 +19,13 @@
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Settings</span>
                 <div class="dropdown-divider"></div>
-                <a href="/backoffice/profile/{{ auth()->user()->id }}" class="dropdown-item">
+                <p data-toggle="modal" data-target="#exampleModal" class="dropdown-item" style="cursor: pointer">
                     <i class="fas fa- mr-2"></i> Profile
-                </a>
+                </p>
                 <div class="dropdown-divider"></div>
-                <a href="/logout" class="dropdown-item" onClick="return confirm('Anda Yakin ?')">
+                <p data-toggle="modal" data-target="#logout" class="dropdown-item" style="cursor: pointer">
                     <i class="fas fa- mr-2"></i> Logout
-                </a>
+                </p>
             </div>
         </li>
         @endif
@@ -48,15 +48,35 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action="/user/update-profile">
+            <form method="post" action="/backoffice/user/{{ auth()->user()->id }}/update" enctype="multipart/form-data">
                 <div class="modal-body">
                     @csrf
                     @method('put')
                     <div class="form-group">
                         <label for="exampleFormControlInput1">Name</label>
-                        <input type="name" name="name" class="form-control" value="{{ auth()->user()->name }}">
+                        <input type="name" name="name" class="form-control" value="{{ auth()->user()->name }}" required>
                         @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleFormControlInput1">Email</label>
+                        <input type="text" name="email" class="form-control" value="{{ auth()->user()->email }}" readonly>
+                        @if($errors->has('email'))
+                            <span class="help-block" style="color: red">{{ $errors->first('email') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Avatar</label>
+                        <input type="hidden" name="oldImage" value="{{ auth()->user()->avatar }}">
+                        @if (auth()->user()->avatar)
+                            <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" name="oldValue" value="$user->avatar" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
+                        @else
+                            <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
+                        @endif
+                        <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="avatar" class="form-control" placeholder="Enter Password">
+                        @if($errors->has('avatar'))
+                        <span class="help-block" style="color: red">{{ $errors->first('avatar') }}</span>
                         @endif
                     </div>
                 </div>
@@ -68,3 +88,43 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="logout" tabindex="-1" aria-labelledby="logout" aria-hidden="true">
+    <div class="modal-dialog modal-md">
+        <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="logout">Logout</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    Anda yakin akan logout
+                    
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    {{-- <button type="submit" class="btn btn-success">Save changes</button> --}}
+                    <a href="/logout" class="btn btn-success">Logout</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    function previewImgP() {
+        const image = document.querySelector('#imageP')
+        const imgPreview = document.querySelector('.img-previewP')
+
+        imgPreview.style.display = 'block'
+
+        const oFReader = new FileReader()
+        oFReader.readAsDataURL(image.files[0])
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result
+        }
+    }
+</script>

@@ -46,16 +46,21 @@
             </div>
             <div class="card-body">
                 @if (Session::has('status'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 @if ($errors->any())
                     <div class="alert alert-danger" role="alert">
                         <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
                         @foreach ($errors->all() as $error)
-                            Add user failed ( {{ $error }} )
+                            Update user failed ( {{ $error }} )
                         @endforeach
                     </div>
                 @endif
@@ -75,7 +80,7 @@
                         <tr>
                             <td> {{ $user->id }} </td>
                             <td>
-                                @if( $user->avatar != '' )
+                                @if( $user->avatar != null )
                                     <img src="{{asset('storage/image/user/'.$user->avatar)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
@@ -85,14 +90,19 @@
                             <td> {{ $user->email }} </td>
                             <td> {{ $user->role->name }} </td>
                             <td>
-                                {{-- <a href="/user/{{ $user->id }}/edit" class="btn btn-warning btn-sm">Edit</a> --}}
-                                @if (auth()->user()->id == 1)
+                                @if ($user->id != auth()->user()->id)
                                 <!-- Button trigger modal -->
-                                <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#userEdit{{ $user->id }}">
-                                    <span>Edit</span>
+                                <button title="Edit" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#userEdit{{ $user->id }}">
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.user.modal.edit')
+                                <!-- Button trigger modal -->
+                                {{-- <button title="Delete" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#userDelete{{ $user->id }}">
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                </button> --}}
+                                {{-- Modal --}}
+                                {{-- @include('backoffice.user.modal.delete') --}}
                                 @endif
                                 {{-- <a href="/user/{{ $user->id }}/delete" onclick="return confirm('Are you sure?')"
                                     class="btn btn-danger btn-sm">Delete</a> --}}

@@ -5,12 +5,17 @@
 <main>
     <!-- slider Area Start-->
     <div class="slider-area ">
-        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background=" {{ asset('assets/front-end/img/hero/about.jpg') }}">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background=" {{ asset('storage/image/banner.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-xl-8">
                         <div class="hero-cap hero-cap2 pt-120">
-                            <h2>{{ $application->name }}</h2>
+                            <h2>Detail Application</h2>
+                            <nav aria-label="breadcrumb ">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a > {{ $application->name }} </a></li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -19,13 +24,15 @@
     </div>
     <!-- slider Area End-->
     <!-- Services Details Start -->
-    <div class="services-details-area ">
+    <div class="services-details-area mt-140 mb-40">
         <div class="container">
             <div class="row">
                 <div class="col-12">
                     <div class="single-services mb-60 mt-40">
                         <div class="details-img mb-40">
-                            <img src=" {{ asset('assets/front-end/img/gallery/services_details.png') }}" alt="">
+                            @if ( $application->thumbnail != null)
+                                <img src="{{asset('storage/image/application/'.$application->thumbnail)}}" height="544" alt="">
+                            @endif
                         </div>
                         <div class="details-caption">
                             <h3>{{ $application->area }}</h3>
@@ -46,9 +53,9 @@
                         <!-- Section Tittle -->
                         <div class="section-tittle section-tittle3">
                             <div class="front-text">
-                                <h2 class="">Application</h2>
+                                <h2 class="">Detail</h2>
                             </div>
-                            <span class="back-text">Detail</span>
+                            <span class="back-text">Application</span>
                         </div>
                     </div>
                     <div class="col-lg-6">
@@ -155,19 +162,22 @@
                         <!-- card FIVE -->
                         <div class="tab-pane fade" id="nav-techno" role="tabpanel" aria-labelledby="nav-technology">
                             <div class="project-caption">
+                                @if ($application->client !== null)
                                 <div class="row">
                                     <div class="col-lg-4 col-md-6">
                                         <div class="single-project mb-30">
                                             <div class="project-img">
+                                                
                                                 <img src="{{asset('storage/image/client/'.$application->client->image)}}" alt="" width="290px" height="210px">
                                             </div>
                                             <div class="project-cap">
                                                 <a href="project_details.html" class="plus-btn"><i class="ti-plus"></i></a>
-                                               <h4><a href="project_details.html">{{ $application->client->name }}</a></h4>
+                                               {{-- <h4><a href="project_details.html">{{ $application->client->name }}</a></h4> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                                @endif
                             </div>
                         </div>
                     </div>

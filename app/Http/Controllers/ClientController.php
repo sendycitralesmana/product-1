@@ -94,6 +94,8 @@ class ClientController extends Controller
 
     public function delete($id) {
 
+        dd('hello');
+
         $client = Client::find($id);
         $client->application()->update();
         $client->delete(); 

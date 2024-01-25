@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-md-12 text-center">
+                <div class="col-sm-6">
                     <h1>Category Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Category</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -79,7 +84,7 @@
                             <td> {{ $productCategory->name }} </td>
                             <td> {!! html_entity_decode($productCategory->description) !!} </td>
                             <td> 
-                                @if( $productCategory->thumbnail != '' )
+                                @if( $productCategory->thumbnail != null )
                                     <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
@@ -90,7 +95,7 @@
                                 @if (auth()->user()->role_id == 2)
                                     <!-- Button trigger modal -->
                                     <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
-                                        <span>Edit</span>
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
                                     </button>
                                     {{-- Modal --}}
                                     @include('backoffice.product.category.modal.edit')

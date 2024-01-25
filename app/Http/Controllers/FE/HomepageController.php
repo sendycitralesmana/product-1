@@ -2,18 +2,22 @@
 
 namespace App\Http\Controllers\FE;
 
-use App\Http\Controllers\Controller;
-use App\Models\Application;
+use App\Models\Post;
 use App\Models\Client;
+use App\Models\Comment;
 use App\Models\Content;
-use App\Models\MediaApplication;
-use App\Models\MediaProduct;
 use App\Models\Product;
-use App\Models\ProductCategory;
-use App\Models\ProductVariant;
+use App\Models\Application;
+use App\Models\MediaProduct;
+use App\Models\PostCategory;
 use App\Models\ProductVideo;
-use App\Models\VideoApplication;
 use Illuminate\Http\Request;
+use App\Models\ProductVariant;
+use App\Models\ProductCategory;
+use App\Models\PVSpecification;
+use App\Models\MediaApplication;
+use App\Models\VideoApplication;
+use App\Http\Controllers\Controller;
 
 class HomepageController extends Controller
 {
@@ -22,9 +26,17 @@ class HomepageController extends Controller
         $products = Product::with('media')->get();
         $aboutC = Content::where('page_id', 1)->first();
         $vimiC = Content::where('page_id', 2)->first();
+        $content1 = Content::where('id', 1)->first();
+        $content2 = Content::where('id', 2)->first();
+        $posts = Post::get();
+        if ($posts->count() > 1) {
+            $postLatest = Post::orderBy('id', 'desc')->take(2)->get();
+        } else {
+            $postLatest = $posts;
+        }
         $applicationC = Application::count();
-        if ($applicationC > 2) {
-            $applications = Application::with(['media'])->get()->random(2);
+        if ($applicationC > 5) {
+            $applications = Application::with(['media'])->get()->random(6);
         } else {
             $applications = Application::with(['media'])->get();
         }
@@ -37,6 +49,9 @@ class HomepageController extends Controller
             'clients' => $clients,
             'aboutC' => $aboutC,
             'vimiC' => $vimiC,
+            'postLatest' => $postLatest,
+            'content1' => $content1,
+            'content2' => $content2
         ]);
     }
 
@@ -128,23 +143,76 @@ class HomepageController extends Controller
         ]);
     }
 
-    public function productVariant($id) {
-        $product = Product::find($id);
-        $productCategories = ProductCategory::get();
-        $variantProduct = ProductVariant::where('product_id', $id)->get();
-
-        return view('frontend.variant.variantProduct', [
-            'product' => $product,
-            'productCategories' => $productCategories,
-            'variantProduct' => $variantProduct
-        ]);
-    }
-
     public function about() {
         $productCategories = ProductCategory::get();
+        $content1 = Content::where('id', 1)->first();
+        $content2 = Content::where('id', 2)->first();
 
         return view('frontend.about.about', [
             'productCategories' => $productCategories,
+            'content1' => $content1,
+            'content2' => $content2
+        ]);
+    }
+
+    public function post() {
+        $posts = Post::paginate(4);
+        $postRecents = Post::orderBy('id', 'desc')->take(2)->get();
+        $postCategories = PostCategory::get();
+        $productCategories = ProductCategory::get();
+        return view('frontend.post.post', [
+            'posts' => $posts,
+            'postRecents' => $postRecents,
+            'postCategories' => $postCategories,
+            'productCategories' => $productCategories
+        ]);
+    }
+
+    public function postCategory($id) {
+        $postsAll = Post::get();
+        $posts = Post::where('post_category_id', $id)->paginate(4);
+        $postRecents = Post::orderBy('id', 'desc')->take(2)->get();
+        $postCategories = PostCategory::get();
+        $productCategories = ProductCategory::get();
+        $postCategory = PostCategory::find($id);
+
+        return view('frontend.post.category', [
+            'postsAll' => $postsAll,
+            'posts' => $posts,
+            'postRecents' => $postRecents,
+            'postCategories' => $postCategories,
+            'productCategories' => $productCategories,
+            'postCategory' => $postCategory
+        ]);
+    }
+
+    public function postDetail($id) {
+        $post = Post::find($id);
+        $posts = Post::get();
+        $postCategories = PostCategory::get();
+        $postRecents = Post::orderBy('id', 'desc')->take(2)->get();
+        $productCategories = ProductCategory::get();
+        $commentC = Comment::where('post_id', $id)->get();
+        $comments = Comment::where('post_id', $id)->paginate(5);
+        return view('frontend.post.detail', [
+            'posts' => $posts,
+            'postRecents' => $postRecents,
+            'postCategories' => $postCategories,
+            'post' => $post,
+            'productCategories' => $productCategories,
+            'commentC' => $commentC,
+            'comments' => $comments
+        ]);
+    }
+
+    public function variantDetail($id) {
+        $variant = ProductVariant::find($id);
+        $productCategories = ProductCategory::get();
+        $variantSpecs = PVSpecification::where('product_variant_id', $id)->get();
+        return view('frontend.variant.detail', [
+            'variant' => $variant,
+            'productCategories' => $productCategories,
+            'variantSpecs' => $variantSpecs
         ]);
     }
     

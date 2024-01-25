@@ -9,17 +9,14 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Detail Client</h1>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/client" class="text-secondary">Client</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -40,6 +37,15 @@
                 </div>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 @if (Session::has('client'))
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function () {
@@ -76,7 +82,7 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#clientEdit{{ $client->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.client.modal.edit')
@@ -131,7 +137,7 @@
                             <td> {{ $application->time }} </td>
                             <td>
                                 @if (auth()->user()->role_id == 2)
-                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                 
                                 {{-- <a href="/product/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
                                     class="btn btn-danger btn-sm">Delete</a> --}}

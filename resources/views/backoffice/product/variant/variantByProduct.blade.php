@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>{{ $product->name }} Variant Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item active">Variant</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -75,16 +82,16 @@
                             <td> {{ $productVariant->height }} </td>
                             <td>
                                 <a href="/backoffice/product/vs/{{ $productVariant->id }}"
-                                    class="btn btn-info btn-sm">Specification</a>
+                                    class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Specification</a>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productVariantDelete{{ $productVariant->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.modal.delete')

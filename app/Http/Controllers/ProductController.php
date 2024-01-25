@@ -52,7 +52,7 @@ class ProductController extends Controller
             'description' => 'required',
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
@@ -101,7 +101,7 @@ class ProductController extends Controller
             'description' => 'required',
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             if ($request->oldImage) {
                 Storage::delete('image/product/' . $request->oldImage);
@@ -159,10 +159,12 @@ class ProductController extends Controller
     public function applicationByProduct($id) {
         $product = Product::with(['application'])->find($id);
         $applications = Application::get();
+        $appProducts = ProductApplication::where('product_id', $id)->get();
 
         return view('backoffice.product.application.applicationByProduct', [
             'product' => $product,
-            'applications' => $applications
+            'applications' => $applications, 
+            'appProducts' => $appProducts
         ]);
     }
 

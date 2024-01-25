@@ -1,5 +1,5 @@
 <!-- Project Area Start -->
-<section class="project-area  section-padding30">
+<section class="project-area mb-40">
     <div class="container">
        <div class="project-heading mb-35">
             <div class="row align-items-end">

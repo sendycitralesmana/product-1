@@ -1,7 +1,7 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="index3.html" class="brand-link text-center">
+    <a href="/backoffice/dashboard" class="brand-link text-center">
         <!-- <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8"> -->
         <span class="brand-text font-weight-light">Matahari LED</span>
     </a>
@@ -47,7 +47,7 @@
                         <a href="#" class="nav-link {{ request()->is(
                             'backoffice/product', 'backoffice/product/*',
                             ) ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-copy"></i>
+                            <i class="nav-icon fas fa-th"></i>
                             <p>
                                 List Products
                                 <i class="fas fa-angle-left right"></i>
@@ -86,7 +86,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <i class="nav-icon fas fa-th"></i>
                           <p>
                             List Post
                             <i class="right fas fa-angle-left"></i>
@@ -116,7 +116,7 @@
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*', 'backoffice/about/history', 'backoffice/about/history/*') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-chart-pie"></i>
+                          <i class="nav-icon fas fa-th"></i>
                           <p>
                             List About
                             <i class="right fas fa-angle-left"></i>

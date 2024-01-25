@@ -9,17 +9,14 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Detail Post Category</h1>
-                    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-                    @endif
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/post/category" class="text-secondary">Post Category</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -28,96 +25,143 @@
     <!-- Main content -->
     <section class="content">
 
-        {{-- Post Type Start--}}
-        <div class="row">
-
-            <div class="col-md-6">
-                {{-- Post Category Start --}}
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Post Category</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
+            {{-- Client Start --}}
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Category</h3>
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
                     </div>
-                    <div class="card-body">
-                        @if (Session::has('status'))
-                        <div class="alert alert-success" role="alert">
-                            <button type="button" class="btn btn-success close" data-dismiss="alert"
-                                sty>&times;</button>
-                            {{Session::get('message')}}
-                        </div>
+                </div>
+                <div class="card-body">
+                    @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @endif
-                        <table id="" class="table table-bordered table-striped">
-                            <thead>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Option</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td> {{ $postCategory->id }} </td>
-                                    <td> {{ $postCategory->name }} </td>
-                                    <td>
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#postCategoryEdit{{ $postCategory->id }}">
-                                            <span>Edit</span>
-                                        </button>
-                                        {{-- Modal --}}
-                                        @include('backoffice.post.category.modal.edit')
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Name</th>
-                                    <th>Option</th>
-                                </tr>
-                            </tfoot>
-                        </table>
+                    @if (Session::has('status'))
+                    <script type="text/javascript">
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                            title: "Good job!",
+                            text: "{{Session::get('message')}}",
+                            icon: "success"
+                            });
+                        });
+                    </script>
+                    @endif
+                    <table id="" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Name</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> {{ $postCategory->id }} </td>
+                                <td> {{ $postCategory->name }} </td>
+                                <td>
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postCategoryEdit{{ $postCategory->id }}">
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.category.modal.edit')
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#postCategoryDelete{{ $postCategory->id }}">
+                                        <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.category.modal.delete')
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {{-- category End --}}
+    
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Post Data</h3>
+                    <div class="card-tools">
+                        @if (auth()->user()->role_id == 2)
+                        @endif
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                            title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
                     </div>
                 </div>
-                {{-- Post End --}}
-            </div>
-
-            <div class="col-md-6">
-                {{-- Post Start --}}
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Post</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="small-box">
-                            <div class="inner">
-                                <h3>{{ $postCategory->post->count() }}</h3>
-                                <p>Data</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-bag"></i>
-                            </div>
-                            <a href="/backoffice/post/category/{{ $postCategory->id }}"
-                                class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
+                <div class="card-body">
+                    @if (Session::has('post'))
+                    <script type="text/javascript">
+                        document.addEventListener('DOMContentLoaded', function () {
+                            Swal.fire({
+                            title: "Good job!",
+                            text: "{{Session::get('message')}}",
+                            icon: "success"
+                            });
+                        });
+                    </script>
+                    @endif
+                    <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Thumbnail</th>
+                                <th>Title</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($postCategory->post as $post)
+                            <tr>
+                                <td> {{ $post->id }} </td>
+                                <td> 
+                                    @if( $post->thumbnail != '' )
+                                        <img src="{{asset('storage/image/post/'.$post->thumbnail)}}" alt="" width="100px" height="100px">
+                                    @else
+                                        <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
+                                    @endif
+                                </td>
+                                <td> {{ $post->title }} </td>
+                                <td>
+                                    @if (auth()->user()->role_id == 2)
+                                    <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                    
+                                    {{-- <a href="/product/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
+                                        class="btn btn-danger btn-sm">Delete</a> --}}
+                                    @endif
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                        <tfoot>
+                            <tr>
+                                <th>ID</th>
+                                <th>Thumbnail</th>
+                                <th>Title</th>
+                                <th>Option</th>
+                            </tr>
+                        </tfoot>
+                    </table>
                 </div>
-                {{-- Post End --}}
+                <!-- /.card-body -->
+                <div class="card-footer">
+                    Footer
+                </div>
+                <!-- /.card-footer-->
             </div>
-
-        </div>
-        {{-- Post Type End --}}
 
     </section>
     <!-- /.content -->

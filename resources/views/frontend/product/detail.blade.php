@@ -2,20 +2,21 @@
 
 @section('main')
 
-{{-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> --}}
-
 <main>
     <!-- slider Area Start-->
     <div class="slider-area ">
         <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
-            data-background=" {{ asset('assets/front-end/img/hero/about.jpg') }}">
+            data-background=" {{ asset('storage/image/banner.jpg') }}">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-10 col-xl-8">
                         <div class="hero-cap hero-cap2 pt-120">
-                            <h2>{{ $product->name }}</h2>
-                            <h4 style="color: white">{!! html_entity_decode($product->description) !!}</h4>
+                            <h2>Detail Product</h2>
+                            <nav aria-label="breadcrumb ">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a > {{ $product->name }} </a></li>
+                                </ol>
+                            </nav>
                         </div>
                     </div>
                 </div>
@@ -25,32 +26,40 @@
     <!-- slider Area End-->
 
     <!-- Services Details Start -->
-    <div class="services-details-area mt-150">
+    <div class="services-details-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="single-services section-padding2">
+                        <div class="details-img mb-40">
+                            @if ( $product->thumbnail != null)
+                                <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" height="544" alt="">   
+                            @endif
+                            {{-- <img src="{{ asset('storage/image/product/'.$product->thumbnail)}}" height="544" alt=""> --}}
+                        </div>
+                        <div class="details-caption">
+                            <h2>{{ $product->name }}</h2>
+                            {!! html_entity_decode($product->description) !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Services Details End -->
+
+    <!-- Services Details Start -->
+    {{-- <div class="services-details-area mt-150">
         <div class="container">
             <div class="row">
                 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-                    {{-- <ol class="carousel-indicators">
-                        <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-                    </ol> --}}
                     <div class="carousel-inner">
                         @foreach ($imgProducts as $imgProduct => $sliderItem)
                         
                         <div class="carousel-item {{ $imgProduct  == 0 ? 'active' : '' }}" style="width: 100%;">
                             <img class="d-block w-100" src="{{ asset('assets/front-end/img/hero/about.jpg') }}" alt="First slide">
-                            {{-- <img class="d-block w-100" src="{{ asset('storage/product/media/'.$sliderItem->url) }}" alt="First slide"> --}}
                         </div>
                         @endforeach
-                        {{-- <div class="carousel-item active">
-                            <img class="d-block w-100" src="{{ asset('assets/front-end/img/hero/about.jpg') }}" alt="First slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset('assets/front-end/img/hero/about.jpg') }}" alt="Second slide">
-                        </div>
-                        <div class="carousel-item">
-                            <img class="d-block w-100" src="{{ asset('assets/front-end/img/hero/about.jpg') }}" alt="Third slide">
-                        </div> --}}
                     </div>
                     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -63,11 +72,11 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
     <!-- Services Details End -->
 
     <!-- Project Area Start -->
-    <section class="project-area section-padding2">
+    <section class="project-area ">
         <div class="container">
             <div class="project-heading ">
                 <div class="row align-items-end">
@@ -75,7 +84,7 @@
                         <!-- Section Tittle -->
                         <div class="section-tittle section-tittle3">
                             <div class="front-text">
-                                <h2 class="">{{ $product->name }} Detail</h2>
+                                <h2 class="">Detail</h2>
                             </div>
                             <span class="back-text">Product</span>
                         </div>

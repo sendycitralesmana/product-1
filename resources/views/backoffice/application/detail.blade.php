@@ -14,7 +14,8 @@
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/application">Application</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application" class="text-secondary">Application</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>
             </div>
@@ -91,7 +92,7 @@
                             <td> 
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#applicationEdit{{ $application->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.modal.edit')    
@@ -125,7 +126,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-apps"></i>
                             </div>
                             <a href="/backoffice/application/product/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -153,7 +154,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-folder"></i>
                             </div>
                             <a href="/backoffice/application/media/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -181,7 +182,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-folder"></i>
                             </div>
                             <a href="/backoffice/application/video/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

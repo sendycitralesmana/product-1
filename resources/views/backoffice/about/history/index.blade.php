@@ -102,7 +102,7 @@
                                 {{-- Modal --}}
                                 @include('backoffice.about.history.modal.edit')
                                 <a href="/backoffice/about/history/{{ $history->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a>
+                                    class="btn btn-danger btn-sm"><i class="ion ion-android-delete"></i> Delete</a>
                                 @endif
                             </td>
                         </tr>

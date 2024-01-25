@@ -6,7 +6,8 @@
 
     <!-- slider Area Start-->
     <div class="slider-area ">
-        <div class="single-slider hero-overly slider-height2 d-flex align-items-center" data-background=" {{ asset('assets/front-end/img/hero/about.jpg') }} ">
+        <div class="single-slider hero-overly slider-height2 d-flex align-items-center"
+            data-background=" {{ asset('storage/image/banner.jpg') }} ">
             <div class="container">
                 <div class="row">
                     <div class="col-xl-12">
@@ -14,8 +15,8 @@
                             <h2>Products</h2>
                             <nav aria-label="breadcrumb ">
                                 <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="/">Home</a></li>
-                                <li class="breadcrumb-item"><a href="#">Products</a></li> 
+                                    <li class="breadcrumb-item"><a href="/">Home</a></li>
+                                    <li class="breadcrumb-item"><a href="#">Products</a></li>
                                 </ol>
                             </nav>
                         </div>
@@ -33,11 +34,11 @@
                 <a href="/product" class="btn btn-block">Show all</a>
             </div> --}}
             @foreach ($productCategories as $productCategory)
-                <div class="col" style="margin: 3px">
-                    <a href="/product/category/{{ $productCategory->id }}" class="btn btn-block">
-                        {{ $productCategory->name }}
-                    </a>
-                </div>
+            <div class="col" style="margin: 3px">
+                <a href="/product/category/{{ $productCategory->id }}" class="btn btn-block">
+                    {{ $productCategory->name }}
+                </a>
+            </div>
             @endforeach
         </div>
     </section>
@@ -49,19 +50,18 @@
                 @foreach ($products as $product)
                 <div class="col-xl-4 col-lg-4 col-md-6">
                     <div class="single-service-cap mb-30">
-                        {{-- @foreach ($product->media as $media)
-                        
-                    @endforeach --}}
                         <div class="service-img">
-                            <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px">
-                            {{-- <img src="{{asset('storage/product/media'. $product->media->url)}}" alt=""
-                            width="290px" height="210px"> --}}
-                            
+                            @if ( $product->thumbnail != null)
+                                <img src="{{asset('storage/image/product/'. $product->thumbnail)}}" alt="" width="290px" height="210px" alt="">
+                            @else
+                                <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px" alt="">
+                            @endif
+                            {{-- <img src="{{asset('storage/image/product/'. $product->thumbnail)}}" alt="" width="290px" height="210px"> --}}
+
                         </div>
                         <div class="service-cap">
                             <h4><a href="/product/{{ $product->id }}">{{ $product->name }}</a></h4>
-                            <a href="/product/{{ $product->id }}" class="more-btn">Read More <i
-                                    class="ti-plus"></i></a>
+                            <a href="/product/{{ $product->id }}" class="more-btn">Read More</a>
                         </div>
                         <div class="service-icon">
                             <img src=" {{ asset('assets/front-end/img/icon/services_icon1.png') }} " alt="">

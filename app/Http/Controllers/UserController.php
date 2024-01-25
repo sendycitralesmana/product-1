@@ -32,7 +32,7 @@ class UserController extends Controller
             'avatar' => 'image'
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('avatar')) {
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
@@ -69,7 +69,7 @@ class UserController extends Controller
             // 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('avatar')) {
             if ($request->oldImage) {
                 Storage::delete('image/user/' . $request->oldImage);
@@ -112,7 +112,7 @@ class UserController extends Controller
 
     public function profile($id) {
         $user = User::find($id);
-        return view('profile.index', [
+        return view('backoffice.profile.index', [
             'user' => $user
         ]);
     }

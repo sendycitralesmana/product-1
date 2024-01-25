@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Application Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Application</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -77,10 +82,10 @@
                             <td> {{ $application->time }} </td>
                             <td>
                                 @if (auth()->user()->role_id == 2)
-                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-ios-eye"></i> Detail</a>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.modal.delete')  

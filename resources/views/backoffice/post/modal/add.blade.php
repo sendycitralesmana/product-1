@@ -41,8 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label>Thumbnail</label>
-                        <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
-                        <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                        <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                        <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                         @if($errors->has('thumbnail'))
                         <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                         @endif
@@ -85,9 +85,9 @@
 </script>
 
 <script>
-    function previewImgP() {
-        const image = document.querySelector('#imageP')
-        const imgPreview = document.querySelector('.img-previewP')
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
 

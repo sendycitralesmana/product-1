@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>{{ $product->name }} Video Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item active">Video</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->

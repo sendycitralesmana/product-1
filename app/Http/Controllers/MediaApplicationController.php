@@ -40,7 +40,7 @@ class MediaApplicationController extends Controller
         Session::flash('media', 'success');
         Session::flash('message', 'Add data success');
         // return redirect('/product-variant');
-        return redirect('/backoffice/application/media/'. $request->application_id[0]);
+        return redirect('/backoffice/application/media/'. $request->application_id);
     }
 
     public function update(Request $request, $id)

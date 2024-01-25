@@ -9,8 +9,15 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>{{ $product->name }} Application Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item active">Application</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -56,18 +63,18 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($product->application as $application)
+                        @foreach ($appProducts as $application)
                         <tr>
                             <td> {{ $application->id }} </td>
-                            <td> {{ $application->name }} </td>
-                            <td> {{ $application->area }} </td>
-                            <td> {{ $application->time }} </td>
+                            <td> {{ $application->application->name }} </td>
+                            <td> {{ $application->application->area }} </td>
+                            <td> {{ $application->application->time }} </td>
                             <td>
                                 @if (auth()->user()->role_id == 2)
-                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/application/{{ $application->application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
                                 <!-- Button trigger modal -->
                                 <button title="Delete" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.application.modal.delete')

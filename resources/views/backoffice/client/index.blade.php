@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Client Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Client</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -75,14 +80,39 @@
                             <td> {{ $client->id }} </td>
                             <td> {{ $client->name }} </td>
                             <td>
-                                <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                 @if (auth()->user()->role_id == 2)
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clientDelete{{$client->id}}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.client.modal.delete')
+                                
+                                {{-- <form method="GET" action="/backoffice/client/{{ $client->id }}/delete">
+                                    <button type="submit" class="btn btn-xs btn-danger btn-flat show_confirm" data-toggle="tooltip" title='Delete'>Delete</button>
+                                </form>
+
+                                <script type="text/javascript">
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        $('.show_confirm').click(function(event) {
+                                        event.preventDefault();
+                                            Swal.fire({
+                                                title: "Are you sure?",
+                                                text: "You won't be able to revert this! {{$client->id}}",
+                                                icon: "warning",
+                                                showCancelButton: true,
+                                                confirmButtonColor: "#3085d6",
+                                                cancelButtonColor: "#d33",
+                                                confirmButtonText: "Yes, delete it!"
+                                                }).then((result) => {
+                                                if (result.isConfirmed) {
+                                                    form.submit();
+                                                }
+                                                });
+                                        });
+                                    });
+                                </script> --}}
                                     
                                 @endif
                             </td>

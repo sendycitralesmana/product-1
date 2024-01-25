@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
@@ -56,6 +57,7 @@ class PostCategoryController extends Controller
     {
         
         $postCategory = PostCategory::find($id);
+        $postCategory->post()->delete();
         $postCategory->delete();
 
         Session::flash('status', 'success');
@@ -65,8 +67,10 @@ class PostCategoryController extends Controller
 
     public function detail($id) {
         $postCategory = PostCategory::with(['post'])->find($id);
+        $posts = Post::where('post_category_id', $id)->get();
         return view('backoffice.post.category.detail', [
-            'postCategory' => $postCategory
+            'postCategory' => $postCategory,
+            'posts' => $posts
         ]);
     }
 

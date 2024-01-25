@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
+                <div class="col-sm-6">
                     <h1>Product Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Product</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -111,7 +116,7 @@
                         <tr>
                             <td> {{ $product->id }} </td>
                             <td> 
-                                @if( $product->thumbnail != '' )
+                                @if( $product->thumbnail != null )
                                     <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
@@ -120,7 +125,7 @@
                             <td> {{ $product->name }} </td>
                             <td> {{ $product->category->name }} </td>
                             <td>
-                                <a href="/backoffice/product/{{ $product->id }}/detail" class="btn btn-info btn-sm">Detail</a>
+                                <a href="/backoffice/product/{{ $product->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                 @if (auth()->user()->role_id == 2)
                                 <!-- Button trigger modal -->
                                 {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#productEdit{{ $product->id }}">
@@ -130,7 +135,7 @@
                                 @include('product.modal.edit') --}}
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productDelete{{ $product->id }}">
-                                    <span>Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.modal.delete')

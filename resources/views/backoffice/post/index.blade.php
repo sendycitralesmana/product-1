@@ -40,10 +40,15 @@
             </div>
             <div class="card-body">
                 @if (Session::has('post'))
-                <div class="alert alert-success" role="alert">
-                    <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
-                    {{Session::get('message')}}
-                </div>
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
                 @if ($errors->any())
                 <div class="alert alert-danger" role="alert">
@@ -56,49 +61,96 @@
                     </ul>
                 </div>
                 @endif
-                <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Title</th>
-                            {{-- <th>Description</th> --}}
-                            <th>Option</th>
-                        </tr>
-                    </thead>
-                    <tbody>
+
+                <div class="d-flex justify-content-between">
+                    <div style="width: 68%;">
                         @foreach ($posts as $post)
-                        <tr>
-                            <td> {{ $post->id }} </td>
-                            <td> {{ $post->title }} </td>
-                            <td>
-                                <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm">Detail</a>
-                                @if (auth()->user()->role_id == 2)
-                                <!-- Button trigger modal -->
-                                {{-- <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postEdit{{ $post->id }}">
-                                    <span>Edit</span>
-                                </button>
-                                Modal
-                                @include('post.modal.edit') --}}
-                                {{-- <a href="/post/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a> --}}
+                        <div class="">
+                          <!-- Box Comment -->
+                          <div class="card card-widget">
+                            <div class="card-header">
+                              <div class="user-block">
+                                @if ( $post->user->avatar != null )
+                                    <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
                                 @endif
-                            </td>
-                        </tr>
+                                {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
+                                <span class="username"><a href="#">{{ $post->user->name }}</a></span>
+                                <span class="description">Added post - {{ $post->created_at->diffForHumans() }}</span>
+                              </div>
+                              <!-- /.user-block -->
+                              <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                </button>
+                              </div>
+                              <!-- /.card-tools -->
+                            </div>
+                            <!-- /.card-header -->
+                            <div class="card-body">
+                                @if ( $post->thumbnail != null )
+                                    <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid" alt="" height="300px">
+                                @endif
+                                <h4 class="mt-2"> {{ $post->title }} </h4>
+                              <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
+                                    @if ($post->user_id == auth()->user()->id)
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postEdit{{ $post->id }}">
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.modal.edit')
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#postDelete{{ $post->id }}">
+                                        <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.modal.delete')
+                                    @endif
+                              <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
+                            </div>
+                            
+                            <div class="card-footer">
+                            </div>
+                            
+                          </div>
+                          
+                        </div>
                         @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Name</th>
-                            {{-- <th>Description</th> --}}
-                            <th>Option</th>
-                        </tr>
-                    </tfoot>
-                </table>
+                    </div>
+                    <div style="width: 30%;">
+                        <div class="">
+                            <!-- Box Comment -->
+                            <div class="card card-widget">
+                              <div class="card-header">
+                                <div class="user-block">
+                                  <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image">
+                                  <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
+                                  <span class="description">Shared publicly - 7:30 PM Today</span>
+                                </div>
+                                <!-- /.user-block -->
+                                <div class="card-tools">
+                                  <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
+                                  </button>
+                                </div>
+                                <!-- /.card-tools -->
+                              </div>
+                              <!-- /.card-header -->
+                              <div class="card-body">
+                              
+                              </div>
+                              <!-- /.card-body -->
+                              <div class="card-footer">
+                                  
+                              </div>
+                              <!-- /.card-footer -->
+                            </div>
+                            <!-- /.card -->
+                          </div>
+                    </div>
+                </div>
+
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
             </div>
             <!-- /.card-footer-->
         </div>

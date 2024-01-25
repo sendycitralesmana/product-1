@@ -71,12 +71,12 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#specEdit{{ $specification->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.specification.modal.edit')
                                 <a href="/backoffice/product/specification/{{ $specification->id }}/delete"
-                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm">Delete</a>
+                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm"><i class="ion ion-android-delete"></i> Delete</a>
                             </td>
 
                             @endif

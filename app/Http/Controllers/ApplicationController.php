@@ -34,7 +34,7 @@ class ApplicationController extends Controller
             'time' => 'required',
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
@@ -75,7 +75,7 @@ class ApplicationController extends Controller
             'time' => 'required',
         ]);
 
-        $newName = "";
+        $newName = null;
         if($request->file('thumbnail')) {
             if ($request->oldImage) {
                 Storage::delete('image/application/' . $request->oldImage);

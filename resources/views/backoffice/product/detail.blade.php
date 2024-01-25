@@ -9,17 +9,14 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
-                    <h1>Detail Product</h1>
-                    @if ($errors->any())
-                        <div class="alert alert-danger">
-                            <ul>
-                                @foreach ($errors->all() as $error)
-                                    <li>{{ $error }}</li>
-                                @endforeach
-                            </ul>
-                        </div>
-                    @endif
+                <div class="col-sm-6">
+                    <h1>Detail Product Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
+                    <li class="breadcrumb-item active">Detail</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -40,6 +37,15 @@
                 </div>
             </div>
             <div class="card-body">
+                @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                 @if (Session::has('product'))
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function () {
@@ -66,7 +72,7 @@
                         <tr>
                             <td> {{ $product->id }} </td>
                             <td> 
-                                @if( $product->thumbnail != '' )
+                                @if( $product->thumbnail != null )
                                     <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
@@ -78,7 +84,7 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#productEdit{{ $product->id }}">
-                                    <span>Edit</span>
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.modal.edit')
@@ -113,7 +119,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-folder"></i>
                             </div>
                             <a href="/backoffice/product/media/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -142,7 +148,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-folder"></i>
                             </div>
                             <a href="/backoffice/product/video/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -171,7 +177,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-apps"></i>
                             </div>
                             <a href="/backoffice/product/variant/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>
@@ -199,7 +205,7 @@
                                 <p>Data</p>
                             </div>
                             <div class="icon">
-                                <i class="ion ion-bag"></i>
+                                <i class="ion ion-android-apps"></i>
                             </div>
                             <a href="/backoffice/product/application/{{ $product->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
                         </div>

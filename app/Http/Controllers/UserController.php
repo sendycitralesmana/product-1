@@ -85,10 +85,10 @@ class UserController extends Controller
             if ($request->file('avatar') == "") {
                 $user->avatar = $request->oldImage;
             } else {
-                $user->avatar = $newName;
+                $user->avatar = str_replace(' ', '_', $newName);
             }
         } else {
-            $user->avatar = $newName;
+            $user->avatar = str_replace(' ', '_', $newName);
         }
         $user->save();
 

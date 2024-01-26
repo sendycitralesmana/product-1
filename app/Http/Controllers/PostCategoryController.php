@@ -35,7 +35,7 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Add data success');
-        return redirect('/backoffice/post/category');
+        return redirect('/backoffice/post');
     }
 
     public function update(Request $request, $id)
@@ -50,7 +50,7 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/backoffice/post/category/' . $postCategory->id . '/detail');
+        return redirect('/backoffice/post/');
     }
 
     public function delete($id)
@@ -62,6 +62,6 @@ class PostCategoryController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/backoffice/post/category');
+        return redirect('/backoffice/post');
     }
 }

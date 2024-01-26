@@ -82,7 +82,7 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
-            'thumbnail' => 'image'
+            // 'thumbnail' => 'image'
         ]);
 
         $newName = null;

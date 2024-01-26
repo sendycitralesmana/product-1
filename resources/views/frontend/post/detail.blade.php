@@ -131,7 +131,7 @@
                      <div class="single-comment justify-content-between d-flex">
                         <div class="user justify-content-between d-flex">
                            <div class="thumb">
-                              <img src="assets/img/comment/comment_1.png" alt="">
+                              <img src="{{ asset('storage/image/profile.png') }}" alt="">
                            </div>
                            <div class="desc">
                               <p class="comment">
@@ -219,7 +219,11 @@
                     <h3 class="widget_title">Recent Post</h3>
                     @foreach ($postRecents as $recent)
                     <div class="media post_item">
-                        <img src="{{ asset('storage/image/post/'.$recent->thumbnail) }}" width="80px" height="80px" alt="post">
+                     @if ($recent->thumbnail != null)
+                     <img src="{{ asset('storage/image/post/'.$recent->thumbnail) }}" width="80px" height="80px" alt="post">
+                     @else
+                     <img src="{{ asset('storage/image/default.png') }}" width="80px" height="80px" alt="post">
+                     @endif
                         <div class="media-body">
                             <a href="/post/{{ $recent->id }}">
                                 <h3 style="

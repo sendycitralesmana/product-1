@@ -180,7 +180,6 @@
 
                                 <div class="category">
                                     <div class="category-content">
-                                        <form action="">
                                             @foreach ($postCategories as $postCategory)
                                             <div class="mb-2 d-flex">
                                                 <!-- Button trigger modal -->
@@ -203,7 +202,6 @@
                                                 @include('backoffice.post.category.modal.delete')
                                             </div>
                                             @endforeach
-                                        </form>
                                     </div>
                                 </div>
 

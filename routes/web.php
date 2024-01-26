@@ -211,6 +211,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/backoffice/post/comment/{id}/delete', [CommentController::class, 'deleteComment']);
 
+        Route::get('/backoffice/post/category', [PostCategoryController::class, 'index']);
         Route::post('/backoffice/post/category/create', [PostCategoryController::class, 'create']);
         Route::put('/backoffice/post/category/{id}/update', [PostCategoryController::class, 'update']);
         Route::get('/backoffice/post/category/{id}/delete', [PostCategoryController::class, 'delete']);

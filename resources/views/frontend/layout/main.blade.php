@@ -110,11 +110,11 @@
                                     </nav>
                                 </div>
                             </div>
-                            <div class="col-xl-2 col-lg-2 col-md-2">
+                            {{-- <div class="col-xl-2 col-lg-2 col-md-2">
                                 <div class="header-right-btn f-right d-none d-lg-block">
                                     <a href="/contact" class="btn">Contact Now</a>
                                 </div>
-                            </div>
+                            </div> --}}
                             <!-- Mobile Menu -->
                             <div class="col-12">
                                 <div class="mobile_menu d-block d-lg-none"></div>

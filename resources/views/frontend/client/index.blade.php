@@ -23,7 +23,7 @@
                         <div class="project-caption">
                             <div class="row">
                                 @foreach ($clients as $client)
-                                <div class="col-lg-3 col-md-4">
+                                <div class="col-lg-2 col-md-3">
                                     <div class="single-project mb-30">
                                         <div class="project-img">
                                             <img src="{{asset('storage/image/client/'. $client->image)}}" class="object-fit-contain" alt="" width="150px" height="150px">

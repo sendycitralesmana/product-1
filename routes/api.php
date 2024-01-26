@@ -1,13 +1,15 @@
 <?php
 
-use App\Http\Controllers\API\ApplicationController;
-use App\Http\Controllers\API\ContentController;
-use App\Http\Controllers\API\HistoryController;
-use App\Http\Controllers\API\PostController;
-use App\Http\Controllers\API\ProductController;
-use App\Http\Controllers\API\SpecificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\ClientController;
+use App\Http\Controllers\API\CommentController;
+use App\Http\Controllers\API\ContentController;
+use App\Http\Controllers\API\HistoryController;
+use App\Http\Controllers\API\ProductController;
+use App\Http\Controllers\API\ApplicationController;
+use App\Http\Controllers\API\SpecificationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,4 +42,10 @@ Route::get('/history/{id}', [HistoryController::class, 'detail']);
 
 Route::get('/specification', [SpecificationController::class, 'index']);
 Route::get('/specification/{id}', [SpecificationController::class, 'detail']);
+
+Route::get('/client', [ClientController::class, 'index']);
+Route::get('/client/{id}', [ClientController::class, 'detail']);
+
+Route::get('/comment', [CommentController::class, 'index']);
+Route::get('/comment/{id}', [CommentController::class, 'detail']);
 

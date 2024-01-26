@@ -36,8 +36,12 @@ class CommentController extends Controller
     }
 
     public function deleteComment($id) {
+
         $comment = Comment::find($id);
         $comment->delete();
+
+        Session::flash('post', 'success');
+        Session::flash('message', 'Delete comment success');
         return redirect()->back();
     }
 }

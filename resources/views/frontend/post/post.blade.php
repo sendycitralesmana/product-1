@@ -56,7 +56,7 @@
 
                                 <ul class="blog-info-link">
                                     <li><a href="/post/{{ $post->id }}"><i class="fa fa-user"></i> {{ $post->user->name }} </a></li>
-                                    <li><a href="#"><i class="fa fa-comments"></i> 03 Comments</a></li>
+                                    <li><a href="#"><i class="fa fa-comments"></i> {{ $post->comment->count() }} Comments</a></li>
                                 </ul>
                             </div>
                         </article>

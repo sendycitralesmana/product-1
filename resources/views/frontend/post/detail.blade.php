@@ -140,7 +140,8 @@
                               <div class="d-flex justify-content-between">
                                  <div class="d-flex align-items-center">
                                        <h5 class="mr-2">{{ $comment->name }}</h5> <small>( {{ $comment->email }} )</small>
-                                    <p class="date">{{ $comment->created_at->format('F d, Y') }} at {{ $comment->created_at->format('H:i a') }}</p>
+                                    {{-- <p class="date">{{ $comment->created_at->format('F d, Y') }} at {{ $comment->created_at->format('H:i a') }}</p> --}}
+                                    <p class="date"> {{ $comment->created_at->diffForHumans() }} </p>
                                  </div>
                               </div>
                            </div>

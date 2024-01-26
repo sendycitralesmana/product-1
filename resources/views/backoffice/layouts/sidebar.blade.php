@@ -84,29 +84,12 @@
                             <p>Application</p>
                         </a>
                     </li>
-                    <li class="nav-item has-treeview">
-                        <a href="#" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
+                    <li class="nav-item">
+                        <a href="/backoffice/post" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-th"></i>
-                          <p>
-                            List Post
-                            <i class="right fas fa-angle-left"></i>
-                          </p>
+                          <p>Post</p>
                         </a>
-                        <ul class="nav nav-treeview">
-                          <li class="nav-item">
-                            <a href="/backoffice/post/category" class="nav-link {{ request()->is('backoffice/post/category', 'backoffice/post/category/*') ? 'active' : '' }}">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Post Category</p>
-                            </a>
-                          </li>
-                          <li class="nav-item">
-                            <a href="/backoffice/post" class="nav-link {{ request()->is('post', 'post/*') ? 'active' : '' }}">
-                              <i class="far fa-circle nav-icon"></i>
-                              <p>Post</p>
-                            </a>
-                          </li>
-                        </ul>
-                    </li>
+                      </li>
                     <li class="nav-item">
                         <a href="/backoffice/client"
                             class="nav-link {{ request()->is('backoffice/client', 'backoffice/client/*') ? 'active' : '' }}">

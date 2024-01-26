@@ -13,7 +13,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Post Data</h3>
+                <h3 class="card-title">Post Data Category: {{ $category->name }}</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
@@ -85,26 +85,23 @@
                                         alt="" height="300px">
                                     @endif
                                     <h4 class="mt-2"> {{ $post->title }} </h4>
-                                    {{-- @if ( $post->post_category_id != null )
-                                        <small> {{ $post->category->name }} </small>
-                                    @endif --}}
                                     <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm"><i
                                             class="ion ion-eye"></i> Detail</a>
                                     @if ($post->user_id == auth()->user()->id)
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                            data-target="#postEdit{{ $post->id }}">
-                                            <span><i class="ion ion-android-create"></i> Edit</span>
-                                        </button>
-                                        {{-- Modal --}}
-                                        @include('backoffice.post.modal.edit')
-                                        <!-- Button trigger modal -->
-                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                            data-target="#postDelete{{ $post->id }}">
-                                            <span><i class="ion ion-android-delete"></i> Delete</span>
-                                        </button>
-                                        {{-- Modal --}}
-                                        @include('backoffice.post.modal.delete')
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                        data-target="#postEdit{{ $post->id }}">
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.modal.edit')
+                                    <!-- Button trigger modal -->
+                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#postDelete{{ $post->id }}">
+                                        <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    </button>
+                                    {{-- Modal --}}
+                                    @include('backoffice.post.modal.delete')
                                     @endif
                                     <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
                                 </div>
@@ -123,7 +120,7 @@
                     <div style="width: 30%;">
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Filter</h3>
+                                <h3 class="card-title">Menu</h3>
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                         data-toggle="tooltip" title="Collapse">
@@ -133,7 +130,7 @@
                             </div>
                             <div class="card-body">
                                 <!-- SEARCH FORM -->
-                                <form class="form-inline" action="/backoffice/post">
+                                <form class="form-inline" action="/backoffice/post/category/{{$id}}">
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-append">
                                             <button class="btn btn-default" type="submit">
@@ -158,7 +155,6 @@
                             </div>
                             <!-- /.card-footer-->
                         </div>
-
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Categories</h3>

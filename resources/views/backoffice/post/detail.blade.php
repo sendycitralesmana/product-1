@@ -30,22 +30,6 @@
             <div class="card-header">
                 <h3 class="card-title">Post</h3>
                 <div class="card-tools">
-                    @if ( $post->user_id == auth()->user()->id )
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#postEdit{{ $post->id }}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                {{-- Modal --}}
-                                @include('backoffice.post.modal.edit')
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#postDelete{{ $post->id }}">
-                                    <span>Delete</span>
-                                </button>
-                                {{-- Modal --}}
-                                @include('backoffice.post.modal.delete')
-                                @else
-                                -
-                                @endif
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -74,7 +58,7 @@
                 </script>
                 @endif
                 <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-7">
                       <!-- Box Comment -->
                       <div class="card card-widget">
                         <div class="card-header">
@@ -100,43 +84,10 @@
                             @endif
                             <h4 class="mt-3"> {{ $post->title }} </h4>
                           <p> {!! html_entity_decode($post->content) !!} </p>
-                          <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
-                          <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
                           <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
                         </div>
                         <!-- /.card-body -->
-                        <div class="card-footer card-comments">
-                          <div class="card-comment">
-                            <!-- User image -->
-                            <img class="img-circle img-sm" src="../dist/img/user3-128x128.jpg" alt="User Image">
-          
-                            <div class="comment-text">
-                              <span class="username">
-                                Maria Gonzales
-                                <span class="text-muted float-right">8:03 PM Today</span>
-                              </span><!-- /.username -->
-                              It is a long established fact that a reader will be distracted
-                              by the readable content of a page when looking at its layout.
-                            </div>
-                            <!-- /.comment-text -->
-                          </div>
-                          <!-- /.card-comment -->
-                          <div class="card-comment">
-                            <!-- User image -->
-                            <img class="img-circle img-sm" src="../dist/img/user4-128x128.jpg" alt="User Image">
-          
-                            <div class="comment-text">
-                              <span class="username">
-                                Luna Stark
-                                <span class="text-muted float-right">8:03 PM Today</span>
-                              </span><!-- /.username -->
-                              It is a long established fact that a reader will be distracted
-                              by the readable content of a page when looking at its layout.
-                            </div>
-                            <!-- /.comment-text -->
-                          </div>
-                          <!-- /.card-comment -->
-                        </div>
+                        
                         <!-- /.card-footer -->
                         <div class="card-footer">
                         </div>
@@ -145,33 +96,48 @@
                       
                     </div>
 
-                    <div class="col-md-4">
-                      <!-- Box Comment -->
-                      <div class="card card-widget">
+                    <div class="col-md-5">
+                      <div class="card">
                         <div class="card-header">
-                          <div class="user-block">
-                            <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image">
-                            <span class="username"><a href="#">Jonathan Burke Jr.</a></span>
-                            <span class="description">Shared publicly - 7:30 PM Today</span>
-                          </div>
-                          <!-- /.user-block -->
-                          <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                            </button>
-                          </div>
-                          <!-- /.card-tools -->
+                            <h3 class="card-title">Comments ( {{ $post->comment->count() }} )</h3>
+                            <div class="card-tools">
+                                <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                    data-toggle="tooltip" title="Collapse">
+                                    <i class="fas fa-minus"></i>
+                                </button>
+                            </div>
                         </div>
-                        <!-- /.card-header -->
                         <div class="card-body">
-                        
+                          <div class="card-footer card-comments" style="height: 420px; overflow-y: scroll">
+                            @foreach ($post->comment as $comment)
+                              <div class="card-comment">
+                                <!-- User image -->
+                                <img class="img-circle img-sm" src="{{ asset('storage/image/profile.png') }}" alt="User Image">
+              
+                                <div class="comment-text">
+                                  <span class="username">
+                                    {{ $comment->name }} <small>( {{ $comment->email }} )</small>
+                                    <span class="text-muted float-right">{{ $comment->created_at->diffForHumans() }}</span>
+                                  </span><!-- /.username -->
+                                  {{ $comment->comment }}
+
+                                </div>
+                                <!-- Button trigger modal -->
+                                <button type="button" class="btn btn-danger btn-xs float-right" data-toggle="modal" data-target="#commentDelete{{ $comment->id }}">
+                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                </button>
+                                {{-- Modal --}}
+                                @include('backoffice.post.comment.modal.delete')
+                                <!-- /.comment-text -->
+                              </div>
+                            @endforeach
+                          </div>
                         </div>
                         <!-- /.card-body -->
                         <div class="card-footer">
-                            
                         </div>
-                        <!-- /.card-footer -->
-                      </div>
-                      <!-- /.card -->
+                        <!-- /.card-footer-->
+                    </div>
                     </div>
 
                 </div>

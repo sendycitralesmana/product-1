@@ -64,22 +64,4 @@ class PostCategoryController extends Controller
         Session::flash('message', 'Delete data success');
         return redirect('/backoffice/post/category');
     }
-
-    public function detail($id) {
-        $postCategory = PostCategory::with(['post'])->find($id);
-        $posts = Post::where('post_category_id', $id)->get();
-        return view('backoffice.post.category.detail', [
-            'postCategory' => $postCategory,
-            'posts' => $posts
-        ]);
-    }
-
-    public function postByCategory($id) 
-    {
-        $posts = PostCategory::find($id);
-
-        return view('backoffice.post.category.post.postByCategory', [
-            'posts' => $posts,
-        ]);
-    }
 }

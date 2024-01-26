@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostCategory;
 use Illuminate\Http\Request;
@@ -10,14 +11,41 @@ use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
-    public function index() {
+    public function index(Request $request) {
         $postCategories = PostCategory::get();
-        $posts = Post::get();
+        $posts = Post::with(['category'])->orderBy('id', 'desc')->paginate(10);
+
+        if ($request->title) {
+            $posts = Post::with(['category'])->where('title', 'LIKE', '%' . $request->title . '%')
+                            ->orderBy('id', 'desc')
+                            ->paginate(10);
+        }
 
         return view('backoffice.post.index', [
             'postCategories' => $postCategories,
-            'posts' => $posts
-            ,
+            'posts' => $posts,
+        ]);
+    }
+
+    public function postCategory(Request $request, $id) {
+        $postCategories = PostCategory::get();
+        $category = PostCategory::find($id);
+        $posts = Post::with(['category'])->orderBy('id', 'desc')
+                        ->where('post_category_id', $id)
+                        ->paginate(10);
+
+        if ($request->title) {
+            $posts = Post::with(['category'])->where('title', 'LIKE', '%' . $request->title . '%')
+                            ->where('post_category_id', $id)
+                            ->orderBy('id', 'desc')
+                            ->paginate(10);
+        }
+
+        return view('backoffice.post.postCategory', [
+            'postCategories' => $postCategories,
+            'posts' => $posts,
+            'category' => $category,
+            'id' => $id
         ]);
     }
 
@@ -85,16 +113,15 @@ class PostController extends Controller
         Session::flash('post', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/backoffice/post/'. $post->id .'/detail');
+        return redirect('/backoffice/post');
     }
 
     public function detail($id) {
         $post = Post::with(['user', 'category'])->find($id);
         $postCategories = PostCategory::get();
-
         return view('backoffice.post.detail', [
             'post' => $post,
-            'postCategories' => $postCategories
+            'postCategories' => $postCategories,
         ]);
     }
 

@@ -43,11 +43,11 @@
                             <label>Thumbnail</label>
                             <input type="hidden" name="oldImage" value="{{ $post->thumbnail }}">
                             @if ($post->thumbnail)
-                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
-                                <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -66,9 +66,9 @@
 </div>
 
 <script>
-    function previewImgP() {
-        const image = document.querySelector('#imageP')
-        const imgPreview = document.querySelector('.img-previewP')
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
 

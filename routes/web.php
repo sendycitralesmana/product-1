@@ -207,13 +207,13 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/post/{id}/delete', [PostController::class, 'delete']);
     Route::get('/backoffice/post/{id}/detail', [PostController::class, 'detail']);
     Route::get('/backoffice/post/user/{id}', [PostController::class, 'postByUser']);
-    
-        Route::get('/backoffice/post/category/{id}', [PostCategoryController::class, 'postByCategory']);
-        Route::get('/backoffice/post/category', [PostCategoryController::class, 'index']);
+    Route::get('/backoffice/post/category/{id}', [PostController::class, 'postCategory']);
+
+        Route::get('/backoffice/post/comment/{id}/delete', [CommentController::class, 'deleteComment']);
+
         Route::post('/backoffice/post/category/create', [PostCategoryController::class, 'create']);
         Route::put('/backoffice/post/category/{id}/update', [PostCategoryController::class, 'update']);
         Route::get('/backoffice/post/category/{id}/delete', [PostCategoryController::class, 'delete']);
-        Route::get('/backoffice/post/category/{id}/detail', [PostCategoryController::class, 'detail']);
     // Post End
 
     // Client

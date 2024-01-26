@@ -16,7 +16,7 @@
             <div class="info">
                 <a href="#" class="d-block">
                     @if (auth()->user())
-                    {{ auth()->user()->name }}
+                    {{ auth()->user()->role->name }}
                     @endif
                 </a>
             </div>
@@ -101,7 +101,7 @@
                         <a href="#" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*', 'backoffice/about/history', 'backoffice/about/history/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-th"></i>
                           <p>
-                            List About
+                            List Content
                             <i class="right fas fa-angle-left"></i>
                           </p>
                         </a>
@@ -109,7 +109,7 @@
                           <li class="nav-item">
                             <a href="/backoffice/about/content" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*') ? 'active' : '' }}">
                               <i class="far fa-circle nav-icon"></i>
-                              <p>Content</p>
+                              <p>About Content</p>
                             </a>
                           </li>
                           <li class="nav-item">

@@ -43,7 +43,7 @@
         <!-- end content -->
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="http://adminlte.io">Lesmana</a>.</strong>
+            <strong>Copyright &copy; 2023 <a href="http://matahari.co.id">Matahari LED</a>.</strong>
             
         </footer>
 

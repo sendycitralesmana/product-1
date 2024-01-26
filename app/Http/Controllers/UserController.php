@@ -94,7 +94,7 @@ class UserController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Edit data sukses');
-        return redirect('/backoffice/user');
+        return redirect('/backoffice/dashboard');
     }
 
     public function delete($id)
@@ -127,6 +127,6 @@ class UserController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Update profile success');
-        return redirect('/backoffice/user');
+        return redirect('/backoffice/dashboard');
     }
 }

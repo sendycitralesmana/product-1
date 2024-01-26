@@ -63,7 +63,6 @@ class UserController extends Controller
 
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
         $validated = $request->validate([
             'name' => 'required',
             // 'email' => 'required|string|email|max:255|unique:users,email,'.$user->id,
@@ -75,8 +74,8 @@ class UserController extends Controller
                 Storage::delete('image/user/' . $request->oldImage);
             }
             $fileName = $request->file('avatar')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
-            $request->file('avatar')->storeAs('image/user/', str_replace(' ', '_', $newName));
+            $newName = now()->timestamp . '-' .  str_replace(' ', '_', $fileName);
+            $request->file('avatar')->storeAs('image/user/', $newName);
         }
 
         $user = User::find($id);
@@ -85,16 +84,16 @@ class UserController extends Controller
             if ($request->file('avatar') == "") {
                 $user->avatar = $request->oldImage;
             } else {
-                $user->avatar = str_replace(' ', '_', $newName);
+                $user->avatar = $newName;
             }
         } else {
-            $user->avatar = str_replace(' ', '_', $newName);
+            $user->avatar = $newName;
         }
         $user->save();
 
         Session::flash('status', 'success');
         Session::flash('message', 'Edit data sukses');
-        return redirect('/backoffice/dashboard');
+        return redirect()->back(); 
     }
 
     public function delete($id)

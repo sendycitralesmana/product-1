@@ -50,7 +50,7 @@ class ContentController extends Controller
             }
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/content/', $newName);
+            $request->file('thumbnail')->storeAs('image/content/', str_replace(' ', '_', $newName));
         }
 
         $content = Content::find($id);

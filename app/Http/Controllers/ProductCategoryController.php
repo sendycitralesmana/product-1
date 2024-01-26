@@ -29,7 +29,7 @@ class ProductCategoryController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/category', $newName);
+            $request->file('thumbnail')->storeAs('image/category', str_replace(' ', '_', $newName));
         }
 
         $productCategory = new ProductCategory();
@@ -58,7 +58,7 @@ class ProductCategoryController extends Controller
             }
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/category/', $newName);
+            $request->file('thumbnail')->storeAs('image/category/', str_replace(' ', '_', $newName));
         }
 
         $productCategory = ProductCategory::find($id);

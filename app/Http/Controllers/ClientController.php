@@ -31,7 +31,7 @@ class ClientController extends Controller
         if($request->file('image')) {
             $fileName = $request->file('image')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('image')->storeAs('image/client/', $newName);
+            $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
         }
 
         $client = new Client();
@@ -61,7 +61,7 @@ class ClientController extends Controller
             }
             $fileName = $request->file('image')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('image')->storeAs('image/client/', $newName);
+            $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
         }
 
         $client = Client::find($id);

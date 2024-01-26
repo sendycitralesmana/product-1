@@ -56,7 +56,7 @@ class ProductController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product/', $newName);
+            $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
         }
 
         $product = new product;
@@ -108,7 +108,7 @@ class ProductController extends Controller
             }
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product/', $newName);
+            $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
         }
 
         $product = product::find($id);

@@ -36,7 +36,7 @@ class UserController extends Controller
         if($request->file('avatar')) {
             $extension = $request->file('avatar')->getClientOriginalExtension();
             $newName = $request->name.'-'.now()->timestamp.'.'.$extension;
-            $request->file('avatar')->storeAs('image/user', $newName);
+            $request->file('avatar')->storeAs('image/user', str_replace(' ', '_', $newName));
         }
 
         $user = new User;
@@ -76,7 +76,7 @@ class UserController extends Controller
             }
             $fileName = $request->file('avatar')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('avatar')->storeAs('image/user/', $newName);
+            $request->file('avatar')->storeAs('image/user/', str_replace(' ', '_', $newName));
         }
 
         $user = User::find($id);

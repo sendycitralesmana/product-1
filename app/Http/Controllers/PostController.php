@@ -60,7 +60,7 @@ class PostController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/post/', $newName);
+            $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
         }
 
         $application = new Post();
@@ -92,7 +92,7 @@ class PostController extends Controller
             }
             $fileName = $request->file('thumbnail')->getClientOriginalName();
             $newName = now()->timestamp . '-' . $fileName;
-            $request->file('thumbnail')->storeAs('image/post/', $newName);
+            $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
         }
 
         $post = Post::find($id);

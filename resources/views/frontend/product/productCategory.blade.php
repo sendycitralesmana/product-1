@@ -29,11 +29,11 @@
     <section style="padding: 20px; margin-top: 140px">
         <h2 class="text-center">Product Category</h2>
         <div class="row text-center" style="padding: 20px;">
-            <div class="col" style="margin: 3px">
+            <div class="col-6 col-md-4 col-lg-3 py-2">
                 <a href="/product" class="btn btn-block">Show all</a>
             </div>
             @foreach ($productCategories as $productCategory)
-                <div class="col" style="margin: 3px">
+                <div class="col-6 col-md-4 col-lg-3 py-2">
                     <a href="/product/category/{{ $productCategory->id }}" class="btn btn-block">
                         {{ $productCategory->name }}
                     </a>

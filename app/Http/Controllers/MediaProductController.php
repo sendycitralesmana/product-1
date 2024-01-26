@@ -79,7 +79,8 @@ class MediaProductController extends Controller
 
         Session::flash('media', 'success');
         Session::flash('message', 'Update data success');
-        return redirect('/backoffice/product/media/'. $request->product_id);
+        // return redirect('/backoffice/product/media/'. $request->product_id);
+        return redirect()->back();
 
 
     }

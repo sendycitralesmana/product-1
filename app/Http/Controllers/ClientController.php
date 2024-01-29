@@ -24,7 +24,6 @@ class ClientController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'image' => 'image',
-            'link' => 'required',
         ]);
 
         $newName = "";
@@ -50,7 +49,6 @@ class ClientController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'link' => 'required',
             'image' => 'image'
         ]);
 

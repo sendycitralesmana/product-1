@@ -113,7 +113,7 @@ class PostController extends Controller
         Session::flash('post', 'success');
         Session::flash('message', 'Update data success');
         
-        return redirect('/backoffice/post');
+        return redirect()->back();
     }
 
     public function detail($id) {
@@ -131,6 +131,6 @@ class PostController extends Controller
 
         Session::flash('post', 'success');
         Session::flash('message', 'Delete data success');
-        return redirect('/backoffice/post');
+        return redirect()->back();
     }
 }

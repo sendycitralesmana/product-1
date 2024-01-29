@@ -42,29 +42,28 @@
         <!-- Header Start -->
         <div class="header-area header-transparent">
             <div class="main-header ">
-                {{-- <div class="header-top d-none d-lg-block">
+                <div class="header-top d-none d-lg-block">
                     <div class="container-fluid">
                         <div class="col-xl-12">
                             <div class="row d-flex justify-content-between align-items-center">
                                 <div class="header-info-left">
                                     <ul>
-                                        <li>+(123) 1234-567-8901</li>
-                                        <li>info@domain.com</li>
-                                        <li>Mon - Sat 8:00 - 17:30, Sunday - CLOSED</li>
+                                        <li><i class="fa fa-phone"></i> 021-64703201 | 021-64703202</li>
+                                        <li><i class="fa fa-envelope"></i> info@matahariled.co.id</li>
                                     </ul>
                                 </div>
-                                <div class="header-info-right">
+                                {{-- <div class="header-info-right">
                                     <ul class="header-social">
                                         <li><a href="#"><i class="fab fa-twitter"></i></a></li>
                                         <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
                                         <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
                                         <li> <a href="#"><i class="fab fa-google-plus-g"></i></a></li>
                                     </ul>
-                                </div>
+                                </div> --}}
                             </div>
                         </div>
                     </div>
-                </div> --}}
+                </div>
                 <div class="header-bottom  header-sticky">
                     <div class="container-fluid">
                         <div class="row align-items-center">

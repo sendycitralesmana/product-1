@@ -30,6 +30,13 @@
             <div class="card-header">
                 <h3 class="card-title">Post</h3>
                 <div class="card-tools">
+                    <!-- Button trigger modal -->
+                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                        data-target="#postEdit{{ $post->id }}">
+                        <span><i class="ion ion-android-create"></i> Edit</span>
+                    </button>
+                    {{-- Modal --}}
+                    @include('backoffice.post.modal.edit')
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>

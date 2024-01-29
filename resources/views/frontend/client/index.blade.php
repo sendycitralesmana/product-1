@@ -28,10 +28,10 @@
                                         <div class="project-img">
                                             <img src="{{asset('storage/image/client/'. $client->image)}}" class="object-fit-contain" alt="" width="150px" height="150px">
                                         </div>
-                                        <div class="project-cap">
+                                        {{-- <div class="project-cap">
                                             <a href="/client/{{ $client->id }}" class="plus-btn"><i>info</i></a>
                                             <h4><a href="/client/{{ $client->id }}">{{ $client->name }}</a></h4>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                 </div>
                                 @endforeach

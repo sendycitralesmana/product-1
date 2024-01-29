@@ -57,7 +57,7 @@
                             </ul>
                         </div>
                     @endif
-                <table id="" class="table table-bordered table-striped">
+                <table id="" class="table table-bordered table-striped table-responsive">
                     <thead>
                         <tr>
                             <th>ID</th>

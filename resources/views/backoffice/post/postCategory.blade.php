@@ -54,8 +54,8 @@
                 </div>
                 @endif
 
-                <div class="d-flex justify-content-between">
-                    <div style="width: 68%; height:470px; overflow-y: scroll">
+                <div class="d-flex justify-content-between post-content">
+                    <div class="post-position" style="width: 68%; height:470px; overflow-y: scroll">
                         @foreach ($posts as $post)
                         <div class="">
                             <!-- Box Comment -->
@@ -89,13 +89,6 @@
                                             class="ion ion-eye"></i> Detail</a>
                                     @if ($post->user_id == auth()->user()->id)
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                                        data-target="#postEdit{{ $post->id }}">
-                                        <span><i class="ion ion-android-create"></i> Edit</span>
-                                    </button>
-                                    {{-- Modal --}}
-                                    @include('backoffice.post.modal.edit')
-                                    <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#postDelete{{ $post->id }}">
                                         <span><i class="ion ion-android-delete"></i> Delete</span>
@@ -117,7 +110,7 @@
                             {{ $posts->links() }}
                         </div>
                     </div>
-                    <div style="width: 30%;">
+                    <div class="menu-position" style="width: 30%;">
                         <div class="card">
                             <div class="card-header">
                                 <h3 class="card-title">Menu</h3>

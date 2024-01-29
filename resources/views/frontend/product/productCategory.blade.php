@@ -54,7 +54,11 @@
                         
                     @endforeach --}}
                         <div class="service-img">
-                            <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px">
+                            @if ( $product->thumbnail != null)
+                                <img src="{{asset('storage/image/product/'. $product->thumbnail)}}" alt="" width="290px" height="210px" alt="">
+                            @else
+                                <img src="{{asset('storage/image/default.png')}}" alt="" width="290px" height="210px" alt="">
+                            @endif
                             {{-- <img src="{{asset('storage/product/media'. $product->media->url)}}" alt=""
                             width="290px" height="210px"> --}}
                             

@@ -25,6 +25,25 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     <script src="{{asset('assets/ckeditor5/ckeditor.js')}}"></script>
+    
+    <style>
+
+        @media (max-width: 768px) {
+            .post-content {
+                flex-direction: column;
+            }
+            .post-position {
+                width: 100% !important;
+                order: 2;
+            }
+            .menu-position {
+                width: 100% !important;
+                order: 1 !important;
+            }
+        }
+
+    </style>
+
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

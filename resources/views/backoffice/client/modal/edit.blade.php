@@ -22,7 +22,7 @@
                         </div>
                         <div class="form-group">
                             <label>Link</label>
-                            <input type="url" name="link" required class="form-control" value="{{ $client->link}}">
+                            <input type="url" name="link" class="form-control" value="{{ $client->link}}">
                             @if($errors->has('link'))
                             <span class="help-block" style="color: red">{{ $errors->first('link') }}</span>
                             @endif

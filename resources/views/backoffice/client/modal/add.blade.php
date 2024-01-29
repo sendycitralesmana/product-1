@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Name</label>
-                        <input type="text" name="name" required class="form-control" placeholder="Enter name"
+                        <input type="text" name="name" class="form-control" placeholder="Enter name"
                             value="{{ old('name') }}">
                         @if($errors->has('name'))
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>

@@ -25,10 +25,6 @@
             <div class="right-img">
                 <img src=" {{ asset('storage/image/content/'.$content1->thumbnail) }} " width="100%" height="100%" style="object-fit: cover;" srcset="{{ asset('storage/image/about/'.$content1->image) }}') }}" alt="">
             </div>
-            <div class="support-img-cap text-center">
-                <span>2005</span>
-                <p>Since</p>
-            </div>
         </div>
     </div>
 </section>

@@ -9,7 +9,13 @@ use App\Http\Controllers\ContentController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\FE\AboutFEController;
+use App\Http\Controllers\FE\ApplicationFEController;
+use App\Http\Controllers\FE\ContactFEController;
+use App\Http\Controllers\FE\HomeController;
 use App\Http\Controllers\FE\HomepageController;
+use App\Http\Controllers\FE\PostFEController;
+use App\Http\Controllers\FE\ProductFEController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\MediaProductController;
@@ -55,27 +61,50 @@ Route::group(['middleware' => 'guest'], function(){
 });
 // front end
 
-Route::get('/', [HomepageController::class, 'index']);
+Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/application', [HomepageController::class, 'application']);
-Route::get('/application/{id}', [HomepageController::class, 'applicationDetail']);
+// product
+Route::get('/product', [ProductFEController::class, 'index']);
+Route::get('/product/category/{id}', [ProductFEController::class, 'category']);
+Route::get('/product/{id}', [ProductFEController::class, 'detail']);
 
-Route::get('/client', [HomepageController::class, 'client']);
-Route::get('/client/{id}', [HomepageController::class, 'clientDetail']);
+// application
+Route::get('/application', [ApplicationFEController::class, 'index']);
+Route::get('/application/{id}', [ApplicationFEController::class, 'detail']);
 
-Route::get('/about', [HomepageController::class, 'about']);
+// blog / post
+Route::get('/blog', [PostFEController::class, 'index']);
+Route::get('/blog/{id}', [PostFEController::class, 'detail']);
 
-Route::get('/product', [HomepageController::class, 'product']);
-Route::get('/product/category/{id}', [HomepageController::class, 'productCategory']);
-Route::get('/product/{id}', [HomepageController::class, 'productDetail']);
+// about
+Route::get('/about', [AboutFEController::class, 'index']);
 
-Route::get('/product/variant/{id}', [HomepageController::class, 'variantDetail']);
+// contact
+Route::get('/contact', [ContactFEController::class, 'index']);
 
-Route::get('/post', [HomepageController::class, 'post']);
-Route::get('/post/category/{id}', [HomepageController::class, 'postCategory']);
-Route::get('/post/{id}', [HomepageController::class, 'postDetail']);
+// ----------------------------------------------------------------------------------------------------------------------------------
 
-Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
+// Route::get('/', [HomepageController::class, 'index']);
+
+// Route::get('/application', [HomepageController::class, 'application']);
+// Route::get('/application/{id}', [HomepageController::class, 'applicationDetail']);
+
+// Route::get('/client', [HomepageController::class, 'client']);
+// Route::get('/client/{id}', [HomepageController::class, 'clientDetail']);
+
+// Route::get('/about', [HomepageController::class, 'about']);
+
+// Route::get('/product', [HomepageController::class, 'product']);
+// Route::get('/product/category/{id}', [HomepageController::class, 'productCategory']);
+// Route::get('/product/{id}', [HomepageController::class, 'productDetail']);
+
+// Route::get('/product/variant/{id}', [HomepageController::class, 'variantDetail']);
+
+// Route::get('/post', [HomepageController::class, 'post']);
+// Route::get('/post/category/{id}', [HomepageController::class, 'postCategory']);
+// Route::get('/post/{id}', [HomepageController::class, 'postDetail']);
+
+// Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
 
 // front end
 

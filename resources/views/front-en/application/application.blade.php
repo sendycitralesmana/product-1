@@ -3,7 +3,7 @@
     <div class="container">
         <div class="p-b-66">
             <h3 class="ltext-105 cl5 txt-center respon1">
-                Proyek dikerjakan
+                Project
             </h3>
         </div>
 
@@ -65,7 +65,7 @@
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
             <a href="/application" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Lihat lebih
+                Load More
             </a>
         </div>
         @endif

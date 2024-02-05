@@ -82,6 +82,29 @@ Route::get('/about', [AboutFEController::class, 'index']);
 // contact
 Route::get('/contact', [ContactFEController::class, 'index']);
 
+// front end
+
+Route::get('/en', [HomeController::class, 'indexEn']);
+
+// product
+Route::get('/en/product', [ProductFEController::class, 'indexEn']);
+Route::get('/en/product/category/{id}', [ProductFEController::class, 'categoryEn']);
+Route::get('/en/product/{id}', [ProductFEController::class, 'detailEn']);
+
+// application
+Route::get('/en/application', [ApplicationFEController::class, 'indexEn']);
+Route::get('/en/application/{id}', [ApplicationFEController::class, 'detailEn']);
+
+// blog / post
+Route::get('/en/blog', [PostFEController::class, 'indexEn']);
+Route::get('/en/blog/{id}', [PostFEController::class, 'detailEn']);
+
+// about
+Route::get('/en/about', [AboutFEController::class, 'indexEn']);
+
+// contact
+Route::get('/en/contact', [ContactFEController::class, 'indexEn']);
+
 // ----------------------------------------------------------------------------------------------------------------------------------
 
 // Route::get('/', [HomepageController::class, 'index']);

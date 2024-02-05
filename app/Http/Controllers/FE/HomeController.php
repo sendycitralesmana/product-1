@@ -29,4 +29,22 @@ class HomeController extends Controller
             'clients' => $clients
         ]);
     }
+    
+    public function indexEn () {
+        $posts = Post::orderBy('id', 'desc')->get()->take(3);
+        $products = Product::orderBy('id', 'desc')->get();
+        $productCategories = ProductCategory::all();
+        $applications = Application::orderBy('id', 'desc')->get()->take(3);
+        $applicationC = Application::get();
+        $clients = Client::get();
+
+        return view('front-en.homepage.index', [
+            'posts' => $posts,
+            'products' => $products,
+            'productCategories' => $productCategories,
+            'applications' => $applications,
+            'applicationC' => $applicationC,
+            'clients' => $clients
+        ]);
+    }
 }

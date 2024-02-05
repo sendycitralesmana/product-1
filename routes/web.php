@@ -1,37 +1,38 @@
 <?php
 
-use App\Http\Controllers\ApplicationController;
+use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
-use App\Http\Controllers\UserController;
+use App\Http\Controllers\FE\HomeController;
+use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\FE\AboutFEController;
-use App\Http\Controllers\FE\ApplicationFEController;
-use App\Http\Controllers\FE\ContactFEController;
-use App\Http\Controllers\FE\HomeController;
-use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\PostFEController;
-use App\Http\Controllers\FE\ProductFEController;
-use App\Http\Controllers\HistoryController;
-use App\Http\Controllers\MediaApplicationController;
-use App\Http\Controllers\MediaProductController;
 use App\Http\Controllers\MediaTypeController;
+use App\Http\Controllers\FE\AboutFEController;
+use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\FE\HomepageController;
+use App\Http\Controllers\FE\ContactFEController;
+use App\Http\Controllers\FE\ProductFEController;
+use App\Http\Controllers\MediaProductController;
 use App\Http\Controllers\PostCategoryController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\ProductApplicationController;
+use App\Http\Controllers\ProductMediaController;
+use App\Http\Controllers\ProductVideoController;
 use App\Http\Controllers\SpecificationController;
 use App\Http\Controllers\ProductVariantController;
 use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\ProductCategoryController;
-use App\Http\Controllers\ProductMediaController;
-use App\Http\Controllers\ProductVideoController;
 use App\Http\Controllers\PVSpecificationController;
+use App\Http\Controllers\FE\ApplicationFEController;
+use App\Http\Controllers\FE\GoogleTranslateFEController;
+use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\VideoApplicationController;
-use App\Models\ProductApplication;
+use App\Http\Controllers\ProductApplicationController;
 
 /*
 |--------------------------------------------------------------------------
@@ -61,6 +62,10 @@ Route::group(['middleware' => 'guest'], function(){
 });
 // front end
 
+// google translate
+Route::get('google/translate',[GoogleTranslateFEController::class,'googleTranslate']);
+
+// homepage
 Route::get('/', [HomeController::class, 'index']);
 
 // product

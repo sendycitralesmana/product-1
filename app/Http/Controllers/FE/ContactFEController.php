@@ -10,7 +10,7 @@ class ContactFEController extends Controller
 {
     public function index () {
         $productCategories = ProductCategory::all();
-
+        
         return view('front.contact.contactPage', [
             'productCategories' => $productCategories
         ]);

@@ -6,12 +6,12 @@
 <div class="container">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="/homepage" class="stext-109 cl8 hov-cl1 trans-04">
-            Home
+            Beranda
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <a href="/public/blog" class="stext-109 cl8 hov-cl1 trans-04">
-            Blog
+            Berita
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
@@ -30,7 +30,8 @@
                 <div class="p-r-45 p-r-0-lg">
                     <!--  -->
                     <div class="wrap-pic-w how-pos5-parent">
-                        <img src="{{ asset('storage/image/post/' . $post->image) }}" alt="IMG-BLOG">
+                        {{-- <img src="{{ asset('storage/image/post/' . $post->image) }}" alt="IMG-BLOG"> --}}
+                        <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
 
                         <div class="flex-col-c-m size-123 bg9 how-pos5">
                             <span class="ltext-107 cl2 txt-center">
@@ -45,7 +46,7 @@
                     <div class="p-t-32">
                         <span class="flex-w flex-m stext-111 cl2 p-b-19">
                             <span>
-                                <span class="cl4">By</span> {{ $post->user->name }}
+                                <span class="cl4">oleh</span> {{ $post->user->name }}
                                 <span class="cl12 m-l-4 m-r-6">|</span>
                             </span>
 
@@ -54,10 +55,10 @@
                                 <span class="cl12 m-l-4 m-r-6">|</span>
                             </span>
 
-                            <span>
+                            {{-- <span>
                                 StreetStyle, Fashion, Couple
                                 <span class="cl12 m-l-4 m-r-6">|</span>
-                            </span>
+                            </span> --}}
 
                             <span>
                                 {{ $post->comment->count() }} Comments
@@ -144,13 +145,13 @@
 
                     <div class="p-t-55">
                         <h4 class="mtext-112 cl2 p-b-33">
-                            Categories
+                            Kategori
                         </h4>
 
                         <ul>
                             <li class="bor18">
                                 <a href="/public/blog" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-                                    Show All ({{ $postC->count() }})
+                                    Lihat semua ({{ $postC->count() }})
                                 </a>
                             </li>
                             {{-- Get Post Categories --}}
@@ -167,7 +168,7 @@
 
                     <div class="p-t-65">
                         <h4 class="mtext-112 cl2 p-b-33">
-                            Recent Blogs
+                            Berita terbaru
                         </h4>
 
                         <ul>
@@ -175,7 +176,7 @@
                                 
                             <li class="flex-w flex-t p-b-30">
                                 <a href="/public/blog/{{ $recent->id }}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-                                    <img src="{{ asset('storage/image/post/' . $recent->image) }}" alt="PRODUCT">
+                                    <img src="{{ asset('storage/image/post/' . $recent->thumbnail) }}" alt="PRODUCT">
                                 </a>
 
                                 <div class="size-215 flex-col-t p-t-8">

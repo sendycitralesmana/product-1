@@ -3,15 +3,15 @@
 @section('main')
 
 <!-- breadcrumb -->
-<div class="container">
+<div class="container p-t-104">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
         <a href="/" class="stext-109 cl8 hov-cl1 trans-04">
-            Home
+            Beranda
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
         <a href="/application" class="stext-109 cl8 hov-cl1 trans-04">
-            Application
+            Proyek
             <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
         </a>
 
@@ -33,7 +33,7 @@
                         <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
                         <div class="slick3 gallery-lb">
-                            <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-01.jpg') }}">
+                            {{-- <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-01.jpg') }}">
                                 <div class="wrap-pic-w pos-relative">
                                     <img src="{{ asset('assets/frontend/images/product-detail-01.jpg') }}" alt="IMG-PRODUCT">
 
@@ -42,16 +42,36 @@
                                         <i class="fa fa-expand"></i>
                                     </a>
                                 </div>
+                            </div> --}}
+                            <div class="item-slick3" data-thumb="{{ asset('storage/image/product/' . $application->thumbnail) }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ asset('storage/image/product/' . $application->thumbnail) }}" alt="IMG-PRODUCT">
+
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                        href="{{ asset('storage/image/product/' . $application->thumbnail) }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
                             </div>
 
                             @if ($images->count() > 0)
                                 @foreach ($images as $image)
-                                <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-02.jpg') }}">
+                                {{-- <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-02.jpg') }}">
                                     <div class="wrap-pic-w pos-relative">
                                         <img src="{{ asset('assets/frontend/images/product-detail-02.jpg') }}" alt="IMG-PRODUCT">
     
                                         <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
                                             href="{{ asset('assets/frontend/images/product-detail-02.jpg') }}">
+                                            <i class="fa fa-expand"></i>
+                                        </a>
+                                    </div>
+                                </div> --}}
+                                <div class="item-slick3" data-thumb="{{ asset('storage/image/application/' . $image->thumbnail) }}">
+                                    <div class="wrap-pic-w pos-relative">
+                                        <img src="{{ asset('storage/image/application/' . $image->thumbnail) }}" alt="IMG-PRODUCT">
+    
+                                        <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                            href="{{ asset('storage/image/application/' . $image->thumbnail) }}">
                                             <i class="fa fa-expand"></i>
                                         </a>
                                     </div>
@@ -96,7 +116,7 @@
                     </span>
 
                     <p class="stext-102 cl3 p-t-23">
-                        Time: {{ $application->time }}
+                        Waktu: {{ $application->time }}
                     </p>
                     
                 </div>
@@ -118,7 +138,7 @@
     <div class="container">
         <div class="p-b-45">
             <h3 class="ltext-106 cl5 txt-center">
-                Relationship Products
+                Produk terkait
             </h3>
         </div>
 
@@ -131,12 +151,12 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT">
+                            <img src="{{ asset('storage/image/product/'.$relationship->thumbnail) }}" alt="IMG-PRODUCT">
 
-                            <a href="#"
+                            {{-- <a href="#"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                 Quick View
-                            </a>
+                            </a> --}}
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">

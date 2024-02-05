@@ -7,7 +7,7 @@
                 
             <div class="col-md-3 col-sm-4 col-xl-2 p-b-30 m-lr-auto">
                 <!-- Block1 -->
-                <div class="block1 wrap-pic-w">
+                <div class=" wrap-pic-w">
                     {{-- <img src="{{asset('assets/frontend/images/banner-01.jpg')}}" alt="IMG-BANNER"> --}}
                     <img src="{{asset('storage/image/client/'. $client->image)}}" alt="IMG-BANNER">
                 </div>

@@ -67,10 +67,10 @@
                     <div class="block2-pic hov-img0">
                         <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT">
 
-                        <a href="#"
+                        {{-- <a href="#"
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                             Quick View
-                        </a>
+                        </a> --}}
                     </div>
 
                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -98,7 +98,7 @@
 
             @endforeach
             @else
-                <h3>Sorry applications not found</h3>
+                <h3>Proyek tidak ditemukan</h3>
             @endif
 
         </div>

@@ -13,7 +13,7 @@
                 <div class="col-sm-6 col-md-4 p-b-40 ">
                     <div class="blog-item">
                         <div class="hov-img0">
-                            <a href="blog-detail.html">
+                            <a href="/blog/{{ $post->id }}">
                                 {{-- <img src="{{ asset('storage/image/post/1706163957-app10.jpg') }}" alt="IMG-BLOG"> --}}
                                 <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
                             </a>
@@ -43,7 +43,7 @@
                             </div>
 
                             <h4 class="p-b-12">
-                                <a href="blog-detail.html" class="mtext-101 cl2 hov-cl1 trans-04">
+                                <a href="/blog/{{ $post->id }}" class="mtext-101 cl2 hov-cl1 trans-04">
                                     {{ $post->title }}
                                 </a>
                             </h4>

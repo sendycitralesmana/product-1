@@ -21,9 +21,9 @@
                         
                         <!-- item blog -->
                         <div class="p-b-63">
-                            <a href="blog-detail.html" class="hov-img0 how-pos5-parent">
+                            <a href="/blog/{{ $post->id }}" class="hov-img0 how-pos5-parent">
                                 {{-- <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG"> --}}
-                                <img src="{{ asset('storage/image/post/'. $post->image) }}" alt="IMG-BLOG">
+                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
 
                                 <div class="flex-col-c-m size-123 bg9 how-pos5">
                                     <span class="ltext-107 cl2 txt-center">
@@ -38,7 +38,7 @@
 
                             <div class="p-t-32">
                                 <h4 class="p-b-15">
-                                    <a href="blog-detail.html" class="ltext-108 cl2 hov-cl1 trans-04">
+                                    <a href="/blog/{{ $post->id }}" class="ltext-108 cl2 hov-cl1 trans-04">
                                         {{ $post->title }}
                                     </a>
                                 </h4>
@@ -66,7 +66,7 @@
                                         </span>
                                     </span>
 
-                                    <a href="/public/blog/{{ $post->id }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+                                    <a href="/blog/{{ $post->id }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
                                         Lanjut baca
 
                                         <i class="fa fa-long-arrow-right m-l-9"></i>

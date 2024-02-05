@@ -548,7 +548,7 @@
                         <div class="block2">
                             <div class="block2-pic hov-img0">
                                 {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT"> --}}
-                                <img src="{{ asset('storage/image/post/'. $application->thumbnail) }}" alt="IMG-PRODUCT">
+                                <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="IMG-PRODUCT">
 
                                 {{-- <a href="#"
                                     class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">

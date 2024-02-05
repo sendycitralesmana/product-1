@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    About
+                    Tentang kami
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
@@ -22,37 +22,37 @@
                 <ul>
                     <li class="p-b-10">
                         <a href="/" class="stext-107 cl7 hov-cl1 trans-04">
-                            Home
+                            Beranda
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#products" class="stext-107 cl7 hov-cl1 trans-04">
-                            Products
+                            Produk
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="#applications" class="stext-107 cl7 hov-cl1 trans-04">
-                            Applications
+                            Proyek
                         </a>
                     </li>
 
                     <li class="p-b-10">
                         <a href="/blogs" class="stext-107 cl7 hov-cl1 trans-04">
-                            Blogs
+                            Berita
                         </a>
                     </li>
                     
                     <li class="p-b-10">
                         <a href="/about" class="stext-107 cl7 hov-cl1 trans-04">
-                            About
+                            Tentang kami
                         </a>
                     </li>
                     
                     <li class="p-b-10">
                         <a href="/contact" class="stext-107 cl7 hov-cl1 trans-04">
-                            Contact
+                            Kontak kami
                         </a>
                     </li>
                     
@@ -61,7 +61,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Address
+                    Alamat
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
@@ -87,7 +87,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Contact
+                    Kontak kami
                 </h4>
 
                 <p class="stext-107 cl7 size-201">

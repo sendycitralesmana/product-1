@@ -5,7 +5,7 @@
 
         <div class="p-b-32">
             <h3 class="ltext-105 cl5 txt-center respon1">
-                Our Products
+                Produk
             </h3>
         </div>
 
@@ -15,7 +15,7 @@
             <ul class="nav nav-tabs" role="tablist">
 
                 <li class="nav-item p-b-10">
-                    <a class="nav-link active" data-toggle="tab" href="#allProducts" role="tab">All Products</a>
+                    <a class="nav-link active" data-toggle="tab" href="#allProducts" role="tab">Semua Produk</a>
                 </li>
 
                 @foreach ($productCategories as $productCategory)
@@ -40,13 +40,15 @@
                                 <!-- Block2 -->
                                 <div class="block2">
                                     <div class="block2-pic hov-img0">
-                                        <img src="{{ asset('assets/frontend/images/product-01.jpg') }}"
+                                        {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}"
+                                            alt="IMG-PRODUCT"> --}}
+                                        <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
                                             alt="IMG-PRODUCT">
 
-                                        <a href="#"
+                                        {{-- <a href="#"
                                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                                             Quick View
-                                        </a>
+                                        </a> --}}
                                     </div>
 
                                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -77,7 +79,9 @@
                                 <!-- Block2 -->
                                 <div class="block2">
                                     <div class="block2-pic hov-img0">
-                                        <img src="{{ asset('assets/frontend/images/product-09.jpg') }}"
+                                        {{-- <img src="{{ asset('assets/frontend/images/product-09.jpg') }}"
+                                            alt="IMG-PRODUCT"> --}}
+                                        <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
                                             alt="IMG-PRODUCT">
 
                                         {{-- <a href="#"
@@ -108,14 +112,14 @@
         <!-- Load more -->
         <div class="flex-c-m flex-w w-full p-t-45">
             <a href="/product" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Load More
+                Lihat Lebih
             </a>
         </div>
     </div>
 </section>
 
 <!-- Modal1 -->
-<div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+{{-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
     <div class="overlay-modal1 js-hide-modal1"></div>
 
     <div class="container">
@@ -277,4 +281,4 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}

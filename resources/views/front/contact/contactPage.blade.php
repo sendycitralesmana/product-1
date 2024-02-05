@@ -3,11 +3,11 @@
 @section('main')
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('assets/frontend/images/bg-01.jpg') }});">
+{{-- <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('assets/frontend/images/bg-01.jpg') }});">
     <h2 class="ltext-105 cl0 txt-center">
         Contact
     </h2>
-</section>
+</section> --}}
 
 
 <!-- Content page -->
@@ -113,11 +113,16 @@
 
 
 <!-- Map -->
-<div class="map">
-    <div class="size-303" id="google_map" data-map-x="40.691446" data-map-y="-73.886787" data-pin="images/icons/pin.png"
-        data-scrollwhell="0" data-draggable="1" data-zoom="11">
-    </div>
-</div>
+{{-- <div class="map">
+    <div class="size-303" id="google_map" data-map-x="-6.144303" data-map-y="106.8414094" data-pin="images/icons/pin.png" data-scrollwhell="0" data-draggable="1" data-zoom="11"></div>
+</div> --}}
+
+
+<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3966.8987291690855!2d106.84140937480252!3d-6.
+144302993842682!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f58d083c0fdf%3A0x94c8eb8dea74ea0c!2sPT.
+%20Matahari%20Teknologi%20Jaya%20(MatahariLED)!5e0!3m2!1sid!2sid!4v1706892273133!5m2!1sid!2sid" 
+width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+ referrerpolicy="no-referrer-when-downgrade" id="google_map"></iframe>
 
 
 

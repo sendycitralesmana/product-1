@@ -3,14 +3,14 @@
         <div class="container">
             <div class="p-b-66">
                 <h3 class="ltext-105 cl5 txt-center respon1">
-                    Latest Blogs
+                    Berita terbaru
                 </h3>
             </div>
 
             <div class="row">
 
                 @foreach ($posts as $post)
-                <div class="col-sm-6 col-md-4 p-b-40">
+                <div class="col-sm-6 col-md-4 p-b-40 ">
                     <div class="blog-item">
                         <div class="hov-img0">
                             <a href="blog-detail.html">
@@ -22,7 +22,7 @@
                             <div class="stext-107 flex-w p-b-14">
                                 <span class="m-r-3">
                                     <span class="cl4">
-                                        By
+                                        oleh
                                     </span>
 
                                     <span class="cl5">
@@ -32,7 +32,7 @@
 
                                 <span>
                                     <span class="cl4">
-                                        on
+                                        waktu
                                     </span>
 
                                     <span class="cl5">
@@ -64,7 +64,7 @@
             <!-- Load more -->
 			<div class="flex-c-m flex-w w-full p-t-45">
 				<a href="/blog" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-					Load More
+					Lihat lebih
 				</a>
 			</div>
         </div>

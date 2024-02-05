@@ -24,7 +24,7 @@
                 <a href="/product/category/{{ $productCategory->id }}">
                     <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
-                        Show All
+                        Lihat Semua
                     </div>
                 </a>
                 @endif
@@ -32,7 +32,7 @@
                 <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search">
                     <i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                     <i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
-                    Search
+                    Cari
                 </div>
                 
             </div>
@@ -65,12 +65,13 @@
                 <!-- Block2 -->
                 <div class="block2">
                     <div class="block2-pic hov-img0">
-                        <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT">
+                        {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT"> --}}
+                        <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}" alt="IMG-PRODUCT">
 
-                        <a href="#"
+                        {{-- <a href="#"
                             class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
                             Quick View
-                        </a>
+                        </a> --}}
                     </div>
 
                     <div class="block2-txt flex-w flex-t p-t-14">
@@ -98,7 +99,7 @@
 
             @endforeach
             @else
-                <h3>Sorry products not found</h3>
+                <h3>Produk tidak ditemukan</h3>
             @endif
 
         </div>

@@ -71,6 +71,17 @@
                     @if($errors->has('password'))
                         <span class="help-block text-danger mb-4">{{ $errors->first('password') }}</span>
                     @endif
+                    <div class="input-group mb-3">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @if($errors->has('password_confirmation'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('password_confirmation') }}</span>
+                    @endif
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">

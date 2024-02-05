@@ -41,6 +41,12 @@
     <link rel="stylesheet" type="text/css" href="{{asset('assets/frontend/css/main.css')}}">
     <!--===============================================================================================-->
 
+    <style>
+        .active-menu-primary {
+            color: #f58742 !important;
+        }
+    </style>
+
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
 </head>
@@ -48,7 +54,7 @@
 <body class="animsition">
 
     <!-- Header -->
-    @include('front.layouts.navbar')
+    @include('front.layouts.nav')
 
     @yield('main')
 

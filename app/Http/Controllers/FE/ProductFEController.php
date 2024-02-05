@@ -61,8 +61,6 @@ class ProductFEController extends Controller
                 'images' => $images,
                 'videos' => $videos,
                 'productVariant' => $productVariant,
-                'minPrice' => $minPrice,
-                'maxPrice' => $maxPrice
             ]);
         }
         
@@ -78,7 +76,9 @@ class ProductFEController extends Controller
             'images' => $images,
             'videos' => $videos,
             'productVariant' => $productVariant,
-            'specifications' => $specifications
+            'specifications' => $specifications,
+            'minPrice' => $minPrice,
+            'maxPrice' => $maxPrice
         ]);
     }
 }

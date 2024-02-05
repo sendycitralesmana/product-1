@@ -3,15 +3,15 @@
 @section('main')
 
 <!-- Title page -->
-<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('assets/frontend/images/bg-01.jpg') }});">
+{{-- <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('assets/frontend/images/bg-01.jpg') }});">
     <h2 class="ltext-105 cl0 txt-center">
         Blog
     </h2>
-</section>
+</section> --}}
 
 
 <!-- Content page -->
-<section class="bg0 p-t-62 p-b-60">
+<section class="bg0 p-t-104 p-b-60">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-9 p-b-80">
@@ -22,7 +22,8 @@
                         <!-- item blog -->
                         <div class="p-b-63">
                             <a href="blog-detail.html" class="hov-img0 how-pos5-parent">
-                                <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG">
+                                {{-- <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG"> --}}
+                                <img src="{{ asset('storage/image/post/'. $post->image) }}" alt="IMG-BLOG">
 
                                 <div class="flex-col-c-m size-123 bg9 how-pos5">
                                     <span class="ltext-107 cl2 txt-center">
@@ -55,12 +56,7 @@
                                 <div class="flex-w flex-sb-m p-t-18">
                                     <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
                                         <span>
-                                            <span class="cl4">By</span> {{ $post->user->name }}
-                                            <span class="cl12 m-l-4 m-r-6">|</span>
-                                        </span>
-
-                                        <span>
-                                            StreetStyle, Fashion, Couple
+                                            <span class="cl4">Oleh</span> {{ $post->user->name }}
                                             <span class="cl12 m-l-4 m-r-6">|</span>
                                         </span>
 
@@ -71,7 +67,7 @@
                                     </span>
 
                                     <a href="/public/blog/{{ $post->id }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-                                        Continue Reading
+                                        Lanjut baca
 
                                         <i class="fa fa-long-arrow-right m-l-9"></i>
                                     </a>
@@ -94,7 +90,7 @@
                     <form action="/public/blog" method="GET">
                         <div class="bor17 of-hidden pos-relative">
                             <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="title"
-                                placeholder="Search title..." required>
+                                placeholder="Cari berita..." required>
     
                             <button type="submit" class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
                                 <i class="zmdi zmdi-search"></i>
@@ -104,13 +100,13 @@
 
                     <div class="p-t-55">
                         <h4 class="mtext-112 cl2 p-b-33">
-                            Categories
+                            Kategori
                         </h4>
 
                         <ul>
                             <li class="bor18">
                                 <a href="/public/blog" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-                                    Show All ({{ $postC->count() }})
+                                    Lihat semua ({{ $postC->count() }})
                                 </a>
                             </li>
                             {{-- Get Post Categories --}}

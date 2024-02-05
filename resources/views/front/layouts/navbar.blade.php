@@ -7,18 +7,18 @@
 
                 <!-- Logo desktop -->
                 <a href="/" class="logo">
-                    <img src="{{ asset('storage/image/logo.png') }}" alt="IMG-LOGO">
+                    <img src="{{ asset('images/logo.png') }}" alt="IMG-LOGO">
                 </a>
 
                 <!-- Menu desktop -->
                 <div class="menu-desktop ">
                     <ul class="main-menu">
-                        <li class="{{ request()->is('/') ? 'active-menu' : '' }}">
-                            <a href="/">Home</a>
+                        <li class="" >
+                            <a href="/" style="{{ request()->is('/') ? 'color: #f58742 !important' : '' }}">Home</a>
                         </li>
 
-                        <li class="{{ request()->is('product', 'product/*') ? 'active-menu' : '' }}">
-                            <a href="/#product">Products</a>
+                        <li class="">
+                            <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: #f58742 !important' : '' }}">Products</a>
                             <ul class="sub-menu">
                                 <li><a href="/product">All Product</a></li>
                                 @foreach ($productCategories as $productCategory)
@@ -27,20 +27,20 @@
                             </ul>
                         </li>
                         
-                        <li class="{{ request()->is('application', 'application/*') ? 'active-menu' : '' }}">
-                            <a href="/#application">Applications</a>
+                        <li class="">
+                            <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: #f58742 !important' : '' }}">Applications</a>
                         </li>
 
-                        <li class="{{ request()->is('blog', 'blog/*') ? 'active-menu' : '' }}">
-                            <a href="/#blog">Blogs</a>
+                        <li class="">
+                            <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #f58742 !important' : '' }}">Blogs</a>
                         </li>
 
-                        <li class="{{ request()->is('about', 'about/*') ? 'active-menu' : '' }}">
-                            <a href="/about">About</a>
+                        <li class="">
+                            <a href="/about" style="{{ request()->is('about') ? 'color: #f58742 !important' : '' }}">About</a>
                         </li>
 
-                        <li class="{{ request()->is('contact', 'contact/*') ? 'active-menu' : '' }}">
-                            <a href="/contact">Contact</a>
+                        <li class="">
+                            <a href="/contact" style="{{ request()->is('contact') ? 'color: #f58742 !important' : '' }}">Contact</a>
                         </li>
                     </ul>
                 </div>
@@ -71,7 +71,7 @@
         <!-- Logo moblie -->
         <div class="logo-mobile">
             <a href="/" class="logo">
-                <img src="{{ asset('storage/image/logo.png') }}" alt="IMG-LOGO">
+                <img src="{{ asset('images/logo.png') }}" alt="IMG-LOGO">
             </a>
         </div>
 
@@ -103,12 +103,12 @@
     <!-- Menu Mobile -->
     <div class="menu-mobile">
         <ul class="main-menu-m">
-            <li class="{{ request()->is('/') ? 'active-menu' : '' }}">
-                <a href="/">Home</a>
+            <li class="">
+                <a href="/" style="{{ request()->is('/') ? 'color: #f58742 !important' : '' }}">Home</a>
             </li>
 
-            <li class="{{ request()->is('product', 'product/*') ? 'active-menu' : '' }}">
-                <a href="/#product">Products</a>
+            <li class="">
+                <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: #f58742 !important' : '' }}">Products</a>
                 <ul class="sub-menu">
                     <li><a href="/product">All Product</a></li>
                     @foreach ($productCategories as $productCategory)
@@ -117,20 +117,20 @@
                 </ul>
             </li>
             
-            <li class="{{ request()->is('application', 'application/*') ? 'active-menu' : '' }}">
-                <a href="/#application">Applications</a>
+            <li class="">
+                <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: #f58742 !important' : '' }}">Applications</a>
             </li>
 
-            <li class="{{ request()->is('blog', 'blog/*') ? 'active-menu' : '' }}">
-                <a href="/#blog">Blogs</a>
+            <li class="">
+                <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #f58742 !important' : '' }}">Blogs</a>
             </li>
 
-            <li class="{{ request()->is('about', 'about/*') ? 'active-menu' : '' }}">
-                <a href="/about">About</a>
+            <li class="">
+                <a href="/about" style="{{ request()->is('about') ? 'color: #f58742 !important' : '' }}">About</a>
             </li>
 
-            <li class="{{ request()->is('contact', 'contact/*') ? 'active-menu' : '' }}">
-                <a href="/contact">Contact</a>
+            <li class="">
+                <a href="/contact" style="{{ request()->is('contact') ? 'color: #f58742' : ''}}">Contact</a>
             </li>
         </ul>
     </div>

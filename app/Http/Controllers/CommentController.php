@@ -10,7 +10,7 @@ class CommentController extends Controller
 {
     public function comment(Request $request, $id) {
 
-        $validate= $request->validate([
+        $request->validate([
             'name' => 'required',
             'email' => 'required|email',
             'comment' => 'required',
@@ -21,6 +21,7 @@ class CommentController extends Controller
         $comment->name = $request->name;
         $comment->email = $request->email;
         $comment->comment = $request->comment;
+        // dd($comment);
         $comment->save();
 
         Session::flash('comment', 'success');

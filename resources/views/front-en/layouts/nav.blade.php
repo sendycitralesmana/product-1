@@ -19,14 +19,14 @@
                         ID
                     </a>
 
-                    <a href="/en/" class="flex-c-m trans-04 p-lr-25">
+                    <a href="/en" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
                 </div>
             </div>
         </div>
 
-        <div class="wrap-menu-desktop">
+        <div class="wrap-menu-desktop" >
             <nav class="limiter-menu-desktop container">
                 
                 <!-- Logo desktop -->		
@@ -38,33 +38,34 @@
                 <div class="menu-desktop ">
                     <ul class="main-menu">
                         <li class="" >
-                            <a href="/en" style="{{ request()->is('/') ? 'color: #f58742 !important' : '' }}">Home</a>
+                            <a href="/en" style="{{ request()->is('en') ? 'color: #f58742 !important' : '' }}">Home</a>
                         </li>
 
                         <li class="">
-                            <a href="/en#product" style="{{ request()->is('product', 'product/*') ? 'color: #f58742 !important' : '' }}">Product</a>
+                            <a href="/en#product" style="{{ request()->is('en/product', 'en/product/*') ? 'color: #f58742 !important' : '' }}">Product</a>
                             <ul class="sub-menu">
                                 <li><a href="/en/product">All product</a></li>
                                 @foreach ($productCategories as $productCategory)
+                                {{-- <li><a href="/en/product/category/{{ $productCategory->id }}">{{ $productCategory->name }}</a></li> --}}
                                 <li><a href="/en/product/category/{{ $productCategory->id }}">{{ $productCategory->name }}</a></li>
                                 @endforeach
                             </ul>
                         </li>
                         
                         <li class="">
-                            <a href="/en#application" style="{{ request()->is('application', 'application/*') ? 'color: #f58742 !important' : '' }}">Project</a>
+                            <a href="/en#application" style="{{ request()->is('en/application', 'en/application/*') ? 'color: #f58742 !important' : '' }}">Project</a>
                         </li>
 
                         <li class="">
-                            <a href="/en#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #f58742 !important' : '' }}">Blog</a>
+                            <a href="/en#blog" style="{{ request()->is('en/blog', 'en/blog/*') ? 'color: #f58742 !important' : '' }}">Blog</a>
                         </li>
 
                         <li class="">
-                            <a href="/en/about" style="{{ request()->is('about') ? 'color: #f58742 !important' : '' }}">About</a>
+                            <a href="/en/about" style="{{ request()->is('en/about') ? 'color: #f58742 !important' : '' }}">About</a>
                         </li>
 
                         <li class="">
-                            <a href="/en/contact" style="{{ request()->is('contact') ? 'color: #f58742 !important' : '' }}">Contact</a>
+                            <a href="/en/contact" style="{{ request()->is('en/contact') ? 'color: #f58742 !important' : '' }}">Contact</a>
                         </li>
                     </ul>
                 </div>	

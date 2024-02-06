@@ -18,7 +18,7 @@ class PostFEController extends Controller
                             ->orderBy('id', 'desc')
                             ->paginate(4);
         }
-        $postCategories = Post::get();
+        $postCategories = PostCategory::get();
         $productCategories = ProductCategory::get();
 
         return view('front.blog.blogPage', [
@@ -35,7 +35,7 @@ class PostFEController extends Controller
         $postRecents = Post::orderBy('id', 'desc')->take(3)->get();
         $postCategories = PostCategory::get();
         $productCategories = ProductCategory::get();
-        return view('front.blog.detail', [
+        return view('front.blog.detailPage', [
             'post' => $post,
             'postC' => $postC,
             'postCategories' => $postCategories,

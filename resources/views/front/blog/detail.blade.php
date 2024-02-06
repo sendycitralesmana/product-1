@@ -95,18 +95,18 @@
                     <!--  -->
                     <div class="p-t-40">
                         <h5 class="mtext-113 cl2 p-b-12">
-                            Leave a Comment
+                            Tinggalkan komentar
                         </h5>
 
                         <p class="stext-107 cl6 p-b-40">
-                            Your email address will not be published. Required fields are marked *
+                            Alamat email Anda tidak akan dipublikasikan. Bidang yang wajib diisi ditandai *
                         </p>
 
                         <form action="/post/{{ $post->id }}/comment" method="POST">
                             @csrf
                             <div class="bor19 m-b-20">
                                 <textarea class="stext-111 cl2 plh3 size-124 p-lr-18 p-tb-15" name="comment"
-                                    placeholder="Comment..." required></textarea>
+                                    placeholder="Komentar..." required></textarea>
                             </div>
 
                             <div class="bor19 size-218 m-b-20">

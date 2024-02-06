@@ -19,7 +19,5 @@
     
     {{-- Our Clients --}}
     @include('front-en.client.client')
-
-
     
 @endsection

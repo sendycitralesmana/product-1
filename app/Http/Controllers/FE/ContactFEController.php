@@ -15,4 +15,12 @@ class ContactFEController extends Controller
             'productCategories' => $productCategories
         ]);
     }
+    
+    public function indexEn () {
+        $productCategories = ProductCategory::all();
+
+        return view('front-en.contact.contactPage', [
+            'productCategories' => $productCategories
+        ]);
+    }
 }

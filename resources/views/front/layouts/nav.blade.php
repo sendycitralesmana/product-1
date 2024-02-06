@@ -15,13 +15,19 @@
                         My Account
                     </a> --}}
 
-                    <a href="/google/translate?language=id" class="flex-c-m trans-04 p-lr-25">
+                    <a href="/" class="flex-c-m trans-04 p-lr-25">
                         ID
                     </a>
-
-                    <a href="/google/translate?language=en" class="flex-c-m trans-04 p-lr-25">
+                    <a href="/en" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a>
+                    {{-- <a href="/google/translate?language=id" class="flex-c-m trans-04 p-lr-25">
+                        ID
+                    </a>
+                    <a href="/google/translate?language=en" class="flex-c-m trans-04 p-lr-25">
+                        EN
+                    </a> --}}
+
                 </div>
             </div>
         </div>
@@ -39,17 +45,20 @@
                     <ul class="main-menu">
                         <li class="" >
                             <a href="/" style="{{ request()->is('/') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Beranda',\App::getLocale()) }}
+                                Beranda
+                                {{-- {{ GoogleTranslate::trans('Beranda',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
                             <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Produk',\App::getLocale()) }}
+                                Produk
+                                {{-- {{ GoogleTranslate::trans('Produk',\App::getLocale()) }} --}}
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="/product">
-                                    {{ GoogleTranslate::trans('Semua Produk',\App::getLocale()) }}
+                                    Produk
+                                    {{-- {{ GoogleTranslate::trans('Semua Produk',\App::getLocale()) }} --}}
                                 </a></li>
                                 @foreach ($productCategories as $productCategory)
                                 <li><a href="/product/category/{{ $productCategory->id }}">{{ $productCategory->name }}</a></li>
@@ -59,25 +68,29 @@
                         
                         <li class="">
                             <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }}
+                                Proyek
+                                {{-- {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
                             <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Berita',\App::getLocale()) }}
+                                Berita
+                                {{-- {{ GoogleTranslate::trans('Berita',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
                             <a href="/about" style="{{ request()->is('about') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }}
+                                Tentang Kami
+                                {{-- {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
                             <a href="/contact" style="{{ request()->is('contact') ? 'color: #f58742 !important' : '' }}">
-                                {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }}
+                                Kontak Kami
+                                {{-- {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }} --}}
                             </a>
                         </li>
                     </ul>
@@ -158,13 +171,15 @@
         <ul class="main-menu-m" style="background-color: #f58742 !important">
             <li class="">
                 <a href="/" style="{{ request()->is('/') ? 'color: black !important' : '' }}">
-                    {{ GoogleTranslate::trans('Beranda',\App::getLocale()) }}
+                    Beranda
+                    {{-- {{ GoogleTranslate::trans('Beranda',\App::getLocale()) }} --}}
                 </a>
             </li>
 
             <li class="">
                 <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: black !important' : '' }}">
-                    {{ GoogleTranslate::trans('Produk',\App::getLocale()) }}
+                    Produk
+                    {{-- {{ GoogleTranslate::trans('Produk',\App::getLocale()) }} --}}
                 </a>
                 <ul class="sub-menu">
                     <li><a href="/product">All Product</a></li>
@@ -176,25 +191,29 @@
             
             <li class="">
                 <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: black !important' : '' }}">
-                    {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }}
+                    Proyek
+                    {{-- {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }} --}}
                 </a>
             </li>
 
             <li class="">
                 <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: black !important' : '' }}">
-                    {{ GoogleTranslate::trans('Berita',\App::getLocale()) }}
+                    Berita
+                    {{-- {{ GoogleTranslate::trans('Berita',\App::getLocale()) }} --}}
                 </a>
             </li>
 
             <li class="">
                 <a href="/about" style="{{ request()->is('about') ? 'color: black !important' : '' }}">
-                    {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }}
+                    Tentang Kami
+                    {{-- {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }} --}}
                 </a>
             </li>
 
             <li class="">
                 <a href="/contact" style="{{ request()->is('contact') ? 'color: black' : ''}}">
-                    {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }}
+                    Kontak Kami
+                    {{-- {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }} --}}
                 </a>
             </li>
         </ul>

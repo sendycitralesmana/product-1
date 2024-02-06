@@ -17,22 +17,28 @@
             <div class="size-210 bor10 p-lr-70 p-t-55 p-b-70 p-lr-15-lg w-full-md">
                 <form>
                     <h4 class="mtext-105 cl2 txt-center p-b-30">
-                        {{ GoogleTranslate::trans('Kirimkan pesan kepada kami', App::getLocale()) }}
+                        Kirimkan pesan kepada kami
+                        {{-- {{ GoogleTranslate::trans('Kirimkan pesan kepada kami', App::getLocale()) }} --}}
                     </h4>
 
                     <div class="bor8 m-b-20 how-pos4-parent">
                         <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
-                            placeholder="{{ GoogleTranslate::trans('Alamat email anda', App::getLocale()) }}">
+                            placeholder="Alamat email anda">
+                        {{-- <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
+                            placeholder="{{ GoogleTranslate::trans('Alamat email anda', App::getLocale()) }}"> --}}
                         <img class="how-pos4 pointer-none" src="{{ asset('assets/frontend/images/icons/icon-email.png') }}" alt="ICON">
                     </div>
 
                     <div class="bor8 m-b-30">
                         <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg"
-                            placeholder="{{ GoogleTranslate::trans('Bagaimana kami bisa membantu', App::getLocale()) }}"></textarea>
+                            placeholder="Bagaimana kami bisa membantu"></textarea>
+                        {{-- <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg"
+                            placeholder="{{ GoogleTranslate::trans('Bagaimana kami bisa membantu', App::getLocale()) }}"></textarea> --}}
                     </div>
 
                     <button class="flex-c-m stext-101 cl0 size-121 bg3 bor1 hov-btn3 p-lr-15 trans-04 pointer">
-                        {{ GoogleTranslate::trans('Kirim',\App::getLocale()) }}
+                        Kirim
+                        {{-- {{ GoogleTranslate::trans('Kirim',\App::getLocale()) }} --}}
                     </button>
                 </form>
             </div>
@@ -45,12 +51,13 @@
 
                     <div class="size-212 p-t-2">
                         <span class="mtext-110 cl2">
-                            {{ GoogleTranslate::trans('Alamat',\App::getLocale()) }}
+                            Alamat
+                            {{-- {{ GoogleTranslate::trans('Alamat',\App::getLocale()) }} --}}
                         </span>
 
                         <p class="stext-115 cl6 size-213 p-t-18">
-                            
-                            {{ GoogleTranslate::trans('Rukan Multiguna Kemayoran Blok 5F. JL. Rajawali Selatan Raya. C5 No. 2, Pademangan Timur, Pademangan, Jakarta – Indonesia',\App::getLocale()) }}
+                            Rukan Multiguna kemayoran Blok 5F. Jl. Rajawali Selatan Raya. C5 No. 2, Pademangan Timur, Pademangan, Jakarta – Indonesia
+                            {{-- {{ GoogleTranslate::trans('Rukan Multiguna Kemayoran Blok 5F. JL. Rajawali Selatan Raya. C5 No. 2, Pademangan Timur, Pademangan, Jakarta – Indonesia',\App::getLocale()) }} --}}
                         </p>
                     </div>
                 </div>
@@ -62,7 +69,8 @@
 
                     <div class="size-212 p-t-2">
                         <span class="mtext-110 cl2">
-                            {{ GoogleTranslate::trans('Hubungi kami',\App::getLocale()) }}
+                            Hubungi kami
+                            {{-- {{ GoogleTranslate::trans('Hubungi kami',\App::getLocale()) }} --}}
                         </span>
 
                         <p class="stext-115 cl1 size-213 p-t-18">
@@ -99,7 +107,8 @@
 
                     <div class="size-212 p-t-2">
                         <span class="mtext-110 cl2">
-                            {{ GoogleTranslate::trans('Dukungan penjualan',\App::getLocale()) }}
+                            Dukungan penjualan
+                            {{-- {{ GoogleTranslate::trans('Dukungan penjualan',\App::getLocale()) }} --}}
                         </span>
 
                         <p class="stext-115 cl1 size-213 p-t-18">

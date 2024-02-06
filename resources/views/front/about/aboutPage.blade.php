@@ -17,12 +17,13 @@
 				<div class="col-md-7 col-lg-8">
 					<div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							{{ GoogleTranslate::trans('Tentang kami',\App::getLocale()) }}
+							Tentang kami
+							{{-- {{ GoogleTranslate::trans('Tentang kami',\App::getLocale()) }} --}}
 						</h3>
 
 						<div class="stext-113 cl6 p-b-26">
-							{!! GoogleTranslate::trans( html_entity_decode($aboutTK->description) , App::getLocale()) !!}
-							{{-- {!! html_entity_decode($aboutTK->description) !!} --}}
+							{!! html_entity_decode($aboutTK->description) !!}
+							{{-- {!! GoogleTranslate::trans( html_entity_decode($aboutTK->description) , App::getLocale()) !!} --}}
                         </div>
 
 					</div>
@@ -41,12 +42,13 @@
 				<div class="order-md-2 col-md-7 col-lg-8 p-b-30">
 					<div class="p-t-7 p-l-85 p-l-15-lg p-l-0-md">
 						<h3 class="mtext-111 cl2 p-b-16">
-							{{ GoogleTranslate::trans('Visi & Misi',\App::getLocale()) }}
+							Visi & Misi
+							{{-- {{ GoogleTranslate::trans('Visi & Misi',\App::getLocale()) }} --}}
 						</h3>
 
 						<div class="stext-113 cl6 p-b-26">
-							{{-- {!! html_entity_decode($aboutVM->description) !!} --}}
-							{!! GoogleTranslate::trans( html_entity_decode($aboutVM->description) , App::getLocale()) !!}
+							{!! html_entity_decode($aboutVM->description) !!}
+							{{-- {!! GoogleTranslate::trans( html_entity_decode($aboutVM->description) , App::getLocale()) !!} --}}
                         </div>
 
 						{{-- <div class="bor16 p-l-29 p-b-9 m-t-22">

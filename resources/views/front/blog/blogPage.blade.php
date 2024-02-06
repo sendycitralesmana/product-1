@@ -105,12 +105,30 @@
 
                         <ul>
                             <li class="bor18">
-                                <a href="/public/blog" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-                                    Lihat semua ({{ $postC->count() }})
+                                <a href="/blog" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
+                                    <span>
+                                        Lihat semua
+                                    </span>
+
+                                    <span>
+                                        ({{ $postC->count() }})
+                                    </span>
                                 </a>
                             </li>
-                            {{-- Get Post Categories --}}
-                            @if ($postCategories->count() > 0)
+                            @foreach ($postCategories as $category)
+                                <li class="bor18">
+									<a href="/public/blog/category/{{ $category->id }}" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
+										<span>
+											{{ $category->name }}
+										</span>
+
+										<span>
+											()
+										</span>
+									</a>
+								</li>
+                                @endforeach
+                            {{-- @if ($postCategories->count() > 0)
 
                             @foreach ($postCategories as $category)
                                 <li class="bor18">
@@ -120,7 +138,7 @@
                                 </li>
                             @endforeach
                                 
-                            @endif
+                            @endif --}}
                         </ul>
                     </div>
 

@@ -103,6 +103,7 @@ Route::get('/en/application/{id}', [ApplicationFEController::class, 'detailEn'])
 // blog / post
 Route::get('/en/blog', [PostFEController::class, 'indexEn']);
 Route::get('/en/blog/{id}', [PostFEController::class, 'detailEn']);
+Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
 
 // about
 Route::get('/en/about', [AboutFEController::class, 'indexEn']);

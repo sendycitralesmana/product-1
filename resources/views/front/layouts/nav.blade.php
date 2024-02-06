@@ -93,6 +93,13 @@
                                 {{-- {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }} --}}
                             </a>
                         </li>
+
+                        {{-- <li class="">
+                            <a href="https://wa.me/6285523782593" class="fs-18 cl7 hov-cl1 trans-04 m-r-16">
+                                <i class="fa fa-whatsapp" style="font-size: 40px;"></i>
+                            </a>
+                        </li> --}}
+
                     </ul>
                 </div>	
 

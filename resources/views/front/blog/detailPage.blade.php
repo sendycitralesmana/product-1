@@ -152,9 +152,8 @@
                                 @foreach ($postRecents as $recent)
 								<li class="flex-w flex-t p-b-30">
 									<a href="/blog/{{ $recent->id }}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="{{ asset('storage/image/post/' . $recent->thumbnail . '') }}" alt="PRODUCT">
+										<img src="{{ asset('storage/image/post/' . $recent->thumbnail ) }}" alt="PRODUCT">
 									</a>
-
 									<div class="size-215 flex-col-t p-t-8">
 										<a href="/blog/{{ $recent->id }}" class="stext-116 cl8 hov-cl1 trans-04" style="
                                         overflow: hidden;

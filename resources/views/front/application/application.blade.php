@@ -3,7 +3,7 @@
     <div class="container">
         <div class="p-b-66">
             <h3 class="ltext-105 cl5 txt-center respon1">
-                Proyek dikerjakan
+                {{ __('home.Proyek dikerjakan') }}
             </h3>
         </div>
 

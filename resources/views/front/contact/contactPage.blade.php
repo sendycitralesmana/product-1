@@ -78,7 +78,7 @@
                         {{-- {{ GoogleTranslate::trans('Kirimkan pesan kepada kami', App::getLocale()) }} --}}
                     </h4>
     
-                    <div class="bor8 m-b-10 how-pos4-parent">
+                    <div class=" m-b-10 how-pos4-parent">
                         <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
                             placeholder="{{ __('contact.Alamat email anda') }}" required>
                         {{-- <input class="stext-111 cl2 plh3 size-116 p-l-62 p-r-30" type="text" name="email"
@@ -91,7 +91,7 @@
                     </div>
     
                     <div class="bor8 m-b-20">
-                        <textarea class="stext-111 cl2 plh3 size-80 p-lr-28 p-tb-25" name="message"
+                        <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="message"
                             placeholder="{{ __('contact.Bagaimana kami bisa membantu anda') }}" required></textarea>
                         {{-- <textarea class="stext-111 cl2 plh3 size-120 p-lr-28 p-tb-25" name="msg"
                             placeholder="{{ GoogleTranslate::trans('Bagaimana kami bisa membantu', App::getLocale()) }}"></textarea> --}}

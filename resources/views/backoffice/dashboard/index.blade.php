@@ -32,12 +32,12 @@
                     <div class="inner">
                         <h3>{{ $products->count() }}</h3>
 
-                        <p>Products</p>
+                        <p>Produk</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-bag"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/backoffice/product" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -47,12 +47,12 @@
                     <div class="inner">
                         <h3>{{ $applications->count() }}</h3>
 
-                        <p>Projects</p>
+                        <p>Proyek</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-stats-bars"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/backoffice/application" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -62,12 +62,12 @@
                     <div class="inner">
                         <h3>{{ $posts->count() }}</h3>
 
-                        <p>Posts/blogs</p>
+                        <p>Berita</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-person-add"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/backoffice/post" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->
@@ -77,12 +77,12 @@
                     <div class="inner">
                         <h3>{{ $clients->count() }}</h3>
 
-                        <p>Clients</p>
+                        <p>Klien</p>
                     </div>
                     <div class="icon">
                         <i class="ion ion-pie-graph"></i>
                     </div>
-                    <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+                    <a href="/backoffice/client" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
             <!-- ./col -->

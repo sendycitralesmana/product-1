@@ -30,6 +30,7 @@ class ApplicationController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
+            'description' => 'required',
             'area' => 'required',
             'time' => 'required',
         ]);
@@ -44,6 +45,7 @@ class ApplicationController extends Controller
         $application = new Application;
         $application->client_id = $request->client_id;
         $application->name = $request->name;
+        $application->description = $request->description;
         $application->area = $request->area;
         $application->time = $request->time;
         $application->thumbnail = $newName;
@@ -88,6 +90,7 @@ class ApplicationController extends Controller
         $application = Application::find($id);
         $application->client_id = $request->client_id;
         $application->name = $request->name;
+        $application->description = $request->description;
         $application->area = $request->area;
         $application->time = $request->time;
         if ($request->oldImage != null) {

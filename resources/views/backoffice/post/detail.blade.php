@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Post')
+@section('title', 'Berita')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Detail Post</h1>
+                    <h1>Detail Berita</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/post" class="text-secondary">Post</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/post" class="text-secondary">Berita</a></li>
                     <li class="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>
@@ -25,10 +25,10 @@
     <!-- Main content -->
     <section class="content">
 
-        {{-- Post Start --}}
+        {{-- Produk Start --}}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Post</h3>
+                <h3 class="card-title">Berita</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
@@ -75,7 +75,7 @@
                             @endif
                             {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
                             <span class="username"><a href="#">{{ $post->user->name }}</a></span>
-                            <span class="description">Added post - {{ $post->created_at->diffForHumans() }}</span>
+                            <span class="description">Menambahkan berita - {{ $post->created_at->diffForHumans() }}</span>
                           </div>
                           <!-- /.user-block -->
                           <div class="card-tools">
@@ -91,7 +91,7 @@
                             @endif
                             <h4 class="mt-3"> {{ $post->title }} </h4>
                           <p> {!! html_entity_decode($post->content) !!} </p>
-                          <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
+                          <span class="float-right text-muted">{{ $post->comment->count() }} Komentar</span>
                         </div>
                         <!-- /.card-body -->
                         
@@ -106,7 +106,7 @@
                     <div class="col-md-5">
                       <div class="card">
                         <div class="card-header">
-                            <h3 class="card-title">Comments ( {{ $post->comment->count() }} )</h3>
+                            <h3 class="card-title">Komentar ( {{ $post->comment->count() }} )</h3>
                             <div class="card-tools">
                                 <button type="button" class="btn btn-tool" data-card-widget="collapse"
                                     data-toggle="tooltip" title="Collapse">
@@ -131,7 +131,7 @@
                                 </div>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-xs float-right" data-toggle="modal" data-target="#commentDelete{{ $comment->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.post.comment.modal.delete')

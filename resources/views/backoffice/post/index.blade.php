@@ -1,6 +1,6 @@
 @extends('backoffice.layouts/main')
 
-@section('title', 'Post')
+@section('title', 'Berita')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -13,7 +13,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Post Data</h3>
+                <h3 class="card-title">Data berita</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
@@ -46,7 +46,7 @@
                 <div class="alert alert-danger" role="alert">
                     <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
                     <ul>
-                        <span>Add data failed</span>
+                        <span>Tambah data gagal</span>
                         @foreach ($errors->all() as $error)
                         <li>{{ $error }}</li>
                         @endforeach
@@ -67,7 +67,7 @@
                                         @endif
                                         {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
                                         <span class="username"><a href="#">{{ $post->user->name }}</a></span>
-                                        <span class="description">Added post -
+                                        <span class="description">Menambahkan berita -
                                             {{ $post->created_at->diffForHumans() }}</span>
                                     </div>
                                     <!-- /.user-block -->
@@ -95,7 +95,7 @@
                                         <!-- Button trigger modal -->
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                             data-target="#postDelete{{ $post->id }}">
-                                            <span><i class="ion ion-android-delete"></i> Delete</span>
+                                            <span><i class="ion ion-android-delete"></i> Hapus</span>
                                         </button>
                                         {{-- Modal --}}
                                         @include('backoffice.post.modal.delete')
@@ -131,7 +131,7 @@
                                     <div class="input-group input-group-sm">
                                         <div class="input-group-append">
                                             <button class="btn btn-default" type="submit">
-                                                Title
+                                                Judul
                                             </button>
                                         </div>
                                         <input class="form-control" type="text"
@@ -142,7 +142,7 @@
                                             </button>
                                         </div>
                                         <div class="input-group-append">
-                                            <a href="/backoffice/post" class="btn btn-outline-secondary">Show All</a>
+                                            <a href="/backoffice/post" class="btn btn-outline-secondary">Lihat semua</a>
                                         </div>
                                     </div>
                                 </form>
@@ -155,7 +155,7 @@
 
                         <div class="card">
                             <div class="card-header">
-                                <h3 class="card-title">Categories</h3>
+                                <h3 class="card-title">Kategori</h3>
                                 <div class="card-tools">
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-default btn-sm" data-toggle="modal"

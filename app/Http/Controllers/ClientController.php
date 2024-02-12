@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ClientController extends Controller
 {
     public function index() {
-        $clients = Client::get();
+        $clients = Client::paginate(12);
 
         return view('backoffice.client.index', [
             'clients' => $clients

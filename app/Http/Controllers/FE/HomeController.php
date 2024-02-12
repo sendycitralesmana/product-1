@@ -9,10 +9,13 @@ use App\Models\Application;
 use Illuminate\Http\Request;
 use App\Models\ProductCategory;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\App;
 
 class HomeController extends Controller
 {
     public function index () {
+        // App::setLocale('id');
+
         $posts = Post::orderBy('id', 'desc')->get()->take(3);
         $products = Product::orderBy('id', 'desc')->get();
         $productCategories = ProductCategory::all();

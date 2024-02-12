@@ -16,6 +16,7 @@ use App\Http\Controllers\FE\PostFEController;
 use App\Http\Controllers\MediaTypeController;
 use App\Http\Controllers\FE\AboutFEController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\ContactFEController;
 use App\Http\Controllers\FE\ProductFEController;
@@ -31,6 +32,7 @@ use App\Http\Controllers\PVSpecificationController;
 use App\Http\Controllers\FE\ApplicationFEController;
 use App\Http\Controllers\FE\GoogleTranslateFEController;
 use App\Http\Controllers\MediaApplicationController;
+use App\Http\Controllers\MessageEmailController;
 use App\Http\Controllers\VideoApplicationController;
 use App\Http\Controllers\ProductApplicationController;
 
@@ -65,6 +67,9 @@ Route::group(['middleware' => 'guest'], function(){
 // google translate
 Route::get('google/translate',[GoogleTranslateFEController::class,'googleTranslate']);
 
+// translate
+// Route::get('translate',[TranslateContr::class,'translate']);
+
 // homepage
 Route::get('/', [HomeController::class, 'index']);
 
@@ -86,6 +91,7 @@ Route::get('/about', [AboutFEController::class, 'index']);
 
 // contact
 Route::get('/contact', [ContactFEController::class, 'index']);
+Route::post('/contact/send', [ContactFEController::class, 'send']);
 
 // front end
 
@@ -281,6 +287,12 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/backoffice/client/{id}/update', [ClientController::class, 'update']);
     Route::get('/backoffice/client/{id}/delete', [ClientController::class, 'delete']);
     Route::get('/backoffice/client/{id}/detail', [ClientController::class, 'detail']);
+    
+    // Feedback
+    Route::get('/backoffice/feedback', [ContactUsController::class, 'index']);
+    Route::get('/backoffice/feedback/{id}/delete', [ContactUsController::class, 'delete']);
+    Route::get('/backoffice/feedback/{id}/detail', [ContactUsController::class, 'detail']);
+        Route::post('/backoffice/feedback/{id}/send', [MessageEmailController::class, 'send']);
     
     // Content
     Route::get('/backoffice/about/content', [ContentController::class, 'index']);

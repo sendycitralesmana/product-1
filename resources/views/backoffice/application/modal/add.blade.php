@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/application/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah proyek</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,30 +13,38 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Judul <span class="text-danger">*</span></label>
                                 <input type="text" name="name" class="form-control" placeholder="Enter name" required>
                                 @if($errors->has('name'))
                                 <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Area</label>
+                                <label>Deskripsi <span class="text-danger">*</span></label>
+                                <textarea name="description" id="editor" value="{{ old('description') }}"
+                                    class="form-control"></textarea>
+                                @if($errors->has('description'))
+                                <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
+                                @endif
+                            </div>
+                            <div class="form-group">
+                                <label>Area <span class="text-danger">*</span></label>
                                 <input type="text" name="area" class="form-control" placeholder="Enter Area" required>
                                 @if($errors->has('area'))
                                 <span class="help-block" style="color: red">{{ $errors->first('area') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Time</label>
+                                <label>Waktu <span class="text-danger">*</span></label>
                                 <input type="datetime-local" name="time" class="form-control" required>
                                 @if($errors->has('time'))
                                 <span class="help-block" style="color: red">{{ $errors->first('time') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Client</label>
+                                <label>Klien</label>
                                 <select name="client_id" class="form-control" id="">
-                                    <option value="">-- Select Client --</option>
+                                    <option value="">-- Pilih klien --</option>
                                     @foreach ($clients as $client)
                                         <option value="{{ $client->id }}">{{ $client->name }}</option>
                                     @endforeach
@@ -46,7 +54,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Thumbnail</label>
+                                <label>Gambar </label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                                 <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                                 @if($errors->has('thumbnail'))
@@ -57,7 +65,7 @@
                         <div class="col-md-5">
                             <table class="table" id="dynamicAddRemoveVariant">
                                 <tr>
-                                    <th style="width: 70%">Product</th>
+                                    <th style="width: 70%">Produk</th>
                                     <th style="width: 30%" class="text-center"><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></th>
                                 </tr>
                             </table>
@@ -67,8 +75,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Aimpan</button>
                 </div>
             </form>
         </div>

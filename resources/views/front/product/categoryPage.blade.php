@@ -56,6 +56,24 @@
 
         </div>
 
+		<div class="row">
+            @if ($name != null)
+                <div class="col-md-12 p-b-40">
+
+                    <p>
+                        <b>hasil pencarian untuk {{ $name }} ..</b>
+                    </p>
+                </div>
+            @endif
+
+            {{-- @if ($products->count() == 0)
+                <div class="col-md-12 text-center p-t-40">
+
+                    <h1>Produk tidak ditemukan</h1>
+                </div>
+            @endif --}}
+        </div>
+
         <div class="row isotope-grid">
 
             @if ( $products->count() != 0 )
@@ -99,7 +117,10 @@
 
             @endforeach
             @else
+			<div class="col-md-12 text-center" >
+
                 <h3>Produk tidak ditemukan</h3>
+			</div>
             @endif
 
         </div>

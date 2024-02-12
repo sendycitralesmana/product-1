@@ -28,7 +28,7 @@
 
                 @if ( url()->full() != url( '/product' ) )
                 <a href="/product">
-                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4">
+                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" style="padding: 20px">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
                         Lihat Semua
                     </div>
@@ -251,6 +251,24 @@
                     </div>
                 </div>
             </div> --}}
+        </div>
+
+        <div class="row">
+            @if ($name != null)
+                <div class="col-md-12 p-b-40">
+
+                    <p>
+                        <b>hasil pencarian untuk {{ $name }} ..</b>
+                    </p>
+                </div>
+            @endif
+
+            @if ($products->count() == 0)
+                <div class="col-md-12 text-center p-t-40">
+
+                    <h1>Produk tidak ditemukan</h1>
+                </div>
+            @endif
         </div>
 
         <div class="row isotope-grid">

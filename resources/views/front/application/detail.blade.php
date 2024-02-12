@@ -43,12 +43,12 @@
                                     </a>
                                 </div>
                             </div> --}}
-                            <div class="item-slick3" data-thumb="{{ asset('storage/image/product/' . $application->thumbnail) }}">
+                            <div class="item-slick3" data-thumb="{{ asset('storage/image/application/' . $application->thumbnail) }}">
                                 <div class="wrap-pic-w pos-relative">
-                                    <img src="{{ asset('storage/image/product/' . $application->thumbnail) }}" alt="IMG-PRODUCT">
+                                    <img src="{{ asset('storage/image/application/' . $application->thumbnail) }}" alt="IMG-application">
 
                                     <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="{{ asset('storage/image/product/' . $application->thumbnail) }}">
+                                        href="{{ asset('storage/image/application/' . $application->thumbnail) }}">
                                         <i class="fa fa-expand"></i>
                                     </a>
                                 </div>

@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/product/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
                     <div class="row">
                         <div class="col-md-7">
                             <div class="form-group">
-                                <label>Category</label>
+                                <label>Kategori <span class="text-danger">*</span></label>
                                 <select name="product_category_id" class="form-control" required>
                                     <option value="">-- Select Category --</option>
                                     @foreach ($productCategories as $productCategory)
@@ -26,7 +26,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Name</label>
+                                <label>Nama <span class="text-danger">*</span></label>
                                 <input type="text" name="name" required class="form-control" placeholder="Enter Name"
                                     value="{{ old('name') }}">
                                 @if($errors->has('name'))
@@ -34,7 +34,7 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Description</label>
+                                <label>Deskripsi <span class="text-danger">*</span></label>
                                 <textarea name="description" id="editor" value="{{ old('description') }}"
                                     class="form-control"></textarea>
                                 @if($errors->has('description'))
@@ -42,9 +42,9 @@
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Thumbnail</label>
+                                <label>Gambar <span class="text-danger">*</span></label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                                <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                                <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" id="image" required>
                                 @if($errors->has('thumbnail'))
                                 <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                                 @endif
@@ -53,7 +53,7 @@
                         <div class="col-md-5">
                             <table class="table" id="dynamicAddRemoveVariant">
                                 <tr>
-                                    <th style="width: 70%">Application</th>
+                                    <th style="width: 70%">Proyek</th>
                                     <th style="width: 30%" class="text-center"><button type="button" name="add"
                                             id="add-btnVariant" class="btn btn-success">+</button></th>
                                 </tr>
@@ -64,8 +64,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

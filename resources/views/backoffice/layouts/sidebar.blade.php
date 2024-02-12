@@ -31,7 +31,7 @@
                 <li class="nav-item">
                     <a href="/backoffice/dashboard" class="nav-link {{ request()->is('backoffice/dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
-                        <p>Dashboard</p>
+                        <p>Beranda</p>
                     </a>
                 </li>
                 @if (auth()->user()->role_id == 1)
@@ -49,7 +49,7 @@
                             ) ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
                             <p>
-                                List Products
+                                Daftar produk
                                 <i class="fas fa-angle-left right"></i>
                             </p>
                         </a>
@@ -58,21 +58,21 @@
                                 <a href="/backoffice/product/category"
                                     class="nav-link {{ request()->is('backoffice/product/category') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-th"></i>
-                                    <p>Category</p>
+                                    <p>Kategori</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/backoffice/product"
                                     class="nav-link {{ request()->is('backoffice/product') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-th"></i>
-                                    <p>Product</p>
+                                    <p>Produk</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/backoffice/product/specification"
                                     class="nav-link {{ request()->is('backoffice/product/specification') ? 'active' : '' }}">
                                     <i class="nav-icon fas fa-th"></i>
-                                    <p>Specification</p>
+                                    <p>Spesifikasi</p>
                                 </a>
                             </li>
                         </ul>
@@ -81,27 +81,34 @@
                         <a href="/backoffice/application"
                             class="nav-link {{ request()->is('backoffice/application', 'backoffice/application/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>Application</p>
+                            <p>Proyek</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/backoffice/post" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-th"></i>
-                          <p>Post</p>
+                          <p>Berita</p>
                         </a>
                       </li>
                     <li class="nav-item">
                         <a href="/backoffice/client"
                             class="nav-link {{ request()->is('backoffice/client', 'backoffice/client/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-th"></i>
-                            <p>Client</p>
+                            <p>Klien</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/backoffice/feedback"
+                            class="nav-link {{ request()->is('backoffice/feedback', 'backoffice/feedback/*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-th"></i>
+                            <p>Pesan</p>
                         </a>
                     </li>
                     <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*', 'backoffice/about/history', 'backoffice/about/history/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-th"></i>
                           <p>
-                            List Content
+                            Daftar konten
                             <i class="right fas fa-angle-left"></i>
                           </p>
                         </a>
@@ -109,15 +116,15 @@
                           <li class="nav-item">
                             <a href="/backoffice/about/content" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*') ? 'active' : '' }}">
                               <i class="far fa-circle nav-icon"></i>
-                              <p>About Content</p>
+                              <p>Konten</p>
                             </a>
                           </li>
-                          <li class="nav-item">
+                          {{-- <li class="nav-item">
                             <a href="/backoffice/about/history" class="nav-link {{ request()->is('backoffice/about/history', 'backoffice/about/history/*') ? 'active' : '' }}">
                               <i class="far fa-circle nav-icon"></i>
                               <p>History</p>
                             </a>
-                          </li>
+                          </li> --}}
                         </ul>
                     </li>
                 @endif

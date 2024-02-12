@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Client')
+@section('title', 'Klien')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Detail Client</h1>
+                    <h1>Detail Klien</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/client" class="text-secondary">Client</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/client" class="text-secondary">Klien</a></li>
                     <li class="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>
@@ -28,7 +28,7 @@
         {{-- Client Start --}}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Client</h3>
+                <h3 class="card-title">Klien</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -61,10 +61,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Image</th>
-                            <th>Name</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
                             <th>Link</th>
-                            <th>Option</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -96,7 +96,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Application Data</h3>
+                <h3 class="card-title">Proyek Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     @endif
@@ -122,10 +122,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Area</th>
-                            <th>Time</th>
-                            <th>Option</th>
+                            <th>Waktu</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -149,17 +149,17 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Area</th>
-                            <th>Time</th>
-                            <th>Option</th>
+                            <th>Waktu</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                
             </div>
             <!-- /.card-footer-->
         </div>

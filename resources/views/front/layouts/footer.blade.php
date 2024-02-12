@@ -4,7 +4,7 @@
         <div class="row">
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Tentang kami
+                    {{ __('footer.Tentang kami') }}
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
@@ -16,7 +16,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Menu
+                    {{ __('footer.Menu') }}
                 </h4>
 
                 <ul>
@@ -61,7 +61,7 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Alamat
+                    {{ __('footer.Alamat') }}
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
@@ -87,14 +87,14 @@
 
             <div class="col-sm-6 col-lg-3 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
-                    Kontak kami
+                    {{ __('footer.Kontak kami') }}
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Tel: +62-21-64703201
-                    Web: www.matahariled.co.id
-                    Email: info@matahariled.co.id
-                    Instagram: matahariled_official
+                    Tel: +62-21-64703201 <br>
+                    Web: www.matahariled.co.id <br>
+                    Email: info@matahariled.co.id <br>
+                    Instagram: matahariled_official <br>
                     Youtube: Matahariled Media
                 </p>
 

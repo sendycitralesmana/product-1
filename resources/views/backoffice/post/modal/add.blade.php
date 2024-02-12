@@ -4,16 +4,16 @@
             <form role="form" method="POST" action="/backoffice/post/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah berita</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Category</label>
+                        <label>Kategori</label>
                         <select name="post_category_id" class="form-control">
-                            <option value="">-- Select Category --</option>
+                            <option value="">-- Pilih kategori --</option>
                             @foreach ($postCategories as $postCategory)
                             <option value="{{ $postCategory->id }}">{{ $postCategory->name }}</option>
                             @endforeach
@@ -24,7 +24,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Title</label>
+                        <label>Judul <span class="text-danger">*</span></label>
                         <input type="text" name="title" required class="form-control" placeholder="Enter title"
                             value="{{ old('title') }}">
                         @if($errors->has('title'))
@@ -32,7 +32,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>content</label>
+                        <label>Berita <span class="text-danger">*</span></label>
                         <textarea name="content" id="editor" value="{{ old('content') }}"
                             class="form-control"></textarea>
                         @if($errors->has('content'))
@@ -40,7 +40,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Thumbnail</label>
+                        <label>Gambar</label>
                         <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                         <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                         @if($errors->has('thumbnail'))

@@ -22,6 +22,7 @@ class ProductFEController extends Controller
         $productCategories = ProductCategory::all();
 
         return view('front.product.productPage', [
+            'name' => $request->name,
             'products' => $products,
             'productP' => $productP,
             'productCategories' => $productCategories
@@ -36,6 +37,7 @@ class ProductFEController extends Controller
             $products = Product::where('name', 'like', '%' . $request->name . '%')->paginate(8);
         }
         return view('front.product.categoryPage', [
+            'name' => $request->name,
             'products' => $products,
             'productCategory' => $productCategory,
             'productCategories' => $productCategories

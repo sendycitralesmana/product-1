@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Product')
+@section('title', 'Produk')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Product Data</h1>
+                    <h1>Produk</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item active">Produk</li>
                   </ol>
                 </div>
             </div>
@@ -27,41 +27,8 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                
-                {{-- <div class="row">
-                    <div class="col-md-8">
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                              <label for="inputPassword2" class="sr-only">Password</label>
-                              <select name="category_id" class="form-control" id="">
-                                <option value="all">-- Category All --</option>
-                                @foreach ($productCategories as $productCategory)
-                                    <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
-                                @endforeach
-                              </select>
-                            </div>
-                            <button type="submit" class="btn btn-primary mb-2">Filter</button>
-                          </form>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="card-tools text-right">
-                            @if (auth()->user()->role_id == 2)
-                            Button trigger modal
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">
-                                <span>+</span>
-                            </button>
-                            Modal
-                            @include('backoffice.product.modal.add')
-                            @endif
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                </div> --}}
 
-                <h3 class="card-title">Product Data</h3>
+                <h3 class="card-title">Produk Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                      {{-- Button trigger modal --}}
@@ -93,7 +60,7 @@
                 <div class="alert alert-danger" role="alert">
                     <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
                     <ul>
-                        <span>Add data failed</span>
+                        <span>Gagal tambah data</span>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
@@ -104,11 +71,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Thumbnail</th>
-                            <th>Name</th>
-                            <th>Category</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th>Kategori</th>
                             {{-- <th>Description</th> --}}
-                            <th>Option</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -135,7 +102,7 @@
                                 @include('product.modal.edit') --}}
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productDelete{{ $product->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.modal.delete')
@@ -147,18 +114,18 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Thumbnail</th>
-                            <th>Name</th>
-                            <th>Category</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th>Kategori</th>
                             {{-- <th>Description</th> --}}
-                            <th>Option</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
-                Footer
+                
             </div>
             <!-- /.card-footer-->
         </div>

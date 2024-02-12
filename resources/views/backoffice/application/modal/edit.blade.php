@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit proyek</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,30 +15,38 @@
                     <div class="card-body">
                         <input type="hidden" name="application_id" value="{{ $application->id }}">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Judul <span class="text-danger">*</span></label>
                             <input type="text" name="name" class="form-control" value="{{ $application->name}}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Area</label>
+                            <label>Deskripsi <span class="text-danger">*</span></label>
+                            <textarea name="description" id="editor" value="{{ old('description') }}"
+                                class="form-control">{!! $application->description !!}</textarea>
+                            @if($errors->has('description'))
+                            <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Area <span class="text-danger">*</span></label>
                             <input type="text" name="area" class="form-control" value="{{ $application->area }}">
                             @if($errors->has('area'))
                             <span class="help-block" style="color: red">{{ $errors->first('area') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Time</label>
+                            <label>Waktu <span class="text-danger">*</span></label>
                             <input type="datetime-local" name="time" class="form-control" value="{{ $application->time }}">
                             @if($errors->has('time'))
                             <span class="help-block" style="color: red">{{ $errors->first('time') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Client</label>
+                            <label>Klien</label>
                             <select name="client_id" class="form-control">
-                                <option value="">-- Select Client --</option>
+                                <option value="">-- Pilih klien --</option>
                                 @foreach ($clients as $client)
                                     <option value="{{ $client->id }}" {{ ($client->id == $application->client_id) ? 'selected' : '' }}>{{ $client->name }}</option>
                                 @endforeach
@@ -48,7 +56,7 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Thumbnail</label>
+                            <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $application->thumbnail }}">
                             @if ($application->thumbnail)
                                 <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" name="oldValue" value="$application->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
@@ -65,8 +73,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

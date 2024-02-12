@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit berita</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,9 +14,9 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Category</label>
+                            <label>Kategori</label>
                             <select name="post_category_id" class="form-control">
-                                <option value="">-- Select Category --</option>
+                                <option value="">-- Pilih kategori --</option>
                                 @foreach ($postCategories as $postCategory)
                                     <option value="{{ $postCategory->id }}" {{ ($postCategory->id == $post->post_category_id) ? 'selected' : '' }}>{{ $postCategory->name }}</option>
                                 @endforeach
@@ -26,21 +26,21 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Title</label>
+                            <label>Judul <span class="text-danger">*</span></label>
                             <input type="text" name="title" required class="form-control" value="{{ $post->title}}">
                             @if($errors->has('title'))
                             <span class="help-block" style="color: red">{{ $errors->first('title') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Content</label>
+                            <label>Berita <span class="text-danger">*</span></label>
                             <textarea name="content" id="editor1" class="form-control">{{ $post->content }}</textarea>
                             @if($errors->has('content'))
                             <span class="help-block" style="color: red">{{ $errors->first('content') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Thumbnail</label>
+                            <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $post->thumbnail }}">
                             @if ($post->thumbnail)
                                 <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
@@ -57,8 +57,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

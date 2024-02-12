@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,14 +14,14 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Nama <span class="text-danger">*</span></label>
                             <input type="text" name="name" required class="form-control" value="{{ $product->name}}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Category</label>
+                            <label>Kategori <span class="text-danger">*</span></label>
                             <select name="product_category_id" class="form-control" required>
                                 @foreach ($productCategories as $productCategory)
                                     <option value="{{ $productCategory->id }}" {{ ($productCategory->id == $product->product_category_id) ? 'selected' : '' }}>{{ $productCategory->name }}</option>
@@ -32,14 +32,14 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Description</label>
+                            <label>Deskripsi <span class="text-danger">*</span></label>
                             <textarea name="description" id="editor1" class="form-control">{{ $product->description }}</textarea>
                             @if($errors->has('description'))
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Thumbnail</label>
+                            <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $product->thumbnail }}">
                             @if ($product->thumbnail)
                                 <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" name="oldValue" value="$product->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
@@ -56,8 +56,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

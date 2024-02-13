@@ -8,17 +8,26 @@
     {{-- Category Products --}}
     @include('front.product.product')
 
-    {{-- Our Gallery --}}
-    @include('front.gallery.gallery')
+    {{-- About --}}
+    @include('front.about.about')
 
     {{-- Our Applications --}}
     @include('front.application.application')
+
+    {{-- Our Gallery --}}
+    @include('front.gallery.gallery')
     
     {{-- Our Blogs --}}
     @include('front.blog.blog')
+
+    {{-- Contact us --}}
+    @include('front.contact.contact')
     
     {{-- Our Clients --}}
     @include('front.client.client')
+
+    {{-- Our Catalogue --}}
+    @include('front.catalogue.catalogue')   
 
 
     

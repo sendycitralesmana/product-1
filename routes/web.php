@@ -30,7 +30,9 @@ use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\PVSpecificationController;
 use App\Http\Controllers\FE\ApplicationFEController;
+use App\Http\Controllers\FE\GalleryFEController;
 use App\Http\Controllers\FE\GoogleTranslateFEController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\MessageEmailController;
 use App\Http\Controllers\VideoApplicationController;
@@ -86,6 +88,9 @@ Route::get('/application/{id}', [ApplicationFEController::class, 'detail']);
 Route::get('/blog', [PostFEController::class, 'index']);
 Route::get('/blog/{id}', [PostFEController::class, 'detail']);
 
+// gallery
+Route::get('/gallery', [GalleryFEController::class, 'index']);
+
 // about
 Route::get('/about', [AboutFEController::class, 'index']);
 
@@ -94,28 +99,6 @@ Route::get('/contact', [ContactFEController::class, 'index']);
 Route::post('/contact/send', [ContactFEController::class, 'send']);
 
 // front end
-
-Route::get('/en', [HomeController::class, 'indexEn']);
-
-// product
-Route::get('/en/product', [ProductFEController::class, 'indexEn']);
-Route::get('/en/product/category/{id}', [ProductFEController::class, 'categoryEn']);
-Route::get('/en/product/{id}', [ProductFEController::class, 'detailEn']);
-
-// application
-Route::get('/en/application', [ApplicationFEController::class, 'indexEn']);
-Route::get('/en/application/{id}', [ApplicationFEController::class, 'detailEn']);
-
-// blog / post
-Route::get('/en/blog', [PostFEController::class, 'indexEn']);
-Route::get('/en/blog/{id}', [PostFEController::class, 'detailEn']);
-Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
-
-// about
-Route::get('/en/about', [AboutFEController::class, 'indexEn']);
-
-// contact
-Route::get('/en/contact', [ContactFEController::class, 'indexEn']);
 
 // ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -280,6 +263,12 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/backoffice/post/category/{id}/update', [PostCategoryController::class, 'update']);
         Route::get('/backoffice/post/category/{id}/delete', [PostCategoryController::class, 'delete']);
     // Post End
+
+    // Gallery
+    Route::get('/backoffice/gallery', [GalleryController::class, 'index']);
+    Route::post('/backoffice/gallery/create', [GalleryController::class, 'create']);
+    Route::put('/backoffice/gallery/{id}/update', [GalleryController::class, 'update']);
+    Route::get('/backoffice/gallery/{id}/delete', [GalleryController::class, 'delete']);
 
     // Client
     Route::get('/backoffice/client', [ClientController::class, 'index']);

@@ -11,7 +11,7 @@
             </a>
     
             <a href="/public/blog" class="stext-109 cl8 hov-cl1 trans-04">
-                Berita
+                Artikel
                 <i class="fa fa-angle-right m-l-9 m-r-10" aria-hidden="true"></i>
             </a>
     
@@ -145,7 +145,7 @@
 
 						<div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
-								Berita terbaru
+								Artikel terbaru
 							</h4>
 
 							<ul>

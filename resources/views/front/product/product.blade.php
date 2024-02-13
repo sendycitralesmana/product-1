@@ -1,5 +1,5 @@
 <!-- Product -->
-<section class="sec-product bg0 p-t-100 p-b-50" id="product">
+<section class="sec-product bg0 p-t-100 p-b-30" id="product">
 
     <div class="container">
 
@@ -110,9 +110,9 @@
             </div>
         </div>
         <!-- Load more -->
-        <div class="flex-c-m flex-w w-full p-t-45">
-            <a href="/product" class="flex-c-m stext-101 cl5 size-103 bg2 bor1 hov-btn1 p-lr-15 trans-04">
-                Lihat Lebih
+        <div class="flex-c-m flex-w w-full p-t-35">
+            <a href="/product" class="flex-c-m stext-101 cl5 size-103  bor1 hov-btn1 p-lr-15 trans-04 text-white" style="background-color: #ed7a07">
+                Lihat Lebih <span class="fa fa-angle-double-right m-l-4"></span>
             </a>
         </div>
     </div>

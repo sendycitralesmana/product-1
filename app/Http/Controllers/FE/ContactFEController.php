@@ -35,7 +35,7 @@ class ContactFEController extends Controller
 
         // Mail::to('sendycitralesmana@gmail.com')->send(new ContactMessage( $data ));
 
-        return redirect('/contact')->with('success', 'Your message has been sent. Thank you!');
+        return redirect()->back()->with('success', 'Your message has been sent. Thank you!');
     }
     
     public function indexEn () {

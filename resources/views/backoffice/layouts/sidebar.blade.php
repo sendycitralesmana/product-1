@@ -30,7 +30,7 @@
 
                 <li class="nav-item">
                     <a href="/backoffice/dashboard" class="nav-link {{ request()->is('backoffice/dashboard') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon fas fa-home"></i>
                         <p>Beranda</p>
                     </a>
                 </li>
@@ -57,21 +57,21 @@
                             <li class="nav-item">
                                 <a href="/backoffice/product/category"
                                     class="nav-link {{ request()->is('backoffice/product/category') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon far fa-circle"></i>
                                     <p>Kategori</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/backoffice/product"
                                     class="nav-link {{ request()->is('backoffice/product') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon far fa-circle"></i>
                                     <p>Produk</p>
                                 </a>
                             </li>
                             <li class="nav-item">
                                 <a href="/backoffice/product/specification"
                                     class="nav-link {{ request()->is('backoffice/product/specification') ? 'active' : '' }}">
-                                    <i class="nav-icon fas fa-th"></i>
+                                    <i class="nav-icon far fa-circle"></i>
                                     <p>Spesifikasi</p>
                                 </a>
                             </li>
@@ -80,27 +80,33 @@
                     <li class="nav-item">
                         <a href="/backoffice/application"
                             class="nav-link {{ request()->is('backoffice/application', 'backoffice/application/*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-th"></i>
+                            <i class="nav-icon fas fa-tasks"></i>
                             <p>Proyek</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/backoffice/post" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-th"></i>
-                          <p>Berita</p>
+                          <i class="nav-icon fas fa-newspaper"></i>
+                          <p>Artikel</p>
                         </a>
-                      </li>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/backoffice/gallery" class="nav-link {{ request()->is('backoffice/gallery', 'backoffice/gallery/*') ? 'active' : '' }}">
+                          <i class="nav-icon fas fa-image"></i>
+                          <p>Galeri</p>
+                        </a>
+                    </li>
                     <li class="nav-item">
                         <a href="/backoffice/client"
                             class="nav-link {{ request()->is('backoffice/client', 'backoffice/client/*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-th"></i>
+                            <i class="nav-icon fas fa-users"></i>
                             <p>Klien</p>
                         </a>
                     </li>
                     <li class="nav-item">
                         <a href="/backoffice/feedback"
                             class="nav-link {{ request()->is('backoffice/feedback', 'backoffice/feedback/*') ? 'active' : '' }}">
-                            <i class="nav-icon fas fa-th"></i>
+                            <i class="nav-icon fas fa-comments"></i>
                             <p>Pesan</p>
                         </a>
                     </li>

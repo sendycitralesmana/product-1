@@ -40,7 +40,7 @@
 
                     <li class="p-b-10">
                         <a href="/blogs" class="stext-107 cl7 hov-cl1 trans-04">
-                            Berita
+                            Artikel
                         </a>
                     </li>
                     
@@ -91,11 +91,11 @@
                 </h4>
 
                 <p class="stext-107 cl7 size-201">
-                    Tel: +62-21-64703201 <br>
-                    Web: www.matahariled.co.id <br>
-                    Email: info@matahariled.co.id <br>
-                    Instagram: matahariled_official <br>
-                    Youtube: Matahariled Media
+                    <i class="fa fa-phone"></i> +62-21-64703201 <br>
+                    <i class="fa fa-google"></i> www.matahariled.co.id <br>
+                    <i class="fa fa-envelope"></i> info@matahariled.co.id <br>
+                    <i class="fa fa-instagram"></i> matahariled_official <br>
+                    <i class="fa fa-youtube"></i> Matahariled Media
                 </p>
 
                 {{-- <form>

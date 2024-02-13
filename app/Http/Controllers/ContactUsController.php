@@ -30,7 +30,7 @@ class ContactUsController extends Controller
         $message->delete();
         
         Session::flash('status', 'success');
-        Session::flash('message', 'Kirim balasan berhasil');
+        Session::flash('message', 'Hapus pesan berhasil');
         return redirect('/backoffice/feedback');
     }
 }

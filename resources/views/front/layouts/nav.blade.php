@@ -22,12 +22,12 @@
                     <a href="/en" class="flex-c-m trans-04 p-lr-25">
                         EN
                     </a> --}}
-                    <a href="/google/translate?language=id" class="flex-c-m trans-04 p-lr-25">
+                    {{-- <a href="/google/translate?language=id" class="flex-c-m trans-04 p-lr-25">
                         ID
                     </a>
                     <a href="/google/translate?language=en" class="flex-c-m trans-04 p-lr-25">
                         EN
-                    </a>
+                    </a> --}}
 
                 </div>
             </div>
@@ -45,20 +45,23 @@
                 <div class="menu-desktop ">
                     <ul class="main-menu">
                         <li class="" >
-                            <a href="/" style="{{ request()->is('/') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Beranda') }}
+                            <a href="/" style="{{ request()->is('/') ? 'color: #ed7a07 !important' : '' }}; ">
+                                {{-- {{ __('navbar.Beranda') }} --}}
+                                Beranda
                                 {{-- {{ GoogleTranslate::trans('Beranda',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
-                            <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Produk') }}
+                            <a href="/#product" style="{{ request()->is('product', 'product/*') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Produk') }} --}}
+                                Produk
                                 {{-- {{ GoogleTranslate::trans('Produk',\App::getLocale()) }} --}}
                             </a>
                             <ul class="sub-menu">
                                 <li><a href="/product">
-                                    {{ __('navbar.Semua produk') }}
+                                    {{-- {{ __('navbar.Semua produk') }} --}}
+                                    Semua produk
                                     {{-- {{ GoogleTranslate::trans('Semua Produk',\App::getLocale()) }} --}}
                                 </a></li>
                                 @foreach ($productCategories as $productCategory)
@@ -68,29 +71,40 @@
                         </li>
                         
                         <li class="">
-                            <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Proyek') }}
+                            <a href="/#application" style="{{ request()->is('application', 'application/*') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Proyek') }} --}}
+                                Proyek
                                 {{-- {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }} --}}
+                            </a>
+                        </li>
+                        
+                        <li class="">
+                            <a href="/#gallery" style="{{ request()->is('gallery', 'galery/*') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Proyek') }} --}}
+                                Galeri
                             </a>
                         </li>
 
                         <li class="">
-                            <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Berita') }}
+                            <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Berita') }} --}}
+                                Artikel
                                 {{-- {{ GoogleTranslate::trans('Berita',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
-                            <a href="/about" style="{{ request()->is('about') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Tentang Kami') }}
+                            <a href="/#about" style="{{ request()->is('about', '#about') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Tentang Kami') }} --}}
+                                Tentang Kami
                                 {{-- {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }} --}}
                             </a>
                         </li>
 
                         <li class="">
-                            <a href="/contact" style="{{ request()->is('contact') ? 'color: #f58742 !important' : '' }}">
-                                {{ __('navbar.Kontak Kami') }}
+                            <a href="/#contact" style="{{ request()->is('contact') ? 'color: #ed7a07 !important' : '' }}">
+                                {{-- {{ __('navbar.Kontak Kami') }} --}}
+                                Kontak Kami
                                 {{-- {{ GoogleTranslate::trans('Kontak Kami',\App::getLocale()) }} --}}
                             </a>
                         </li>
@@ -165,18 +179,18 @@
             <li>
                 <div class="right-top-bar flex-w h-full">
 
-                    <a href="/google/translate?language=id" class="flex-c-m p-lr-10 trans-04">
+                    {{-- <a href="/google/translate?language=id" class="flex-c-m p-lr-10 trans-04">
                         ID
                     </a>
 
                     <a href="/google/translate?language=en" class="flex-c-m p-lr-10 trans-04">
                         EN
-                    </a>
+                    </a> --}}
                 </div>
             </li>
         </ul>
 
-        <ul class="main-menu-m" style="background-color: #f58742 !important">
+        <ul class="main-menu-m" style="background-color: #ed7a07 !important">
             <li class="">
                 <a href="/" style="{{ request()->is('/') ? 'color: black !important' : '' }}">
                     Beranda
@@ -205,14 +219,21 @@
             </li>
 
             <li class="">
+                <a href="/#galeri" style="{{ request()->is('galeri', 'galeri/*') ? 'color: black !important' : '' }}">
+                    Galeri
+                    {{-- {{ GoogleTranslate::trans('Proyek',\App::getLocale()) }} --}}
+                </a>
+            </li>
+
+            <li class="">
                 <a href="/#blog" style="{{ request()->is('blog', 'blog/*') ? 'color: black !important' : '' }}">
-                    Berita
+                    Artikel
                     {{-- {{ GoogleTranslate::trans('Berita',\App::getLocale()) }} --}}
                 </a>
             </li>
 
             <li class="">
-                <a href="/about" style="{{ request()->is('about') ? 'color: black !important' : '' }}">
+                <a href="/#about" style="{{ request()->is('about') ? 'color: black !important' : '' }}">
                     Tentang Kami
                     {{-- {{ GoogleTranslate::trans('Tentang Kami',\App::getLocale()) }} --}}
                 </a>

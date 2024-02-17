@@ -24,8 +24,8 @@
                                 @endif
                             </td>
                             <td>
-                                {{-- <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt=""> --}}
-                                <input type="file" accept="image/*" name="image[]" class="form-control" required>
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <input type="file" accept="image/*" name="image[]" id="image" onchange="previewImg()" class="form-control" required>
                                 @if($errors->has('image[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('image[]') }}</span>
                                 @endif
@@ -82,9 +82,9 @@
 </script>
 
 <script>
-    function previewImgP() {
-        const image = document.querySelector('#imageP')
-        const imgPreview = document.querySelector('.img-previewP')
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
 

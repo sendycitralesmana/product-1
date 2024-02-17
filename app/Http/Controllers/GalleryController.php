@@ -18,7 +18,7 @@ class GalleryController extends Controller
 
     public function create(Request $request) {
         $request->validate([
-            'title*' => ['required', 'string', 'max:255'],
+            'name*' => ['required', 'string', 'max:255'],
             'image*' => ['required', 'image']
         ]);
 
@@ -27,7 +27,7 @@ class GalleryController extends Controller
             $url = now()->timestamp . '-' . str_replace(' ', '_', $fileName);
             $file->storeAs('image/gallery/', $url);
             $data2 = array(
-                'name' => $request->name[$key],
+                'name' => $request->name,
                 'image' => str_replace(' ', '_', $url),
             );
             // dd($data2);
@@ -78,7 +78,7 @@ class GalleryController extends Controller
 
     }
 
-    public function destroy($id) {
+    public function delete($id) {
         $gallery = Gallery::find($id);
         if($gallery->image) {
             Storage::delete('image/gallery/' . $gallery->image);

@@ -13,9 +13,9 @@
                     <h1>Galeri</h1>
                 </div>
                 <div class="col-sm-6">
-                  <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Galeri</li>
-                  </ol>
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active">Galeri</li>
+                    </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -48,11 +48,12 @@
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
-                        title: "Good job!",
-                        text: "{{Session::get('message')}}",
-                        icon: "success"
+                            title: "Good job!",
+                            text: "{{Session::get('message')}}",
+                            icon: "success"
                         });
                     });
+
                 </script>
                 @endif
                 @if ($errors->any())
@@ -61,11 +62,22 @@
                     <ul>
                         <span>Tambah data gagal</span>
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                        <li>{{ $error }}</li>
                         @endforeach
                     </ul>
                 </div>
                 @endif
+
+                {{-- @foreach ($galleries as $gallery)
+                    
+                <div class="gallery">
+                    <a href="{{asset('storage/image/gallery/'.$gallery->image)}}" data-lightbox="mygallery">
+                        <img src="{{asset('storage/image/gallery/'.$gallery->image)}}" alt="" width="100px"
+                            height="100px">
+                    </a>
+                </div>
+                @endforeach --}}
+
 
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -80,27 +92,32 @@
                         @foreach ($galleries as $gallery)
                         <tr>
                             <td> {{ $gallery->id }} </td>
-                            <td> <img src="{{asset('storage/image/gallery/'.$gallery->image)}}" alt="" width="100px" height="100px"> </td>
+                            <td>
+                                <a data-lightbox="mygallery" data-title="{{ $gallery->name }}" href="{{asset('storage/image/gallery/'.$gallery->image)}}">
+                                    <img src="{{asset('storage/image/gallery/'.$gallery->image)}}" alt="" width="100px"
+                                        height="100px">
+                                </a>
+                            </td>
                             <td> {{ $gallery->name }} </td>
                             <td>
-                                {{-- <a href="/backoffice/gallery/{{ $gallery->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Edit</a> --}}
                                 @if (auth()->user()->role_id == 2)
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#galleryEdit{{$gallery->id}}">
+                                <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                    data-target="#galleryEdit{{$gallery->id}}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.gallery.modal.edit')
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#galleryDelete{{$gallery->id}}">
+                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    data-target="#galleryDelete{{$gallery->id}}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.gallery.modal.delete')
-                                    
+
                                 @endif
                             </td>
                         </tr>
+
+                        
+
                         @endforeach
                     </tbody>
                     <tfoot>

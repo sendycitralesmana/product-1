@@ -22,7 +22,7 @@
                             <img src="{{ asset('storage/image/gallery/'.$gallery->image) }}" alt="IMG-PRODUCT" height="250px">
 
                             <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                href="{{ asset('storage/image/gallery/'. $gallery->image) }}">
+                                href="{{ asset('storage/image/gallery/'. $gallery->image) }}" title="{{ $gallery->name }}">
                                 <i class="fa fa-expand"></i>
                             </a>
                         </div>

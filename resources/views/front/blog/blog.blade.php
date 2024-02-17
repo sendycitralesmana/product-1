@@ -16,7 +16,7 @@
                         <div class="hov-img0">
                             <a href="/blog/{{ $post->id }}">
                                 {{-- <img src="{{ asset('storage/image/post/1706163957-app10.jpg') }}" alt="IMG-BLOG"> --}}
-                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
+                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG" height="250px">
                             </a>
                         </div>
 

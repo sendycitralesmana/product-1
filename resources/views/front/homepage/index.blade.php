@@ -9,22 +9,22 @@
     @include('front.product.product')
 
     {{-- About --}}
-    {{-- @include('front.about.about') --}}
+    @include('front.about.about')
 
     {{-- Our Applications --}}
-    {{-- @include('front.application.application') --}}
+    @include('front.application.application')
 
     {{-- Our Gallery --}}
-    {{-- @include('front.gallery.gallery') --}}
+    @include('front.gallery.gallery')
     
     {{-- Our Blogs --}}
-    {{-- @include('front.blog.blog') --}}
+    @include('front.blog.blog')
 
     {{-- Contact us --}}
-    {{-- @include('front.contact.contact') --}}
+    @include('front.contact.contact')
     
     {{-- Our Clients --}}
-    {{-- @include('front.client.client') --}}
+    @include('front.client.client')
 
     {{-- Our Catalogue --}}
     @include('front.catalogue.catalogue')   

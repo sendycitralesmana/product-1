@@ -23,7 +23,7 @@
                         <div class="p-b-63">
                             <a href="/blog/{{ $post->id }}" class="hov-img0 how-pos5-parent">
                                 {{-- <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG"> --}}
-                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
+                                <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG" height="250px">
 
                                 <div class="flex-col-c-m size-123 bg9 how-pos5">
                                     <span class="ltext-107 cl2 txt-center">

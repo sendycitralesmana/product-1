@@ -51,6 +51,7 @@ class ProductFEController extends Controller
         $images = MediaProduct::where('product_id', $product->id)
                                 ->where('type_id', 1)
                                 ->get();
+        $files = MediaProduct::where('product_id', $product->id)->where('type_id', 2)->get();
         $videos = ProductVideo::where('product_id', $product->id)->get();
         $productVariant = ProductVariant::where('product_id', $product->id)->first();
         $minPrice = ProductVariant::where('product_id', $product->id)->min('price');
@@ -58,6 +59,7 @@ class ProductFEController extends Controller
         if ($productVariant == null) {
             return view('front.product.detail', [
                 'product' => $product,
+                'files' => $files,
                 'productCategories' => $productCategories,
                 'productR' => $productR,
                 'images' => $images,
@@ -76,6 +78,7 @@ class ProductFEController extends Controller
             'productCategories' => $productCategories,
             'productR' => $productR,
             'images' => $images,
+            'files' => $files,
             'videos' => $videos,
             'productVariant' => $productVariant,
             'specifications' => $specifications,

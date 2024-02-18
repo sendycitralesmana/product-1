@@ -14,15 +14,19 @@ use Illuminate\Support\Facades\Storage;
 
 class ApplicationController extends Controller
 {
-    public function index() {
-        $applications = Application::get();
+    public function index(Request $request) {
+        $applications = Application::paginate(6);
+        if ($request->title) {
+            $applications = Application::where('name', 'LIKE', '%' . $request->title . '%')->paginate(6);
+        }
         $products = Product::get();
         $clients = Client::get();
 
         return view('backoffice.application.index', [
             'applications' => $applications,
             'products' => $products,
-            'clients' => $clients
+            'clients' => $clients,
+            'title' => $request->title
         ]);
     }
 

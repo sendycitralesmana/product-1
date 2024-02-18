@@ -43,7 +43,7 @@
                 </li>
                 @endif
                 @if (auth()->user()->role_id == 2)
-                    <li class="nav-item has-treeview">
+                    {{-- <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ request()->is(
                             'backoffice/product', 'backoffice/product/*',
                             ) ? 'active' : '' }}">
@@ -76,6 +76,20 @@
                                 </a>
                             </li>
                         </ul>
+                    </li> --}}
+                    <li class="nav-item">
+                        <a href="/backoffice/product"
+                            class="nav-link {{ request()->is('backoffice/product') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-list"></i>
+                            <p>Produk</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/backoffice/product/specification"
+                            class="nav-link {{ request()->is('backoffice/product/specification') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-list"></i>
+                            <p>Spesifikasi</p>
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a href="/backoffice/application"

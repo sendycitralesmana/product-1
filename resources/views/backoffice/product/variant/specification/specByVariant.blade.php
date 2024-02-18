@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Variant  Specification')
+@section('title', 'Spesifikasi varian')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Variant {{ $productVariant->name }} Specification Data</h1>
+                    <h1>Varian {{ $productVariant->name }} spesifikasi data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $productVariant->id }}" class="text-secondary">Variant</a></li>
-                    <li class="breadcrumb-item active">Specification</li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $productVariant->id }}" class="">Varian</a></li>
+                    <li class="breadcrumb-item active">Spesifikasi</li>
                   </ol>
                 </div>
             </div>
@@ -29,7 +29,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Variant {{ $productVariant->name }} Specification</h3>
+                <h3 class="card-title">Varian spesifikasi</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
@@ -61,11 +61,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Specification</th>
-                            <th>Value</th>
+                            <th>Spesifikasi</th>
+                            <th>Keterangan</th>
                             @if (auth()->user()->role_id == 2)
 
-                            <th>Option</th>
+                            <th>Opsi</th>
                             @endif
                         </tr>
                     </thead>
@@ -86,7 +86,7 @@
                                 @include('backoffice.product.variant.specification.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#variantSpecDelete{{ $pvSpecification->id }}">
-                                    <span><i class="ion ion-trash-a"></i> Delete</span>
+                                    <span><i class="ion ion-trash-a"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.delete')
@@ -98,21 +98,16 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Specification</th>
-                            <th>Value</th>
+                            <th>Spesifikasi</th>
+                            <th>Keterangan</th>
                             @if (auth()->user()->role_id == 2)
 
-                            <th>Option</th>
+                            <th>Opsi</th>
                             @endif
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

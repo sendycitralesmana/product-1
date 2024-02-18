@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit klien</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,7 +14,7 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Nama</label>
                             <input type="text" name="name" required class="form-control" value="{{ $client->name}}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -28,14 +28,24 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Image</label>
+                            <label>Status</label>
+                            <select name="is_hidden" class="form-control">
+                                <option value="1" {{ $client->is_hidden == 1 ? 'selected' : '' }}>Tidak tampil</option>
+                                <option value="0" {{ $client->is_hidden == 0 ? 'selected' : '' }}>Tampilkan</option>
+                            </select>
+                            @if($errors->has('link'))
+                            <span class="help-block" style="color: red">{{ $errors->first('link') }}</span>
+                            @endif
+                        </div>
+                        <div class="form-group">
+                            <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $client->image }}">
                             @if ($client->image)
                                 <img src="{{ asset('storage/image/client/'. $client->image) }}" name="oldValue" value="$client->image" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg, , .webp" onchange="previewImgP()" id="imageP" name="image" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept="image/*" onchange="previewImgP()" id="imageP" name="image" class="form-control">
                             @if($errors->has('image'))
                             <span class="help-block" style="color: red">{{ $errors->first('image') }}</span>
                             @endif
@@ -45,8 +55,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

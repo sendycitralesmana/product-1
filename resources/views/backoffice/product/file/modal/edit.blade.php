@@ -1,11 +1,11 @@
-<div class="modal fade" id="mediaEdit{{ $image->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="fileEdit{{ $file->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/application/media/{{ $image->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/file/{{ $file->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit berkas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,13 +13,14 @@
                 <div class="modal-body">
 
                     <div class="card-body">
-                        <input type="hidden" name="application_id" value="{{ $application->id }}">
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+                        <input type="hidden" name="type_id" value="{{ $file->type_id }}">
                         <div class="form-group">
-                            <label>Media</label>
-                            <input type="hidden" name="oldName" value="{{ $image->name }}">
-                            <input type="hidden" name="oldUrl" value="{{ $image->url }}">
-                            <p> {{ $image->url }} </p>
-                            <input type="file" accept="image/*" name="media" class="form-control" value="{{ $image->name}}">
+                            <label>Berkas</label>
+                            <input type="hidden" name="oldName" value="{{ $file->name }}">
+                            <input type="hidden" name="oldUrl" value="{{ $file->url }}">
+                            <p> {{ $file->url }} </p>
+                            <input type="file" accept=".pdf" name="media" class="form-control" value="{{ $file->name}}">
                             @if($errors->has('media'))
                             <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>
                             @endif

@@ -4,14 +4,14 @@
             <form role="form" method="POST" action="/backoffice/client/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah klien</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Name</label>
+                        <label>Nama <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" placeholder="Enter name"
                             value="{{ old('name') }}">
                         @if($errors->has('name'))
@@ -20,16 +20,16 @@
                     </div>
                     <div class="form-group">
                         <label>Link</label>
-                        <input type="url" name="link" required class="form-control" placeholder="Enter link"
+                        <input type="url" name="link" class="form-control" placeholder="Enter link"
                             value="{{ old('link') }}">
                         @if($errors->has('link'))
                         <span class="help-block" style="color: red">{{ $errors->first('link') }}</span>
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Image</label>
-                        <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
-                        <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImgP()" id="imageP" name="image" class="form-control" placeholder="Enter Password" id="image">
+                        <label>Gambar <span class="text-danger">*</span></label>
+                        <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                        <input type="file" accept="image/*" onchange="previewImg()" id="image" name="image" class="form-control" placeholder="Enter Password" required>
                         @if($errors->has('image'))
                         <span class="help-block" style="color: red">{{ $errors->first('image') }}</span>
                         @endif
@@ -38,8 +38,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>
@@ -49,9 +49,9 @@
 {{--  --}}
 
 <script>
-    function previewImgP() {
-        const image = document.querySelector('#imageP')
-        const imgPreview = document.querySelector('.img-previewP')
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
 

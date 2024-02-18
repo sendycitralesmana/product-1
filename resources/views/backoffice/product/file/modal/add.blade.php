@@ -1,10 +1,10 @@
-<div class="modal fade" id="store_media" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="fileAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/media/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/file/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah gambar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah berkas</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -12,13 +12,13 @@
                 <div class="modal-body">
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
-                            <th>Gambar</th>
+                            <th>Berkas</th>
                             <th>Aksi</th>
                         </tr>
                         <tr>
                             <td>
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="file" name="media[]" id="file" accept="image/*" class="form-control" placeholder="Enter media" required>
+                                <input type="file" name="media[]" id="file" accept=".pdf" class="form-control" placeholder="Enter media" required>
                                 @if($errors->has('media[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                                 @endif
@@ -51,7 +51,7 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="file" name="media[]" accept="image/*" class="form-control" placeholder="Enter media" required>
+                    <input type="file" name="media[]" accept=".pdf" class="form-control" placeholder="Enter media" required>
                     @if($errors->has('media[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                     @endif

@@ -1,16 +1,60 @@
 <div class="modal fade" id="addProductVariant" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-xl ">
+    <div class="modal-dialog modal-md ">
         <div class="modal-content">
             <form role="form" method="POST" action="/backoffice/product/variant/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah varian</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <table class="table table-bordered" id="dynamicAddRemoveVariant">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    <div class="form-group">
+                        <label>Nama</label>
+                        <input type="text" required name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}">
+                        @if($errors->has('name'))
+                        <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Price</label>
+                        <input type="number" min="1" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}">
+                        @if($errors->has('price'))
+                        <span class="help-block" style="color: red">{{ $errors->first('price') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Long</label>
+                        <input type="text" name="long" class="form-control" placeholder="Enter long" value="{{ old('long') }}">
+                        @if($errors->has('long'))
+                        <span class="help-block" style="color: red">{{ $errors->first('long') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Weight</label>
+                        <input type="text" name="weight" class="form-control" placeholder="Enter weight" value="{{ old('weight') }}">
+                        @if($errors->has('weight'))
+                        <span class="help-block" style="color: red">{{ $errors->first('weight') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Width</label>
+                        <input type="text" name="width" class="form-control" placeholder="Enter width" value="{{ old('width') }}">
+                        @if($errors->has('width'))
+                        <span class="help-block" style="color: red">{{ $errors->first('width') }}</span>
+                        @endif
+                    </div>
+                    <div class="form-group">
+                        <label>Height</label>
+                        <input type="text" name="height" class="form-control" placeholder="Enter height" value="{{ old('height') }}">
+                        @if($errors->has('height'))
+                        <span class="help-block" style="color: red">{{ $errors->first('height') }}</span>
+                        @endif
+                    </div>
+
+                    {{-- <table class="table table-bordered" id="dynamicAddRemoveVariant">
                         <tr>
                             <th>Name</th>
                             <th>Price</th>
@@ -60,13 +104,12 @@
                             </td>
                             <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></td>
                         </tr>
-                    </table>
-                    <!-- /.card-body -->
+                    </table> --}}
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

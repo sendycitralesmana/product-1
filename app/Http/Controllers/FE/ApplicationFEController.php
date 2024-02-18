@@ -25,14 +25,16 @@ class ApplicationFEController extends Controller
     public function detail($id) {
         $application = Application::find($id);
         $images = MediaApplication::where('type_id', 1)->where('application_id', $application->id)->get();
-        $videos = MediaApplication::where('type_id', 2)->where('application_id', $application->id)->get();
+        $files = MediaApplication::where('type_id', 2)->where('application_id', $application->id)->get();
+        // $videos = MediaApplication::where('type_id', 2)->where('application_id', $application->id)->get();
         $productCategories = ProductCategory::get();
 
         return view ('front.application.detail', [
             'application' => $application,
             'productCategories' => $productCategories,
             'images' => $images,
-            'videos' => $videos
+            'files' => $files
+            // 'videos' => $videos
         ]);
     }
 }

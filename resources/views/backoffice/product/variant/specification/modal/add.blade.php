@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/product/vs/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah spesifikasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -12,9 +12,9 @@
                 <div class="modal-body">
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
-                            <th>Product</th>
-                            <th>Name</th>
-                            <th>Action</th>
+                            <th>Spesifikasi</th>
+                            <th>Keterangan</th>
+                            <th>Aksi</th>
                         </tr>
                         <tr>
                             <td>
@@ -40,8 +40,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

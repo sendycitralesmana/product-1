@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Gambar Proyek')
+@section('title', 'Berkas Proyek')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $application->name }} Gambar Data</h1>
+                    <h1>{{ $application->name }} Berkas Data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/backoffice/application" class="">Proyek</a></li>
                     <li class="breadcrumb-item"><a href="/backoffice/application/{{ $application->id }}/detail" class="">Detail</a></li>
-                    <li class="breadcrumb-item active">Gambar</li>
+                    <li class="breadcrumb-item active">Berkas</li>
                   </ol>
                 </div>
             </div>
@@ -29,14 +29,14 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"> Gambar</h3>
+                <h3 class="card-title"> Berkas</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#mediaAdd">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fileAdd">
                         <span>+</span>
                     </button>
                     {{-- Modal --}}
-                    @include('backoffice.application.media.modal.add')
+                    @include('backoffice.application.file.modal.add')
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -61,29 +61,27 @@
                 @endif
 
                 <div class="row">
-                    @foreach ($images as $image)
+                    @foreach ($files as $file)
                     <div class="col-md-3 gallery">
                         <div class="card">
                             <div class="">
-                                <a href="{{asset('storage/application/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
-                                    <img src="{{asset('storage/application/media/'.$image->url)}}" alt="" 
+                                <img src="{{asset('images/pdf.png')}}" alt="" 
                                     class="img-fluid rounded" style="height: 200px; width: 100%">
-                                </a>
                             </div>
                             <div class="p-1">
-                                {{ $image->name }}
+                                {{ $file->name }}
                             </div>
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaEdit{{$image->id}}">
+                                    data-target="#fileEdit{{$file->id}}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
-                                @include('backoffice.application.media.modal.edit')
+                                @include('backoffice.application.file.modal.edit')
                                 <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaDelete{{$image->id}}">
+                                    data-target="#fileDelete{{$file->id}}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                @include('backoffice.application.media.modal.delete')
+                                @include('backoffice.application.file.modal.delete')
                             </div>
                         </div>
                     </div>
@@ -91,9 +89,8 @@
                 </div>
 
                 <div class="p-3">
-                    {{ $images->links() }}
+                    {{ $files->links() }}
                 </div>
-
                 {{-- <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>

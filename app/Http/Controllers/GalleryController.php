@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Storage;
 class GalleryController extends Controller
 {
     public function index() {
-        $galleries = Gallery::all();
+        $galleries = Gallery::paginate(12);
 
         return view('backoffice.gallery.index', [
             'galleries' => $galleries

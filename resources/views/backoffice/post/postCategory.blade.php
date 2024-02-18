@@ -1,6 +1,6 @@
 @extends('backoffice.layouts/main')
 
-@section('title', 'Post')
+@section('title', 'Berita')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -8,210 +8,248 @@
 
 
     <!-- Main content -->
-    <section class="content mt-3">
+    <section class="content">
+        <hr>
+        <div class="row">
 
-        <!-- Default box -->
-        <div class="card">
-            <div class="card-header">
-                <h3 class="card-title">Post Data Category: {{ $category->name }}</h3>
-                <div class="card-tools">
-                    @if (auth()->user()->role_id == 2)
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#postAdd">
-                        <span>+</span>
-                    </button>
-                    {{-- Modal --}}
-                    @include('backoffice.post.modal.add')
-                    @endif
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
-                </div>
-            </div>
-            <div class="card-body">
-                @if (Session::has('post'))
-                <script type="text/javascript">
-                    document.addEventListener('DOMContentLoaded', function () {
-                        Swal.fire({
-                            title: "Good job!",
-                            text: "{{Session::get('message')}}",
-                            icon: "success"
-                        });
-                    });
-
-                </script>
-                @endif
-                @if ($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
-                    <ul>
-                        <span>Add data failed</span>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
-                <div class="d-flex justify-content-between post-content">
-                    <div class="post-position" style="width: 68%; height:470px; overflow-y: scroll">
-                        @foreach ($posts as $post)
+            <div class="col-md-8">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between">
+                            <h3 class="card-title">Data berita</h3>
+                            <p>Kategori : {{ $category->name }}</p>
+                        </div>
+                        {{-- <div class="card-tools">
+                            
+                            @if (auth()->user()->role_id == 2)
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#postAdd">
+                                <span class="fa fa-plus"></span>
+                            </button>
+                            @include('backoffice.post.modal.add')
+                            @endif
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div> --}}
                         <div class="">
-                            <!-- Box Comment -->
-                            <div class="card card-widget">
-                                <div class="card-header">
-                                    <div class="user-block">
-                                        @if ( $post->user->avatar != null )
-                                        <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
-                                        @endif
-                                        {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
-                                        <span class="username"><a href="#">{{ $post->user->name }}</a></span>
-                                        <span class="description">Added post -
-                                            {{ $post->created_at->diffForHumans() }}</span>
-                                    </div>
-                                    <!-- /.user-block -->
-                                    <div class="card-tools">
-                                        <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
-                                                class="fas fa-minus"></i>
-                                        </button>
-                                    </div>
-                                    <!-- /.card-tools -->
+                            <div class="d-flex justify-content-between">
+                                <div>
+                                    <form class="form-inline" action="/backoffice/post/category/{{ $category->id }}">
+                                        <div class="input-group input-group-sm">
+                                            <input class="form-control" type="text"
+                                                placeholder="Cari judul" name="title" aria-label="Search">
+                                            <div class="input-group-append">
+                                                <button class="btn btn-outline-secondary" type="submit">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                            @if ( url()->full() != url('/backoffice/post/category/'.$category->id) )
+                                            <div class="input-group-append">
+                                                <a href="/backoffice/post" class="btn btn-outline-secondary">Lihat semua</a>
+                                            </div>
+                                            @endif
+                                        </div>
+                                    </form>
                                 </div>
-                                <!-- /.card-header -->
-                                <div class="card-body">
-                                    @if ( $post->thumbnail != null )
-                                    <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid"
-                                        alt="" height="300px">
-                                    @endif
-                                    <h4 class="mt-2"> {{ $post->title }} </h4>
-                                    <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm"><i
-                                            class="ion ion-eye"></i> Detail</a>
-                                    @if ($post->user_id == auth()->user()->id)
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
-                                        data-target="#postDelete{{ $post->id }}">
-                                        <span><i class="ion ion-android-delete"></i> Delete</span>
+                                <div class="card-tools">
+                            
+                                    @if (auth()->user()->role_id == 2)
+                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#postAdd">
+                                        <span class="fa fa-plus"></span>
                                     </button>
-                                    {{-- Modal --}}
-                                    @include('backoffice.post.modal.delete')
+                                    @include('backoffice.post.modal.add')
                                     @endif
-                                    <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
                                 </div>
-
-                                <div class="card-footer">
-                                </div>
-
                             </div>
-
-                        </div>
-                        @endforeach
-                        <div class="p-3">
-                            {{ $posts->links() }}
                         </div>
                     </div>
-                    <div class="menu-position" style="width: 30%;">
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Menu</h3>
-                                <div class="card-tools">
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        data-toggle="tooltip" title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
-                                <!-- SEARCH FORM -->
-                                <form class="form-inline" action="/backoffice/post/category/{{$id}}">
-                                    <div class="input-group input-group-sm">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-default" type="submit">
-                                                Title
-                                            </button>
-                                        </div>
-                                        <input class="form-control" type="text"
-                                            placeholder="Search" name="title" aria-label="Search">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-outline-secondary" type="submit">
-                                                <i class="fas fa-search"></i>
-                                            </button>
-                                        </div>
-                                        <div class="input-group-append">
-                                            <a href="/backoffice/post" class="btn btn-outline-secondary">Show All</a>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                            </div>
-                            <!-- /.card-footer-->
+                    <div class="card-body">
+                        @if (Session::has('post'))
+                        <script type="text/javascript">
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: "Good job!",
+                                    text: "{{Session::get('message')}}",
+                                    icon: "success"
+                                });
+                            });
+        
+                        </script>
+                        @endif
+                        @if ($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
+                            <ul>
+                                <span>Tambah data gagal</span>
+                                @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
                         </div>
-                        <div class="card">
-                            <div class="card-header">
-                                <h3 class="card-title">Categories</h3>
-                                <div class="card-tools">
-                                    <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
-                                        data-target="#postCategoryAdd">
-                                        <span><i class="ion ion-plus"></i></span>
-                                    </button>
-                                    {{-- Modal --}}
-                                    @include('backoffice.post.category.modal.add')
-                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                        data-toggle="tooltip" title="Collapse">
-                                        <i class="fas fa-minus"></i>
-                                    </button>
-                                </div>
-                            </div>
-                            <div class="card-body">
+                        @endif
 
-                                <div class="category">
-                                    <div class="category-content">
-                                        <form action="">
-                                            @foreach ($postCategories as $postCategory)
-                                            <div class="mb-2 d-flex">
-                                                <!-- Button trigger modal -->
-                                                <button title="Edit" type="button" class="btn btn-outline-warning btn-sm" data-toggle="modal"
-                                                    data-target="#postCategoryEdit{{ $postCategory->id }}">
-                                                    <span><i class="ion ion-android-create"></i></span>
-                                                </button>
-                                                {{-- Modal --}}
-                                                @include('backoffice.post.category.modal.edit')
-                                                <a href="/backoffice/post/category/{{ $postCategory->id }}"
-                                                    class="btn btn-outline-secondary btn-block ml-1 mr-1">
-                                                    {{ $postCategory->name }}
-                                                </a>
-                                                <!-- Button trigger modal -->
-                                                <button type="button" title="Delete" class="btn btn-outline-danger btn-sm" data-toggle="modal"
-                                                    data-target="#postCategoryDelete{{ $postCategory->id }}">
-                                                    <span><i class="ion ion-android-delete"></i></span>
-                                                </button>
-                                                {{-- Modal --}}
-                                                @include('backoffice.post.category.modal.delete')
+                        <div class="post-position" style=" height:490px; overflow-y: scroll">
+                            @if ( url()->full() != url('/backoffice/post/category/'.$category->id) )
+                                <div class="text-center">
+                                    <p>
+                                        Hasil pencarian dari: <b>{{ $title }}</b>
+                                    </p>
+                                </div>
+                            @endif
+                            @if ( $posts->count() == 0 )
+                                <h2 class="text-center">
+                                    <b>-- Tidak ada data --</b>
+                                </h2>
+                            @else
+                                @foreach ($posts as $post)
+                                    <div class="">
+                                        <div class="card card-widget mt-1 mr-2 ml-2">
+                                            <div class="card-header">
+                                                <div class="user-block">
+                                                    @if ( $post->user->avatar != null )
+                                                    <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
+                                                    @endif
+                                                    <span class="username"><a href="#">{{ $post->user->name }}</a></span>
+                                                    <span class="description">Menambahkan berita -
+                                                        {{ $post->created_at->diffForHumans() }}</span>
+                                                </div>
+                                                <div class="card-tools">
+                                                    <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
+                                                            class="fas fa-minus"></i>
+                                                    </button>
+                                                </div>
                                             </div>
-                                            @endforeach
-                                        </form>
+                                            <div class="card-body">
+                                                @if ( $post->thumbnail != null )
+                                                <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid"
+                                                    alt="" height="300px">
+                                                @endif
+                                                <h4 class="mt-2"> 
+                                                    <b>{{ $post->title }}</b>  
+                                                </h4>
+                                                @if ( $post->post_category_id != null )
+                                                    <small> {{ $post->category->name }} </small>
+                                                @endif
+                                                <div class="mb-2" style="overflow: hidden;
+                                                text-overflow: ellipsis;
+                                                -webkit-line-clamp: 3;
+                                                display: -webkit-box;
+                                                -webkit-box-orient: vertical;">
+                                                    <p> {!! html_entity_decode($post->content) !!} </p>
+                                                </div>
+                                                <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm"><i
+                                                        class="ion ion-eye"></i> Detail</a>
+                                                @if ($post->user_id == auth()->user()->id)
+                                                    <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                                        data-target="#postDelete{{ $post->id }}">
+                                                        <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                                    </button>
+                                                    @include('backoffice.post.modal.delete')
+                                                @endif
+                                                <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
+                                            </div>
+                
+                                        </div>
+                
                                     </div>
-                                </div>
+                                @endforeach
+                            @endif
 
+                            <div class="p-3">
+                                {{ $posts->links() }}
                             </div>
-                            <!-- /.card-body -->
-                            <div class="card-footer">
-                            </div>
-                            <!-- /.card-footer-->
+
                         </div>
+        
                     </div>
                 </div>
+            </div>
 
+            <div class="col-md-4">
+                {{-- <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Filter</h3>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <form class="form-inline" action="/backoffice/post">
+                            <div class="input-group input-group-sm">
+                                <div class="input-group-append">
+                                    <button class="btn btn-default" type="submit">
+                                        Judul
+                                    </button>
+                                </div>
+                                <input class="form-control" type="text"
+                                    placeholder="Search" name="title" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                <div class="input-group-append">
+                                    <a href="/backoffice/post" class="btn btn-outline-secondary">Lihat semua</a>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div> --}}
+
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Kategori</h3>
+                        <div class="card-tools">
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                                data-target="#postCategoryAdd">
+                                <span><i class="ion ion-plus"></i></span>
+                            </button>
+                            {{-- Modal --}}
+                            @include('backoffice.post.category.modal.add')
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
+                                data-toggle="tooltip" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+
+                        @foreach ($postCategories as $postCategory)
+                        <div class="">
+                            <div class="d-flex justify-content-between">
+                                <a href="/backoffice/post/category/{{ $postCategory->id }}">{{ $postCategory->name }} ( {{ $postCategory->post->count() }} )</a>
+                                <div>
+                                    <button title="Edit" type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                        data-target="#postCategoryEdit{{ $postCategory->id }}">
+                                        <span><i class="ion ion-android-create"></i></span>
+                                    </button>
+                                    @include('backoffice.post.category.modal.edit')
+                                    <button type="button" title="Delete" class="btn btn-danger btn-sm" data-toggle="modal"
+                                        data-target="#postCategoryDelete{{ $postCategory->id }}">
+                                        <span><i class="ion ion-android-delete"></i></span>
+                                    </button>
+                                    @include('backoffice.post.category.modal.delete')
+                                </div>
+                            </div>
+                        <div>
+                        <hr>
+                        @endforeach
+
+                    </div>
+                </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-            </div>
-            <!-- /.card-footer-->
+
         </div>
-        <!-- /.card -->
+
 
     </section>
     <!-- /.content -->

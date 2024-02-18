@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Produk</a></li>
+                        <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
                         <li class="breadcrumb-item active">Detail</li>
                     </ol>
                 </div>
@@ -118,15 +118,28 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <div class="media-body">
+                                <div class="gambar-body">
                                     <div class="d-flex justify-content-between">
                                         <a href="/backoffice/product/media/{{ $product->id }}">
                                             <div class="">
-                                                Media
+                                                Gambar
                                             </div>
                                         </a>
                                         <div class="">
-                                            ({{ $product->media->count() }})
+                                            ({{ $images->count() }})
+                                        </div>
+                                    </div>
+                                    <hr>
+                                </div>
+                                <div class="gambar-body">
+                                    <div class="d-flex justify-content-between">
+                                        <a href="/backoffice/product/file/{{ $product->id }}">
+                                            <div class="">
+                                                Berkas
+                                            </div>
+                                        </a>
+                                        <div class="">
+                                            ({{ $files->count() }})
                                         </div>
                                     </div>
                                     <hr>

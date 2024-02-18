@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/post/category" class="text-secondary">Post Category</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/post/category" class="">Post Category</a></li>
                     <li class="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>

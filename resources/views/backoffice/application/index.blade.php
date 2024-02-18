@@ -27,21 +27,46 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Proyek Data</h3>
-                <div class="card-tools">
-                    @if (auth()->user()->role_id == 2)
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
-                        <span>+</span>
-                    </button>
-                    {{-- Modal --}}
-                    @include('backoffice.application.modal.add')
-                    @endif
-                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                        title="Collapse">
-                        <i class="fas fa-minus"></i>
-                    </button>
+                <div class="d-flex justify-content-between">
+                    <h3 class="card-title">Proyek Data</h3>
                 </div>
+                <div class="d-flex justify-content-between mt-2">
+                    <div>
+                        <form class="form-inline" action="/backoffice/application">
+                            <div class="input-group input-group-sm">
+                                <input class="form-control" type="text"
+                                    placeholder="Cari judul" name="title" aria-label="Search">
+                                <div class="input-group-append">
+                                    <button class="btn btn-outline-secondary" type="submit">
+                                        <i class="fas fa-search"></i>
+                                    </button>
+                                </div>
+                                @if ( url()->full() != url('/backoffice/application') )
+                                <div class="input-group-append">
+                                    <a href="/backoffice/application" class="btn btn-outline-secondary">Lihat semua</a>
+                                </div>
+                                @endif
+                            </div>
+                        </form>
+                    </div>
+                    <div class="card-tools">
+                        <div class="card-tools">
+                            @if (auth()->user()->role_id == 2)
+                            <!-- Button trigger modal -->
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
+                                <span>+</span>
+                            </button>
+                            {{-- Modal --}}
+                            @include('backoffice.application.modal.add')
+                            @endif
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
             </div>
             <div class="card-body">
                 @if (Session::has('application'))
@@ -55,7 +80,68 @@
                     });
                 </script>
                 @endif
-                <table id="example1" class="table table-bordered table-striped">
+
+                @if ( url()->full() != url('/backoffice/application') )
+                    <div class="text-center">
+                        <p>
+                            Hasil pencarian dari: <b>{{ $title }}</b>
+                        </p>
+                    </div>
+                @endif
+                @if ( $applications->count() == 0 )
+                    <div class="text-center">
+                        <h2>
+                            <b>-- Tidak ada data --</b>
+                        </h2>
+                    </div>
+                @endif
+                <div class="row">
+                    @foreach ($applications as $application)
+                    <div class="col-md-4 application">
+                        <div class="card">
+                            <div class="">
+                                <a href="{{asset('storage/image/application/'.$application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
+                                    <img src="{{asset('storage/image/application/'.$application->thumbnail)}}" alt="" 
+                                    class="img-fluid rounded" style="height: 250px; width: 100%">
+                                </a>
+                            </div>
+                            <div class="p-1" style="height: 160px">
+                                <small>{{ $application->time }}</small>
+                                <h5 class="" style="overflow: hidden;
+                                text-overflow: ellipsis;
+                                -webkit-line-clamp: 2;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;">
+                                    <b>{{ $application->name }}</b>
+                                </h5>
+                                <div style="overflow: hidden;
+                                text-overflow: ellipsis;
+                                -webkit-line-clamp: 3;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;">
+                                    {!! html_entity_decode($application->description) !!}
+                                </div>
+                            </div>
+                            <div class="d-flex">
+                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm btn-block m-1">
+                                    <i class="ion ion-ios-eye"></i> Detail
+                                </a>
+                                <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
+                                    data-target="#applicationDelete{{$application->id}}">
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                </button>
+                                @include('backoffice.application.modal.delete')
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                <div class="p-3">
+                    {{ $applications->links() }}
+                </div>
+
+                {{-- <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -83,11 +169,9 @@
                             <td>
                                 @if (auth()->user()->role_id == 2)
                                 <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-ios-eye"></i> Detail</a>
-                                <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.application.modal.delete')  
                                 @endif
                             </td>
@@ -104,7 +188,7 @@
                             <th>Opsi</th>
                         </tr>
                     </tfoot>
-                </table>
+                </table> --}}
             </div>
             <!-- /.card-body -->
             <div class="card-footer">

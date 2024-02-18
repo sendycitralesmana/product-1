@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $postCategories = PostCategory::get();
+        $postCategories = PostCategory::paginate(10);
         $posts = Post::with(['category'])->orderBy('id', 'desc')->paginate(10);
 
         if ($request->title) {
@@ -24,6 +24,7 @@ class PostController extends Controller
         return view('backoffice.post.index', [
             'postCategories' => $postCategories,
             'posts' => $posts,
+            'title' => $request->title
         ]);
     }
 
@@ -45,7 +46,7 @@ class PostController extends Controller
             'postCategories' => $postCategories,
             'posts' => $posts,
             'category' => $category,
-            'id' => $id
+            'title' => $request->title
         ]);
     }
 

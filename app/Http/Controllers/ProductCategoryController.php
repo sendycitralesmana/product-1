@@ -21,8 +21,8 @@ class ProductCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'thumbnail' => 'image',
+            // 'description' => 'required',
+            // 'thumbnail' => 'image',
         ]);
 
         $newName = null;
@@ -34,21 +34,22 @@ class ProductCategoryController extends Controller
 
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
-        $productCategory->description = $request->description;
+        $productCategory->description = '-';
         $productCategory->thumbnail = str_replace(' ', '_', $newName);
         $productCategory->save();
 
-        Session::flash('status', 'success');
-        Session::flash('message', 'Add data success');
-        return redirect('/backoffice/product/category');
+        Session::flash('category', 'success');
+        Session::flash('message', 'Tambah kategori berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/product/category');
     }
 
     public function update(Request $request, $id)
     {   
         $validated = $request->validate([
             'name' => 'required',
-            'description' => 'required',
-            'thumbnail' => 'image'
+            // 'description' => 'required',
+            // 'thumbnail' => 'image'
         ]);
 
         $newName = null;
@@ -63,7 +64,7 @@ class ProductCategoryController extends Controller
 
         $productCategory = ProductCategory::find($id);
         $productCategory->name = $request->name;
-        $productCategory->description = $request->description;
+        $productCategory->description = '-';
         if ($request->oldImage != null) {
             if ($request->file('thumbnail') == "") {
                 $productCategory->thumbnail = $request->oldImage;
@@ -75,9 +76,10 @@ class ProductCategoryController extends Controller
         }
         $productCategory->save();
 
-        Session::flash('status', 'success');
-        Session::flash('message', 'Update data success');
-        return redirect('/backoffice/product/category');
+        Session::flash('category', 'success');
+        Session::flash('message', 'Edit kategori berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/product/category');
     }
 
     public function delete($id)

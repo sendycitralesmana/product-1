@@ -71,7 +71,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Gambar</th>
                             <th>Nama</th>
+                            <th>Link</th>
+                            <th>Status</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
@@ -79,15 +82,30 @@
                         @foreach ($clients as $client)
                         <tr>
                             <td> {{ $client->id }} </td>
+                            <td>
+                                <img src="{{asset('storage/image/client/'.$client->image)}}" height="100px" alt="">
+                            </td>
                             <td> {{ $client->name }} </td>
                             <td>
+                                <a href="{{ $client->link }}" target="_blank">{{ $client->link }}</a>
+                            </td>
+                            <td>
+                                @if ($client->is_hidden == "0")
+                                    <button class="btn btn-success btn-sm rounded btn-block">Tampilkan</button>
+                                @else
+                                    <button class="btn btn-danger btn-sm rounded btn-block">Tidak tampil</button>
+                                @endif
+                            </td>
+                            <td>
                                 <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
+                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#clientEdit{{ $client->id }}">
+                                    <span><i class="ion ion-android-create"></i> Edit</span>
+                                </button>
+                                @include('backoffice.client.modal.edit')
                                 @if (auth()->user()->role_id == 2)
-                                <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clientDelete{{$client->id}}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.client.modal.delete')
                                     
                                 @endif
@@ -98,8 +116,10 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
+                            <th>Gambar</th>
                             <th>Nama</th>
-                            {{-- <th>Description</th> --}}
+                            <th>Link</th>
+                            <th>Status</th>
                             <th>Opsi</th>
                         </tr>
                     </tfoot>

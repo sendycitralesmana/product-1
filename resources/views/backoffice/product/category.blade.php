@@ -160,6 +160,10 @@
                         </script>
                         @endif
 
+                        <div>
+                            <a href="/backoffice/product">Lihat semua ( {{ $productC->count() }} )</a>
+                            <hr>
+                        </div>
                         @foreach ($productCategories as $productCategory)
                             <div class="">
                                 <div class="d-flex justify-content-between">

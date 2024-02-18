@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ClientController extends Controller
 {
     public function index() {
-        $clients = Client::paginate(12);
+        $clients = Client::get();
 
         return view('backoffice.client.index', [
             'clients' => $clients
@@ -37,10 +37,11 @@ class ClientController extends Controller
         $client->name = $request->name;
         $client->image = str_replace(' ', '_', $newName);
         $client->link = $request->link;
+        $client->is_hidden = "0";
         $client->save();
 
         Session::flash('client', 'success');
-        Session::flash('message', 'Add data success');
+        Session::flash('message', 'Tambah klien berhasil');
         // return redirect('/product-variant');
         return redirect('/backoffice/client');
     }
@@ -74,12 +75,14 @@ class ClientController extends Controller
             $client->image = str_replace(' ', '_', $newName);
         }
         $client->link = $request->link;
+        $client->is_hidden = $request->is_hidden;
         $client->save();
 
         Session::flash('client', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Edit klien berhasil');
         
-        return redirect('/backoffice/client/'. $client->id .'/detail');
+        return redirect()->back();
+        // return redirect('/backoffice/client/'. $client->id .'/detail');
     }
 
     public function detail($id) {

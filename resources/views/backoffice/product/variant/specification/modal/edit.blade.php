@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit spesifikasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <input type="hidden" name="product_variant_id" value="{{ $productVariant->id }}">
                         <div class="form-group">
-                            <label>Specification</label>
+                            <label>Spesifikasi</label>
                             {{-- <input type="text" name="specification_id" class="form-control" value="{{ $pvSpecification->specification->name}}" readonly> --}}
                             <select name="specification_id" required class="form-control">
                                 @foreach ($specifications as $specification)
@@ -25,7 +25,7 @@
                     </div>
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Value</label>
+                            <label>Keterangan</label>
                             <input type="text" name="value" class="form-control" value="{{ $pvSpecification->value}}" required>
                             {{-- <input type="text" name="value" class="form-control" value="{{ $pvSpecification->value}}" required oninvalid="this.setCustomValidity('Enter User Name Here')"> --}}
                             @if($errors->has('value'))
@@ -37,8 +37,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

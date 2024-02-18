@@ -17,9 +17,12 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $products = Product::all();
+        if ($request->category) {
+            $products = $products->where('category_id', $request->category);
+        }
         $productCategories = ProductCategory::get();
         $applications = Application::get();
         return view('backoffice.product.index', [
@@ -28,16 +31,32 @@ class ProductController extends Controller
             'applications' => $applications
         ]);
     }
+
+    public function category($id) {
+        $products = Product::where('product_category_id', $id)->get();
+        $productC = Product::get();
+        $productCategories = ProductCategory::get();
+        $applications = Application::get();
+        return view('backoffice.product.category', [
+            'products' => $products,
+            'productC' => $productC,
+            'productCategories' => $productCategories,
+            'applications' => $applications
+        ]);
+    }
     
     public function detail($id)
     {
         $product = Product::with(['category', 'application', 'variant', 'media', 'video'])->find($id);
-
+        $images = MediaProduct::where('product_id', $id)->where('type_id', 1)->get();
+        $files = MediaProduct::where('product_id', $id)->where('type_id', 2)->get();
         $productCategories = ProductCategory::get();
         $mediaTypes = MediaType::get();
         $applications = Application::get();
         return view('backoffice.product.detail', [
             'product' => $product,
+            'images' => $images,
+            'files' => $files,
             'applications' => $applications,
             'productCategories' => $productCategories,
             'mediaTypes' => $mediaTypes,
@@ -156,15 +175,27 @@ class ProductController extends Controller
         return redirect('/backoffice/product');
     }
 
-    public function applicationByProduct($id) {
+    public function applicationByProduct(Request $request, $id) {
         $product = Product::with(['application'])->find($id);
         $applications = Application::get();
-        $appProducts = ProductApplication::where('product_id', $id)->get();
+        // if ($request->title) {
+        //     $applications = $applications->where('title', 'like', '%' . $request->title . '%')->get();
+        // }
+        $appProducts = ProductApplication::where('product_id', $id)->paginate(6);
+        // foreach ($applications as $key => $value) {
+        //     if ($request->title) {
+        //         $appProducts = ProductApplication::where($value->application->name, 'LIKE', '%' . $request->title . '%')->where('product_id', $id)->paginate(6);
+        //     }
+        // }
+        // if ($request->title) {
+        //     $appProducts = ProductApplication::where($applications->name, 'LIKE', '%' . $request->title . '%')->where('product_id', $id)->paginate(6);
+        // }
 
         return view('backoffice.product.application.applicationByProduct', [
             'product' => $product,
             'applications' => $applications, 
-            'appProducts' => $appProducts
+            'appProducts' => $appProducts,
+            'title' => $request->title
         ]);
     }
 

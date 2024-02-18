@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/application" class="text-secondary">Proyek</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application" class="">Proyek</a></li>
                     <li class="breadcrumb-item active">Detail</li>
                   </ol>
                 </div>
@@ -65,7 +65,7 @@
                                 <div class="card-header">
                                     <div class="user-block">
                                         <h5>{{ $application->name }}</h5>
-                                        <small>{{ $application->created_at->diffForHumans() }}</small>
+                                        <small>{{ $application->time }}</small>
                                     </div>
                                     <!-- /.user-block -->
                                     <div class="card-tools">
@@ -118,15 +118,28 @@
                                     </div>
                                 </div>
                                 <div class="card-body">
-                                    <div class="media-body">
+                                    <div class="image-body">
                                         <div class="d-flex justify-content-between">
                                             <a href="/backoffice/application/media/{{ $application->id }}">
                                                 <div class="">
-                                                    Media
+                                                    Gambar
                                                 </div>
                                             </a>
                                             <div class="">
-                                                ({{ $application->media->count() }})
+                                                ({{ $application->media->where('type_id', 1)->count() }})
+                                            </div>
+                                        </div>
+                                        <hr>
+                                    </div>
+                                    <div class="file-body">
+                                        <div class="d-flex justify-content-between">
+                                            <a href="/backoffice/application/file/{{ $application->id }}">
+                                                <div class="">
+                                                    Berkas
+                                                </div>
+                                            </a>
+                                            <div class="">
+                                                ({{ $application->media->where('type_id', 2)->count() }})
                                             </div>
                                         </div>
                                         <hr>
@@ -159,11 +172,9 @@
                                     </div>
                                     <div class="application-body">
                                         <div class="d-flex justify-content-between">
-                                            <a href="/backoffice/application/client/{{ $application->id }}">
-                                                <div class="">
-                                                    Klien
-                                                </div>
-                                            </a>
+                                            <p>
+                                                Klien
+                                            </p>
                                             <div class="">
                                                 @if ($application->client != null)
                                                     <img src="{{ asset('storage/image/client/'.$application->client->image) }}" class="img-fluid" alt="" width="100" height="100">

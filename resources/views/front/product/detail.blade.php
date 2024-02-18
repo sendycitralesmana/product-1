@@ -167,51 +167,7 @@
                     <div class="stext-102 cl3 p-t-23">
                         {!! html_entity_decode($product->description) !!}
                     </div>
-
-                    <!--  -->
-                    {{-- <div class="p-t-24">
-                        <div class="flex-w flex-r-m p-b-20">
-                            <div class="size-203 flex-c-m respon6">
-                                <b>Long</b>
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                {{ $productVariant->long }}
-                            </div>
-                        </div>
-
-                        <div class="flex-w flex-r-m p-b-20">
-                            <div class="size-203 flex-c-m respon6">
-                                <b>Weight</b>
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                {{ $productVariant->weight }}
-                            </div>
-                        </div>
-
-                        <div class="flex-w flex-r-m p-b-20">
-                            <div class="size-203 flex-c-m respon6">
-                                <b>Width</b>
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                {{ $productVariant->width }}
-                            </div>
-                        </div>
-
-                        <div class="flex-w flex-r-m p-b-20">
-                            <div class="size-203 flex-c-m respon6">
-                                <b>Height</b>
-                            </div>
-
-                            <div class="size-204 respon6-next">
-                                {{ $productVariant->height }}
-                            </div>
-                        </div>
-
-                    </div> --}}
-
+                    
                 </div>
                 @endif
 
@@ -232,9 +188,9 @@
                         <a class="nav-link active" data-toggle="tab" href="#information" role="tab">Spesifikasi</a>
                     </li>
 
-                    {{-- <li class="nav-item p-b-10">
-                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Reviews (1)</a>
-                    </li> --}}
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Berkas</a>
+                    </li>
                 </ul>
 
                 <!-- Tab panes -->
@@ -261,7 +217,7 @@
                                     <li class="flex-w flex-t p-b-7">
                                     <form action="/product/{{ $product->id }}" class="m-b-20">
                                         <select name="variant" id="" class="form-control" onchange="la(this.value)" required>
-                                            <option value="">-- Pilih Variant ( {{ $product->variant->count() }} available )  --</option>
+                                            <option value="">-- Pilih Variant ( Tersedia {{ $product->variant->count() }} )  --</option>
                                             @foreach ($product->variant as $variant)
                                                 <option value="?variant={{ $variant->id }}">{{ $variant->name }}</option>
                                             @endforeach
@@ -377,7 +333,34 @@
 
                     <!-- - -->
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
+
                         <div class="row">
+                            @foreach ($files as $file)
+                            {{-- <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="40px" width="40px"> --}}
+                            <div class="col-md-4 m-lr-auto">
+                                <div class="card text-center">
+                                    {{-- <div class="card-header">
+                                    </div> --}}
+                                    <div class="card-body">
+                                        <div class="card-img">
+                                            <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="50px" width="50px">
+                                        </div>
+                                        <div class="card-title">
+                                            {{ $file->name }}
+                                        </div>
+                                        <div>
+                                            <a href="/product/file/download/{{ $file->id }}" class="btn text-white btn-sm" style="background-color: #ed7a07"><i class="fa fa-download"></i> Unduh</a>
+                                        </div>
+                                    </div>
+                                    {{-- <div class="card-footer text-muted">
+                                      Unduh
+                                    </div> --}}
+                                </div>
+                            </div>
+                            @endforeach
+                        </div>
+
+                        {{-- <div class="row">
                             <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
                                 <div class="p-b-30 m-lr-15-sm">
                                     <!-- Review -->
@@ -460,7 +443,7 @@
                                     </form>
                                 </div>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
@@ -473,7 +456,7 @@
         </span>
 
         <span class="stext-107 cl6 p-lr-25">
-            Category: {{ $product->category->name }}
+            Kategori: {{ $product->category->name }}
         </span>
     </div>
 </section>
@@ -500,7 +483,7 @@
                         <div class="block2">
                             <div class="block2-pic hov-img0">
                                 {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT"> --}}
-                                <img src="{{ asset('storage/image/product/' . $related->thumbnail) }}" alt="IMG-PRODUCT">
+                                <img src="{{ asset('storage/image/product/' . $related->thumbnail) }}" alt="IMG-PRODUCT" height="250px">
 
                                 {{-- <a href="#"
                                     class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
@@ -548,7 +531,7 @@
                         <div class="block2">
                             <div class="block2-pic hov-img0">
                                 {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT"> --}}
-                                <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="IMG-PRODUCT">
+                                <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="IMG-PRODUCT" height="250px">
 
                                 {{-- <a href="#"
                                     class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">

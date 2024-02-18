@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Galeri')
+@section('title', 'Berkas Produk')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,14 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Galeri</h1>
+                    <h1>{{ $product->name }} Berkas Data</h1>
                 </div>
                 <div class="col-sm-6">
-                    <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Galeri</li>
-                    </ol>
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Product</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item active">Berkas</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -27,71 +29,58 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Galeri</h3>
+                <h3 class="card-title"> Berkas</h3>
                 <div class="card-tools">
-                    @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#galleryAdd">
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fileAdd">
                         <span>+</span>
                     </button>
                     {{-- Modal --}}
-                    @include('backoffice.gallery.modal.add')
-                    @endif
+                    @include('backoffice.product.file.modal.add')
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
                     </button>
+                    @if (auth()->user()->role_id == 2)
+                    
+                    {{-- <a href="/media-product/add" class="btn btn-info btn-info">Add data</a> --}}
+                    @endif
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('client'))
+                @if (Session::has('media'))
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
-                            title: "Good job!",
-                            text: "{{Session::get('message')}}",
-                            icon: "success"
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
                         });
                     });
-
                 </script>
                 @endif
-                @if ($errors->any())
-                <div class="alert alert-danger" role="alert">
-                    <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
-                    <ul>
-                        <span>Tambah data gagal</span>
-                        @foreach ($errors->all() as $error)
-                        <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-
                 <div class="row">
-                    @foreach ($galleries as $gallery)
+                    @foreach ($files as $file)
                     <div class="col-md-3 gallery">
                         <div class="card">
                             <div class="">
-                                <a href="{{asset('storage/image/gallery/'.$gallery->image)}}" data-title="{{ $gallery->name }}" data-lightbox="mygallery">
-                                    <img src="{{asset('storage/image/gallery/'.$gallery->image)}}" alt="" 
+                                <img src="{{asset('images/pdf.png')}}" alt="" 
                                     class="img-fluid rounded" style="height: 200px; width: 100%">
-                                </a>
                             </div>
                             <div class="p-1">
-                                {{ $gallery->name }}
+                                {{ $file->name }}
                             </div>
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#galleryEdit{{$gallery->id}}">
+                                    data-target="#fileEdit{{$file->id}}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
-                                @include('backoffice.gallery.modal.edit')
+                                @include('backoffice.product.file.modal.edit')
                                 <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#galleryDelete{{$gallery->id}}">
+                                    data-target="#fileDelete{{$file->id}}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                @include('backoffice.gallery.modal.delete')
+                                @include('backoffice.product.file.modal.delete')
                             </div>
                         </div>
                     </div>
@@ -99,12 +88,12 @@
                 </div>
 
                 <div class="p-3">
-                    {{ $galleries->links() }}
+                    {{ $files->links() }}
                 </div>
-
             </div>
             <!-- /.card-body -->
             <div class="card-footer">
+                
             </div>
             <!-- /.card-footer-->
         </div>

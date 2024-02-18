@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Product Variant')
+@section('title', 'Varian produkt')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} Variant Data</h1>
+                    <h1>{{ $product->name }} varian data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
-                    <li class="breadcrumb-item active">Variant</li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item active">Varian</li>
                   </ol>
                 </div>
             </div>
@@ -29,12 +29,12 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $product->name }}</h3>
+                <h3 class="card-title">Varian</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
                     <button title="Add Variant" type="button" class="btn btn-default" data-toggle="modal" data-target="#addProductVariant">
-                        <span>+</span>
+                        <span class="fas fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.product.variant.modal.add')
@@ -61,13 +61,13 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Price</th>
                             <th>Long</th>
                             <th>Weight</th>
                             <th>Width</th>
                             <th>Height</th>
-                            <th>Option</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -75,14 +75,14 @@
                         <tr>
                             <td> {{ $productVariant->id }} </td>
                             <td> {{ $productVariant->name }} </td>
-                            <td> {{ $productVariant->price }} </td>
+                            <td> Rp. Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
                             <td> {{ $productVariant->long }} </td>
                             <td> {{ $productVariant->weight }} </td>
                             <td> {{ $productVariant->width }} </td>
                             <td> {{ $productVariant->height }} </td>
                             <td>
                                 <a href="/backoffice/product/vs/{{ $productVariant->id }}"
-                                    class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Specification</a>
+                                    class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Spesifikasi</a>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
@@ -91,7 +91,7 @@
                                 @include('backoffice.product.variant.modal.edit')
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productVariantDelete{{ $productVariant->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.modal.delete')
@@ -102,22 +102,17 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             <th>Price</th>
                             <th>Long</th>
                             <th>Weight</th>
                             <th>Width</th>
                             <th>Height</th>
-                            <th>Option</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

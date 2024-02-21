@@ -65,11 +65,11 @@
                                 <span><i class="ion ion-android-create"></i> Edit</span>
                             </button>
                             @include('backoffice.client.modal.edit')
-                            <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
+                            {{-- <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
                                 data-target="#clientDelete{{$client->id}}">
                                 <span><i class="ion ion-android-delete"></i> Hapus</span>
                             </button>
-                            @include('backoffice.client.modal.delete')
+                            @include('backoffice.client.modal.delete') --}}
                         </div>
                     </div>
                 </div>

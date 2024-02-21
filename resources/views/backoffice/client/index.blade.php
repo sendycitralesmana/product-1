@@ -54,10 +54,10 @@
                         </form>
                     </div>
                     <div class="card-tools">
-                        {{-- <div class="card-tools">
+                        <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
-                                <span>+</span>
+                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#clientAdd">
+                                <span class="fas fa-plus"></span>
                             </button>
                             @include('backoffice.client.modal.add')
                             @endif
@@ -65,7 +65,7 @@
                                 title="Collapse">
                                 <i class="fas fa-minus"></i>
                             </button>
-                        </div> --}}
+                        </div>
                     </div>
                 </div>
 

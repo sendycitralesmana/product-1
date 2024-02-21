@@ -6,7 +6,7 @@
             @foreach ($clients as $client)
 
             @if ( $client->is_hidden == 0 )
-                <div class="col-md-3 col-sm-4 col-xl-2 p-b-30 m-lr-auto">
+                <div class="col-md-3 col-sm-4 col-xl-2 p-b-10 m-lr-auto">
                     <!-- Block1 -->
                     <div class=" wrap-pic-w p-4">
                         @if ( $client->link != null )

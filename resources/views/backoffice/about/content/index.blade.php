@@ -87,8 +87,8 @@
                             </div>
                             <div class="card-body">
                                 <div class="">
-                                    <a href="{{asset('images/banner.jpg')}}" data-title="{{ $content->name }}" data-lightbox="mycontent">
-                                        <img src="{{asset('images/banner.jpg')}}" alt="" 
+                                    <a href="{{asset('storage/image/content/'. $content->thumbnail)}}" data-title="{{ $content->name }}" data-lightbox="mycontent">
+                                        <img src="{{asset('storage/image/content/'. $content->thumbnail)}}" alt="" 
                                         class="img-fluid rounded" style="height: 400px; width: 100%">
                                     </a>
                                 </div>

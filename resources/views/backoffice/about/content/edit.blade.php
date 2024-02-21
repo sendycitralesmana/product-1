@@ -82,7 +82,7 @@
                         <label>Gambar</label>
                         <input type="hidden" name="oldImage" value="{{ $content->thumbnail }}">
                         @if ($content->thumbnail)
-                            <img src="{{ asset('storage/image/category/'. $content->thumbnail) }}" name="oldValue" value="$content->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                            <img src="{{ asset('storage/image/content/'. $content->thumbnail) }}" name="oldValue" value="$content->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                         @else
                             <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                         @endif

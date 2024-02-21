@@ -8,7 +8,7 @@
             @if ( $client->is_hidden == 0 )
                 <div class="col-md-3 col-sm-4 col-xl-2 p-b-30 m-lr-auto">
                     <!-- Block1 -->
-                    <div class=" wrap-pic-w">
+                    <div class=" wrap-pic-w p-4">
                         @if ( $client->link != null )
                             <a href="{{ $client->link }}" target="_blank">
                                 <img src="{{asset('storage/image/client/'. $client->image)}}" alt="IMG-BANNER" class="img-fluid rounded" style="height: 120px">

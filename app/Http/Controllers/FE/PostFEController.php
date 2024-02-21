@@ -29,6 +29,31 @@ class PostFEController extends Controller
         ]);
     }
 
+    public function category(Request $request, $id) {
+        $postC = Post::with(['category'])->get();
+        $posts = Post::orderBy('id', 'desc')
+                        ->where('post_category_id', $id)
+                        ->paginate(8);
+        if ($request->title) {
+            $posts = Post::with(['category'])
+                            ->where('post_category_id', $id)
+                            ->where('title', 'LIKE', '%' . $request->title . '%')
+                            ->orderBy('id', 'desc')
+                            ->paginate(8);
+        }
+        $postCategory = PostCategory::find($id);
+        $postCategories = PostCategory::get();
+        $productCategories = ProductCategory::get();
+
+        return view('front.blog.categoryPage', [
+            'postC' => $postC,
+            'posts' => $posts,
+            'postCategory' => $postCategory,
+            'postCategories' => $postCategories,
+            'productCategories' => $productCategories
+        ]);
+    }
+
     public function detail($id) {
         $post = Post::with(['user', 'category'])->find($id);
         $postC = Post::with(['category'])->get();

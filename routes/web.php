@@ -93,6 +93,7 @@ Route::get('/application/file/download/{id}', [MediaApplicationController::class
 // blog / post
 Route::get('/blog', [PostFEController::class, 'index']);
 Route::get('/blog/{id}', [PostFEController::class, 'detail']);
+Route::get('/blog/category/{id}', [PostFEController::class, 'category']);
 
 // gallery
 Route::get('/gallery', [GalleryFEController::class, 'index']);

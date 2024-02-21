@@ -129,13 +129,13 @@
 								</li>
                                 @foreach ($postCategories as $category)
                                 <li class="bor18">
-									<a href="/public/blog/category/{{ $category->id }}" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
+									<a href="/blog/category/{{ $category->id }}" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
 											{{ $category->name }}
 										</span>
 
 										<span>
-											()
+											( {{ $category->post->count() }} )
 										</span>
 									</a>
 								</li>

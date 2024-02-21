@@ -4,7 +4,7 @@
 
 	<!-- Title page -->
 	<section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('images/banner.jpg') }});">
-		<h2 class="ltext-105 cl0 txt-center">
+		<h2 class="ltext-105 cl0 txt-center" style="text-shadow: 0.02em 0.03em 0.15em #ed7a07">
 			Tentang kami
 		</h2>
 	</section>	
@@ -66,7 +66,7 @@
 				<div class="order-md-1 col-11 col-md-5 col-lg-4 m-lr-auto p-b-30">
 					<div class="how-bor2">
 						<div class="hov-img0">
-							<img src="{{ asset('storage/image/content/'. $aboutVM->thumbnail) }}" alt="IMG">
+							<img src="{{ asset('images/vimi.jpg') }}" alt="IMG">
 						</div>
 					</div>
 				</div>

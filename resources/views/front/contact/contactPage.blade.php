@@ -4,7 +4,7 @@
 
 <!-- Title page -->
 <section class="bg-img1 txt-center p-lr-15 p-tb-92" style="background-image: url({{ asset('images/banner.jpg') }});">
-    <h2 class="ltext-105 cl0 txt-center">
+    <h2 class="ltext-105 cl0 txt-center" style="text-shadow: 0.02em 0.03em 0.15em #ed7a07">
         {{ __('contact.Kontak kami') }}
     </h2>
 </section>

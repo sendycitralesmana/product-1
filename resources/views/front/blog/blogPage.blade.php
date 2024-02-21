@@ -87,7 +87,7 @@
 
             <div class="col-md-4 col-lg-3 p-b-80">
                 <div class="side-menu">
-                    <form action="/public/blog" method="GET">
+                    <form action="/blog" method="GET">
                         <div class="bor17 of-hidden pos-relative">
                             <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="title"
                                 placeholder="Cari berita..." required>
@@ -117,13 +117,13 @@
                             </li>
                             @foreach ($postCategories as $category)
                                 <li class="bor18">
-									<a href="/public/blog/category/{{ $category->id }}" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
+									<a href="/blog/category/{{ $category->id }}" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
 										<span>
 											{{ $category->name }}
 										</span>
 
 										<span>
-											()
+											( {{ $category->post->count() }} )
 										</span>
 									</a>
 								</li>

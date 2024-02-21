@@ -1,6 +1,6 @@
 @extends('backoffice.layouts/main')
 
-@section('title', 'Content')
+@section('title', '- Konten')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
-                    <h1>Content Data</h1>
+                <div class="col-sm-6">
+                    <h1>Konten</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active">Konten</li>
+                    </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -22,7 +27,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Content</h3>
+                <h3 class="card-title">Konten</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     {{-- Button trigger modal
@@ -61,7 +66,42 @@
                     </ul>
                 </div>
                 @endif
-                <table id="example1" class="table table-bordered table-striped">
+
+                <div class="row">
+                    @foreach ($contents as $content)
+                    <div class="col-md-6 content">
+                        <div class="card">
+                            <div class="card-header">
+                                <h3 class="card-title">{{ $content->title }}</h3>
+                                <div class="card-tools">
+                                    @if (auth()->user()->role_id == 2)
+                                    @endif
+                                    <a href="/backoffice/about/content/{{ $content->id }}/edit" class="" title="Edit">
+                                        <i class="fas fa-pencil-alt"></i>
+                                    </a>
+                                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                        title="Collapse">
+                                        <i class="fas fa-minus"></i>
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="">
+                                    <a href="{{asset('images/banner.jpg')}}" data-title="{{ $content->name }}" data-lightbox="mycontent">
+                                        <img src="{{asset('images/banner.jpg')}}" alt="" 
+                                        class="img-fluid rounded" style="height: 400px; width: 100%">
+                                    </a>
+                                </div>
+                                <div class="p-1">
+                                    {!! html_entity_decode($content->description) !!}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                </div>
+
+                {{-- <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
@@ -79,22 +119,17 @@
                             <td> {{ $content->thumbnail }} </td>
                             <td> {{ $content->page->name }} </td>
                             <td> {{ $content->title }} </td>
-                            <td> <!-- Button trigger modal -->
+                            <td> 
                                 <button type="button" class="btn btn-info btn-sm" data-toggle="modal" data-target="#contentDesc{{ $content->id }}">
                                     <span>See Description</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.about.content.modal.desc') </td>
                             <td>
                                 @if (auth()->user()->role_id == 2)
-                                <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#contentEdit{{ $content->id }}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.about.content.modal.edit')
-                                {{-- <a href="/backoffice/about/content/{{ $content->id }}/delete" onclick="return confirm('Are you sure?')"
-                                    class="btn btn-danger btn-sm">Delete</a> --}}
                                 @endif
                             </td>
                         </tr>
@@ -110,13 +145,8 @@
                             <th>Option</th>
                         </tr>
                     </tfoot>
-                </table>
+                </table> --}}
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

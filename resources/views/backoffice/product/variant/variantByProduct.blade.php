@@ -32,11 +32,10 @@
                 <h3 class="card-title">Varian</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
-                    <!-- Button trigger modal -->
+                    <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
                     <button title="Add Variant" type="button" class="btn btn-default" data-toggle="modal" data-target="#addProductVariant">
                         <span class="fas fa-plus"></span>
                     </button>
-                    {{-- Modal --}}
                     @include('backoffice.product.variant.modal.add')
                     @endif
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
@@ -75,25 +74,27 @@
                         <tr>
                             <td> {{ $productVariant->id }} </td>
                             <td> {{ $productVariant->name }} </td>
-                            <td> Rp. Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
+                            <td> Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
                             <td> {{ $productVariant->long }} </td>
                             <td> {{ $productVariant->weight }} </td>
                             <td> {{ $productVariant->width }} </td>
                             <td> {{ $productVariant->height }} </td>
                             <td>
+                                <a href="/backoffice/product/variant/{{ $productVariant->id }}/export-pdf" 
+                                    class="btn btn-outline-danger btn-sm m-1">
+                                    <i class="fa fa-file-pdf"></i> Export pdf
+                                </a>
                                 <a href="/backoffice/product/vs/{{ $productVariant->id }}"
-                                    class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Spesifikasi</a>
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">
+                                    class="btn btn-info btn-sm m-1">
+                                    <i class="ion ion-eye"></i> Spesifikasi
+                                </a>
+                                <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.product.variant.modal.edit')
-                                <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productVariantDelete{{ $productVariant->id }}">
+                                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#productVariantDelete{{ $productVariant->id }}">
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
-                                {{-- Modal --}}
                                 @include('backoffice.product.variant.modal.delete')
                             </td>
                         </tr>

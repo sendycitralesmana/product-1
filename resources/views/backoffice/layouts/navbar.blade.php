@@ -15,17 +15,17 @@
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" width="30px" height="30px" class="mr-1 img-circle elevation-2" alt="User Image">
-                <i class="far fa-user"> {{ auth()->user()->name }}</i>
+                {{ auth()->user()->name }}</i>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                <span class="dropdown-item dropdown-header">Settings</span>
+                <span class="dropdown-item dropdown-header">Pengaturan</span>
                 <div class="dropdown-divider"></div>
                 <p data-toggle="modal" data-target="#exampleModal" class="dropdown-item" style="cursor: pointer">
-                    <i class="fas fa- mr-2"></i> Profile
+                    <i class="fas fa-user mr-2"></i> Profil
                 </p>
                 <div class="dropdown-divider"></div>
-                <p data-toggle="modal" data-target="#logout" class="dropdown-item" style="cursor: pointer">
-                    <i class="fas fa- mr-2"></i> Logout
+                <p data-toggle="modal" data-target="#logout" class="dropdown-item btn" style="cursor: pointer">
+                    <i class="fas fa-arrow-left mr-2"></i> Keluar
                 </p>
             </div>
         </li>

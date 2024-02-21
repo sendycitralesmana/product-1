@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Proyek')
+@section('title', '- Proyek')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->

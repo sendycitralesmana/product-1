@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Matahari LED @yield('title')</title>
+    <link rel="icon" type="image/png" href="{{asset('images/logo.webp')}}" />
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" integrity="sha512-ZKX+BvQihRJPA8CROKBhDNvoc2aDMOdAlcm7TUQY+35XYtrd3yh95QOOhsPDQY9QnKE0Wqag9y38OIgEvb88cA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -63,8 +64,10 @@
         <!-- end content -->
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2023 <a href="http://matahari.co.id">Matahari LED</a>.</strong>
-            
+            {{-- <strong>Copyright &copy; 2023 <a href="http://matahari.co.id">Matahari LED</a>.</strong> --}}
+            <a target="_blank" href="https://matahariled.co.id">
+                <b>Matahari LED</b>
+            </a>
         </footer>
 
         <!-- Control Sidebar -->

@@ -18,6 +18,14 @@ class ContentController extends Controller
         ]);
     }
 
+    public function edit($id)
+    {
+        $content = Content::find($id);
+        return view('backoffice.about.content.edit', [
+            'content' => $content
+        ]);
+    }
+
     public function create(Request $request)
     {
         $validated = $request->validate([
@@ -68,7 +76,7 @@ class ContentController extends Controller
         $content->save();
 
         Session::flash('content', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Edit konten berhasil');
         
         return redirect('/backoffice/about/content');
     }

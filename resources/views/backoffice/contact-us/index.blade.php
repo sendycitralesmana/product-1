@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Pesan')
+@section('title', '- Pesan')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -26,7 +26,7 @@
 
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Pesan dari public</h3>
+                <h3 class="card-title">Pesan dari publik</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">

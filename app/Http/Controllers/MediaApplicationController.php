@@ -255,5 +255,7 @@ class MediaApplicationController extends Controller
         $mediaApplication = MediaApplication::find($id);
         $pathToFile = public_path('storage/application/media/'. $mediaApplication->url);
         return response()->download($pathToFile);
+
+
     }
 }

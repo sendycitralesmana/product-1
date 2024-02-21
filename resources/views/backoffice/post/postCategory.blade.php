@@ -1,6 +1,6 @@
 @extends('backoffice.layouts/main')
 
-@section('title', 'Berita')
+@section('title', '- Berita')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -114,7 +114,7 @@
                                                     @if ( $post->user->avatar != null )
                                                     <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
                                                     @endif
-                                                    <span class="username"><a href="#">{{ $post->user->name }}</a></span>
+                                                    <span class="username"><p>{{ $post->user->name }}</p></span>
                                                     <span class="description">Menambahkan berita -
                                                         {{ $post->created_at->diffForHumans() }}</span>
                                                 </div>

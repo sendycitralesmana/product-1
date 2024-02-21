@@ -1,26 +1,31 @@
 <?php
 
+use Illuminate\Http\Request;
 use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Password;
 use App\Http\Controllers\ClientController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\ContentController;
 use App\Http\Controllers\FE\HomeController;
+use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FE\PostFEController;
 use App\Http\Controllers\MediaTypeController;
 use App\Http\Controllers\FE\AboutFEController;
 use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\ContactFEController;
+use App\Http\Controllers\FE\GalleryFEController;
 use App\Http\Controllers\FE\ProductFEController;
 use App\Http\Controllers\MediaProductController;
+use App\Http\Controllers\MessageEmailController;
 use App\Http\Controllers\PostCategoryController;
 use App\Http\Controllers\ProductMediaController;
 use App\Http\Controllers\ProductVideoController;
@@ -30,13 +35,10 @@ use App\Http\Controllers\VariantProductController;
 use App\Http\Controllers\ProductCategoryController;
 use App\Http\Controllers\PVSpecificationController;
 use App\Http\Controllers\FE\ApplicationFEController;
-use App\Http\Controllers\FE\GalleryFEController;
-use App\Http\Controllers\FE\GoogleTranslateFEController;
-use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\MediaApplicationController;
-use App\Http\Controllers\MessageEmailController;
 use App\Http\Controllers\VideoApplicationController;
 use App\Http\Controllers\ProductApplicationController;
+use App\Http\Controllers\FE\GoogleTranslateFEController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,9 +51,9 @@ use App\Http\Controllers\ProductApplicationController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('user/index');
-// });
+Route::get('/cek', function () {
+    return view('backoffice.auth.resetPassword');
+});
 
 
 // All role
@@ -62,15 +64,17 @@ Route::group(['middleware' => 'guest'], function(){
     Route::post('/login-process', [AuthController::class, 'loginProcess']);
     Route::get('/register', [AuthController::class, 'register']);
     Route::post('/register-process', [AuthController::class, 'registerProcess']);
+    Route::get('verify/{token}', [AuthController::class, 'verifyEmail']);
+    Route::get('reset/{token}', [AuthController::class, 'resetPassword']);
+    Route::get('/forgot-password', [AuthController::class, 'forgotPassword']);
+    Route::post('/forgot-password-process', [AuthController::class, 'forgotPasswordProcess']);
+    Route::post('/reset-password-process/{token}', [AuthController::class, 'resetPasswordProcess']);
      
 });
 // front end
 
 // google translate
 Route::get('google/translate',[GoogleTranslateFEController::class,'googleTranslate']);
-
-// translate
-// Route::get('translate',[TranslateContr::class,'translate']);
 
 // homepage
 Route::get('/', [HomeController::class, 'index']);
@@ -99,35 +103,6 @@ Route::get('/about', [AboutFEController::class, 'index']);
 // contact
 Route::get('/contact', [ContactFEController::class, 'index']);
 Route::post('/contact/send', [ContactFEController::class, 'send']);
-
-// front end
-
-// ----------------------------------------------------------------------------------------------------------------------------------
-
-// Route::get('/', [HomepageController::class, 'index']);
-
-// Route::get('/application', [HomepageController::class, 'application']);
-// Route::get('/application/{id}', [HomepageController::class, 'applicationDetail']);
-
-// Route::get('/client', [HomepageController::class, 'client']);
-// Route::get('/client/{id}', [HomepageController::class, 'clientDetail']);
-
-// Route::get('/about', [HomepageController::class, 'about']);
-
-// Route::get('/product', [HomepageController::class, 'product']);
-// Route::get('/product/category/{id}', [HomepageController::class, 'productCategory']);
-// Route::get('/product/{id}', [HomepageController::class, 'productDetail']);
-
-// Route::get('/product/variant/{id}', [HomepageController::class, 'variantDetail']);
-
-// Route::get('/post', [HomepageController::class, 'post']);
-// Route::get('/post/category/{id}', [HomepageController::class, 'postCategory']);
-// Route::get('/post/{id}', [HomepageController::class, 'postDetail']);
-
-// Route::post('/post/{id}/comment', [CommentController::class, 'comment']);
-
-// front end
-
 
 Route::group(['middleware' => 'auth'], function(){
 
@@ -178,6 +153,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::put('/backoffice/product/variant/{id}/update', [ProductVariantController::class, 'update']);
         Route::get('/backoffice/product/variant/{id}/delete', [ProductVariantController::class, 'delete']);
         Route::get('/backoffice/product/variant/{id}', [ProductVariantController::class, 'variantByProduct']);
+        Route::get('/backoffice/product/variant/{id}/export-pdf', [ProductVariantController::class, 'exportPdf']);
 
         Route::get('/backoffice/product/specification', [SpecificationController::class, 'index']);
         Route::get('/backoffice/product/specification/add', [SpecificationController::class, 'add']);
@@ -188,8 +164,7 @@ Route::group(['middleware' => 'auth'], function(){
 
         Route::get('/backoffice/product/media', [MediaProductController::class, 'index']);
         Route::get('/backoffice/product/media/add', [MediaProductController::class, 'add']);
-        Route::post('/backoffice/product/media/create', [MediaProductController::class, 'create']);
-        Route::post('/backoffice/product/media/reate', [MediaProductController::class, 'imageCreate']);
+        Route::post('/backoffice/product/media/create', [MediaProductController::class, 'imageCreate']);
         Route::post('/backoffice/product/file/create', [MediaProductController::class, 'fileCreate']);
         Route::post('/backoffice/product/media/createMultiple', [MediaProductController::class, 'createMultiple']);
         Route::get('/backoffice/product/media/{id}/edit', [MediaProductController::class, 'edit']);
@@ -297,6 +272,7 @@ Route::group(['middleware' => 'auth'], function(){
     // Content
     Route::get('/backoffice/about/content', [ContentController::class, 'index']);
     Route::post('/backoffice/about/content/create', [ContentController::class, 'create']);
+    Route::get('/backoffice/about/content/{id}/edit', [ContentController::class, 'edit']);
     Route::put('/backoffice/about/content/{id}/update', [ContentController::class, 'update']);
     Route::get('/backoffice/about/content/{id}/delete', [ContentController::class, 'delete']);
     

@@ -36,11 +36,13 @@ class ProductController extends Controller
         $products = Product::where('product_category_id', $id)->get();
         $productC = Product::get();
         $productCategories = ProductCategory::get();
+        $productCategory = ProductCategory::find($id);
         $applications = Application::get();
         return view('backoffice.product.category', [
             'products' => $products,
             'productC' => $productC,
             'productCategories' => $productCategories,
+            'productCategory' => $productCategory,
             'applications' => $applications
         ]);
     }
@@ -178,18 +180,7 @@ class ProductController extends Controller
     public function applicationByProduct(Request $request, $id) {
         $product = Product::with(['application'])->find($id);
         $applications = Application::get();
-        // if ($request->title) {
-        //     $applications = $applications->where('title', 'like', '%' . $request->title . '%')->get();
-        // }
         $appProducts = ProductApplication::where('product_id', $id)->paginate(6);
-        // foreach ($applications as $key => $value) {
-        //     if ($request->title) {
-        //         $appProducts = ProductApplication::where($value->application->name, 'LIKE', '%' . $request->title . '%')->where('product_id', $id)->paginate(6);
-        //     }
-        // }
-        // if ($request->title) {
-        //     $appProducts = ProductApplication::where($applications->name, 'LIKE', '%' . $request->title . '%')->where('product_id', $id)->paginate(6);
-        // }
 
         return view('backoffice.product.application.applicationByProduct', [
             'product' => $product,

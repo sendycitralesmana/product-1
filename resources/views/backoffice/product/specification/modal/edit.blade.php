@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Specification Edit</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">SEdit spesifikasi</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Nama</label>
                             <input type="text" name="name" class="form-control" value="{{ $specification->name}}" required>
                             {{-- <input type="text" name="name" class="form-control" value="{{ $pvSpecification->name}}" required oninvalid="this.setCustomValidity('Enter User Name Here')"> --}}
                             @if($errors->has('name'))
@@ -25,8 +25,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

@@ -15,9 +15,9 @@ use Illuminate\Support\Facades\Storage;
 class ApplicationController extends Controller
 {
     public function index(Request $request) {
-        $applications = Application::paginate(6);
+        $applications = Application::paginate(9);
         if ($request->title) {
-            $applications = Application::where('name', 'LIKE', '%' . $request->title . '%')->paginate(6);
+            $applications = Application::where('name', 'LIKE', '%' . $request->title . '%')->paginate(9);
         }
         $products = Product::get();
         $clients = Client::get();
@@ -68,7 +68,7 @@ class ApplicationController extends Controller
         }
 
         Session::flash('application', 'success');
-        Session::flash('message', 'Add data success');
+        Session::flash('message', 'Tambah proyek berhasil');
         // return redirect('/product-variant');
         return redirect('/backoffice/application');
     }
@@ -109,7 +109,7 @@ class ApplicationController extends Controller
         $application->save();
 
         Session::flash('application', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Edit proyek berhasil');
         
         return redirect('/backoffice/application/'. $application->id .'/detail');
     }
@@ -163,7 +163,7 @@ class ApplicationController extends Controller
         $application->delete();
 
         Session::flash('application', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'apus proyek berhasil');
         
         return redirect('/backoffice/application');
     }

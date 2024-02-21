@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/application/product/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah produk</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -12,14 +12,14 @@
                 <div class="modal-body">
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
-                            <th>Application</th>
-                            <th>Action</th>
+                            <th>Produk</th>
+                            <th>Aksi</th>
                         </tr>
                         <tr>
                             <td>
                                 <input type="hidden" name="application_id" value="{{ $applications->id }}">
                                 <select name="product_id[]" class="form-control" required>
-                                    <option value="">-- Select product --</option>
+                                    <option value="">-- Pilih produk --</option>
                                     @foreach ($products as $product)
                                         <option value="{{ $product->id }}">{{ $product->name }}</option>
                                     @endforeach
@@ -33,8 +33,8 @@
                     </table>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

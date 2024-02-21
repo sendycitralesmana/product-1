@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Product')
+@section('title', 'Produk')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $applications->name }} Product Data</h1>
+                    <h1>{{ $applications->name }} Produk Data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/application" class="text-secondary">Application</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $applications->id }}/detail" class="text-secondary">Detail</a></li>
-                    <li class="breadcrumb-item active">Product</li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application" class="">Proyek</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $applications->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item active">Produk</li>
                   </ol>
                 </div>
             </div>
@@ -29,11 +29,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $applications->name }} Product</h3>
+                <h3 class="card-title">Produk</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">
-                        <span>+</span>
+                        <span class="fa fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.application.product.modal.add')
@@ -59,20 +59,24 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Option</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($productApps as $product)
                         <tr>
                             <td> {{ $product->product->id }} </td>
+                            <td>
+                                <img src="{{asset('storage/image/product/'.$product->product->thumbnail)}}" alt="" width="80px" height="80px">
+                            </td>
                             <td> {{ $product->product->name }} </td>
                             <td>
                                 <a href="/backoffice/product/{{ $product->product->id }}/detail" class="btn btn-primary btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#productDelete{{ $product->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.application.product.modal.delete')
@@ -83,17 +87,13 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Option</th>
+                            <th>Gambar</th>
+                            <th>Nama</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

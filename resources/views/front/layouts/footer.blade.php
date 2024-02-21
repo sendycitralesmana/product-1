@@ -2,7 +2,7 @@
 <footer class="bg3 p-t-75 p-b-32">
     <div class="container">
         <div class="row">
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            <div class="col-sm-6 col-lg-4 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     {{ __('footer.Tentang kami') }}
                 </h4>
@@ -14,7 +14,7 @@
                 </p>
             </div>
 
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            {{-- <div class="col-sm-6 col-lg-4 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     {{ __('footer.Menu') }}
                 </h4>
@@ -57,9 +57,9 @@
                     </li>
                     
                 </ul>
-            </div>
+            </div> --}}
 
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            <div class="col-sm-6 col-lg-4 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     {{ __('footer.Alamat') }}
                 </h4>
@@ -85,7 +85,7 @@
                 </div> --}}
             </div>
 
-            <div class="col-sm-6 col-lg-3 p-b-50">
+            <div class="col-sm-6 col-lg-4 p-b-50">
                 <h4 class="stext-301 cl0 p-b-30">
                     {{ __('footer.Kontak kami') }}
                 </h4>

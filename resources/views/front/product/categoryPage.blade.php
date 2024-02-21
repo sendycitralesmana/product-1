@@ -20,7 +20,7 @@
                     Filter
                 </div> --}}
 
-                @if ( url()->full() != url( '/product/category/' . $productCategory->id ) )
+                @if ( $name != null )
                 <a href="/product/category/{{ $productCategory->id }}">
                     <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
@@ -44,7 +44,7 @@
                     <div class="bor8 dis-flex p-l-15">
     
                         <input class="mtext-107 cl2 size-114 plh2 p-r-15" type="text" name="name"
-                            placeholder="Search" required>
+                            placeholder="Cari produk" required>
     
                         <button type="submit" class="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                             <i class="zmdi zmdi-search"></i>

@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Produk')
+@section('title', '- Produk')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Produk</li>
+                        <li class="breadcrumb-item active">Produk </li>
                     </ol>
                 </div>
             </div>
@@ -31,7 +31,7 @@
                 <div class="card">
                     <div class="card-header">
 
-                        <h3 class="card-title">Produk Data</h3>
+                        <h3 class="card-title">Data ( Kategori : {{ $productCategory->name }} ) </h3>
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">

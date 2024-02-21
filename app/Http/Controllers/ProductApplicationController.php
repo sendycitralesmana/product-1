@@ -44,8 +44,9 @@ class ProductApplicationController extends Controller
         }
 
         Session::flash('product', 'success');
-        Session::flash('message', 'Add data success');
-        return redirect('/backoffice/application/product/'. $request->application_id);
+        Session::flash('message', 'Tambah produk berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/application/product/'. $request->application_id);
     }
 
     public function deleteApplication($id) {
@@ -53,15 +54,17 @@ class ProductApplicationController extends Controller
         $application->delete();
 
         Session::flash('application', 'success');
-        Session::flash('message', 'Delete data success');
-        return redirect('/backoffice/product/application/'. $application->product_id);
+        Session::flash('message', 'Hapus proyek berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/product/application/'. $application->product_id);
     } 
     
     public function deleteProduct($id) {
         $product = ProductApplication::find($id);
         $product->delete();
 
-        Session::flash('product', 'Hapus proyek berhasil');
+        Session::flash('product', 'success');
+        Session::flash('message', 'Hapus produk berhasil');
         return redirect()->back();
         // return redirect('/backoffice/application/product/'. $product->application_id);
     } 

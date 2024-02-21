@@ -2,7 +2,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Profil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -12,7 +12,7 @@
                     @csrf
                     @method('put')
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label for="exampleFormControlInput1">Nama</label>
                         <input type="name" name="name" class="form-control" value="{{ auth()->user()->name }}" required>
                         @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -26,7 +26,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Avatar</label>
+                        <label>Gambar</label>
                         <input type="hidden" name="oldImage" value="{{ auth()->user()->avatar }}">
                         @if (auth()->user()->avatar)
                             <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" name="oldValue" value="$user->avatar" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">

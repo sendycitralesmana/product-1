@@ -26,38 +26,6 @@
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
 
-        {{-- @if ($product->variant->count() > 1)
-        <div class="row">
-            <div class="col-md-6 col-lg-5 p-b-30">
-
-            </div>
-            <div class="col-md-6 col-lg-7 p-b-30">
-                <form action="/product/{{ $product->id }}">
-
-                    <div class="flex-w flex-r-m p-b-10">
-                        <div class="size-203 flex-c-m respon6 order-2">
-                            <button type="submit" class="btn btn-outline-secondary btn-sm">Select Variant</button>
-                        </div>
-    
-                        <div class="size-204 respon6-next">
-                            <div class="rs1-select2 bor8 bg0">
-                                <select class="js-select2" name="variant" required>
-                                    <option value="">Choose an option</option>
-                                    @foreach ($product->variant as $variant)
-                                    <option value="{{ $variant->id }}">{{ $variant->name }}</option>
-                                    @endforeach
-                                </select>
-                                <div class="dropDownSelect2"></div>
-                            </div>
-                        </div>
-
-                    </div>
-                </form>
-            </div>
-        </div>
-            
-        @endif --}}
-
         <div class="row">
             <div class="col-md-6 col-lg-5 p-b-30">
                 <div class="p-l-25 p-r-30 p-lr-0-lg">
@@ -76,6 +44,7 @@
                                     </a>
                                 </div>
                             </div> --}}
+                            
                             <div class="item-slick3" data-thumb="{{ asset('storage/image/product/' . $product->thumbnail) }}">
                                 <div class="wrap-pic-w pos-relative">
                                     <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}" alt="IMG-PRODUCT">
@@ -253,45 +222,53 @@
                                         </span>
                                     </li>
                                     
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Long
-                                        </span>
+                                    @if ( $productVariant->long != null)
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Long
+                                            </span>
 
-                                        <span class="stext-102 cl6 size-206">
-                                            {{ $productVariant->long }}
-                                        </span>
-                                    </li>
+                                            <span class="stext-102 cl6 size-206">
+                                                {{ $productVariant->long }}
+                                            </span>
+                                        </li>
+                                    @endif
 
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Weight
-                                        </span>
+                                    @if ( $productVariant->weight != null )
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Weight
+                                            </span>
 
-                                        <span class="stext-102 cl6 size-206">
-                                            {{ $productVariant->weight }}
-                                        </span>
-                                    </li>
+                                            <span class="stext-102 cl6 size-206">
+                                                {{ $productVariant->weight }}
+                                            </span>
+                                        </li>
+                                    @endif
 
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Width
-                                        </span>
+                                    @if ( $productVariant->width != null )
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Width
+                                            </span>
 
-                                        <span class="stext-102 cl6 size-206">
-                                            {{ $productVariant->width }}
-                                        </span>
-                                    </li>
+                                            <span class="stext-102 cl6 size-206">
+                                                {{ $productVariant->width }}
+                                            </span>
+                                        </li>
+                                    @endif
 
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Height
-                                        </span>
+                                    @if ( $productVariant->height != null )
+                                        <li class="flex-w flex-t p-b-7">
+                                            <span class="stext-102 cl3 size-205">
+                                                Height
+                                            </span>
 
-                                        <span class="stext-102 cl6 size-206">
-                                            {{ $productVariant->height }}
-                                        </span>
-                                    </li>
+                                            <span class="stext-102 cl6 size-206">
+                                                {{ $productVariant->height }}
+                                            </span>
+                                        </li>
+                                    @endif
 
                                     @foreach ($specifications as $specification)
 
@@ -314,18 +291,12 @@
 
                     @else
 
-                    <div class="tab-pane fade" id="information" role="tabpanel">
+                    <div class="tab-pane fade show active" id="information" role="tabpanel">
                         <div class="row">
-                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                <ul class="p-lr-28 p-lr-15-sm">
-                                    
-                                    <li class="flex-w flex-t p-b-7">
-                                        <span class="stext-102 cl3 size-205">
-                                            Tidak ada specification detail
-                                        </span>
-                                    </li>
-
-                                </ul>
+                            <div class="col-md-12 m-lr-auto">
+                                <h4 class="text-center">
+                                    <b>-- Tidak ada spesifikasi detail --</b> 
+                                  </h4>
                             </div>
                         </div>
                     </div>
@@ -335,29 +306,36 @@
                     <div class="tab-pane fade" id="reviews" role="tabpanel">
 
                         <div class="row">
-                            @foreach ($files as $file)
-                            {{-- <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="40px" width="40px"> --}}
-                            <div class="col-md-4 m-lr-auto">
-                                <div class="card text-center">
-                                    {{-- <div class="card-header">
-                                    </div> --}}
-                                    <div class="card-body">
-                                        <div class="card-img">
-                                            <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="50px" width="50px">
-                                        </div>
-                                        <div class="card-title">
-                                            {{ $file->name }}
-                                        </div>
-                                        <div>
-                                            <a href="/product/file/download/{{ $file->id }}" class="btn text-white btn-sm" style="background-color: #ed7a07"><i class="fa fa-download"></i> Unduh</a>
-                                        </div>
-                                    </div>
-                                    {{-- <div class="card-footer text-muted">
-                                      Unduh
-                                    </div> --}}
+                            @if ( $files->count() == 0 )
+                                <div class="col-md-12 m-lr-auto">
+                                    <h4 class="text-center">
+                                        <b>-- Tidak ada berkas --</b> 
+                                    </h4>
                                 </div>
-                            </div>
-                            @endforeach
+                            @else
+                                @foreach ($files as $file)
+                                <div class="col-md-4 m-lr-auto">
+                                    <div class="card text-center">
+                                        {{-- <div class="card-header">
+                                        </div> --}}
+                                        <div class="card-body">
+                                            <div class="card-img">
+                                                <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="50px" width="50px">
+                                            </div>
+                                            <div class="card-title">
+                                                {{ $file->name }}
+                                            </div>
+                                            <div>
+                                                <a href="/product/file/download/{{ $file->id }}" class="btn text-white btn-sm" style="background-color: #ed7a07"><i class="fa fa-download"></i> Unduh</a>
+                                            </div>
+                                        </div>
+                                        {{-- <div class="card-footer text-muted">
+                                        Unduh
+                                        </div> --}}
+                                    </div>
+                                </div>
+                                @endforeach
+                            @endif
                         </div>
 
                         {{-- <div class="row">

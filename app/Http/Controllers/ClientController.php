@@ -10,12 +10,15 @@ use Illuminate\Support\Facades\Storage;
 
 class ClientController extends Controller
 {
-    public function index() {
-        $clients = Client::get();
+    public function index(Request $request) {
+        $clients = Client::paginate(12);
+        if ($request->search) {
+            $clients = Client::where('name', 'like', '%' . $request->search . '%')->paginate(12);
+        }
 
         return view('backoffice.client.index', [
-            'clients' => $clients
-            ,
+            'clients' => $clients,
+            'search' => $request->search
         ]);
     }
 

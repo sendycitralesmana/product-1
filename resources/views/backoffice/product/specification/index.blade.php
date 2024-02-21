@@ -1,6 +1,6 @@
 @extends('backoffice.layouts/main')
 
-@section('title', 'Specification')
+@section('title', 'Spesifikasi')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -9,8 +9,13 @@
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
-                <div class="col-sm-12 text-center">
-                    <h1>Specification Data</h1>
+                <div class="col-sm-6">
+                    <h1>Spesifikasi Data</h1>
+                </div>
+                <div class="col-sm-6">
+                  <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item active">Spesifikasi</li>
+                  </ol>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -22,7 +27,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Specification</h3>
+                <h3 class="card-title">Spesifikasi</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
@@ -55,10 +60,10 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
+                            <th>Nama</th>
                             @if (auth()->user()->role_id == 2)
 
-                            <th>Option</th>
+                            <th>Opsi</th>
                             @endif
                         </tr>
                     </thead>
@@ -89,17 +94,12 @@
                             <th>Nama</th>
                             @if (auth()->user()->role_id == 2)
 
-                            <th>Option</th>
+                            <th>Opsi</th>
                             @endif
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

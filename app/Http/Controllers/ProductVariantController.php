@@ -6,6 +6,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductVariant;
 use App\Models\PVSpecification;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
 class ProductVariantController extends Controller
@@ -115,6 +116,16 @@ class ProductVariantController extends Controller
             'product' => $product,
             'productVariants' => $productVariants
         ]);
+    }
+
+    public function exportPdf($id) 
+    {
+        $productVariant = ProductVariant::find($id);
+
+        $pdf = Pdf::loadView('backoffice.product.variant.export.pdf', [
+            'productVariant' => $productVariant
+        ]);
+        return $pdf->stream($productVariant->name . '.pdf');
     }
 
 }

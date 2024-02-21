@@ -27,7 +27,7 @@
     <div class="login-box">
         <div class="">
             <h1 class="text-center">
-                <b>MASUK</b>
+                <b>LUPA PASSWORD</b>
             </h1>
         </div>
         <div class="card">
@@ -36,20 +36,21 @@
                 <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
             </div>
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Masuk untuk mengakses halaman admin</p>
-                @if(session('status'))
-                <div class="alert alert-success">
-                    <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
-                    <h4 class="message-head">{{ session('message') }}</h4>
-                </div>
+                <p class="login-box-msg">
+                    Anda lupa password anda? Di sini anda dapat dengan mudah mengambil password baru.</p>
+                @if(session()->has('status'))
+                    <div class="alert alert-success">
+                        <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
+                        <h4 class="message-head">{{ session()->get('message') }}</h4>
+                    </div>
                 @endif
-                @if(session('register'))
-                <div class="alert alert-success">
-                    <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
-                    <h4 class="message-head">{{ session('message') }}</h4>
-                </div>
+                @if(session()->has('email'))
+                    <div class="alert alert-danger">
+                        <button type="button" class="btn btn-danger btn-sm close" data-dismiss="alert" sty>&times;</button>
+                        <h4 class="message-head">{{ session()->get('message') }}</h4>
+                    </div>
                 @endif
-                <form action="/login-process" method="POST">
+                <form action="/forgot-password-process" method="POST">
                     {{ csrf_field() }}
                     @if($errors->has('email'))
                         <span class="help-block text-danger mb-4">{{ $errors->first('email') }}</span>
@@ -63,33 +64,19 @@
                         </div>
                     </div>
                     
-                    @if($errors->has('password'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('password') }}</span>
-                    @endif
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
-                    </div>
-                    
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block" style="color: aliceblue">
-                                <i class="fa fa-arrow-right"></i> <b>Masuk</b>     
+                                <i class="fa fa-paper-plane"></i> <b>Meminta password baru</b>     
                             </button>
                         </div>
                         <div class="col-12 text-center mt-2">
-                            Belum punya akun? <a href="/register" class=""> <b>Daftar</b> </a>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class=" text-right" >
-                            <a href="/forgot-password" > <i class="fa fa-info"></i> Lupa password</a>
+                            <div class="d-flex justify-content-between">
+                                <a href="/login" class="btn btn-outline-primary btn-block m-1"> <i class="fa fa-arrow-right"></i> Masuk</a>
+                                <a href="/register" class="btn btn-outline-primary btn-block m-1"> <i class="fa fa-user-plus"></i> Daftar</a>
+                            </div>
+                            {{-- Belum punya akun? <a href="/register" class=""> <b>Daftar</b> </a> --}}
                         </div>
                     </div>
                 </form>

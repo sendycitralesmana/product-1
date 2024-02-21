@@ -19,17 +19,24 @@
     <link rel="stylesheet" href="{{asset('assets/adminlte/dist/css/adminlte.min.css')}}">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
+
+    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="login-logo">
-            <a href="../../index2.html">Register</a>
+        <div class="">
+            <h1 class="text-center">
+                <b>DAFTAR</b>
+            </h1>
         </div>
-        <!-- /.login-logo -->
         <div class="card">
+            {{-- <img src="{{asset('images/banner.jpg')}}" class="img-fluid" alt=""> --}}
+            <div class="mr-4 mt-3">
+                <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
+            </div>
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Sign up to start your session</p>
+                <p class="login-box-msg">Daftar untuk membuat akun</p>
                 @if(session('status'))
                 <div class="alert alert-danger">
                     <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
@@ -38,16 +45,19 @@
                 @endif
                 <form action="/register-process" method="POST">
                     {{ csrf_field() }}
+                    @if($errors->has('name'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('name') }}</span>
+                    @endif
                     <div class="input-group mb-3">
-                        <input type="text" name="name" class="form-control" placeholder="Name" value="{{ old('name') }}">
+                        <input type="text" name="name" class="form-control" placeholder="Nama" value="{{ old('name') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
+                                <span class="fas fa-user"></span>
                             </div>
                         </div>
                     </div>
-                    @if($errors->has('name'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('name') }}</span>
+                    @if($errors->has('email'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('email') }}</span>
                     @endif
                     <div class="input-group mb-3">
                         <input type="email" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
@@ -57,8 +67,8 @@
                             </div>
                         </div>
                     </div>
-                    @if($errors->has('email'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('email') }}</span>
+                    @if($errors->has('password'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('password') }}</span>
                     @endif
                     <div class="input-group mb-3">
                         <input type="password" name="password" class="form-control" placeholder="Password">
@@ -68,28 +78,27 @@
                             </div>
                         </div>
                     </div>
-                    @if($errors->has('password'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('password') }}</span>
+                    @if($errors->has('password_confirmation'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('password_confirmation') }}</span>
                     @endif
                     <div class="input-group mb-3">
-                        <input type="password" name="password_confirmation" class="form-control" placeholder="Password Confirmation">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi password">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
                             </div>
                         </div>
                     </div>
-                    @if($errors->has('password_confirmation'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('password_confirmation') }}</span>
-                    @endif
+                    
                     <div class="row">
                         <!-- /.col -->
                         <div class="col-12">
-                            <button type="submit" class="btn btn-primary btn-block" style="color: aliceblue">Sign
-                                Up</button>
+                            <button type="submit" class="btn btn-primary btn-block" style="color: aliceblue">
+                                <i class="fas fa-user-plus"></i> <b>Daftar</b>     
+                            </button>
                         </div>
-                        <div class="col-12 text-center">
-                            Have account? <a href="/login" class="">Login</a>
+                        <div class="col-12 text-center mt-2">
+                            Sudah punya akun? <a href="/login" class=""> <b>Masuk</b> </a>
                         </div>
                         <!-- /.col -->
                     </div>

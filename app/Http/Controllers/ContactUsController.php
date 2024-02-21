@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Session;
 class ContactUsController extends Controller
 {
     public function index () {
-        $messages = Message::paginate(6);
+        $messages = Message::orderBy('id', 'desc')->paginate(12);
         return view('backoffice.contact-us.index', [
             'messages' => $messages
         ]);

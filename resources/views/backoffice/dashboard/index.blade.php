@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Dashboard')
+@section('title', '- Beranda')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Dashboard</h1>
+                    <h1>Beranda</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item active">Dashboard</li>
+                        <li class="breadcrumb-item active">Beranda</li>
                     </ol>
                 </div>
             </div>
@@ -35,9 +35,11 @@
                         <p>Produk</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-bag"></i>
+                        <i class="fa fa-list"></i>
                     </div>
-                    <a href="/backoffice/product" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @if ( auth()->user()->role_id == 2 && $products->count() > 0 )
+                        <a href="/backoffice/product" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
                 </div>
             </div>
             <!-- ./col -->
@@ -50,9 +52,11 @@
                         <p>Proyek</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-stats-bars"></i>
+                        <i class="fa fa-tasks"></i>
                     </div>
-                    <a href="/backoffice/application" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @if ( auth()->user()->role_id == 2 && $applications->count() > 0 )
+                        <a href="/backoffice/application" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
                 </div>
             </div>
             <!-- ./col -->
@@ -62,12 +66,14 @@
                     <div class="inner">
                         <h3>{{ $posts->count() }}</h3>
 
-                        <p>Berita</p>
+                        <p>Artikel</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-person-add"></i>
+                        <i class="fa fa-newspaper"></i>
                     </div>
-                    <a href="/backoffice/post" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @if ( auth()->user()->role_id == 2 && $posts->count() > 0 )
+                        <a href="/backoffice/post" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
                 </div>
             </div>
             <!-- ./col -->
@@ -75,17 +81,52 @@
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
+                        <h3>{{ $galleries->count() }}</h3>
+
+                        <p>Galeri</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-image"></i>
+                    </div>
+                    @if ( auth()->user()->role_id == 2 && $galleries->count() > 0 )
+                        <a href="/backoffice/gallery" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-warning">
+                    <div class="inner">
                         <h3>{{ $clients->count() }}</h3>
 
                         <p>Klien</p>
                     </div>
                     <div class="icon">
-                        <i class="ion ion-pie-graph"></i>
+                        <i class="fa fa-users"></i>
                     </div>
-                    <a href="/backoffice/client" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @if ( auth()->user()->role_id == 2 && $clients->count() > 0 )
+                        <a href="/backoffice/client" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
                 </div>
             </div>
-            <!-- ./col -->
+
+            <div class="col-lg-3 col-6">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{ $feedbacks->count() }}</h3>
+
+                        <p>Pesan</p>
+                    </div>
+                    <div class="icon">
+                        <i class="fa fa-envelope"></i>
+                    </div>
+                    @if ( auth()->user()->role_id == 2 && $feedbacks->count() > 0 )
+                        <a href="/backoffice/feedback" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                    @endif
+                </div>
+            </div>
         </div>
         <!-- /.row -->
 

@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Product Video')
+@section('title', 'Produk video')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} Video Data</h1>
+                    <h1>{{ $product->name }} Video data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="text-secondary">Product</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="text-secondary">Detail</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
                     <li class="breadcrumb-item active">Video</li>
                   </ol>
                 </div>
@@ -29,7 +29,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">{{ $product->name }} Video</h3>
+                <h3 class="card-title">Video</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                         <!-- Button trigger modal -->

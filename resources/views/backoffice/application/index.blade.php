@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'Proyek')
+@section('title', '- Proyek')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -28,7 +28,7 @@
         <div class="card">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Proyek Data</h3>
+                    <h3 class="card-title">Data</h3>
                 </div>
                 <div class="d-flex justify-content-between mt-2">
                     <div>
@@ -41,7 +41,7 @@
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
-                                @if ( url()->full() != url('/backoffice/application') )
+                                @if ( $title != null )
                                 <div class="input-group-append">
                                     <a href="/backoffice/application" class="btn btn-outline-secondary">Lihat semua</a>
                                 </div>
@@ -81,7 +81,7 @@
                 </script>
                 @endif
 
-                @if ( url()->full() != url('/backoffice/application') )
+                @if ( $title != null )
                     <div class="text-center">
                         <p>
                             Hasil pencarian dari: <b>{{ $title }}</b>

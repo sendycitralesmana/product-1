@@ -60,39 +60,50 @@
                 </script>
                 @endif
 
-                <div class="row">
-                    @foreach ($images as $image)
-                    <div class="col-md-3 gallery">
-                        <div class="card">
-                            <div class="">
-                                <a href="{{asset('storage/product/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
-                                    <img src="{{asset('storage/product/media/'.$image->url)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 200px; width: 100%">
-                                </a>
-                            </div>
-                            <div class="p-1">
-                                {{ $image->name }}
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaEdit{{$image->id}}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                @include('backoffice.product.media.modal.edit')
-                                <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaDelete{{$image->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.product.media.modal.delete')
-                            </div>
+                @if ($images->count() == 0)
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4 class="text-center">
+                                <b>-- Tidak ada gambar --</b>
+                            </h4>
                         </div>
                     </div>
-                    @endforeach
-                </div>
+                @else
+                    <div class="row">
+                        @foreach ($images as $image)
+                        <div class="col-md-3 gallery">
+                            <div class="card">
+                                <div class="">
+                                    <a href="{{asset('storage/product/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
+                                        <img src="{{asset('storage/product/media/'.$image->url)}}" alt="" 
+                                        class="img-fluid rounded" style="height: 200px; width: 100%">
+                                    </a>
+                                </div>
+                                <div class="p-1">
+                                    {{ $image->name }}
+                                </div>
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
+                                        data-target="#mediaEdit{{$image->id}}">
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                    </button>
+                                    @include('backoffice.product.media.modal.edit')
+                                    <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
+                                        data-target="#mediaDelete{{$image->id}}">
+                                        <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                    </button>
+                                    @include('backoffice.product.media.modal.delete')
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach
+                    </div>
 
-                <div class="p-3">
-                    {{ $images->links() }}
-                </div>
+                    <div class="p-3">
+                        {{ $images->links() }}
+                    </div>
+                @endif
+
 
                 {{-- <table id="example1" class="table table-bordered table-striped">
                     <thead>
@@ -150,11 +161,6 @@
                     </tfoot>
                 </table> --}}
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

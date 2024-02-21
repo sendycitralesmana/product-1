@@ -239,7 +239,11 @@ class MediaProductController extends Controller
     public function mediaByProduct($id) {
         $product = Product::find($id);
         $mediaTypes = MediaType::get();
-        $images = MediaProduct::where('product_id', $id)->where('type_id', 1)->with(['product'])->paginate(12);
+        $images = MediaProduct::where('product_id', $id)
+                            ->where('type_id', 1)
+                            ->orderBy('id', 'desc')
+                            ->with(['product'])
+                            ->paginate(12);
         return view('backoffice.product.media.mediaByProduct', [
             'product' => $product,
             'mediaTypes' => $mediaTypes,

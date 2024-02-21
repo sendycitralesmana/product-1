@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} Proyek Data</h1>
+                    <h1>{{ $product->name }} proyek data</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -29,40 +29,18 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <div class="d-flex justify-content-between">
-                    <h3 class="card-title">Proyek</h3>
-                </div>
-                <div class="d-flex justify-content-between mt-2">
-                    <div>
-                        <form class="form-inline" action="/backoffice/product/application/{{ $product->id }}">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control" type="text"
-                                    placeholder="Cari judul" name="title" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                                @if ( url()->full() != url('/backoffice/product/application/'. $product->id) )
-                                <div class="input-group-append">
-                                    <a href="/backoffice/application" class="btn btn-outline-secondary">Lihat semua</a>
-                                </div>
-                                @endif
-                            </div>
-                        </form>
-                    </div>
-                    <div class="card-tools">
-                        @if (auth()->user()->role_id == 2)
-                        <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
-                            <span>+</span>
-                        </button>
-                        @include('backoffice.product.application.modal.add')
-                        @endif
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                            title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                    </div>
+                <h3 class="card-title">Proyek</h3>
+                <div class="card-tools">
+                    @if (auth()->user()->role_id == 2)
+                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
+                        <span>+</span>
+                    </button>
+                    @include('backoffice.product.application.modal.add')
+                    @endif
+                    <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                        title="Collapse">
+                        <i class="fas fa-minus"></i>
+                    </button>
                 </div>
                 
             </div>
@@ -74,7 +52,7 @@
                 </div>
                 @endif
 
-                @if ( url()->full() != url('/backoffice/product/application/'. $product->id ) )
+                {{-- @if ( url()->full() != url('/backoffice/product/application/'. $product->id ) )
                     <div class="text-center">
                         <p>
                             Hasil pencarian dari: <b>{{ $title }}</b>
@@ -89,6 +67,7 @@
                     </div>
                 @endif
                 <div class="row">
+                    
                     @foreach ($appProducts as $application)
                     <div class="col-md-4 application">
                         <div class="card">
@@ -132,29 +111,46 @@
 
                 <div class="p-3">
                     {{ $appProducts->links() }}
-                </div>
+                </div> --}}
 
-                {{-- <table id="example1" class="table table-bordered table-striped">
+                <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Area</th>
-                            <th>Time</th>
-                            <th>Option</th>
+                            <th>Gambar</th>
+                            <th>Proyek</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($appProducts as $application)
                         <tr>
                             <td> {{ $application->id }} </td>
-                            <td> {{ $application->application->name }} </td>
-                            <td> {{ $application->application->area }} </td>
-                            <td> {{ $application->application->time }} </td>
+                            <td>
+                                <img src="{{asset('storage/image/application/'.$application->application->thumbnail)}}" alt="" style="height: 80px; width: 80px" >
+                            </td>
+                            <td>
+                                <b style="overflow: hidden;
+                                text-overflow: ellipsis;
+                                -webkit-line-clamp: 1;
+                                display: -webkit-box;
+                                -webkit-box-orient: vertical;">
+                                    {{ $application->application->name }}
+                                </b>
+                                <div style="overflow: hidden;
+                                    text-overflow: ellipsis;
+                                    -webkit-line-clamp: 2;
+                                    display: -webkit-box;
+                                    -webkit-box-orient: vertical;">
+                                    {!! html_entity_decode($application->application->description) !!}
+                                </div>
+                             </td>
+                            {{-- <td> {{ $application->application->area }} </td>
+                            <td> {{ $application->application->time }} </td> --}}
                             <td>
                                 @if (auth()->user()->role_id == 2)
-                                <a href="/backoffice/application/{{ $application->application->id }}/detail" class="btn btn-info btn-sm">Detail</a>
-                                <button title="Delete" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
+                                <a href="/backoffice/application/{{ $application->application->id }}/detail" class="btn btn-info btn-sm m-1"> <i class="fa fa-eye"></i> Detail</a>
+                                <button title="Delete" type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
                                     <span><i class="ion ion-android-delete"></i> Delete</span>
                                 </button>
                                 @include('backoffice.product.application.modal.delete')
@@ -166,13 +162,12 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Area</th>
-                            <th>Time</th>
-                            <th>Option</th>
+                            <th>Gambar</th>
+                            <th>Proyek</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
-                </table> --}}
+                </table>
             </div>
         </div>
         <!-- /.card -->

@@ -27,7 +27,7 @@
     <div class="login-box">
         <div class="">
             <h1 class="text-center">
-                <b>MASUK</b>
+                <b>RESET PASSWORD</b>
             </h1>
         </div>
         <div class="card">
@@ -36,38 +36,33 @@
                 <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
             </div>
             <div class="card-body login-card-body">
-                <p class="login-box-msg">Masuk untuk mengakses halaman admin</p>
-                @if(session('status'))
-                <div class="alert alert-success">
-                    <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
-                    <h4 class="message-head">{{ session('message') }}</h4>
-                </div>
-                @endif
-                @if(session('register'))
-                <div class="alert alert-success">
-                    <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
-                    <h4 class="message-head">{{ session('message') }}</h4>
-                </div>
-                @endif
-                <form action="/login-process" method="POST">
-                    {{ csrf_field() }}
-                    @if($errors->has('email'))
-                        <span class="help-block text-danger mb-4">{{ $errors->first('email') }}</span>
-                    @endif
-                    <div class="input-group mb-3">
-                        <input type="text" name="email" class="form-control" placeholder="Email" value="{{ old('email') }}">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
+                <p class="login-box-msg">
+                    Silahkan reset password anda    
+                </p>
+                @if(session()->has('status'))
+                    <div class="alert alert-success">
+                        <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>
+                        <h4 class="message-head">{{ session()->get('message') }}</h4>
                     </div>
-                    
+                @endif
+                <form action="/reset-password-process/{{ $user->remember_token }}" method="POST">
+                    {{ csrf_field() }}
                     @if($errors->has('password'))
                         <span class="help-block text-danger mb-4">{{ $errors->first('password') }}</span>
                     @endif
                     <div class="input-group mb-3">
-                        <input type="password" name="password" class="form-control" placeholder="Password">
+                        <input type="password" name="password" class="form-control" placeholder="Password" value="{{ old('password') }}">
+                        <div class="input-group-append">
+                            <div class="input-group-text">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                        </div>
+                    </div>
+                    @if($errors->has('password_confirmation'))
+                        <span class="help-block text-danger mb-4">{{ $errors->first('password_confirmation') }}</span>
+                    @endif
+                    <div class="input-group mb-3">
+                        <input type="password" name="password_confirmation" class="form-control" placeholder="Konfirmasi password" value="{{ old('confirmation_password') }}">
                         <div class="input-group-append">
                             <div class="input-group-text">
                                 <span class="fas fa-lock"></span>
@@ -79,17 +74,8 @@
                         <!-- /.col -->
                         <div class="col-12">
                             <button type="submit" class="btn btn-primary btn-block" style="color: aliceblue">
-                                <i class="fa fa-arrow-right"></i> <b>Masuk</b>     
+                                <i class="fa fa-paper-plane"></i> <b>Reset</b>     
                             </button>
-                        </div>
-                        <div class="col-12 text-center mt-2">
-                            Belum punya akun? <a href="/register" class=""> <b>Daftar</b> </a>
-                            <hr>
-                        </div>
-                    </div>
-                    <div class="">
-                        <div class=" text-right" >
-                            <a href="/forgot-password" > <i class="fa fa-info"></i> Lupa password</a>
                         </div>
                     </div>
                 </form>

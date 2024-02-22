@@ -111,7 +111,7 @@
                                 <div class="card text-center">
                                         <div class="card-body">
                                             <div class="card-img">
-                                                <img src="{{ asset('storage/image/client/' . $application->client->thumbnail) }}" alt="" class="img-fluid" height="100px" width="100px">
+                                                <img src="{{ asset('storage/image/client/' . $application->client->image) }}" alt="" class="img-fluid" height="100px" width="100px">
                                             </div>
                                             <div class="card-title">
                                                 {{ $application->client->name }}

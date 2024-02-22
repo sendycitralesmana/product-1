@@ -40,14 +40,14 @@
                     @endif
                 </div>
                 <div class="slider-nav mt-3">
-                    <div style="">
+                    <div style="margin-left:10px; margin-right:10px">
                         <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="" 
                             style="height: 100px; display: block; margin-left: auto; margin-right: auto;" 
                             class="img-fluid rounded">
                     </div>
                     @if ( $images->count() > 0 )
                         @foreach ($images as $image)
-                            <div style="">
+                            <div style="margin-left:10px; margin-right:10px">
                                 <img src="{{ asset('storage/application/media/'.$image->url) }}" alt=""
                                     style="height: 100px; display: block; margin-left: auto; margin-right: auto;"
                                     class="img-fluid rounded">    

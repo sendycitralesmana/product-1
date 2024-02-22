@@ -75,10 +75,26 @@
                             <td> {{ $productVariant->id }} </td>
                             <td> {{ $productVariant->name }} </td>
                             <td> Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
-                            <td> {{ $productVariant->long }} </td>
-                            <td> {{ $productVariant->weight }} </td>
-                            <td> {{ $productVariant->width }} </td>
-                            <td> {{ $productVariant->height }} </td>
+                            @if ( $productVariant->long == null )
+                                <td> tidak ada </td>
+                            @else
+                                <td> {{ $productVariant->long }} </td>
+                            @endif
+                            @if ( $productVariant->weight == null )
+                                <td> tidak ada </td>
+                            @else
+                                <td> {{ $productVariant->weight }} </td>
+                            @endif
+                            @if ( $productVariant->width == null )
+                                <td> tidak ada </td>
+                            @else
+                                <td> {{ $productVariant->width }} </td>
+                            @endif
+                            @if ( $productVariant->height == null )
+                                <td> tidak ada </td>
+                            @else
+                                <td> {{ $productVariant->height }} </td>
+                            @endif
                             <td>
                                 <a href="/backoffice/product/variant/{{ $productVariant->id }}/export-pdf" 
                                     class="btn btn-outline-danger btn-sm m-1">

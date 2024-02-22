@@ -28,7 +28,8 @@
                 <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
                     <div class="how-bor1 ">
                         <div class="hov-img0">
-                            <img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" alt="IMG" class="img-fluid">
+                            {{-- <img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" alt="IMG" class="img-fluid"> --}}
+                            <img src="{{ asset('images/tentang.jpg') }}" class="img-fluid" alt="">
                         </div>
                     </div>
                 </div>

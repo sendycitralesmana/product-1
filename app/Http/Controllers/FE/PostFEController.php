@@ -25,7 +25,8 @@ class PostFEController extends Controller
             'postC' => $postC,
             'posts' => $posts,
             'postCategories' => $postCategories,
-            'productCategories' => $productCategories
+            'productCategories' => $productCategories,
+            'title' => $request->title
         ]);
     }
 

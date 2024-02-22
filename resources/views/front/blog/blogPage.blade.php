@@ -18,6 +18,9 @@
                 <div class="p-r-45 p-r-0-lg">
 
                     @if ($posts->count() == 0)
+                        <div>
+                            <p>Hasil pencarian dari : <b>{{ $title }}</b> </p>
+                        </div>
                         <div class="text-center">
                             <h4>
                                 <b>-- Tidak ada data --</b>

@@ -1,14 +1,21 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="/backoffice/dashboard" class="brand-text text-center ">
+    {{-- <a href="/backoffice/dashboard" class="brand-text text-center ">
         <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image mt-2" style="opacity: .8">
-    </a>
+    </a> --}}
+    <a href="/backoffice/dashboard" class="brand-link">
+        <img src="{{ asset('images/logo.webp') }}"
+             alt="AdminLTE Logo"
+             class="brand-image img-circle elevation-3"
+             style="opacity: .8">
+        <span class="brand-text font-weight-light">Matahari LED</span>
+      </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3  ">
+        {{-- <div class="user-panel mt-3 pb-3  ">
             <div class="info text-center">
                 <p href="#" class="d-block text-white" style="text-transform: uppercase">
                     @if (auth()->user())
@@ -16,7 +23,16 @@
                     @endif
                 </p>
             </div>
-        </div>
+        </div> --}}
+        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+            <div class="image">
+              <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" class="img-circle elevation-2" alt="User Image"
+              style="height: 35px; width: 35px">
+            </div>
+            <div class="info">
+              <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+            </div>
+          </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -33,8 +49,8 @@
                 @if (auth()->user()->role_id == 1)
                 <li class="nav-item">
                     <a href="/backoffice/user" class="nav-link {{ request()->is('backoffice/user') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-th"></i>
-                        <p>User</p>
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>Akun</p>
                     </a>
                 </li>
                 @endif

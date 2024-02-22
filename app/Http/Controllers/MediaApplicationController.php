@@ -242,6 +242,7 @@ class MediaApplicationController extends Controller
     public function delete($id)
     {
         $mediaApplication = MediaApplication::find($id);
+        // dd($mediaApplication);
         Storage::delete('application/media/' . $mediaApplication->url);
         $mediaApplication->delete();
 

@@ -1,5 +1,5 @@
 <div class="modal fade" id="galleryAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+    <div class="modal-dialog modal-md">
         <div class="modal-content">
             <form role="form" method="POST" action="/backoffice/gallery/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
@@ -12,17 +12,17 @@
                 <div class="modal-body">
                     <table class="table table-bordered" id="dynamicAddRemoveVariant">
                         <tr>
-                            <th>Nama</th>
+                            {{-- <th>Nama</th> --}}
                             <th>Gambar</th>
                             <th>Opsi</th>
                         </tr>
                         <tr>
-                            <td>
+                            {{-- <td>
                                 <input type="text" name="name[]" class="form-control" placeholder="Nama" required>
                                 @if($errors->has('name[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
                                 @endif
-                            </td>
+                            </td> --}}
                             <td>
                                 <input type="file" accept="image/*" name="image[]" id="image" onchange="previewImg()" class="form-control" required>
                                 @if($errors->has('image[]'))
@@ -55,12 +55,6 @@
 
         $("#dynamicAddRemoveVariant").append(
             `<tr>
-                            <td>
-                                <input type="text" name="name[]" class="form-control" placeholder="Nama" required>
-                                @if($errors->has('name[]'))
-                                <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
-                                @endif
-                            </td>
                             <td>
                                 <input type="file" accept="image/*" name="image[]" class="form-control" required>
                                 @if($errors->has('image[]'))

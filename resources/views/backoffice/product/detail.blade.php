@@ -28,7 +28,7 @@
         {{-- Product Start --}}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Produk</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -85,20 +85,22 @@
                             </div>
                             <!-- /.card-header -->
                             <div class="card-body">
-                                @if ( $product->thumbnail != null )
-                                    <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="">
-                                @else
-                                    <img src="{{ asset('images/default.png') }}" alt="">
-                                @endif
-                                {{-- <h4 class="mt-3"> {{ $post->title }} </h4> --}}
-                                <p> {!! html_entity_decode($product->description) !!} </p>
-                                {{-- <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
-                                --}}
-                            </div>
-                            <!-- /.card-body -->
+                                <div class="text-center">
+                                    @if ( $product->thumbnail != null )
+                                        <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" class="img-fluid rounded" style="height: 300px">
+                                    @else
+                                        <img src="{{ asset('images/default.png') }}" alt="" class="img-fluid rounded" style="height: 300px">
+                                    @endif
+                                </div>
 
-                            <!-- /.card-footer -->
-                            <div class="card-footer">
+                                @if ( $product->description == null )
+                                    <div class="mt-2">
+                                        <h4 class="text-center">
+                                            <b>-- Tidak ada deskripsi --</b>
+                                        </h4>
+                                    </div>
+                                @endif
+                                <div> {!! html_entity_decode($product->description) !!} </div>
                             </div>
 
                         </div>
@@ -161,7 +163,7 @@
                                     <div class="d-flex justify-content-between">
                                         <a href="/backoffice/product/variant/{{ $product->id }}">
                                             <div class="">
-                                                Variant
+                                                Varian
                                             </div>
                                         </a>
                                         <div class="">

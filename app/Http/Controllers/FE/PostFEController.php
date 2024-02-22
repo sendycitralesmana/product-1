@@ -51,14 +51,15 @@ class PostFEController extends Controller
             'posts' => $posts,
             'postCategory' => $postCategory,
             'postCategories' => $postCategories,
-            'productCategories' => $productCategories
+            'productCategories' => $productCategories,
+            'title' => $request->title
         ]);
     }
 
     public function detail($id) {
         $post = Post::with(['user', 'category'])->find($id);
         $postC = Post::with(['category'])->get();
-        $postRecents = Post::orderBy('id', 'desc')->take(3)->get();
+        $postRecents = Post::orderBy('id', 'desc')->take(5)->get();
         $postCategories = PostCategory::get();
         $productCategories = ProductCategory::get();
         return view('front.blog.detailPage', [

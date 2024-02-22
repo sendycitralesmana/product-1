@@ -1,6 +1,6 @@
 @extends('backoffice/layouts/main')
 
-@section('title', 'User')
+@section('title', '- User')
 
 @section('content')
 <!-- Content Wrapper. Contains page content -->
@@ -10,12 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>User</h1>
+                    <h1>Akun Data</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item active">User</li>
+                        <li class="breadcrumb-item active">Akun</li>
                     </ol>
                 </div>
             </div>
@@ -28,12 +27,12 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">User Data</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 1)
                         <!-- Button trigger modal -->
                         <button title="Add Variant" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#userAdd">
-                            <span>+</span>
+                            <span class="fa fa-plus"></span>
                         </button>
                         {{-- Modal --}}
                         @include('backoffice.user.modal.add')
@@ -60,7 +59,7 @@
                     <div class="alert alert-danger" role="alert">
                         <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
                         @foreach ($errors->all() as $error)
-                            Update user failed ( {{ $error }} )
+                            {{ $error }} <br>
                         @endforeach
                     </div>
                 @endif
@@ -68,11 +67,11 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Avatar</th>
+                            <th>Gambar</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>Option</th>
+                            <th>Peran</th>
+                            <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -113,20 +112,15 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Avatar</th>
+                            <th>Gambar</th>
                             <th>Nama</th>
                             <th>Email</th>
-                            <th>Role</th>
-                            <th>Option</th>
+                            <th>Peran</th>
+                            <th>Opsi</th>
                         </tr>
                     </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

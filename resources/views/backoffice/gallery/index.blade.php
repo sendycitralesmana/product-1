@@ -27,12 +27,12 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Data Galeri</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#galleryAdd">
-                        <span>+</span>
+                    <button type="button" title="Tambah data" class="btn btn-default" data-toggle="modal" data-target="#galleryAdd">
+                        <span class="fa fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.gallery.modal.add')
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('client'))
+                @if (Session::has('gallery'))
                 <script type="text/javascript">
                     document.addEventListener('DOMContentLoaded', function () {
                         Swal.fire({
@@ -103,10 +103,6 @@
                 </div>
 
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

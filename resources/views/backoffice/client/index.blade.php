@@ -14,7 +14,6 @@
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/about" class="">Klien</a></li>
                     <li class="breadcrumb-item active">Klien</li>
                   </ol>
                 </div>

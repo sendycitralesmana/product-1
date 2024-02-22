@@ -25,17 +25,20 @@
 
 <body class="hold-transition login-page">
     <div class="login-box">
-        <div class="">
+        {{-- <div class="">
             <h1 class="text-center">
                 <b>MASUK</b>
             </h1>
-        </div>
+        </div> --}}
         <div class="card">
-            {{-- <img src="{{asset('images/banner.jpg')}}" class="img-fluid" alt=""> --}}
-            <div class="mr-4 mt-3">
-                <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
-            </div>
+            <img src="{{asset('images/banner.jpg')}}" class="img-fluid rounded" alt="">
+            {{-- <div class="mr-4 mt-3">
+                <img src="{{asset('images/logoMled.png')}}" class="img-fluid rounded" alt="">
+            </div> --}}
             <div class="card-body login-card-body">
+                <h3 class="text-center">
+                    <b>-- Masuk --</b>
+                </h3>
                 <p class="login-box-msg">Masuk untuk mengakses halaman admin</p>
                 @if(session('status'))
                 <div class="alert alert-success">

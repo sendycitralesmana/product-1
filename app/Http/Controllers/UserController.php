@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Mail\RegisterMail;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,8 +31,15 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|unique:users|email',
-            'password' => 'required',
+            'password' => 'required|min:8',
             'avatar' => 'image'
+        ],[
+            'name.required' => 'Name harus diisi',
+            'email.required' => 'Email harus diisi',
+            'email.email' => 'Email harus valid',
+            'email.unique' => 'Email sudah ada',
+            'password.required' => 'Password harus diisi',
+            'password.min' => 'Password minimal 8 karakter',
         ]);
 
         $newName = null;
@@ -43,13 +53,16 @@ class UserController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         $user->password = Hash::make($request->password);
+        $user->remember_token = Str::random(40);
         $user->avatar = $newName;
         $user->role_id = 2;
         // dd($user);
         $user->save();
 
+        Mail::to($user->email)->send(new RegisterMail($user));
+
         Session::flash('status', 'success');
-        Session::flash('message', 'Add user success');
+        Session::flash('message', 'Tambah akun berhasil, silahkan verifikasi email terlebih dahulu');
         return redirect('/backoffice/user');
     }
     
@@ -127,5 +140,42 @@ class UserController extends Controller
         Session::flash('status', 'success');
         Session::flash('message', 'Update profile success');
         return redirect('/backoffice/dashboard');
+    }
+
+    public function updatePassword(Request $request) {
+        $validated = $request->validate([
+            'password_lama' => 'required',
+            'password_baru' => 'required|min:8',
+            'konfirmasi_password_baru' => 'required|min:8|same:password_baru',
+        ], [
+            'password_lama.required' => 'Password lama harus diisi',
+            'password_baru.required' => 'Password baru harus diisi',
+            'konfirmasi_password_baru.required' => 'Konfirmasi password baru harus diisi',
+            'konfirmasi_password_baru.same' => 'Konfirmasi password baru harus sama dengan password baru',
+            'konfirmasi_password_baru.min' => 'Konfirmasi password baru harus minimal 8 karakter',
+            'password_baru.min' => 'Password baru harus minimal 8 karakter',
+        ]);
+        $user = User::find(auth()->user()->id);
+
+        // cek password lama
+        if (!Hash::check($request->password_lama, $user->password)) {
+            Session::flash('password_lama', 'error');
+            Session::flash('message', 'Password lama tidak sesuai');
+            return redirect()->back();
+        }
+
+        // cek konfirmasi password
+        // if ($request->password_baru != $request->konfirmasi_password_baru) {
+        //     Session::flash('password', 'error');
+        //     Session::flash('message', 'Konfirmasi password baru tidak sesuai');
+        //     return redirect()->back();
+        // }
+
+        $user->password = Hash::make($request->password_baru);
+        $user->save();
+
+        Session::flash('password', 'success');
+        Session::flash('message', 'Ganti password berhasil');
+        return redirect()->back();
     }
 }

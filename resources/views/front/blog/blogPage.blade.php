@@ -11,7 +11,7 @@
 
 
 <!-- Content page -->
-<section class="bg0 p-t-104 p-b-60">
+<section class="bg0 p-t-60 p-b-60">
     <div class="container">
         <div class="row">
             <div class="col-md-8 col-lg-9 p-b-80">
@@ -19,13 +19,13 @@
 
                     @if ($posts->count() == 0)
                         <div class="m-b-2">
-                            <a href="/blog" class="btn btn-outline-secondary mr-1">Lihat semua</a>
-                            <p>Hasil pencarian dari : <b>{{ $title }}</b> </p>
+                            <span>Hasil pencarian dari : <b>{{ $title }}</b> </span>
                         </div>
-                        <div class="text-center">
-                            <h4>
+                        <div class="text-center mt-2">
+                            <h4 class="mb-2">
                                 <b>-- Tidak ada data --</b>
                             </h4>
+                            <a href="/blog" class="btn btn-outline-secondary mr-1 btn-sm"> <i class="fa fa-refresh"></i> Lihat semua</a>
                         </div>
                     @endif
 
@@ -34,8 +34,8 @@
                         <!-- item blog -->
                         <div class="p-b-63">
                             <a href="/blog/{{ $post->id }}" class="hov-img0 how-pos5-parent">
-                                {{-- <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG"> --}}
                                 <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG">
+                                {{-- <img src="{{ asset('assets/frontend/images/blog-04.jpg') }}" alt="IMG-BLOG"> --}}
 
                                 <div class="flex-col-c-m size-123 bg9 how-pos5">
                                     <span class="ltext-107 cl2 txt-center">
@@ -139,18 +139,7 @@
 										</span>
 									</a>
 								</li>
-                                @endforeach
-                            {{-- @if ($postCategories->count() > 0)
-
-                            @foreach ($postCategories as $category)
-                                <li class="bor18">
-                                    <a href="/public/blog/category/{{ $category->id }}" class="dis-block stext-115 cl6 hov-cl1 trans-04 p-tb-8 p-lr-4">
-                                        {{ $category->name }}
-                                    </a>
-                                </li>
                             @endforeach
-                                
-                            @endif --}}
                         </ul>
                     </div>
 

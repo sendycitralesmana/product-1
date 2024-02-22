@@ -14,15 +14,18 @@
 
         <li class="nav-item dropdown">
             <a class="nav-link" data-toggle="dropdown" href="#">
-                <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" width="30px" height="30px" class="mr-1 img-circle elevation-2" alt="User Image">
-                {{ auth()->user()->name }}</i>
+                {{-- <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" width="30px" height="30px" class="mr-1 img-circle elevation-2" alt="User Image"> --}}
+                {{-- {{ auth()->user()->name }}</i> --}}
+                <i class="fa fa-cog"></i> {{ auth()->user()->role->name }}
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Pengaturan</span>
                 <div class="dropdown-divider"></div>
-                <p data-toggle="modal" data-target="#exampleModal" class="dropdown-item" style="cursor: pointer">
+                {{-- <p data-toggle="modal" data-target="#exampleModal" class="dropdown-item" style="cursor: pointer">
                     <i class="fas fa-user mr-2"></i> Profil
-                </p>
+                </p> --}}
+                    <a href="/backoffice/profile/{{ auth()->user()->id }}" style="color: black" class="dropdown-item "> <i class="fa fa-user mr-2"></i> Profil</a>
+                
                 <div class="dropdown-divider"></div>
                 <p data-toggle="modal" data-target="#logout" class="dropdown-item btn" style="cursor: pointer">
                     <i class="fas fa-arrow-left mr-2"></i> Keluar
@@ -44,7 +47,7 @@
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Profile</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Profil</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
@@ -54,7 +57,7 @@
                     @csrf
                     @method('put')
                     <div class="form-group">
-                        <label for="exampleFormControlInput1">Name</label>
+                        <label for="exampleFormControlInput1">Nama</label>
                         <input type="name" name="name" class="form-control" value="{{ auth()->user()->name }}" required>
                         @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -68,7 +71,7 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Avatar</label>
+                        <label>Gambar</label>
                         <input type="hidden" name="oldImage" value="{{ auth()->user()->avatar }}">
                         @if (auth()->user()->avatar)
                             <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" name="oldValue" value="$user->avatar" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
@@ -82,8 +85,8 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
                 </div>
             </form>
         </div>
@@ -94,19 +97,19 @@
     <div class="modal-dialog modal-md">
         <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="logout">Logout</h5>
+                    <h5 class="modal-title" id="logout">Keluar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    Anda yakin akan logout
+                    Anda yakin akan keluar
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
                     {{-- <button type="submit" class="btn btn-success">Save changes</button> --}}
-                    <a href="/logout" class="btn btn-success">Logout</a>
+                    <a href="/logout" class="btn btn-success">Keluar</a>
                 </div>
             </form>
         </div>

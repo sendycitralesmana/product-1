@@ -31,11 +31,14 @@
             </h1>
         </div>
         <div class="card">
-            {{-- <img src="{{asset('images/banner.jpg')}}" class="img-fluid" alt=""> --}}
-            <div class="mr-4 mt-3">
+            <img src="{{asset('images/banner.jpg')}}" class="img-fluid rounded" alt="">
+            {{-- <div class="mr-4 mt-3">
                 <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
-            </div>
+            </div> --}}
             <div class="card-body login-card-body">
+                <h3 class="text-center">
+                    <b>-- Reset Password --</b>
+                </h3>
                 <p class="login-box-msg">
                     Silahkan reset password anda    
                 </p>

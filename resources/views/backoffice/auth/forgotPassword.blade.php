@@ -26,16 +26,19 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="">
-            <h1 class="text-center">
+            {{-- <h1 class="text-center">
                 <b>LUPA PASSWORD</b>
             </h1>
-        </div>
+        </div> --}}
         <div class="card">
-            {{-- <img src="{{asset('images/banner.jpg')}}" class="img-fluid" alt=""> --}}
-            <div class="mr-4 mt-3">
+            <img src="{{asset('images/banner.jpg')}}" class="img-fluid rounded" alt="">
+            {{-- <div class="mr-4 mt-3">
                 <img src="{{asset('images/logoMled.png')}}" class="img-fluid" alt="">
-            </div>
+            </div> --}}
             <div class="card-body login-card-body">
+                <h3 class="text-center">
+                    <b>-- Lupa Password --</b>
+                </h3>
                 <p class="login-box-msg">
                     Anda lupa password anda? Di sini anda dapat dengan mudah mengambil password baru.</p>
                 @if(session()->has('status'))

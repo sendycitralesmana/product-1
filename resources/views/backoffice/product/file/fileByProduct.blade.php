@@ -29,11 +29,11 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title"> Berkas</h3>
+                <h3 class="card-title"> Data</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fileAdd">
-                        <span>+</span>
+                        <span class="fa fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.product.file.modal.add')
@@ -60,6 +60,15 @@
                 </script>
                 @endif
                 <div class="row">
+
+                    @if ($files->count() == 0)
+                        <div class="col-md-12">
+                            <h4 class="text-center">
+                                <b>-- Tidak ada berkas --</b>
+                            </h4>
+                        </div>
+                    @endif
+
                     @foreach ($files as $file)
                     <div class="col-md-3 gallery">
                         <div class="card">
@@ -91,11 +100,6 @@
                     {{ $files->links() }}
                 </div>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

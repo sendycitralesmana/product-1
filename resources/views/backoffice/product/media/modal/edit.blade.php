@@ -18,9 +18,15 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldName" value="{{ $image->name }}">
                             <input type="hidden" name="oldUrl" value="{{ $image->url }}">
-                            <p> {{ $image->url }} </p>
-                            <img src="{{ asset('storage/image/gallery/'. $image->url) }}" name="oldValue" value="{{ $image->url }}" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
-                            <input type="file" accept="image/*" onchange="previewImgP()" id="imageP" name="media" class="form-control" value="{{ $image->name}}">
+                            {{-- <p> {{ $image->url }} </p> --}}
+                            {{-- <img src="{{ asset('storage/image/gallery/'. $image->url) }}" name="oldValue" value="{{ $image->url }}" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt=""> --}}
+                            @if ($image->url)
+                                <img src="{{ asset('storage/product/media/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                            @else
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                            @endif
+                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="media" class="form-control" value="{{ $image->name}}">
                             @if($errors->has('media'))
                             <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>
                             @endif
@@ -40,9 +46,9 @@
 
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script>
-    function previewImgP() {
-        const image = document.querySelector('#imageP')
-        const imgPreview = document.querySelector('.img-previewP')
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
 

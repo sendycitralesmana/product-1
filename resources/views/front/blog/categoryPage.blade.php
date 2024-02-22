@@ -11,7 +11,7 @@
 
 
 <!-- Content page -->
-<section class="bg0 p-t-104 p-b-60">
+<section class="bg0 p-t-60 p-b-60">
     <div class="container">
         <div class="bread-crumb m-b-20">
             <h4>
@@ -21,6 +21,18 @@
         <div class="row">
             <div class="col-md-8 col-lg-9 p-b-80">
                 <div class="p-r-45 p-r-0-lg">
+
+                    @if ($posts->count() == 0)
+                        <div class="m-b-2">
+                            <span>Hasil pencarian dari : <b>{{ $title }}</b> </span>
+                        </div>
+                        <div class="text-center mt-2">
+                            <h4 class="mb-2">
+                                <b>-- Tidak ada data --</b>
+                            </h4>
+                            <a href="/blog/category/{{ $postCategory->id }}" class="btn btn-outline-secondary mr-1 btn-sm"> <i class="fa fa-refresh"></i> Lihat semua</a>
+                        </div>
+                    @endif
 
                     @foreach ($posts as $post)
                         
@@ -67,7 +79,7 @@
 
                                         <span>
                                             {{-- 8 Comments --}}
-                                            {{ $post->comment->count() }} Comments
+                                            {{ $post->comment->count() }} Komentar
                                         </span>
                                     </span>
 
@@ -92,7 +104,7 @@
 
             <div class="col-md-4 col-lg-3 p-b-80">
                 <div class="side-menu">
-                    <form action="/blog/{{ $postCategory->id }}" method="GET">
+                    <form action="/blog/category/{{ $postCategory->id }}" method="GET">
                         <div class="bor17 of-hidden pos-relative">
                             <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="title"
                                 placeholder="Cari berita..." required>

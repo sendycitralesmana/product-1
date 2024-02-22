@@ -69,7 +69,7 @@
                         <tr>
                             <td> {{ $product->product->id }} </td>
                             <td>
-                                <img src="{{asset('storage/image/product/'.$product->product->thumbnail)}}" alt="" width="80px" height="80px">
+                                <img src="{{asset('storage/image/product/'. $product->product->thumbnail)}}" alt="" width="80px" height="80px">
                             </td>
                             <td> {{ $product->product->name }} </td>
                             <td>

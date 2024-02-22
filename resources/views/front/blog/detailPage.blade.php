@@ -29,11 +29,12 @@
 					<div class="p-r-45 p-r-0-lg">
 						<!--  -->
 						<div class="wrap-pic-w how-pos5-parent">
-							<img src="{{ asset('storage/image/post/'. $post->thumbnail)}}" alt="IMG-BLOG">
+							{{-- <img src="{{ asset('storage/image/post/'. $post->thumbnail)}}" alt="IMG-BLOG"> --}}
+							<img src="{{ asset('images/banner.jpg')}}" alt="IMG-BLOG" class="img-fluid" style="height: 370px">
 
 							<div class="flex-col-c-m size-123 bg9 how-pos5">
 								<span class="ltext-107 cl2 txt-center">
-									{{ $post->created_at->format('D') }}
+									{{ $post->created_at->format('d') }}
 								</span>
 
 								<span class="stext-109 cl3 txt-center">
@@ -50,7 +51,7 @@
 								</span>
 
 								<span>
-									{{ $post->created_at->format('D M, Y') }}22 Jan, 2018
+									{{ $post->created_at->format('d M, Y') }}
 									<span class="cl12 m-l-4 m-r-6">|</span>
 								</span>
 
@@ -143,7 +144,7 @@
 							</ul>
 						</div>
 
-						{{-- <div class="p-t-65">
+						<div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
 								Artikel terbaru
 							</h4>
@@ -151,9 +152,10 @@
 							<ul>
                                 @foreach ($postRecents as $recent)
 								<li class="flex-w flex-t p-b-30">
-									<a href="/blog/{{ $recent->id }}" class="wrao-pic-w size-214 hov-ovelay1 m-r-20">
-										<img src="{{ asset('storage/image/post/' . $recent->thumbnail ) }}" alt="PRODUCT">
-									</a>
+									<div class="wrao-pic-w size-214  m-r-20">
+										<img src="{{ asset('images/banner.jpg' ) }}" alt="PRODUCT"
+										class="img-fluid" style="height: 50px">
+									</div>
 									<div class="size-215 flex-col-t p-t-8">
 										<a href="/blog/{{ $recent->id }}" class="stext-116 cl8 hov-cl1 trans-04" style="
                                         overflow: hidden;
@@ -168,7 +170,7 @@
 								</li>
                                 @endforeach
 							</ul>
-						</div> --}}
+						</div>
 
 					</div>
 				</div>

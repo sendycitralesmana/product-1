@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit akun</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,21 +13,21 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Name</label>
+                            <label>Nama</label>
                             <input type="text" name="name" class="form-control" value="{{ $user->name }}" required>
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Avatar</label>
+                            <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $user->avatar }}">
                             @if ($user->avatar)
                                 <img src="{{ asset('storage/image/user/'. $user->avatar) }}" name="oldValue" value="$user->avatar" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImgP()" id="imageP" name="avatar" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept="image/*" onchange="previewImgP()" id="imageP" name="avatar" class="form-control" placeholder="Enter Password">
                             @if($errors->has('avatar'))
                             <span class="help-block" style="color: red">{{ $errors->first('avatar') }}</span>
                             @endif
@@ -37,8 +37,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-success">Save changes</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="submit" class="btn btn-success">Simpan</button>
                 </div>
             </form>
         </div>

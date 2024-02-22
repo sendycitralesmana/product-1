@@ -28,7 +28,7 @@
         {{-- Application Start --}}
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Proyek Data</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -64,7 +64,7 @@
                             <div class="card card-widget">
                                 <div class="card-header">
                                     <div class="user-block">
-                                        <h5>{{ $application->name }}</h5>
+                                        <h5>Proyek</h5>
                                         <small>{{ $application->time }}</small>
                                     </div>
                                     <!-- /.user-block -->
@@ -83,22 +83,21 @@
                                 </div>
                                 <!-- /.card-header -->
                                 <div class="card-body">
-                                    @if ( $application->thumbnail != null )
-                                    {{-- <img src="{{ asset('storage/image/default.png') }}" class="img-fluid" alt=""
-                                        height="300px"> --}}
-                                    <img src="{{ asset('storage/image/application/'.$application->thumbnail) }}" class="img-fluid" alt="" height="300px">
-                                    @else
-                                    <img src="{{ asset('images/default.png') }}" class="img-fluid" alt="" height="300px">
-                                    @endif
-                                    {{-- <h4 class="mt-3"> {{ $post->title }} </h4> --}}
-                                    <p> {!! html_entity_decode($application->description) !!} </p>
-                                    {{-- <span class="float-right text-muted">{{ $post->comment->count() }} comments</span>
-                                    --}}
-                                </div>
-                                <!-- /.card-body -->
-    
-                                <!-- /.card-footer -->
-                                <div class="card-footer">
+
+                                    <div class="text-center">
+                                        @if ( $application->thumbnail != null )
+                                        <img src="{{ asset('storage/image/application/'.$application->thumbnail) }}" class="img-fluid" alt="" style="height: 300px;">
+                                        @else
+                                        <img src="{{ asset('images/default.png') }}" class="img-fluid" alt="" style="height: 300px">
+                                        @endif
+                                    </div>
+
+                                    <div class="mt-3">
+                                        <h4>
+                                            <b>{{ $application->name }}</b>
+                                        </h4>
+                                    </div>
+                                    <div> {!! html_entity_decode($application->description) !!} </div>
                                 </div>
     
                             </div>

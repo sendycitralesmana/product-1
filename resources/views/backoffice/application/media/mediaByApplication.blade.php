@@ -65,7 +65,7 @@
                     @if ( $images->count() == 0 )
                         <div class="text-center col-md-12">
                             <h4 class="text-center">
-                                <b>-- Tidak ada data --</b>
+                                <b>-- Tidak ada Gambar --</b>
                             </h4>
                         </div>
                     @else

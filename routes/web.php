@@ -121,6 +121,7 @@ Route::group(['middleware' => 'auth'], function(){
     Route::post('/backoffice/user/create', [UserController::class, 'create']);
     Route::get('/backoffice/user/{id}/edit', [UserController::class, 'edit']);
     Route::put('/backoffice/user/{id}/update', [UserController::class, 'update']);
+    Route::put('/backoffice/user/{id}/update-password', [UserController::class, 'updatePassword']);
     Route::get('/backoffice/user/{id}/delete', [UserController::class, 'delete']);
     Route::put('/backoffice/user/update-profile', [UserController::class, 'updateProfile']);
     

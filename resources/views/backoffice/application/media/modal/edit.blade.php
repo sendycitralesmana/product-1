@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Edit gambar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -18,8 +18,14 @@
                             <label>Media</label>
                             <input type="hidden" name="oldName" value="{{ $image->name }}">
                             <input type="hidden" name="oldUrl" value="{{ $image->url }}">
-                            <p> {{ $image->url }} </p>
-                            <input type="file" accept="image/*" name="media" class="form-control" value="{{ $image->name}}">
+                            {{-- <p> {{ $image->url }} </p> --}}
+                            @if ($image->url)
+                                <img src="{{ asset('storage/application/media/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                            @else
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                            @endif
+                                <input type="file" accept="image/*" id="image" onchange="previewImg()" name="media" class="form-control" value="{{ $image->name}}">
                             @if($errors->has('media'))
                             <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>
                             @endif
@@ -36,3 +42,19 @@
         </div>
     </div>
 </div>
+
+<script>
+    function previewImg() {
+        const image = document.querySelector('#image')
+        const imgPreview = document.querySelector('.img-preview')
+
+        imgPreview.style.display = 'block'
+
+        const oFReader = new FileReader()
+        oFReader.readAsDataURL(image.files[0])
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result
+        }
+    }
+</script>

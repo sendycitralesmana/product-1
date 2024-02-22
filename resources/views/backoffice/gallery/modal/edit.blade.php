@@ -13,22 +13,25 @@
                 <div class="modal-body">
 
                     <div class="card-body">
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Nama</label>
                             <input type="text" name="name" required class="form-control" value="{{ $gallery->name}}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $gallery->image }}">
+                            <input type="hidden" name="oldName" value="{{ $gallery->name }}">
                             @if ($gallery->image)
-                                <img src="{{ asset('storage/image/gallery/'. $gallery->image) }}" name="oldValue" value="$gallery->image" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('storage/image/gallery/'.$gallery->image) }}" name="oldValue" value="$image->thumbnail" 
+                                class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
-                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="image" class="form-control" placeholder="Enter Password">
+
+                            <input type="file" accept="image/*" onchange="previewImgP()" id="imageP" name="image" class="form-control">
                             @if($errors->has('image'))
                             <span class="help-block" style="color: red">{{ $errors->first('image') }}</span>
                             @endif
@@ -47,9 +50,9 @@
 </div>
 
 <script>
-    function previewImg() {
-        const image = document.querySelector('#image')
-        const imgPreview = document.querySelector('.img-preview')
+    function previewImgP() {
+        const image = document.querySelector('#imageP')
+        const imgPreview = document.querySelector('.img-previewP')
 
         imgPreview.style.display = 'block'
 

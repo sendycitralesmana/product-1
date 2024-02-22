@@ -17,6 +17,14 @@
             <div class="col-md-8 col-lg-9 p-b-80">
                 <div class="p-r-45 p-r-0-lg">
 
+                    @if ($posts->count() == 0)
+                        <div class="text-center">
+                            <h4>
+                                <b>-- Tidak ada data --</b>
+                            </h4>
+                        </div>
+                    @endif
+
                     @foreach ($posts as $post)
                         
                         <!-- item blog -->
@@ -62,7 +70,7 @@
 
                                         <span>
                                             {{-- 8 Comments --}}
-                                            {{ $post->comment->count() }} Comments
+                                            {{ $post->comment->count() }} Komentar
                                         </span>
                                     </span>
 

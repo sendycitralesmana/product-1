@@ -27,7 +27,7 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Konten</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     {{-- Button trigger modal

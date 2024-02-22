@@ -122,7 +122,7 @@
                     </li>
                     <li class="nav-item">
                         <a href="/backoffice/about/content" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*') ? 'active' : '' }}">
-                          <i class="fa fa-info nav-icon"></i>
+                          <i class="fa fa-columns nav-icon"></i>
                           <p>Konten</p>
                         </a>
                       </li>

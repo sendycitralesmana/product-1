@@ -61,31 +61,41 @@
                 @endif
 
                 <div class="row">
-                    @foreach ($files as $file)
-                    <div class="col-md-3 gallery">
-                        <div class="card">
-                            <div class="">
-                                <img src="{{asset('images/pdf.png')}}" alt="" 
-                                    class="img-fluid rounded" style="height: 200px; width: 100%">
-                            </div>
-                            <div class="p-1">
-                                {{ $file->name }}
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#fileEdit{{$file->id}}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                @include('backoffice.application.file.modal.edit')
-                                <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#fileDelete{{$file->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.application.file.modal.delete')
+
+                    @if ($files->count() == 0)
+                        <div class="col-md-12">
+                            <h4 class="text-center">
+                                <b>-- Tidak ada berkas --</b>
+                            </h4>
+                        </div>
+                    @else
+                        @foreach ($files as $file)
+                        <div class="col-md-3 gallery">
+                            <div class="card">
+                                <div class="">
+                                    <img src="{{asset('images/pdf.png')}}" alt="" 
+                                        class="img-fluid rounded" style="height: 200px; width: 100%">
+                                </div>
+                                <div class="p-1">
+                                    {{ $file->name }}
+                                </div>
+                                <div class="d-flex">
+                                    <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
+                                        data-target="#fileEdit{{$file->id}}">
+                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                    </button>
+                                    @include('backoffice.application.file.modal.edit')
+                                    <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
+                                        data-target="#fileDelete{{$file->id}}">
+                                        <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                    </button>
+                                    @include('backoffice.application.file.modal.delete')
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    @endif
+
                 </div>
 
                 <div class="p-3">

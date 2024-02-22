@@ -16,7 +16,9 @@
                         <input type="hidden" name="application_id" value="{{ $application->id }}">
                         <div class="form-group">
                             <label>Judul <span class="text-danger">*</span></label>
-                            <input type="text" name="name" class="form-control" value="{{ $application->name}}">
+                            <input type="text" name="name" class="form-control" value="{{ $application->name}}" required
+                                oninvalid="this.setCustomValidity('Judul harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
@@ -31,14 +33,18 @@
                         </div>
                         <div class="form-group">
                             <label>Area <span class="text-danger">*</span></label>
-                            <input type="text" name="area" class="form-control" value="{{ $application->area }}">
+                            <input type="text" name="area" class="form-control" value="{{ $application->area }}" required
+                            oninvalid="this.setCustomValidity('Area harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                             @if($errors->has('area'))
                             <span class="help-block" style="color: red">{{ $errors->first('area') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
                             <label>Waktu <span class="text-danger">*</span></label>
-                            <input type="datetime-local" name="time" class="form-control" value="{{ $application->time }}">
+                            <input type="datetime-local" name="time" class="form-control" value="{{ $application->time }}" required
+                            oninvalid="this.setCustomValidity('Waktu harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                             @if($errors->has('time'))
                             <span class="help-block" style="color: red">{{ $errors->first('time') }}</span>
                             @endif
@@ -63,7 +69,7 @@
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif

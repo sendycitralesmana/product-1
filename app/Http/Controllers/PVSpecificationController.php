@@ -49,7 +49,7 @@ class PVSpecificationController extends Controller
         $pvSpecification->save();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Edit spesifikasi berhasil');
         return redirect('/backoffice/product/vs/'. $request->product_variant_id);
     }
 
@@ -59,7 +59,7 @@ class PVSpecificationController extends Controller
         $pvSpecification->delete();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'Hapus spesifikasi berhasil');
         return redirect('/backoffice/product/vs/'. $pvSpecification->product_variant_id);
     }
 

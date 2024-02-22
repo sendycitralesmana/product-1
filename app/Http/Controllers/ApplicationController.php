@@ -163,7 +163,7 @@ class ApplicationController extends Controller
         $application->delete();
 
         Session::flash('application', 'success');
-        Session::flash('message', 'apus proyek berhasil');
+        Session::flash('message', 'Hapus proyek berhasil');
         
         return redirect('/backoffice/application');
     }

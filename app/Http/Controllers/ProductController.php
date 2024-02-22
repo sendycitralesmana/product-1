@@ -70,7 +70,11 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_category_id' => 'required',
             'name' => 'required',
-            'description' => 'required',
+            // 'description' => 'required',
+        ], [
+            'product_category_id.required' => 'Produk kategori harus dipilih',
+            'name.required' => 'Nama produk harus diisi',
+            // 'description.required' => 'Deskripsi produk harus diisi',
         ]);
 
         $newName = null;
@@ -100,7 +104,7 @@ class ProductController extends Controller
         }
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Add data success');
+        Session::flash('message', 'Tambah produk berhasil');
         return redirect('/backoffice/product');
     }
 
@@ -149,9 +153,9 @@ class ProductController extends Controller
         $product->save();
 
         Session::flash('product', 'success');
-        Session::flash('message', 'Update data success');
-        // return redirect('/product');
-        return redirect('/backoffice/product/'. $product->id .'/detail');
+        Session::flash('message', 'Edit produk berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/product/'. $product->id .'/detail');
 
     }
 
@@ -173,7 +177,7 @@ class ProductController extends Controller
         $product->delete();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'Hapus produk berhasil');
         return redirect('/backoffice/product');
     }
 

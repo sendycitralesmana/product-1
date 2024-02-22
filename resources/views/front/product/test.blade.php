@@ -27,413 +27,316 @@
     <div class="container">
 
         <div class="row">
-            <div class="col-md-6 col-lg-5 p-b-30">
+            {{-- <div class="col-md-6 col-lg-5 p-b-30">
                 <div class="p-l-25 p-r-30 p-lr-0-lg">
                     <div class="wrap-slick3 flex-sb flex-w">
                         <div class="wrap-slick3-dots"></div>
                         <div class="wrap-slick3-arrows flex-sb-m flex-w"></div>
 
-                        {{-- <div class="slick3 gallery-lb">
+                        <div class="slick3 gallery-lb" style="height: 400px">
+                            
                             <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-01.jpg') }}">
-                            <div class="wrap-pic-w pos-relative">
-                                <img src="{{ asset('assets/frontend/images/product-detail-01.jpg') }}"
-                                    alt="IMG-PRODUCT">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ asset('assets/frontend/images/product-detail-01.jpg') }}" alt="IMG-PRODUCT">
 
-                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                    href="{{ asset('assets/frontend/images/product-detail-01.jpg') }}">
-                                    <i class="fa fa-expand"></i>
-                                </a>
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                        href="{{ asset('assets/frontend/images/product-detail-01.jpg') }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
                             </div>
-                        </div> --}}
 
-                        <div class="item-slick3"
-                            data-thumb="{{ asset('storage/image/product/' . $product->thumbnail) }}">
-                            <div class="wrap-pic-w pos-relative">
-                                <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
-                                    alt="IMG-PRODUCT">
+                            <div class="item-slick3" data-thumb="{{ asset('storage/image/product/' . $product->thumbnail) }}">
+                                <div class="wrap-pic-w pos-relative">
+                                    <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}" alt="IMG-PRODUCT">
 
-                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                    href="{{ asset('storage/image/product/' . $product->thumbnail) }}">
-                                    <i class="fa fa-expand"></i>
-                                </a>
+                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                        href="{{ asset('storage/image/product/' . $product->thumbnail) }}">
+                                        <i class="fa fa-expand"></i>
+                                    </a>
+                                </div>
                             </div>
+
                         </div>
-
                         @if ( $images->count() > 0 )
                         @foreach ($images as $image)
-                        {{-- <div class="item-slick3" data-thumb="{{ asset('assets/frontend/images/product-detail-02.jpg') }}">
-                        <div class="wrap-pic-w pos-relative">
-                            <img src="{{ asset('assets/frontend/images/product-detail-02.jpg') }}" alt="IMG-PRODUCT">
+                        <div class="item-slick3" data-thumb="{{asset('storage/product/media/'.$image->url)}}">
+                            <div class="wrap-pic-w pos-relative">
+                                <img src="{{asset('storage/product/media/'.$image->url)}}" alt="IMG-PRODUCT">
 
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                href="{{ asset('assets/frontend/images/product-detail-02.jpg') }}">
-                                <i class="fa fa-expand"></i>
-                            </a>
-                        </div>
-                    </div> --}}
-                    <div class="item-slick3" data-thumb="{{asset('storage/product/media/'.$image->url)}}">
-                        <div class="wrap-pic-w pos-relative">
-                            <img src="{{asset('storage/product/media/'.$image->url)}}" alt="IMG-PRODUCT">
-
-                            <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                href="{{asset('storage/product/media/'.$image->url)}}">
-                                <i class="fa fa-expand"></i>
-                            </a>
-                        </div>
-                    </div>
-                    @endforeach
-                    @endif
-
-                    @if ( $videos->count() > 0 )
-                    @foreach ($videos as $video)
-                    @endforeach
-                    @endif
-
-                    {{-- <div class="item-slick3" data-thumb="images/product-detail-02.jpg">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="images/product-detail-02.jpg" alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="images/product-detail-02.jpg">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div> --}}
-
-                    {{-- <div class="item-slick3" data-thumb="images/product-detail-03.jpg">
-                                <div class="wrap-pic-w pos-relative">
-                                    <img src="images/product-detail-03.jpg" alt="IMG-PRODUCT">
-
-                                    <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
-                                        href="images/product-detail-03.jpg">
-                                        <i class="fa fa-expand"></i>
-                                    </a>
-                                </div>
-                            </div> --}}
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="col-md-6 col-lg-7 p-b-30">
-
-        @if ( $productVariant == null )
-        <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-            Variant produk tidak ditemukan
-        </h4>
-        @else
-        <div class="p-r-50 p-t-5 p-lr-0-lg">
-
-            <h4 class="mtext-105 cl2 js-name-detail p-b-14">
-                {{ $product->name }}
-            </h4>
-
-            <span class="mtext-106 cl2">
-                @if ($minPrice == $maxPrice)
-                Rp. {{ number_format($minPrice, 2, ",", ".") }}
-                @else
-                Rp. {{  number_format($minPrice, 2, ",", ".") }} - Rp. {{ number_format($maxPrice, 2, ",", ".") }}
-                @endif
-            </span>
-
-            <div class="stext-102 cl3 p-t-23">
-                {!! html_entity_decode($product->description) !!}
-            </div>
-
-        </div>
-        @endif
-
-
-    </div>
-    </div>
-
-    <div class="bor10 m-t-50 p-t-43 p-b-40">
-        <!-- Tab01 -->
-        <div class="tab01">
-            <!-- Nav tabs -->
-            <ul class="nav nav-tabs" role="tablist">
-                {{-- <li class="nav-item p-b-10">
-                        <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
-                    </li> --}}
-
-                <li class="nav-item p-b-10">
-                    <a class="nav-link active" data-toggle="tab" href="#information" role="tab">Spesifikasi</a>
-                </li>
-
-                <li class="nav-item p-b-10">
-                    <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Berkas</a>
-                </li>
-            </ul>
-
-            <!-- Tab panes -->
-            <div class="tab-content p-t-43">
-                <!-- - -->
-                {{-- <div class="tab-pane fade show active" id="description" role="tabpanel">
-                        <div class="how-pos2 p-lr-15-md">
-                            <div class="stext-102 cl6">
-                                {!! html_entity_decode($product->description) !!}
-                            </div>
-                        </div>
-                    </div> --}}
-
-                <!-- - -->
-                @if ($productVariant != null)
-
-                <div class="tab-pane fade show active" id="information" role="tabpanel">
-                    <div class="row">
-                        <div class="col-sm-10 col-md-9 col-lg-8 m-lr-auto">
-                            <ul class="p-lr-28 p-lr-15-sm">
-
-                                @if ($product->variant->count() > 1)
-
-                                <li class="flex-w flex-t p-b-7">
-                                    <form action="/product/{{ $product->id }}" class="m-b-20">
-                                        <select name="variant" id="" class="form-control" onchange="la(this.value)"
-                                            required>
-                                            <option value="">-- Pilih Variant ( Tersedia
-                                                {{ $product->variant->count() }} ) --</option>
-                                            @foreach ($product->variant as $variant)
-                                            <option value="?variant={{ $variant->id }}">{{ $variant->name }}</option>
-                                            @endforeach
-                                        </select>
-                                    </form>
-
-                                    <script>
-                                        function la(id) {
-                                            window.location.href = `/product/{{$product->id}}` + id
-                                        }
-
-                                    </script>
-                                </li>
-
-                                @endif
-
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Variant
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->name }}
-                                    </span>
-                                </li>
-
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Price
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->price }}
-                                    </span>
-                                </li>
-
-                                @if ( $productVariant->long != null)
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Long
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->long }}
-                                    </span>
-                                </li>
-                                @endif
-
-                                @if ( $productVariant->weight != null )
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Weight
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->weight }}
-                                    </span>
-                                </li>
-                                @endif
-
-                                @if ( $productVariant->width != null )
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Width
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->width }}
-                                    </span>
-                                </li>
-                                @endif
-
-                                @if ( $productVariant->height != null )
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        Height
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $productVariant->height }}
-                                    </span>
-                                </li>
-                                @endif
-
-                                @foreach ($specifications as $specification)
-
-                                <li class="flex-w flex-t p-b-7">
-                                    <span class="stext-102 cl3 size-205">
-                                        {{ $specification->specification->name }}
-                                    </span>
-
-                                    <span class="stext-102 cl6 size-206">
-                                        {{ $specification->value }}
-                                    </span>
-                                </li>
-
-                                @endforeach
-
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-
-                @else
-
-                <div class="tab-pane fade show active" id="information" role="tabpanel">
-                    <div class="row">
-                        <div class="col-md-12 m-lr-auto">
-                            <h4 class="text-center">
-                                <b>-- Tidak ada spesifikasi detail --</b>
-                            </h4>
-                        </div>
-                    </div>
-                </div>
-                @endif
-
-                <!-- - -->
-                <div class="tab-pane fade" id="reviews" role="tabpanel">
-
-                    <div class="row">
-                        @if ( $files->count() == 0 )
-                        <div class="col-md-12 m-lr-auto">
-                            <h4 class="text-center">
-                                <b>-- Tidak ada berkas --</b>
-                            </h4>
-                        </div>
-                        @else
-                        @foreach ($files as $file)
-                        <div class="col-md-4 m-lr-auto">
-                            <div class="card text-center">
-                                {{-- <div class="card-header">
-                                        </div> --}}
-                                <div class="card-body">
-                                    <div class="card-img">
-                                        <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid" height="50px"
-                                            width="50px">
-                                    </div>
-                                    <div class="card-title">
-                                        {{ $file->name }}
-                                    </div>
-                                    <div>
-                                        <a href="/product/file/download/{{ $file->id }}" class="btn text-white btn-sm"
-                                            style="background-color: #ed7a07"><i class="fa fa-download"></i> Unduh</a>
-                                    </div>
-                                </div>
-                                {{-- <div class="card-footer text-muted">
-                                        Unduh
-                                        </div> --}}
+                                <a class="flex-c-m size-108 how-pos1 bor0 fs-16 cl10 bg0 hov-btn3 trans-04"
+                                    href="{{asset('storage/product/media/'.$image->url)}}">
+                                    <i class="fa fa-expand"></i>
+                                </a>
                             </div>
                         </div>
                         @endforeach
                         @endif
+
+                        @if ( $videos->count() > 0 )
+                        @foreach ($videos as $video)
+                        @endforeach
+                        @endif
+
+                    </div>
+                </div>
+            </div> --}}
+
+            <div class="col-md-6 col-lg-5 p-b-30">
+                <div class="slider-for">
+                    <div>
+                        <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" style="height: 350px" class="img-fluid rounded">
+                    </div>
+                    @if ( $images->count() > 0 )
+                        @foreach ($images as $image)
+                            <div>
+                                <img src="{{ asset('storage/product/media/'.$image->url) }}" alt="" style="height: 350px" class="img-fluid rounded">
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+                <div class="slider-nav mt-3">
+                    <div style="border: 2px solid #ccc; padding: 5px; ">
+                        <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" 
+                            style="height: 100px; display: block; margin-left: auto; margin-right: auto;" 
+                            class="img-fluid rounded">
+                    </div>
+                    @if ( $images->count() > 0 )
+                        @foreach ($images as $image)
+                            <div style="border: 2px solid #ccc; padding: 5px; ">
+                                <img src="{{ asset('storage/product/media/'.$image->url) }}" alt=""
+                                    style="height: 100px; display: block; margin-left: auto; margin-right: auto;"
+                                    class="img-fluid rounded">    
+                            </div>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+
+
+            <div class="col-md-6 col-lg-7 p-b-30">
+
+                @if ( $productVariant == null )
+                <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                    Variant produk tidak ditemukan
+                </h4>
+                @else
+                <div class="p-r-50 p-t-5 p-lr-0-lg">
+
+                    <h4 class="mtext-105 cl2 js-name-detail p-b-14">
+                        {{ $product->name }}
+                    </h4>
+
+                    <span class="mtext-106 cl2">
+                        @if ($minPrice == $maxPrice)
+                        Rp. {{ number_format($minPrice, 2, ",", ".") }}
+                        @else
+                        Rp. {{  number_format($minPrice, 2, ",", ".") }} - Rp.
+                        {{ number_format($maxPrice, 2, ",", ".") }}
+                        @endif
+                    </span>
+
+                    <div class="stext-102 cl3 p-t-23">
+                        {!! html_entity_decode($product->description) !!}
                     </div>
 
-                    {{-- <div class="row">
-                            <div class="col-sm-10 col-md-8 col-lg-6 m-lr-auto">
-                                <div class="p-b-30 m-lr-15-sm">
-                                    <!-- Review -->
-                                    <div class="flex-w flex-t p-b-68">
-                                        <div class="wrap-pic-s size-109 bor0 of-hidden m-r-18 m-t-6">
-                                            <img src="images/avatar-01.jpg" alt="AVATAR">
+                </div>
+                @endif
+
+
+            </div>
+        </div>
+
+        <div class="bor10 m-t-50 p-t-43 p-b-40">
+            <div class="tab01">
+                <!-- Nav tabs -->
+                <ul class="nav nav-tabs" role="tablist">
+                    {{-- <li class="nav-item p-b-10">
+                            <a class="nav-link active" data-toggle="tab" href="#description" role="tab">Description</a>
+                        </li> --}}
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link active" data-toggle="tab" href="#information" role="tab">Spesifikasi</a>
+                    </li>
+
+                    <li class="nav-item p-b-10">
+                        <a class="nav-link" data-toggle="tab" href="#reviews" role="tab">Berkas</a>
+                    </li>
+                </ul>
+
+                <!-- Tab panes -->
+                <div class="tab-content p-t-43">
+
+                    @if ($productVariant != null)
+
+                    <div class="tab-pane fade show active" id="information" role="tabpanel">
+                        <div class="row">
+                            <div class="col-sm-10 col-md-9 col-lg-8 m-lr-auto">
+                                <ul class="p-lr-28 p-lr-15-sm">
+
+                                    @if ($product->variant->count() > 1)
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <form action="/product/{{ $product->id }}" class="m-b-20">
+                                            <select name="variant" id="" class="form-control" onchange="la(this.value)"
+                                                required>
+                                                <option value="">-- Pilih Variant ( Tersedia
+                                                    {{ $product->variant->count() }} ) --</option>
+                                                @foreach ($product->variant as $variant)
+                                                <option value="?variant={{ $variant->id }}">{{ $variant->name }}
+                                                </option>
+                                                @endforeach
+                                            </select>
+                                        </form>
+
+                                        <script>
+                                            function la(id) {
+                                                window.location.href = `/product/{{$product->id}}` + id
+                                            }
+
+                                        </script>
+                                    </li>
+
+                                    @endif
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Variant
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->name }}
+                                        </span>
+                                    </li>
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Price
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->price }}
+                                        </span>
+                                    </li>
+
+                                    @if ( $productVariant->long != null)
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Long
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->long }}
+                                        </span>
+                                    </li>
+                                    @endif
+
+                                    @if ( $productVariant->weight != null )
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Weight
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->weight }}
+                                        </span>
+                                    </li>
+                                    @endif
+
+                                    @if ( $productVariant->width != null )
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Width
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->width }}
+                                        </span>
+                                    </li>
+                                    @endif
+
+                                    @if ( $productVariant->height != null )
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            Height
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $productVariant->height }}
+                                        </span>
+                                    </li>
+                                    @endif
+
+                                    @foreach ($specifications as $specification)
+
+                                    <li class="flex-w flex-t p-b-7">
+                                        <span class="stext-102 cl3 size-205">
+                                            {{ $specification->specification->name }}
+                                        </span>
+
+                                        <span class="stext-102 cl6 size-206">
+                                            {{ $specification->value }}
+                                        </span>
+                                    </li>
+
+                                    @endforeach
+
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    @else
+
+                    <div class="tab-pane fade show active" id="information" role="tabpanel">
+                        <div class="row">
+                            <div class="col-md-12 m-lr-auto">
+                                <h4 class="text-center">
+                                    <b>-- Tidak ada spesifikasi detail --</b>
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                    @endif
+
+                    <!-- - -->
+                    <div class="tab-pane fade" id="reviews" role="tabpanel">
+
+                        <div class="row">
+                            @if ( $files->count() == 0 )
+                            <div class="col-md-12 m-lr-auto">
+                                <h4 class="text-center">
+                                    <b>-- Tidak ada berkas --</b>
+                                </h4>
+                            </div>
+                            @else
+                            @foreach ($files as $file)
+                            <div class="col-md-4 m-lr-auto">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <div class="card-img">
+                                            <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid"
+                                                height="50px" width="50px">
                                         </div>
-
-                                        <div class="size-207">
-                                            <div class="flex-w flex-sb-m p-b-17">
-                                                <span class="mtext-107 cl2 p-r-20">
-                                                    Ariana Grande
-                                                </span>
-
-                                                <span class="fs-18 cl11">
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star"></i>
-                                                    <i class="zmdi zmdi-star-half"></i>
-                                                </span>
-                                            </div>
-
-                                            <p class="stext-102 cl6">
-                                                Quod autem in homine praestantissimum atque optimum est, id deseruit.
-                                                Apud ceteros autem philosophos
-                                            </p>
+                                        <div class="card-title">
+                                            {{ $file->name }}
+                                        </div>
+                                        <div>
+                                            <a href="/product/file/download/{{ $file->id }}"
+                                                class="btn text-white btn-sm" style="background-color: #ed7a07"><i
+                                                    class="fa fa-download"></i> Unduh</a>
                                         </div>
                                     </div>
-
-                                    <!-- Add review -->
-                                    <form class="w-full">
-                                        <h5 class="mtext-108 cl2 p-b-7">
-                                            Add a review
-                                        </h5>
-
-                                        <p class="stext-102 cl6">
-                                            Your email address will not be published. Required fields are marked *
-                                        </p>
-
-                                        <div class="flex-w flex-m p-t-50 p-b-23">
-                                            <span class="stext-102 cl3 m-r-16">
-                                                Your Rating
-                                            </span>
-
-                                            <span class="wrap-rating fs-18 cl11 pointer">
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <i class="item-rating pointer zmdi zmdi-star-outline"></i>
-                                                <input class="dis-none" type="number" name="rating">
-                                            </span>
-                                        </div>
-
-                                        <div class="row p-b-25">
-                                            <div class="col-12 p-b-5">
-                                                <label class="stext-102 cl3" for="review">Your review</label>
-                                                <textarea class="size-110 bor8 stext-102 cl2 p-lr-20 p-tb-10"
-                                                    id="review" name="review"></textarea>
-                                            </div>
-
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="name">Name</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="name" type="text"
-                                                    name="name">
-                                            </div>
-
-                                            <div class="col-sm-6 p-b-5">
-                                                <label class="stext-102 cl3" for="email">Email</label>
-                                                <input class="size-111 bor8 stext-102 cl2 p-lr-20" id="email"
-                                                    type="text" name="email">
-                                            </div>
-                                        </div>
-
-                                        <button
-                                            class="flex-c-m stext-101 cl0 size-112 bg7 bor11 hov-btn3 p-lr-15 trans-04 m-b-10">
-                                            Submit
-                                        </button>
-                                    </form>
                                 </div>
                             </div>
-                        </div> --}}
+                            @endforeach
+                            @endif
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
     </div>
 
     <div class="bg6 flex-c-m flex-w size-302 m-t-73 p-tb-15">
@@ -450,7 +353,6 @@
 
 @if ( $productR->where('id', '!=', $product->id)->count() > 0 )
 
-<!-- Related Products -->
 <section class="sec-relate-product bg0 p-t-45 p-b-105">
     <div class="container">
         <div class="p-b-45">
@@ -473,9 +375,9 @@
                                 height="250px">
 
                             {{-- <a href="#"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                    Quick View
-                                </a> --}}
+                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        Quick View
+                                    </a> --}}
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">
@@ -523,9 +425,9 @@
                                 alt="IMG-PRODUCT" height="250px">
 
                             {{-- <a href="#"
-                                    class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                    Quick View
-                                </a> --}}
+                                        class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                        Quick View
+                                    </a> --}}
                         </div>
 
                         <div class="block2-txt flex-w flex-t p-t-14">

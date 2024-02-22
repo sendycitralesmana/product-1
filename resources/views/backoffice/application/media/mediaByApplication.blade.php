@@ -33,7 +33,7 @@
                 <div class="card-tools">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#mediaAdd">
-                        <span>+</span>
+                        <span class="fa fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.application.media.modal.add')
@@ -61,33 +61,45 @@
                 @endif
 
                 <div class="row">
-                    @foreach ($images as $image)
-                    <div class="col-md-3 gallery">
-                        <div class="card">
-                            <div class="">
-                                <a href="{{asset('storage/application/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
-                                    <img src="{{asset('storage/application/media/'.$image->url)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 200px; width: 100%">
-                                </a>
-                            </div>
-                            <div class="p-1">
-                                {{ $image->name }}
-                            </div>
-                            <div class="d-flex">
-                                <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaEdit{{$image->id}}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                @include('backoffice.application.media.modal.edit')
-                                <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#mediaDelete{{$image->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.application.media.modal.delete')
-                            </div>
+
+                    @if ( $images->count() == 0 )
+                        <div class="text-center col-md-12">
+                            <h4 class="text-center">
+                                <b>-- Tidak ada data --</b>
+                            </h4>
                         </div>
-                    </div>
-                    @endforeach
+                    @else
+                        @foreach ($images as $image)
+
+                            <div class="col-md-3 gallery">
+                                <div class="card">
+                                    <div class="">
+                                        <a href="{{asset('storage/application/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
+                                            <img src="{{asset('storage/application/media/'.$image->url)}}" alt="" 
+                                            class="img-fluid rounded" style="height: 200px; width: 100%">
+                                        </a>
+                                    </div>
+                                    <div class="p-1">
+                                        {{ $image->name }}
+                                    </div>
+                                    <div class="d-flex">
+                                        <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
+                                            data-target="#mediaEdit{{$image->id}}">
+                                            <span><i class="ion ion-android-create"></i> Edit</span>
+                                        </button>
+                                        @include('backoffice.application.media.modal.edit')
+                                        <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
+                                            data-target="#mediaDelete{{$image->id}}">
+                                            <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                        </button>
+                                        @include('backoffice.application.media.modal.delete')
+                                    </div>
+                                </div>
+                            </div>
+
+                        @endforeach
+                    @endif
+
                 </div>
 
                 <div class="p-3">
@@ -153,11 +165,6 @@
                     </tfoot>
                 </table> --}}
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

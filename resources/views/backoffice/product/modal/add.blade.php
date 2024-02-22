@@ -14,10 +14,12 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Kategori <span class="text-danger">*</span></label>
-                                <select name="product_category_id" class="form-control" required>
+                                <select name="product_category_id" class="form-control" required 
+                                oninvalid="this.setCustomValidity('Product Category harus dipilih!')"
+                                oninput="this.setCustomValidity('')">
                                     <option value="">-- Select Category --</option>
                                     @foreach ($productCategories as $productCategory)
-                                    <option value="{{ $productCategory->id }}">{{ $productCategory->name }}</option>
+                                        <option value="{{ $productCategory->id }}" @selected(old('product_category_id') == $productCategory->id) >{{ $productCategory->name }}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('product_category_id'))
@@ -28,13 +30,15 @@
                             <div class="form-group">
                                 <label>Nama <span class="text-danger">*</span></label>
                                 <input type="text" name="name" required class="form-control" placeholder="Enter Name"
+                                oninvalid="this.setCustomValidity('Nama harus diisi!')"
+                                oninput="this.setCustomValidity('')"
                                     value="{{ old('name') }}">
                                 @if($errors->has('name'))
                                 <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
-                                <label>Deskripsi <span class="text-danger">*</span></label>
+                                <label>Deskripsi </label>
                                 <textarea name="description" id="editor" value="{{ old('description') }}"
                                     class="form-control"></textarea>
                                 @if($errors->has('description'))
@@ -44,7 +48,9 @@
                             <div class="form-group">
                                 <label>Gambar <span class="text-danger">*</span></label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                                <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" id="image" required>
+                                <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" 
+                                    id="image" required oninvalid="this.setCustomValidity('Gambar harus diisi!')"
+                                    oninput="this.setCustomValidity('')">
                                 @if($errors->has('thumbnail'))
                                 <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                                 @endif
@@ -55,7 +61,7 @@
                                 <tr>
                                     <th style="width: 70%">Proyek</th>
                                     <th style="width: 30%" class="text-center"><button type="button" name="add"
-                                            id="add-btnVariant" class="btn btn-success">+</button></th>
+                                            id="add-btnVariant" class="btn btn-success"><i class="fa fa-plus"></i></button></th>
                                 </tr>
                             </table>
                         </div>
@@ -84,7 +90,9 @@
         $("#dynamicAddRemoveVariant").append(
             `<tr>
                 <td>
-                    <select name="application_id[]" required class="form-control">
+                    <select name="application_id[]" required class="form-control"
+                        oninvalid="this.setCustomValidity('Proyek harus dipilih!')"
+                        oninput="this.setCustomValidity('')">
                         <option value="">-- Select application --</option>
                         @foreach ($applications as $application)
                             <option value="{{ $application->id }}">{{ $application->name }}</option>

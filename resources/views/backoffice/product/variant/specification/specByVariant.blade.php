@@ -79,13 +79,13 @@
 
                             <td>
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#variantSpecEdit{{ $pvSpecification->id }}">
+                                <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#variantSpecEdit{{ $pvSpecification->id }}">
                                     <span><i class="ion ion-android-create"></i> Edit</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.edit')
                                 <!-- Button trigger modal -->
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#variantSpecDelete{{ $pvSpecification->id }}">
+                                <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#variantSpecDelete{{ $pvSpecification->id }}">
                                     <span><i class="ion ion-trash-a"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}

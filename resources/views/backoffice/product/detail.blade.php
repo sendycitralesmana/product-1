@@ -144,7 +144,7 @@
                                     </div>
                                     <hr>
                                 </div>
-                                <div class="video-body">
+                                {{-- <div class="video-body">
                                     <div class="d-flex justify-content-between">
                                         <a href="/backoffice/product/video/{{ $product->id }}">
                                             <div class="">
@@ -156,7 +156,7 @@
                                         </div>
                                     </div>
                                     <hr>
-                                </div>
+                                </div> --}}
                                 <div class="variant-body">
                                     <div class="d-flex justify-content-between">
                                         <a href="/backoffice/product/variant/{{ $product->id }}">

@@ -14,7 +14,7 @@
                     <div class="card-body">
                         <input type="hidden" name="product_variant_id" value="{{ $productVariant->id }}">
                         <div class="form-group">
-                            <label>Spesifikasi</label>
+                            <label>Spesifikasi <span class="text-danger">*</span></label>
                             {{-- <input type="text" name="specification_id" class="form-control" value="{{ $pvSpecification->specification->name}}" readonly> --}}
                             <select name="specification_id" required class="form-control">
                                 @foreach ($specifications as $specification)
@@ -22,18 +22,15 @@
                                 @endforeach
                             </select>
                         </div>
-                    </div>
-                    <div class="card-body">
                         <div class="form-group">
-                            <label>Keterangan</label>
-                            <input type="text" name="value" class="form-control" value="{{ $pvSpecification->value}}" required>
-                            {{-- <input type="text" name="value" class="form-control" value="{{ $pvSpecification->value}}" required oninvalid="this.setCustomValidity('Enter User Name Here')"> --}}
+                            <label>Keterangan <span class="text-danger">*</span> </label>
+                            <textarea name="value" class="form-control" required oninvalid="this.setCustomValidity('Keterangan harus diisi')"
+                            oninput="this.setCustomValidity('')">{{ $pvSpecification->value }}</textarea>
                             @if($errors->has('value'))
                             <span class="help-block" style="color: red">{{ $errors->first('value') }}</span>
                             @endif
                         </div>
                     </div>
-                    <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">

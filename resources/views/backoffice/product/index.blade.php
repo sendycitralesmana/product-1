@@ -35,7 +35,7 @@
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
                             <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">
-                                <span>+</span>
+                                <span class="fas fa-plus"></span>
                             </button>
                             @include('backoffice.product.modal.add')
                             @endif
@@ -135,7 +135,7 @@
                             @if (auth()->user()->role_id == 2)
                             <!-- Button trigger modal -->
                             <button title="Tambah kategori" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#categoryAdd">
-                                <span>+</span>
+                                <span class="fas fa-plus"></span>
                             </button>
                             {{-- Modal --}}
                             @include('backoffice.product.category.modal.add')

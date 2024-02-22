@@ -14,7 +14,9 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter name" required>
+                                <input type="text" name="name" class="form-control" placeholder="Enter name" required
+                                oninvalid="this.setCustomValidity('Judul harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                                 @if($errors->has('name'))
                                 <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                                 @endif
@@ -29,14 +31,18 @@
                             </div>
                             <div class="form-group">
                                 <label>Area <span class="text-danger">*</span></label>
-                                <input type="text" name="area" class="form-control" placeholder="Enter Area" required>
+                                <input type="text" name="area" class="form-control" placeholder="Enter Area" required
+                                oninvalid="this.setCustomValidity('Area harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                                 @if($errors->has('area'))
                                 <span class="help-block" style="color: red">{{ $errors->first('area') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label>Waktu <span class="text-danger">*</span></label>
-                                <input type="datetime-local" name="time" class="form-control" required>
+                                <input type="datetime-local" name="time" class="form-control" required
+                                oninvalid="this.setCustomValidity('Waktu harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                                 @if($errors->has('time'))
                                 <span class="help-block" style="color: red">{{ $errors->first('time') }}</span>
                                 @endif
@@ -56,7 +62,10 @@
                             <div class="form-group">
                                 <label>Gambar </label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                                <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                                <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" 
+                                id="image" required
+                                oninvalid="this.setCustomValidity('Gambar harus diisi!')"
+                                oninput="this.setCustomValidity('')">
                                 @if($errors->has('thumbnail'))
                                 <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                                 @endif
@@ -66,7 +75,7 @@
                             <table class="table" id="dynamicAddRemoveVariant">
                                 <tr>
                                     <th style="width: 70%">Produk</th>
-                                    <th style="width: 30%" class="text-center"><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></th>
+                                    <th style="width: 30%" class="text-center"><button type="button" name="add" id="add-btnVariant" class="btn btn-success"><i class="fa fa-plus"></i></button></th>
                                 </tr>
                             </table>
                         </div>
@@ -95,7 +104,9 @@
         $("#dynamicAddRemoveVariant").append(
             `<tr>
                 <td>
-                    <select name="product_id[]" required class="form-control">
+                    <select name="product_id[]" required class="form-control"
+                        oninvalid="this.setCustomValidity('Produk harus dipilih!')"
+                        oninput="this.setCustomValidity('')">
                         <option value="">-- Select Product --</option>
                         @foreach ($products as $product)
                             <option value="{{ $product->id }}">{{ $product->name }}</option>

@@ -144,7 +144,7 @@
                                             {{ $file->name }}
                                         </div>
                                         <div>
-                                            <a href="/product/file/download/{{ $file->id }}"
+                                            <a href="/application/file/download/{{ $file->id }}"
                                                 class="btn text-white btn-sm" style="background-color: #ed7a07"><i
                                                     class="fa fa-download"></i> Unduh</a>
                                         </div>

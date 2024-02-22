@@ -18,7 +18,8 @@
                 <div class="p-r-45 p-r-0-lg">
 
                     @if ($posts->count() == 0)
-                        <div>
+                        <div class="m-b-2">
+                            <a href="/blog" class="btn btn-outline-secondary mr-1">Lihat semua</a>
                             <p>Hasil pencarian dari : <b>{{ $title }}</b> </p>
                         </div>
                         <div class="text-center">

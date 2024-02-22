@@ -3,7 +3,7 @@
 @section('main')
 
     <!-- breadcrumb -->
-	<div class="container p-t-104">
+	<div class="container p-t-30">
 		<div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">
             <a href="/homepage" class="stext-109 cl8 hov-cl1 trans-04">
                 Beranda
@@ -143,7 +143,7 @@
 							</ul>
 						</div>
 
-						<div class="p-t-65">
+						{{-- <div class="p-t-65">
 							<h4 class="mtext-112 cl2 p-b-33">
 								Artikel terbaru
 							</h4>
@@ -168,139 +168,8 @@
 								</li>
                                 @endforeach
 							</ul>
-						</div>
-
-						{{-- <div class="p-t-55">
-							<h4 class="mtext-112 cl2 p-b-20">
-								Archive
-							</h4>
-
-							<ul>
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											July 2018
-										</span>
-
-										<span>
-											(9)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											June 2018
-										</span>
-
-										<span>
-											(39)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											May 2018
-										</span>
-
-										<span>
-											(29)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											April  2018
-										</span>
-
-										<span>
-											(35)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											March 2018
-										</span>
-
-										<span>
-											(22)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											February 2018
-										</span>
-
-										<span>
-											(32)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											January 2018
-										</span>
-
-										<span>
-											(21)
-										</span>
-									</a>
-								</li>
-
-								<li class="p-b-7">
-									<a href="#" class="flex-w flex-sb-m stext-115 cl6 hov-cl1 trans-04 p-tb-2">
-										<span>
-											December 2017
-										</span>
-
-										<span>
-											(26)
-										</span>
-									</a>
-								</li>
-							</ul>
 						</div> --}}
 
-						{{-- <div class="p-t-50">
-							<h4 class="mtext-112 cl2 p-b-27">
-								Tags
-							</h4>
-
-							<div class="flex-w m-r--5">
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Fashion
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Lifestyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Denim
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Streetstyle
-								</a>
-
-								<a href="#" class="flex-c-m stext-107 cl6 size-301 bor7 p-lr-15 hov-tag1 trans-04 m-r-5 m-b-5">
-									Crafts
-								</a>
-							</div>
-						</div> --}}
 					</div>
 				</div>
 			</div>

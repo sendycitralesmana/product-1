@@ -43,7 +43,7 @@
                     <div style="margin-left:10px; margin-right:10px">
                         <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="" 
                             style="height: 100px; display: block; margin-left: auto; margin-right: auto;" 
-                            class="img-fluid rounded">
+                            class="img-fluid rounded"> 
                     </div>
                     @if ( $images->count() > 0 )
                         @foreach ($images as $image)

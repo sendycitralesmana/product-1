@@ -137,7 +137,7 @@
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <div class="card-img">
-                                            <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid"
+                                            <img src="{{ asset('images/pdf.png') }}" alt="" class="img-fluid rounded"
                                                 height="50px" width="50px">
                                         </div>
                                         <div class="card-title">
@@ -191,7 +191,8 @@
                     <!-- Block2 -->
                     <div class="block2">
                         <div class="block2-pic hov-img0">
-                            <img src="{{ asset('storage/image/product/'.$relationship->thumbnail) }}" alt="IMG-PRODUCT" height="250px">
+                            <img src="{{ asset('storage/image/product/'.$relationship->thumbnail) }}" alt="IMG-PRODUCT" 
+                            height="250px" class="img-fluid rounded">
 
                             {{-- <a href="#"
                                 class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">

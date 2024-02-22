@@ -99,7 +99,11 @@
                             <div class="card-footer card-comments">
                                 <div class="card-comment">
                                     <!-- User image -->
-                                    <img class="img-circle img-sm" src="{{asset('storage/image/profile.png')}}" alt="User Image">
+                                    @if ( auth()->user()->avatar == null )
+                                        <img src="{{ asset('images/profile.png') }}" alt="" class="img-fluid">
+                                    @else
+                                        <img class="img-circle img-sm" src="{{asset('storage/image/user/'. auth()->user()->avatar)}}" alt="User Image" class="img-fluid">
+                                    @endif
 
                                     <div class="comment-text">
                                         <span class="username">

@@ -123,7 +123,6 @@ class ProductController extends Controller
         $validated = $request->validate([
             'product_category_id' => 'required',
             'name' => 'required',
-            'description' => 'required',
         ]);
 
         $newName = null;

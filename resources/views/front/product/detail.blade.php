@@ -98,14 +98,14 @@
                 <div class="slider-nav mt-3">
                     <div style="">
                         <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" 
-                            style="height: 100px; display: block; margin-left: auto; margin-right: auto;" 
+                            style="padding:5px; height: 100px; display: block; margin-left: auto; margin-right: auto;" 
                             class="img-fluid rounded">
                     </div>
                     @if ( $images->count() > 0 )
                         @foreach ($images as $image)
                             <div style="">
                                 <img src="{{ asset('storage/product/media/'.$image->url) }}" alt=""
-                                    style="height: 100px; display: block; margin-left: auto; margin-right: auto;"
+                                    style="padding:5px; height: 100px; display: block; margin-left: auto; margin-right: auto;"
                                     class="img-fluid rounded">    
                             </div>
                         @endforeach

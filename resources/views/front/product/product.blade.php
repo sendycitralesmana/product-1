@@ -19,10 +19,14 @@
                 </li>
 
                 @foreach ($productCategories as $productCategory)
-                <li class="nav-item p-b-10">
-                    <a class="nav-link" data-toggle="tab" href="#{{ $productCategory->id }}"
-                        role="tab">{{ $productCategory->name }}</a>
-                </li>
+                    @if ( $productCategory->product->count() > 0)
+
+                        <li class="nav-item p-b-10">
+                            <a class="nav-link" data-toggle="tab" href="#{{ $productCategory->id }}"
+                                role="tab">{{ $productCategory->name }}</a>
+                        </li>
+
+                    @endif
                 @endforeach
             </ul>
 
@@ -36,31 +40,33 @@
                         <div class="slick2">
 
                             @foreach ($products as $product)
-                            <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                                <!-- Block2 -->
-                                <div class="block2">
-                                    <div class="block2-pic hov-img0">
-                                        {{-- <img src="{{ asset('assets/frontend/images/product-01.jpg') }}"
-                                            alt="IMG-PRODUCT"> --}}
-                                        <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
-                                            alt="IMG-PRODUCT" height="250px" class="img-fluid rounded">
 
-                                        {{-- <a href="#"
-                                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
-                                            Quick View
-                                        </a> --}}
-                                    </div>
+                                {{-- @if ( $product->variant->count() > 0)
+                                @endif --}}
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
+                                                alt="IMG-PRODUCT" height="250px" class="img-fluid rounded">
 
-                                    <div class="block2-txt flex-w flex-t p-t-14">
-                                        <div class="block2-txt-child1 flex-col-l ">
-                                            <a href="/product/{{ $product->id }}"
-                                                class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                {{ $product->name }}
-                                            </a>
+                                            {{-- <a href="#"
+                                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1">
+                                                Quick View
+                                            </a> --}}
+                                        </div>
+
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="/product/{{ $product->id }}"
+                                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                    {{ $product->name }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+
                             @endforeach
 
                         </div>
@@ -75,31 +81,33 @@
                         <div class="slick2">
 
                             @foreach ($products->where('product_category_id', $productCategory->id) as $product)
-                            <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
-                                <!-- Block2 -->
-                                <div class="block2">
-                                    <div class="block2-pic hov-img0">
-                                        {{-- <img src="{{ asset('assets/frontend/images/product-09.jpg') }}"
-                                            alt="IMG-PRODUCT"> --}}
-                                        <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
-                                            alt="IMG-PRODUCT" height="250px">
+                                {{-- @if ($product->variant->count() > 0)
+                                @endif --}}
+                                <div class="item-slick2 p-l-15 p-r-15 p-t-15 p-b-15">
+                                    <!-- Block2 -->
+                                    <div class="block2">
+                                        <div class="block2-pic hov-img0">
+                                            {{-- <img src="{{ asset('assets/frontend/images/product-09.jpg') }}"
+                                                alt="IMG-PRODUCT"> --}}
+                                            <img src="{{ asset('storage/image/product/' . $product->thumbnail) }}"
+                                                alt="IMG-PRODUCT" height="250px">
 
-                                        {{-- <a href="#"
-                                            class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1{{ $product->id }}">
-                                            Quick View
-                                        </a> --}}
-                                    </div>
+                                            {{-- <a href="#"
+                                                class="block2-btn flex-c-m stext-103 cl2 size-102 bg0 bor2 hov-btn1 p-lr-15 trans-04 js-show-modal1{{ $product->id }}">
+                                                Quick View
+                                            </a> --}}
+                                        </div>
 
-                                    <div class="block2-txt flex-w flex-t p-t-14">
-                                        <div class="block2-txt-child1 flex-col-l ">
-                                            <a href="/product/{{ $product->id }}"
-                                                class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
-                                                {{ $product->name }}
-                                            </a>
+                                        <div class="block2-txt flex-w flex-t p-t-14">
+                                            <div class="block2-txt-child1 flex-col-l ">
+                                                <a href="/product/{{ $product->id }}"
+                                                    class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                    {{ $product->name }}
+                                                </a>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
                             @endforeach
 
                         </div>

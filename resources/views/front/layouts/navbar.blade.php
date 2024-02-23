@@ -35,7 +35,11 @@
                                     {{-- {{ GoogleTranslate::trans('Semua Produk',\App::getLocale()) }} --}}
                                 </a></li>
                                 @foreach ($productCategories as $productCategory)
-                                <li><a href="/product/category/{{ $productCategory->id }}">{{ $productCategory->name }}</a></li>
+                                    @if ($productCategory->product->count() > 0)
+                                        <li>
+                                            <a href="/product/category/{{ $productCategory->id }}">{{ $productCategory->name }}</a>
+                                        </li>
+                                    @endif
                                 @endforeach
                             </ul>
                         </li>

@@ -3,7 +3,7 @@
     <div class="container">
         <div class="p-b-66">
             <h3 class="ltext-105 cl5 txt-center respon1">
-                {{ __('home.Proyek dikerjakan') }}
+                Proyek terbaru
             </h3>
         </div>
 
@@ -14,7 +14,8 @@
                 <div class="blog-item">
                     <div class="hov-img0">
                         <a href="blog-detail.html">
-                            <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="IMG-BLOG" height="250px">
+                            <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="IMG-BLOG" height="250px" 
+                            class="img-fluid rounded">
                         </a>
                     </div>
 

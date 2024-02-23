@@ -146,7 +146,7 @@
                                         <div>
                                             <a href="/application/file/download/{{ $file->id }}"
                                                 class="btn text-white btn-sm" style="background-color: #ed7a07"><i
-                                                    class="fa fa-download"></i> Unduh</a>
+                                                    class="fa fa-eye"></i> Lihat</a>
                                         </div>
                                     </div>
                                 </div>

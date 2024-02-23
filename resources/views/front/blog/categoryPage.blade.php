@@ -60,7 +60,7 @@
 
                             <div class="col-md-6">
                                 <div class="">
-                                    <div class="card" style="margin: 0 20px 20px">
+                                    <div class="card" style="margin-bottom: 32px">
                                         <div class="blog-img">
                                             <a href="/blog/{{ $post->id }}" class="hov-img0 how-pos5-parent">
                                                 <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG" 

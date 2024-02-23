@@ -6,9 +6,10 @@ use App\Models\Product;
 use App\Models\MediaType;
 use App\Models\MediaProduct;
 use Illuminate\Http\Request;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
 
 class MediaProductController extends Controller
@@ -264,9 +265,14 @@ class MediaProductController extends Controller
 
     public function downloadFile($id) {
         $mediaProduct = MediaProduct::find($id);
-        $pathToFile = public_path('storage/product/media/'. $mediaProduct->url);
-        // dd($pathToFile);
-        return response()->download($pathToFile);
+        // $pathToFile = public_path('storage/product/media/'. $mediaProduct->url);
+        // return response()->download($pathToFile);
+
+        $pdf = public_path('storage/product/media/'. $mediaProduct->url);
+        return response()->file($pdf);
+
+        // return $pdf->stream($mediaProduct->name . '.pdf');
+
     }
 
 }

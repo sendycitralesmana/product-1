@@ -96,7 +96,7 @@
                                 <td> {{ $productVariant->height }} </td>
                             @endif
                             <td>
-                                <a href="/backoffice/product/variant/{{ $productVariant->id }}/export-pdf" 
+                                <a href="/backoffice/product/variant/{{ $productVariant->id }}/export-pdf" target="_blank"
                                     class="btn btn-outline-danger btn-sm m-1">
                                     <i class="fa fa-file-pdf"></i> Export pdf
                                 </a>

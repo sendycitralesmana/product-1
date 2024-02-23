@@ -321,9 +321,9 @@
                                             {{ $file->name }}
                                         </div>
                                         <div>
-                                            <a href="/product/file/download/{{ $file->id }}"
+                                            <a href="/product/file/download/{{ $file->id }}" target="_blank"
                                                 class="btn text-white btn-sm" style="background-color: #ed7a07"><i
-                                                    class="fa fa-download"></i> Unduh</a>
+                                                    class="fa fa-eye"></i> Lihat</a>
                                         </div>
                                     </div>
                                 </div>

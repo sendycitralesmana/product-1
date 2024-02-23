@@ -12,11 +12,11 @@ class PostFEController extends Controller
 {
     public function index(Request $request) {
         $postC = Post::with(['category'])->get();
-        $posts = Post::orderBy('id', 'desc')->paginate(4);
+        $posts = Post::orderBy('id', 'desc')->paginate(8);
         if ($request->title) {
             $posts = Post::with(['category'])->where('title', 'LIKE', '%' . $request->title . '%')
                             ->orderBy('id', 'desc')
-                            ->paginate(4);
+                            ->paginate(8);
         }
         $postCategories = PostCategory::get();
         $productCategories = ProductCategory::get();

@@ -15,7 +15,7 @@
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $productVariant->id }}" class="">Varian</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $product->id }}" class="">Varian</a></li>
                     <li class="breadcrumb-item active">Spesifikasi</li>
                   </ol>
                 </div>
@@ -29,12 +29,12 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Varian spesifikasi</h3>
+                <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-default" data-toggle="modal" data-target="#variantSpecAdd">
-                        <span>+</span>
+                        <span class="fas fa-plus"></span>
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.product.variant.specification.modal.add')

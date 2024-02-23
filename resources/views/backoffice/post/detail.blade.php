@@ -30,13 +30,6 @@
             <div class="card-header">
                 <h3 class="card-title">Berita</h3>
                 <div class="card-tools">
-                    <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
-                        data-target="#postEdit{{ $post->id }}">
-                        <span><i class="ion ion-android-create"></i> Edit</span>
-                    </button>
-                    {{-- Modal --}}
-                    @include('backoffice.post.modal.edit')
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
                         <i class="fas fa-minus"></i>
@@ -72,7 +65,7 @@
                             <div class="card-header">
                                 <div class="user-block">
                                     @if ( $post->user->avatar != null )
-                                    <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
+                                        <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
                                     @endif
                                     {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
                                     <span class="username"><p>{{ $post->user->name }}</p></span>
@@ -81,6 +74,11 @@
                                 </div>
                                 <!-- /.user-block -->
                                 <div class="card-tools">
+                                    <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                        data-target="#postEdit{{ $post->id }}">
+                                        <span><i class="fa fa-pen"></i> Edit</span>
+                                    </button>
+                                    @include('backoffice.post.modal.edit')
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i
                                             class="fas fa-minus"></i>
                                     </button>
@@ -90,9 +88,11 @@
                             <!-- /.card-header -->
                             <div class="card-body">
                                 @if ( $post->thumbnail != null )
-                                <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid" alt=""
-                                    height="300px">
-                                @endif
+                                <div class="text-center">
+                                    <img src="{{ asset('storage/image/post/'.$post->thumbnail) }}" class="img-fluid" alt=""
+                                        style="height: 300px">
+                                    @endif
+                                </div>
                                 <h4 class="mt-3"> {{ $post->title }} </h4>
                                 <p> {!! html_entity_decode($post->content) !!} </p>
                                 <span class="float-right text-muted">{{ $post->comment->count() }} Komentar</span>
@@ -114,6 +114,11 @@
                             </div>
                             <div class="card-body">
                                 <div class="card-footer card-comments" style="height: 420px; overflow-y: scroll">
+                                    @if ( $post->comment->count() == 0 )
+                                        <h4 class="text-center">
+                                            <b>-- Tidak ada komentar --</b>
+                                        </h4>
+                                    @endif
                                     @foreach ($post->comment as $comment)
                                     <div class="card-comment">
                                         <!-- User image -->

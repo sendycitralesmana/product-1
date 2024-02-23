@@ -100,7 +100,7 @@
                                     class="btn btn-outline-danger btn-sm m-1">
                                     <i class="fa fa-file-pdf"></i> Export pdf
                                 </a>
-                                <a href="/backoffice/product/vs/{{ $productVariant->id }}"
+                                <a href="/backoffice/product/{{ $productVariant->product_id }}/vs/{{ $productVariant->id }}"
                                     class="btn btn-info btn-sm m-1">
                                     <i class="ion ion-eye"></i> Spesifikasi
                                 </a>

@@ -30,9 +30,9 @@
 						<!--  -->
 						<div class="wrap-pic-w how-pos5-parent">
 							{{-- <img src="{{ asset('storage/image/post/'. $post->thumbnail)}}" alt="IMG-BLOG"> --}}
-							<img src="{{ asset('images/banner.jpg')}}" alt="IMG-BLOG" class="img-fluid" style="height: 370px">
+							<img src="{{ asset('storage/image/post/'. $post->thumbnail)}}" alt="IMG-BLOG" class="img-fluid">
 
-							<div class="flex-col-c-m size-123 bg9 how-pos5">
+							{{-- <div class="flex-col-c-m size-123 bg9 how-pos5">
 								<span class="ltext-107 cl2 txt-center">
 									{{ $post->created_at->format('d') }}
 								</span>
@@ -40,7 +40,7 @@
 								<span class="stext-109 cl3 txt-center">
 									{{ $post->created_at->format('M Y') }}
 								</span>
-							</div>
+							</div> --}}
 						</div>
 
 						<div class="p-t-32">
@@ -153,7 +153,7 @@
                                 @foreach ($postRecents as $recent)
 								<li class="flex-w flex-t p-b-30">
 									<div class="wrao-pic-w size-214  m-r-20">
-										<img src="{{ asset('images/banner.jpg' ) }}" alt="PRODUCT"
+										<img src="{{ asset('storage/image/post/'. $recent->thumbnail) }}" alt="PRODUCT"
 										class="img-fluid" style="height: 50px">
 									</div>
 									<div class="size-215 flex-col-t p-t-8">

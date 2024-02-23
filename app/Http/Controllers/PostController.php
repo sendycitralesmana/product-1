@@ -73,7 +73,7 @@ class PostController extends Controller
         $application->save();
 
         Session::flash('post', 'success');
-        Session::flash('message', 'Add data success');
+        Session::flash('message', 'Tambah artikel berhasil');
         // return redirect('/product-variant');
         return redirect('/backoffice/post');
     }
@@ -112,7 +112,7 @@ class PostController extends Controller
         $post->save();
 
         Session::flash('post', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Edit artikel berhasil');
         
         return redirect()->back();
     }
@@ -131,7 +131,7 @@ class PostController extends Controller
         $post->delete();
 
         Session::flash('post', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'Hapus artikel berhasil');
         return redirect()->back();
     }
 }

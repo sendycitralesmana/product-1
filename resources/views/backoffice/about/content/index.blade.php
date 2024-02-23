@@ -89,7 +89,7 @@
                                 <div class="">
                                     <a href="{{asset('storage/image/content/'. $content->thumbnail)}}" data-title="{{ $content->name }}" data-lightbox="mycontent">
                                         <img src="{{asset('storage/image/content/'. $content->thumbnail)}}" alt="" 
-                                        class="img-fluid rounded" style="height: 400px; width: 100%">
+                                        class="img-fluid rounded" style="height: 350px; width: 100%">
                                     </a>
                                 </div>
                                 <div class="p-1">

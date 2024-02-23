@@ -130,7 +130,7 @@
                                             <div class="img-push mt-2">
                                                 <textarea name="message" class="form-control" required></textarea>
                                             </div>
-                                            <button type="submit" class="btn btn-outline-success float-right mt-2">Kirim balasan</button>
+                                            <button type="submit" class="btn btn-outline-success float-right mt-2"> <i class="fas fa-paper-plane"></i> Kirim balasan</button>
                                         </div>
                                         <!-- /.comment-text -->
                                     </div>

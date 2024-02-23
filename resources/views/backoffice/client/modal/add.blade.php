@@ -12,8 +12,9 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Nama <span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter name"
-                            value="{{ old('name') }}">
+                        <input type="text" name="name" class="form-control" placeholder="Enter name" value="{{ old('name') }}" required
+                        oninvalid="this.setCustomValidity('Nama harus diisi!')"
+                        oninput="this.setCustomValidity('')">
                         @if($errors->has('name'))
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                         @endif
@@ -29,7 +30,9 @@
                     <div class="form-group">
                         <label>Gambar <span class="text-danger">*</span></label>
                         <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                        <input type="file" accept="image/*" onchange="previewImg()" id="image" name="image" class="form-control" placeholder="Enter Password" required>
+                        <input type="file" accept="image/*" onchange="previewImg()" id="image" name="image" class="form-control" placeholder="Enter Password" required
+                        oninvalid="this.setCustomValidity('Gambar harus diisi!')"
+                        oninput="this.setCustomValidity('')">
                         @if($errors->has('image'))
                         <span class="help-block" style="color: red">{{ $errors->first('image') }}</span>
                         @endif

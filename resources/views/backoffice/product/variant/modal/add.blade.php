@@ -13,14 +13,18 @@
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="form-group">
                         <label>Nama</label>
-                        <input type="text" required name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}">
+                        <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}"
+                        oninvalid="this.setCustomValidity('Nama harus diisi!')"
+                        oninput="this.setCustomValidity('')" required>
                         @if($errors->has('name'))
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                         @endif
                     </div>
                     <div class="form-group">
                         <label>Price</label>
-                        <input type="number" min="1" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}">
+                        <input type="number" min="1" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}"
+                        oninvalid="this.setCustomValidity('Harus diisi')"
+                        oninput="this.setCustomValidity('')" required>
                         @if($errors->has('price'))
                         <span class="help-block" style="color: red">{{ $errors->first('price') }}</span>
                         @endif

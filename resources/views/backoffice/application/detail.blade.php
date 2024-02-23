@@ -176,7 +176,11 @@
                                             </p>
                                             <div class="">
                                                 @if ($application->client != null)
-                                                    <img src="{{ asset('storage/image/client/'.$application->client->image) }}" class="img-fluid" alt="" width="100" height="100">
+                                                    <a href="/backoffice/client/{{ $application->client->id }}/detail">
+                                                        <img src="{{ asset('storage/image/client/'.$application->client->image) }}" class="img-fluid rounded" 
+                                                        alt="" style="width: 100px; height: 100px">
+                                                        <p class="text-center">{{ $application->client->name }}</p>
+                                                    </a>
                                                     {{-- <img src="{{ asset('images/default.png') }}" alt="" width="100" height="100" class="img-fluid"> --}}
                                                 @else
                                                     Tidak ada klien

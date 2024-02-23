@@ -31,8 +31,9 @@ class PVSpecificationController extends Controller
         }
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Add data success');
-        return redirect('/backoffice/product/vs/'. $request->product_variant_id[0]);
+        Session::flash('message', 'Tambah spesifikasi berhasil');
+        return redirect()->back();
+        // return redirect('/backoffice/product/vs/'. $request->product_variant_id[0]);
     }
 
     public function update(Request $request, $id)
@@ -50,7 +51,8 @@ class PVSpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Edit spesifikasi berhasil');
-        return redirect('/backoffice/product/vs/'. $request->product_variant_id);
+        return redirect()->back();
+        // return redirect('/backoffice/product/vs/'. $request->product_variant_id);
     }
 
     public function delete($id)
@@ -60,10 +62,12 @@ class PVSpecificationController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Hapus spesifikasi berhasil');
-        return redirect('/backoffice/product/vs/'. $pvSpecification->product_variant_id);
+        return redirect()->back();
+        // return redirect('/backoffice/product/vs/'. $pvSpecification->product_variant_id);
     }
 
-    public function specByVariant($id) {
+    public function specByVariant($product, $id) {
+        $product = Product::find($product);
         $productVariant = ProductVariant::find($id);
         $specifications = Specification::get();
         $pvSpecifications = PVSpecification::where('product_variant_id', $id)->with(['productVariant', 'specification'])->get();
@@ -71,6 +75,7 @@ class PVSpecificationController extends Controller
             'productVariant' => $productVariant,
             'specifications' => $specifications,
             'pvSpecifications' => $pvSpecifications,
+            'product' => $product
         ]);
     }
 

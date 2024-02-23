@@ -98,14 +98,17 @@ class ClientController extends Controller
 
     public function delete($id) {
 
-        dd('hello');
-
         $client = Client::find($id);
-        $client->application()->update();
-        $client->delete(); 
+
+        $applications = Application::where('client_id', $client->id)->get();
+        foreach ($applications as $application) {
+            $application->client_id = null;
+            $application->save();
+        }
+        $client->delete();
         
         Session::flash('client', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'Hapus klien berhasil');
         return redirect('/backoffice/client');
     }
 }

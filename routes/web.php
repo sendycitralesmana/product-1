@@ -192,7 +192,7 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/backoffice/product/vs/{id}/edit', [PVSpecificationController::class, 'edit']);
         Route::put('/backoffice/product/vs/{id}/update', [PVSpecificationController::class, 'update']);
         Route::get('/backoffice/product/vs/{id}/delete', [PVSpecificationController::class, 'delete']);
-        Route::get('/backoffice/product/vs/{id}', [PVSpecificationController::class, 'specByVariant']);
+        Route::get('/backoffice/product/{product}/vs/{id}', [PVSpecificationController::class, 'specByVariant']);
     // Product End
     
     // Media Type 

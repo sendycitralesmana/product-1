@@ -26,7 +26,7 @@
                     Filter
                 </div> --}}
 
-                @if ( url()->full() != url( '/product' ) )
+                @if ( $name != null )
                 <a href="/product">
                     <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4" style="padding: 20px">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
@@ -63,7 +63,6 @@
         <div class="row">
             @if ($name != null)
                 <div class="col-md-12 p-b-40">
-
                     <p>
                         <b>hasil pencarian untuk {{ $name }} ..</b>
                     </p>

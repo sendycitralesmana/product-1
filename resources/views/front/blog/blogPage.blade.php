@@ -29,10 +29,18 @@
                         </div>
                     </form>
 
-                    @if ($posts->count() == 0)
-                        <div class="m-b-2">
-                            <span>Hasil pencarian dari : <b>{{ $title }}</b> </span>
+                    @if ( $title != null )
+                        <div class="m-b-20">
+                            <span> 
+                                <a href="/blog" class="" title="Hapus pencarian">
+                                    <i class="fa fa-refresh m-r-5"></i> 
+                                </a>
+                                Hasil pencarian dari : <b>{{ $title }}</b> 
+                            </span>
                         </div>
+                    @endif
+
+                    @if ($posts->count() == 0)
                         <div class="text-center mt-2">
                             <h4 class="mb-2">
                                 <b>-- Tidak ada data --</b>
@@ -47,63 +55,55 @@
 
                             <div class="col-md-6">
                                 <div class="">
-                                    <div class="p-b-40">
+                                    <div class="card" style="margin: 0 20px 20px">
                                         <div class="blog-img">
                                             <a href="/blog/{{ $post->id }}" class="hov-img0 how-pos5-parent">
                                                 <img src="{{ asset('storage/image/post/'. $post->thumbnail) }}" alt="IMG-BLOG" 
                                                 class="img-fluid rounded" style="height: 250px">
-                
-                                                {{-- <div class="flex-col-c-m size-123 bg9 how-pos5">
-                                                    <span class="ltext-107 cl2 txt-center">
-                                                        {{ $post->created_at->format('d') }}
-                                                    </span>
-                
-                                                    <span class="stext-109 cl3 txt-center">
-                                                        {{ $post->created_at->format('M Y') }}
-                                                    </span>
-                                                </div> --}}
                                             </a>
                                         </div>
         
-                                        <div class="p-t-32">
-                                            <p class="" style="
-                                                overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                -webkit-line-clamp: 2;
-                                                display: -webkit-box;
-                                                -webkit-box-orient: vertical;">
-                                                <a href="/blog/{{ $post->id }}" class="ltext-108 cl2 hov-cl1 trans-04">
-                                                    <b>{{ $post->title }}</b>
-                                                </a>
-                                            </p>
-        
-                                            <div class="stext-117 cl6" style="
-                                                overflow: hidden;
-                                                text-overflow: ellipsis;
-                                                -webkit-line-clamp: 2;
-                                                display: -webkit-box;
-                                                -webkit-box-orient: vertical;
-                                            ">
-                                                {!! html_entity_decode($post->content) !!}
-                                            </div>
-        
-                                            <div class="flex-w flex-sb-m p-t-18">
-                                                <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
-                                                    <span>
-                                                        <span class="cl4">Oleh</span> {{ $post->user->name }}
-                                                        <span class="cl12 m-l-4 m-r-6">|</span>
+                                        <div class="p-t-22">
+                                            <div style="margin: 0 10px">
+                                                <p class="" style="
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    -webkit-line-clamp: 2;
+                                                    display: -webkit-box;
+                                                    -webkit-box-orient: vertical;">
+                                                    <a href="/blog/{{ $post->id }}" class="ltext-108 cl2 hov-cl1 trans-04">
+                                                        <b>{{ $post->title }}</b>
+                                                    </a>
+                                                </p>
+            
+                                                <div class="stext-117 cl6" style="
+                                                    overflow: hidden;
+                                                    text-overflow: ellipsis;
+                                                    -webkit-line-clamp: 2;
+                                                    display: -webkit-box;
+                                                    -webkit-box-orient: vertical;
+                                                ">
+                                                    {!! html_entity_decode($post->content) !!}
+                                                </div>
+            
+                                                <div class="flex-w flex-sb-m p-t-18">
+                                                    <span class="flex-w flex-m stext-111 cl2 p-r-30 m-tb-10">
+                                                        <span>
+                                                            <span class="cl4">Oleh</span> {{ $post->user->name }}
+                                                            <span class="cl12 m-l-4 m-r-6">|</span>
+                                                        </span>
+            
+                                                        <span>
+                                                            {{ $post->comment->count() }} Komentar
+                                                        </span>
                                                     </span>
-        
-                                                    <span>
-                                                        {{ $post->comment->count() }} Komentar
-                                                    </span>
-                                                </span>
-        
-                                                <a href="/blog/{{ $post->id }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
-                                                    Lanjut baca
-        
-                                                    <i class="fa fa-long-arrow-right m-l-9"></i>
-                                                </a>
+            
+                                                    <a href="/blog/{{ $post->id }}" class="stext-101 cl2 hov-cl1 trans-04 m-tb-10">
+                                                        Lanjut baca
+            
+                                                        <i class="fa fa-long-arrow-right m-l-9"></i>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

@@ -4,7 +4,7 @@
 
         <div>
             <div class="flex-w flex-tr">
-                <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-10 p-lr-15-lg w-full-md">
+                <div class="size-210 bor10 flex-w flex-col-m p-lr-93 p-tb-10 p-lr-15-lg w-full-md contact-message">
                     <form action="/contact/send" method="POST">
                         @csrf
                         <div class="d-flex justify-content-between">
@@ -46,7 +46,7 @@
                 </div>
     
                 <div class="size-210 bor10 w-full-md">
-                    <img src="{{ asset('images/contact.jpg') }}" class="w-full img-fluid" alt="">
+                    <img src="{{ asset('images/contact.jpg') }}" class="w-full img-fluid h-full contact-img" alt="">
                 </div>
             </div>
         </div>

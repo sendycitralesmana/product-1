@@ -67,6 +67,20 @@
             /* object-fit: cover; */
         }
 
+        @media only screen and (max-width: 768px) {
+            .contact-message {
+                order: 2;
+            }
+
+            .tk-info {
+                order: 2;
+            }
+
+            .vm-info {
+                order: 2;
+            }
+        }
+
     </style>
 
     @vite(['resources/css/app.css', 'resources/js/app.js'])

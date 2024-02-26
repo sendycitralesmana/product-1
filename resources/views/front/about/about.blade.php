@@ -3,6 +3,16 @@
     <div class="bg2 p-t-30 p-b-30">
         <div class="container">
             <div class="row p-b-20">
+
+                <div class="col-md-5 col-lg-4 m-lr-auto p-b-30">
+                    <div class="how-bor1 ">
+                        <div class="hov-img0 ">
+                            {{-- <img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" alt="IMG" class="img-fluid"> --}}
+                            <img src="{{ asset('images/tentang.jpg') }}" class="img-fluid" alt="">
+                        </div>
+                    </div>
+                </div>
+
                 <div class="col-md-7 col-lg-8">
                     <div class="p-t-7 p-r-85 p-r-15-lg p-r-0-md">
                         <div class="d-flex justify-content-between">
@@ -22,15 +32,6 @@
                             {{-- {!! GoogleTranslate::trans( html_entity_decode($aboutTK->description) , App::getLocale()) !!} --}}
                         </div>
     
-                    </div>
-                </div>
-    
-                <div class="col-11 col-md-5 col-lg-4 m-lr-auto">
-                    <div class="how-bor1 ">
-                        <div class="hov-img0">
-                            {{-- <img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" alt="IMG" class="img-fluid"> --}}
-                            <img src="{{ asset('images/tentang.jpg') }}" class="img-fluid" alt="">
-                        </div>
                     </div>
                 </div>
     

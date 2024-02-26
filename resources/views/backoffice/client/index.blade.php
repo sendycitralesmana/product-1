@@ -125,8 +125,10 @@
                             </div>
                             <div class="card-body">
                                 <a href="{{asset('storage/image/client/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
-                                    <img src="{{asset('storage/image/client/'.$client->image)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 200px; width: 100%">
+                                    {{-- <img src="{{asset('storage/image/client/'.$client->image)}}" alt="" 
+                                    class="img-fluid rounded" style="height: 100px; width: 100%"> --}}
+                                    <img src="{{ asset('storage/image/client/'.$client->image) }}" alt="" class="img-fluid object-fit-contain rounded" 
+                                    style="height: 80px; display: block; margin-left: auto; margin-right: auto">
                                 </a>
                                 <div class="status mt-2">
                                     @if ( $client->is_hidden == 0 )

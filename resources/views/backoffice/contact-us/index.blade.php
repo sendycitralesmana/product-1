@@ -102,7 +102,7 @@
                                     @if ( auth()->user()->avatar == null )
                                         <img src="{{ asset('images/profile.png') }}" alt="" class="img-fluid">
                                     @else
-                                        <img class="img-circle img-sm" src="{{asset('storage/image/user/'. auth()->user()->avatar)}}" alt="User Image">
+                                        <img class="img-circle img-fluid img-sm" src="{{asset('storage/image/user/'. auth()->user()->avatar)}}" alt="User Image">
                                     @endif
 
                                     <div class="comment-text">
@@ -121,7 +121,12 @@
                                     @csrf
                                     <div class="card-comment">
                                         <!-- User image -->
-                                        <img class="img-circle img-sm" src="{{asset('storage/image/profile.png')}}" alt="User Image">
+                                        @if ( auth()->user()->avatar == null )
+                                            <img src="{{ asset('images/profile.png') }}" alt="" class="img-fluid img-circle img-sm" alt="">
+                                        @else
+                                            <img src="{{asset('storage/image/user/'. auth()->user()->avatar)}}" class="img-circle img-fluid img-sm" alt="">
+                                        @endif
+                                        {{-- <img class="img-circle img-sm" src="{{asset('storage/image/profile.png')}}" alt="User Image"> --}}
     
                                         <div class="comment-text">
                                             <span class="username">

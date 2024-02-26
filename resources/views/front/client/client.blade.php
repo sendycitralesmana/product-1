@@ -11,10 +11,10 @@
                     <div class=" wrap-pic-w p-4">
                         @if ( $client->link != null )
                             <a href="{{ $client->link }}" target="_blank">
-                                <img src="{{asset('storage/image/client/'. $client->image)}}" alt="IMG-BANNER" class="img-fluid rounded" style="height: 120px">
+                                <img src="{{asset('storage/image/client/'. $client->image)}}" alt="IMG-BANNER" class="img-fluid rounded object-fit-contain">
                             </a>
                         @else
-                            <img src="{{asset('storage/image/client/'. $client->image)}}" class="img-fluid rounded" alt="IMG-BANNER" style="height: 120px">
+                            <img src="{{asset('storage/image/client/'. $client->image)}}" class="img-fluid rounded object-fit-contain" alt="IMG-BANNER">
                         @endif
                     </div>
                 </div>

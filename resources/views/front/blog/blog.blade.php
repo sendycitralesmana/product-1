@@ -64,7 +64,7 @@
             </div>
             
             <!-- Load more -->
-			<div class="flex-c-m flex-w w-full p-t-35">
+			<div class="flex-c-m flex-w w-full p-t-25">
 				<a href="/blog" class="flex-c-m stext-101 cl5 size-103  bor1 hov-btn1 p-lr-15 trans-04 text-white" style="background-color: #ed7a07">
 					Lihat lebih <span class="fa fa-angle-double-right m-l-4"></span>
 				</a>

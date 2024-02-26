@@ -10,11 +10,10 @@ use Illuminate\Support\Facades\Storage;
 class ContentController extends Controller
 {
     public function index() {
-        $contents = Content::get();
+        $contents = Content::orderBy('id', 'asc')->get();
 
         return view('backoffice.about.content.index', [
             'contents' => $contents
-            ,
         ]);
     }
 

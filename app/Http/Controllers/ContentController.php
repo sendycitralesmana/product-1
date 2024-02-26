@@ -60,7 +60,7 @@ class ContentController extends Controller
             $request->file('thumbnail')->storeAs('image/content/', str_replace(' ', '_', $newName));
         }
 
-        $content = Content::find($id);
+        $content = Content::where('id', $id)->first();
         $content->title = $request->title;
         $content->description = $request->description;
         if ($request->oldImage != null) {

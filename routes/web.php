@@ -20,6 +20,7 @@ use App\Http\Controllers\FE\PostFEController;
 use App\Http\Controllers\MediaTypeController;
 use App\Http\Controllers\FE\AboutFEController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\ContentAltController;
 use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\ContactFEController;
 use App\Http\Controllers\FE\GalleryFEController;
@@ -272,11 +273,15 @@ Route::group(['middleware' => 'auth'], function(){
         Route::post('/backoffice/feedback/{id}/send', [MessageEmailController::class, 'send']);
     
     // Content
-    Route::get('/backoffice/about/content', [ContentController::class, 'index']);
-    Route::post('/backoffice/about/content/create', [ContentController::class, 'create']);
-    Route::get('/backoffice/about/content/{id}/edit', [ContentController::class, 'edit']);
-    Route::put('/backoffice/about/content/{id}/update', [ContentController::class, 'update']);
-    Route::get('/backoffice/about/content/{id}/delete', [ContentController::class, 'delete']);
+    // Route::get('/backoffice/about/content', [ContentController::class, 'index']);
+    // Route::post('/backoffice/about/content/create', [ContentController::class, 'create']);
+    // Route::get('/backoffice/about/content/{id}/edit', [ContentController::class, 'edit']);
+    // Route::put('/backoffice/about/content/{id}/update', [ContentController::class, 'update']);
+    // Route::get('/backoffice/about/content/{id}/delete', [ContentController::class, 'delete']);
+
+    Route::get('/backoffice/about/content', [ContentAltController::class, 'index']);
+    Route::get('/backoffice/about/content/{id}/edit', [ContentAltController::class, 'edit']);
+    Route::put('/backoffice/about/content/{id}/update', [ContentAltController::class, 'update']);
     
     // History
     Route::get('/backoffice/about/history', [HistoryController::class, 'index']);

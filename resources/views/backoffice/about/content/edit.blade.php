@@ -78,7 +78,7 @@
                         <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                         @endif
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Gambar</label>
                         <input type="hidden" name="oldImage" value="{{ $content->thumbnail }}">
                         @if ($content->thumbnail)
@@ -90,7 +90,7 @@
                         @if($errors->has('thumbnail'))
                         <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                         @endif
-                    </div>
+                    </div> --}}
                     <button class="btn btn-success"> <i class="fas fa-save"></i> Simpan</button>
                 </form>
 

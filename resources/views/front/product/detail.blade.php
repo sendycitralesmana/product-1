@@ -82,7 +82,7 @@
                 </div>
             </div> --}}
 
-            <div class="col-md-6 col-lg-5 p-b-30">
+            <div class="col-md-6 col-lg-5 p-b-30 p-l-30 p-r-30">
                 <div class="slider-for">
                     <div>
                         <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" style="height: 350px" class="img-fluid rounded">

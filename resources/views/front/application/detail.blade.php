@@ -26,7 +26,7 @@
 <section class="sec-product-detail bg0 p-t-65 p-b-60">
     <div class="container">
         <div class="row">
-            <div class="col-md-6 col-lg-5 p-b-30">
+            <div class="col-md-6 col-lg-5 p-b-30 p-l-30 p-r-30">
                 <div class="slider-for">
                     <div>
                         <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" alt="" style="height: 350px" class="img-fluid rounded">

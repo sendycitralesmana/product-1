@@ -102,7 +102,7 @@
 
                     <div class="tab-pane fade show active" id="information" role="tabpanel">
                         <div class="row">
-                            <div class="col-md-4 m-lr-auto">
+                            <div class="col-md-4 m-lr-auto p-l-40 p-r-40">
                                 @if ( $application->client_id == null )
                                 <h4 class="mtext-105 cl2 js-name-detail p-b-14 text-center">
                                     <b>-- Tidak ada klien --</b>
@@ -133,7 +133,7 @@
                             </div>
                             @else
                             @foreach ($files as $file)
-                            <div class="col-md-4 m-lr-auto">
+                            <div class="col-md-4 m-lr-auto p-b-15">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <div class="card-img">

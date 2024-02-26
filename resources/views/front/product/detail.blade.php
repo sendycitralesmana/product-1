@@ -310,7 +310,7 @@
                             </div>
                             @else
                             @foreach ($files as $file)
-                            <div class="col-md-4 m-lr-auto">
+                            <div class="col-md-4 m-lr-auto p-b-15">
                                 <div class="card text-center">
                                     <div class="card-body">
                                         <div class="card-img">

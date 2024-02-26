@@ -32,8 +32,8 @@
 				<div class="col-md-5 col-lg-4 m-lr-auto p-b-30">
 					<div class="how-bor1 ">
 						<div class="hov-img0">
-							{{-- <img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" class="img-fluid" style="height: 400px; width: 100') }}" alt="IMG"> --}}
-							<img src="{{ asset('images/tentang.jpg') }}" class="img-fluid" style="height: 400px; width: 100') }}" alt="IMG">
+							<img src="{{ asset('storage/image/content/'. $aboutTK->thumbnail) }}" class="img-fluid" style="height: 400px; width: 100%') }}" alt="IMG">
+							{{-- <img src="{{ asset('images/tentang.jpg') }}" class="img-fluid" style="height: 400px; width: 100%') }}" alt="IMG"> --}}
 						</div>
 					</div>
 				</div>
@@ -44,7 +44,8 @@
 				<div class="col-md-5 col-lg-4 m-lr-auto p-b-30">
 					<div class="how-bor2">
 						<div class="hov-img0">
-							<img src="{{ asset('images/vimi.jpg') }}" alt="IMG">
+							<img src="{{ asset('storage/image/content/'. $aboutVM->thumbnail) }}" class="img-fluid" style="height: 400px; width: 100%') }}" alt="IMG">
+							{{-- <img src="{{ asset('images/vimi.jpg') }}" alt="IMG"> --}}
 						</div>
 					</div>
 				</div>

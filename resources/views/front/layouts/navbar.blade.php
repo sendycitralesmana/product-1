@@ -92,6 +92,74 @@
                     </ul>
                 </div>
 
+                <!-- Icon header -->
+                <div class="wrap-icon-header flex-w flex-r-m h-full">
+                    {{-- <div class="flex-c-m h-full p-r-24">
+                        <div class="icon-header-item cl2 hov-cl1 trans-04 p-lr-11 js-show-modal1">
+                            <i class="zmdi zmdi-search"></i>
+                        </div>
+                    </div> --}}
+
+                    <div class="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search m-r-30">
+						<i class="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
+						<i class="icon-close-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-close dis-none"></i>
+						Cari ...
+					</div>
+                </div>
+
+                <!-- Modal1 -->
+                {{-- <div class="wrap-modal1 js-modal1 p-t-60 p-b-20">
+                    <div class="overlay-modal1 js-hide-modal1"></div>
+
+                    <div class="container">
+                        <div class="bg0 p-t-60 p-b-30 p-lr-15-lg how-pos3-parent">
+                            <button class="how-pos3 hov3 trans-04 js-hide-modal1">
+                                <img src="{{ asset('assets/frontend/images/icons/icon-close.png') }}" alt="CLOSE">
+                            </button>
+
+
+
+                            <div class="row">
+                                <div class="col-md-12 p-lr-60">
+
+                                    <form action="" class="" style="position: sticky">
+                                        <div class="bor8 m-b-20 how-pos3-parent">
+                                            <input class="stext-111 cl2 plh3 size-111 p-lr-28" type="text"
+                                                name="search" id="search" placeholder="Cari produk">
+                                        </div>
+                                    </form>
+
+                                    <div class="row isotope-grid" id="result">
+
+                                        @foreach ($products as $product)
+                                            
+                                        <div class="col-sm-6 col-md-4 col-lg-3 p-b-35 isotope-item {{ $product->product_category_id }}">
+                                            <div class="block2">
+                                                <div class="block2-pic hov-img0">
+                                                    <img src="{{ asset('assets/frontend/images/product-01.jpg') }}" alt="IMG-PRODUCT">
+                                                </div>
+                            
+                                                <div class="block2-txt flex-w flex-t p-t-14">
+                                                    <div class="block2-txt-child1 flex-col-l ">
+                                                        <a href="/product/{{ $product->id }}" class="stext-104 cl4 hov-cl1 trans-04 js-name-b2 p-b-6">
+                                                            {{ $product->name }}
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                            
+                                        @endforeach
+
+
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> --}}
+
             </nav>
         </div>
     </div>
@@ -175,3 +243,36 @@
     </div>
 
 </header>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $.ajaxSetup({ headers: { 'csrf-token': '{{ csrf_token() }}' } });
+</script>
+
+<script>
+    $(document).ready(function(){
+        
+        $('#search').on('keyup', function(){
+            var value = $(this).val();
+
+            if(value){
+                $('.allData').hide();
+                $('.searchData').show();
+            } else {
+                $('.allData').show();
+                $('.searchData').hide();
+            }
+
+            $.ajax({
+                type: "GET",
+                url: "/search",
+                data: {'search':value},
+                success: function(data) {
+                    $('#result').html(data);
+                }
+            })
+        })
+
+    });
+</script>

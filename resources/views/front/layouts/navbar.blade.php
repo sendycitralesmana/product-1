@@ -105,7 +105,7 @@
                             <i class="zmdi zmdi-search"></i>
                         </button>
                 
-                        <input class="mtext-107 cl2 plh2 p-r-15" type="text" name="search" id="search" placeholder="Cari produk">
+                        <input class="mtext-107 cl2 plh2 p-r-15" type="text" name="search" id="searchProduct" placeholder="Cari produk">
                     </div>	
                 </div>
 
@@ -202,7 +202,7 @@
 <script>
     $(document).ready(function(){
         
-        $('#search').on('keyup', function(){
+        $('#searchProduct').on('keyup', function(){
             var value = $(this).val();
 
             if(value){
@@ -215,8 +215,8 @@
 
             $.ajax({
                 type: "GET",
-                url: "/search",
-                data: {'search':value},
+                url: "/searchProduct",
+                data: {'searchProduct':value},
                 success: function(data) {
                     $('#result').html(data);
                 }

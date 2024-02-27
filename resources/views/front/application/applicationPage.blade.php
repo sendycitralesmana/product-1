@@ -2,6 +2,11 @@
 
 @section('main')
 
+<div id="result" class="p-t-10 searchData p-l-30 p-r-30" 
+        style="position: fixed; left: 0; right: 0; top: 80px; z-index: 999">
+
+    </div>
+
     <!-- Product -->
 <div class="bg0 m-t-23 p-t-40 p-b-140">
     <div class="container">

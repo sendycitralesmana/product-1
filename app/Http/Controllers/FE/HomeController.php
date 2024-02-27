@@ -44,11 +44,11 @@ class HomeController extends Controller
 
             $output = '';
             
-            $products = Product::where('name', 'like', '%' . $request->search . '%')->get();
+            $productSearch = Product::where('name', 'like', '%' . $request->search . '%')->get();
 
-            if ($products) {
+            if ($productSearch) {
 
-                if (count($products) == 0) {
+                if (count($productSearch) == 0) {
                     $output .= '
                     <div class="card allData">
                         <div class="card-body">
@@ -61,7 +61,7 @@ class HomeController extends Controller
                     <div class="card-body">
                         <div class="row">';
 
-                    foreach ($products as $product) {
+                    foreach ($productSearch as $product) {
                         $output .= '
                             <div class="col-sm-6 col-md-4 col-lg-3 isotope-item text-center">
                                 <div class="block2">
@@ -86,11 +86,6 @@ class HomeController extends Controller
                     </div>
                 </div>';
                 }
-
-                
-
-
-                
                 // foreach ($products as $product) {
                 //     $output .= '
                 //     <div class="card">
@@ -125,11 +120,6 @@ class HomeController extends Controller
                 // }
 
             return response()->json($output);
-
-            if ($request->search == '') {
-                return response()->json('No Data Found');
-            }
-
 
             } else {
 

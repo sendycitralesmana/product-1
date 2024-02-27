@@ -80,7 +80,7 @@ Route::get('google/translate',[GoogleTranslateFEController::class,'googleTransla
 // homepage
 Route::get('/', [HomeController::class, 'index']);
 
-Route::get('/search', [HomeController::class, 'search']);
+Route::get('/searchProduct', [HomeController::class, 'search']);
 
 // product
 Route::get('/product', [ProductFEController::class, 'index']);

@@ -2,6 +2,11 @@
 
 @section('main')
 
+<div id="result" class="p-t-10 searchData p-l-30 p-r-30" 
+        style="position: fixed; left: 0; right: 0; top: 80px; z-index: 999">
+
+    </div>
+
 <!-- breadcrumb -->
 <div class="container p-t-30">
     <div class="bread-crumb flex-w p-l-25 p-r-15 p-t-30 p-lr-0-lg">

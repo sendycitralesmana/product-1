@@ -105,7 +105,7 @@
                             <i class="zmdi zmdi-search"></i>
                         </button>
                 
-                        <input class="mtext-107 cl2 plh2 p-r-15" type="text" name="search" id="search" placeholder="Cari ...">
+                        <input class="mtext-107 cl2 plh2 p-r-15" type="text" name="search" id="search" placeholder="Cari produk">
                     </div>	
                 </div>
 

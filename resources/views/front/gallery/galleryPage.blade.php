@@ -3,7 +3,7 @@
 @section('main')
 
 <!-- gallery -->
-<div class="bg0 p-t-104 m-t-23 p-b-140">
+<div class="bg0 p-t-40 m-t-23 p-b-140">
     <div class="container">
         <div class="p-b-22">
             <h3 class="ltext-105 cl5 txt-center respon1">

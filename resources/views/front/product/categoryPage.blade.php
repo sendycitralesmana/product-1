@@ -27,7 +27,7 @@
 
                 @if ( $name != null )
                 <a href="/product/category/{{ $productCategory->id }}">
-                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4">
+                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 p-r-4">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
                         Lihat Semua
                     </div>
@@ -117,7 +117,7 @@
             @else
 			<div class="col-md-12 text-center" >
 
-                <h3>Produk tidak ditemukan</h3>
+                <h3>-- Produk tidak ditemukan --</h3>
 			</div>
             @endif
 

@@ -77,7 +77,7 @@
             @if ($products->count() == 0)
                 <div class="col-md-12 text-center p-t-40">
 
-                    <h1>Produk tidak ditemukan</h1>
+                    <h3>-- Produk tidak ditemukan --</h3>
                 </div>
             @endif
         </div>

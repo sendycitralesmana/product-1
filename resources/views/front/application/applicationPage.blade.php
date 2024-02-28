@@ -27,7 +27,7 @@
 
                 @if ( url()->full() != url( '/application' ) )
                 <a href="/application">
-                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4">
+                    <div class="flex-c-m stext-106 cl6 size-104 bor4 pointer hov-btn3 trans-04 m-r-8 m-tb-4 p-r-4">
                         <i class="cl2 m-r-6 fs-15 trans-04"></i>
                         Lihat semua
                     </div>
@@ -94,7 +94,11 @@
 
             @endforeach
             @else
-                <h3>Proyek tidak ditemukan</h3>
+				<div class="text-center mt-2 col-md-12">
+					<h4 class="mb-2">
+						<b>-- Proyek tidak ditemukan --</b>
+					</h4>
+				</div>
             @endif
 
         </div>

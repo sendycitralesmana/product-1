@@ -31,7 +31,7 @@
                     <form action="/blog/category/{{ $postCategory->id }}" method="GET" class="m-b-20">
                         <div class="bor17 of-hidden pos-relative">
                             <input class="stext-103 cl2 plh4 size-116 p-l-28 p-r-55" type="text" name="title"
-                                placeholder="Cari berita..." required>
+                                placeholder="Cari artikel..." required>
         
                             <button type="submit" class="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
                                 <i class="zmdi zmdi-search"></i>
@@ -53,7 +53,7 @@
                     @if ($posts->count() == 0)
                         <div class="text-center mt-2">
                             <h4 class="mb-2">
-                                <b>-- Tidak ada data --</b>
+                                <b>-- Artikel tidak ditemukan --</b>
                             </h4>
                             <a href="/blog" class="btn btn-outline-secondary mr-1 btn-sm"> <i class="fa fa-refresh"></i> Lihat semua</a>
                         </div>

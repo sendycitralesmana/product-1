@@ -34,7 +34,9 @@ class ProductFEController extends Controller
         $productCategory = ProductCategory::find($id);
         $products = Product::where('product_category_id', $id)->paginate(8);
         if ($request->name) {
-            $products = Product::where('name', 'like', '%' . $request->name . '%')->paginate(8);
+            $products = Product::where('name', 'like', '%' . $request->name . '%')
+                                ->where('product_category_id', $id)
+                                ->paginate(8);
         }
         return view('front.product.categoryPage', [
             'name' => $request->name,

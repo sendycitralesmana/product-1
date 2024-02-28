@@ -56,17 +56,30 @@ class HomeController extends Controller
                         </div>
                     </div>';
                 } else {
-                    $output .= '
+
+                    if ($products->count() < 8) {
+                $output .= '
                 <div class="card allData">
                     <div class="card-body">
                         <div class="row">';
+                    } else {
+                $output .= '
+                <div class="card allData" style="overflow-y: scroll; height: 635px">
+                    <div class="card-body">
+                        <div class="row">';
+                    }
+
+                // $output .= '
+                // <div class="card allData" style="overflow-y: scroll; height: 635px">
+                //     <div class="card-body">
+                //         <div class="row">';
 
                     foreach ($products as $product) {
                         $output .= '
                             <div class="col-sm-6 col-md-4 col-lg-3 isotope-item text-center">
                                 <div class="block2">
                                     <div class="block2-pic hov-img0">
-                                        <img src="'. asset('storage/image/product/'.$product->thumbnail) .'" alt="IMG-PRODUCT" style="height: 150px; width: 150px">
+                                        <img src="'. asset('images/banner.jpg') .'" alt="IMG-PRODUCT" style="height: 350px; width: 150px">
                                     </div>
 
                                     <div class="block2-txt flex-w flex-t p-t-14">

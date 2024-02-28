@@ -68,6 +68,12 @@
             /* object-fit: cover; */
         }
 
+        @media only screen and (max-width: 991px) {
+            .allData {
+                display: none;
+            }
+        }
+
         @media only screen and (max-width: 768px) {
             .contact-message {
                 order: 2;

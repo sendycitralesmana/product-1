@@ -113,7 +113,7 @@
                     <li class="nav-item">
                         <a href="/backoffice/post" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-newspaper"></i>
-                          <p>Artikel</p>
+                          <p>Berita</p>
                         </a>
                     </li>
                     <li class="nav-item">

@@ -26,9 +26,9 @@
 <body class="hold-transition login-page">
     <div class="login-box">
         <div class="">
-            <h1 class="text-center">
+            {{-- <h1 class="text-center">
                 <b>RESET PASSWORD</b>
-            </h1>
+            </h1> --}}
         </div>
         <div class="card">
             <img src="{{asset('images/banner.jpg')}}" class="img-fluid rounded" alt="">

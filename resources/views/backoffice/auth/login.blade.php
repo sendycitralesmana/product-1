@@ -39,7 +39,7 @@
                 <h3 class="text-center">
                     <b>-- Masuk --</b>
                 </h3>
-                <p class="login-box-msg">Masuk untuk mengakses halaman admin</p>
+                <p class="login-box-msg">Masuk untuk mengakses aplikasi</p>
                 @if(session('status'))
                 <div class="alert alert-success">
                     <button type="button" class="btn btn-success btn-sm close" data-dismiss="alert" sty>&times;</button>

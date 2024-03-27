@@ -75,11 +75,14 @@
                             </button>
                         </div>
                         <div class="col-12 text-center mt-2">
-                            <div class="d-flex justify-content-between">
+                            {{-- <div class="d-flex justify-content-between">
                                 <a href="/login" class="btn btn-outline-primary btn-block m-1"> <i class="fa fa-arrow-right"></i> Masuk</a>
                                 <a href="/register" class="btn btn-outline-primary btn-block m-1"> <i class="fa fa-user-plus"></i> Daftar</a>
-                            </div>
+                            </div> --}}
                             {{-- Belum punya akun? <a href="/register" class=""> <b>Daftar</b> </a> --}}
+                            <div class=" text-right" >
+                                <a href="/login" > <i class="fa fa-arrow-right"></i> Masuk</a>
+                            </div>
                         </div>
                     </div>
                 </form>

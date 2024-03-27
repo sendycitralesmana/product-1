@@ -85,10 +85,10 @@
                                 <i class="fa fa-arrow-right"></i> <b>Masuk</b>     
                             </button>
                         </div>
-                        <div class="col-12 text-center mt-2">
+                        {{-- <div class="col-12 text-center mt-2">
                             Belum punya akun? <a href="/register" class=""> <b>Daftar</b> </a>
                             <hr>
-                        </div>
+                        </div> --}}
                     </div>
                     <div class="">
                         <div class=" text-right" >

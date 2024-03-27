@@ -144,12 +144,12 @@
                             @endif
                         </div>
 
-                        <div class="p-3">
-                            {{ $messages->links() }}
-                        </div>
-
                     </div>
                     @endforeach
+                </div>
+
+                <div class="p-3">
+                    {{ $messages->links() }}
                 </div>
 
             </div>

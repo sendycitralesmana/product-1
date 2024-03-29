@@ -122,7 +122,7 @@
                                     @foreach ($post->comment as $comment)
                                     <div class="card-comment">
                                         <!-- User image -->
-                                        <img class="img-circle img-sm" src="{{ asset('storage/image/profile.png') }}"
+                                        <img class="img-circle img-sm" src="{{ asset('images/profile.png') }}"
                                             alt="User Image">
 
                                         <div class="comment-text">

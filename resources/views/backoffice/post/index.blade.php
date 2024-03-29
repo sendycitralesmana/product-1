@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <div class="row">
 
-                            <h3 class="card-title">Data berita</h3>
+                            <h3 class="card-title">Data artikel</h3>
                         </div>
                         {{-- <div class="card-tools">
                             

@@ -9,7 +9,9 @@
              alt="AdminLTE Logo"
              class="brand-image img-circle elevation-3"
              style="opacity: .8">
-        <span class="brand-text font-weight-light">Matahari LED</span>
+        <span class="brand-text font-weight-light" style="text-transform: uppercase">
+            <b>Matahari LED</b>
+        </span>
       </a>
 
     <!-- Sidebar -->
@@ -25,12 +27,14 @@
             </div>
         </div> --}}
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="image">
+            {{-- <div class="image">
               <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" class="img-circle elevation-2" alt="User Image"
               style="height: 35px; width: 35px">
-            </div>
-            <div class="info">
-              <a href="#" class="d-block">{{ auth()->user()->name }}</a>
+            </div> --}}
+            <div class="info text-center">
+                <a href="#" class="d-block" style="text-transform: uppercase">
+                    <b>{{ auth()->user()->role->name }}</b>
+                </a>
             </div>
           </div>
 
@@ -113,7 +117,7 @@
                     <li class="nav-item">
                         <a href="/backoffice/post" class="nav-link {{ request()->is('backoffice/post', 'backoffice/post/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-newspaper"></i>
-                          <p>Berita</p>
+                          <p>Artikel</p>
                         </a>
                     </li>
                     <li class="nav-item">

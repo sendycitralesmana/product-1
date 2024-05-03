@@ -8,17 +8,31 @@ use Illuminate\Http\Request;
 
 class ClientController extends Controller
 {
-    public function index() {
-        $clients = Client::get();
-        return response()->json();
+    public function index(Request $request) {
+        $qClients = Client::query();
+
+        if ($request->search) {
+            $qClients->where('name', 'LIKE', '%' . $request->search . '%');
+        }
+
+        if ($request->perPage) {
+            $perPage = $request->perPage;
+        } else {
+            $perPage = 10;
+        }
+
+        $clients = $qClients->paginate($perPage);
+
+        return response()->json([
+            $clients
+        ], 200);
     }
 
     public function detail($id) {
         $client = Client::find($id);
         if ($client) {
             return response()->json([
-                'message' => 'clients successfully fetched',
-                'data' => $client
+                $client
             ], 200);
         } else {
             return response()->json([

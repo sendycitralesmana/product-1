@@ -33,8 +33,8 @@
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
-                    <button title="Add Variant" type="button" class="btn btn-default" data-toggle="modal" data-target="#addProductVariant">
-                        <span class="fas fa-plus"></span>
+                    <button title="Add Variant" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addProductVariant">
+                        <span class="fas fa-plus"></span> Tambah
                     </button>
                     @include('backoffice.product.variant.modal.add')
                     @endif
@@ -105,7 +105,7 @@
                                     <i class="ion ion-eye"></i> Spesifikasi
                                 </a>
                                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
+                                    <span><i class="fa fa-edit"></i> Ubah</span>
                                 </button>
                                 @include('backoffice.product.variant.modal.edit')
                                 <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#productVariantDelete{{ $productVariant->id }}">

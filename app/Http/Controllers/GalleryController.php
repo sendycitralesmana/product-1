@@ -83,7 +83,7 @@ class GalleryController extends Controller
         $gallery->save();
 
         Session::flash('gallery', 'success');
-        Session::flash('message', 'Edit gambar berhasil');
+        Session::flash('message', 'Ubah gambar berhasil');
 
         return redirect('/backoffice/gallery');
 

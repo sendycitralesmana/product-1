@@ -11,51 +11,65 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $products = Product::with(['category', 'media', 'video', 'variant']);
+        // $products = Product::with(['category', 'media', 'video', 'variant']);
         
+        // if ($request->search) {
+        //     $products->where('name', 'like', '%'. $request->search . '%');
+        // }
+
+        // if ($request->product_category_id) {
+        //     $products->where('product_category_id', $request->product_category_id);
+        // }
+
+        // if ($request->category) {
+        //     $products->whereHas('category', function($query) use($request) {
+        //         $query->where('name', 'like', '%' . $request->category . '%');
+        //     });
+        // }
+
+        // if ($request->sortBy && in_array($request->sortBy ,['id', 'created_at'])) {
+        //     $sortBy = $request->sortBy;
+        // }   else {
+        //     $sortBy = 'id';
+        // }
+        
+        // if ($request->sortOrder && in_array($request->sortOrder ,['asc', 'desc'])) {
+        //     $sortOrder = $request->sortOrder;
+        // }   else {
+        //     $sortOrder = 'asc';
+        // }
+
+        // if ($request->paginate) {
+        //     $list = $products->orderBy($sortBy, $sortOrder)->paginate($request->paginate);
+        // } else {
+        //     $list = $products->orderBy($sortBy, $sortOrder)->get();
+        // }
+
+
+        $qProducts = Product::with(['category', 'media', 'video', 'variant']);
+        $qProducts->orderBy('created_at', 'desc');
+
         if ($request->search) {
-            $products->where('name', 'like', '%'. $request->search . '%');
+            $qProducts->where('name', 'like', '%'. $request->search . '%');
         }
 
-        if ($request->product_category_id) {
-            $products->where('product_category_id', $request->product_category_id);
-        }
-
-        if ($request->category) {
-            $products->whereHas('category', function($query) use($request) {
-                $query->where('name', 'like', '%' . $request->category . '%');
-            });
-        }
-
-        if ($request->sortBy && in_array($request->sortBy ,['id', 'created_at'])) {
-            $sortBy = $request->sortBy;
-        }   else {
-            $sortBy = 'id';
-        }
-        
-        if ($request->sortOrder && in_array($request->sortOrder ,['asc', 'desc'])) {
-            $sortOrder = $request->sortOrder;
-        }   else {
-            $sortOrder = 'asc';
-        }
-
-        if ($request->paginate) {
-            $list = $products->orderBy($sortBy, $sortOrder)->paginate($request->paginate);
+        if ($request->perPage) {
+            $perPage = $request->perPage;
         } else {
-            $list = $products->orderBy($sortBy, $sortOrder)->get();
+            $perPage = 10;
         }
-        
+
+        $products = $qProducts->paginate($perPage);
+
         return response()->json([
-            'data' => $list,
+            $products
         ], 200);
     }
 
     public function detail($id) {
         $product = Product::with(['category', 'media', 'video', 'variant'])->find($id);
         if ($product) {
-            return response()->json([
-                'message' => 'products successfully fetched',
-                'data' => $product
+            return response()->json([$product
             ], 200);
         } else {
             return response()->json([

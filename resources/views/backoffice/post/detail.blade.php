@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Detail artikel</h1>
+                    <h1>Detail Artikel</h1>
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
@@ -76,7 +76,7 @@
                                 <div class="card-tools">
                                     <button type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#postEdit{{ $post->id }}">
-                                        <span><i class="fa fa-pen"></i> Edit</span>
+                                        <span><i class="fas fa-edit"></i> Ubah</span>
                                     </button>
                                     @include('backoffice.post.modal.edit')
                                     <button type="button" class="btn btn-tool" data-card-widget="collapse"><i

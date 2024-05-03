@@ -9,29 +9,30 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $posts = Post::with(['user', 'category']);
+        $qPosts = Post::with(['user', 'category']);
 
         if ($request->search) {
-            $posts->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
+            $qPosts->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
         }
 
-        if ($request->paginate) {
-            $list = $posts->paginate($request->paginate);
+        if ($request->perPage) {
+            $perPage = $request->perPage;
         } else {
-            $list = $posts->get();
+            $perPage = 10;
         }
 
-        return response()->json(
-            $list, 200
-        );
+        $posts = $qPosts->paginate($perPage);
+
+        return response()->json([
+            $posts
+        ], 200);
     }
 
     public function detail($id) {
-        $post = Post::with(['category'])->find($id);
+        $post = Post::with(['category', 'user'])->find($id);
         if ($post) {
             return response()->json([
-                'message' => 'Post successfully fetched',
-                'data' => $post
+                $post
             ], 200);
         } else {
             return response()->json([

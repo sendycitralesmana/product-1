@@ -25,7 +25,7 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
 
                 {{-- <h3 class="card-title">Data klien</h3> --}}
@@ -38,15 +38,15 @@
                         <form class="form-inline" action="/backoffice/client">
                             <div class="input-group input-group-sm">
                                 <input class="form-control" type="text"
-                                    placeholder="Cari judul" name="search" aria-label="Search">
+                                    placeholder="Cari klien" name="search" aria-label="Search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">
+                                    <button class="btn btn-success" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                                 @if ( $search != null )
                                     <div class="input-group-append">
-                                        <a href="/backoffice/client" class="btn btn-outline-secondary">Lihat semua</a>
+                                        <a href="/backoffice/client" class="btn btn-outline-secondary"><span class="fa fa-arrows-rotate"></span> Lihat semua</a>
                                     </div>
                                 @endif
                             </div>
@@ -55,8 +55,8 @@
                     <div class="card-tools">
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#clientAdd">
-                                <span class="fas fa-plus"></span>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#clientAdd">
+                                <span class="fas fa-plus"></span> Tambah
                             </button>
                             @include('backoffice.client.modal.add')
                             @endif
@@ -130,20 +130,25 @@
                                     <img src="{{ asset('storage/image/client/'.$client->image) }}" alt="" class="img-fluid object-fit-contain rounded" 
                                     style="height: 80px; display: block; margin-left: auto; margin-right: auto">
                                 </a>
-                                <div class="status mt-2">
+                                <div class="status mt-2 text-center">
                                     @if ( $client->is_hidden == 0 )
-                                        <div>
-                                            <i class="fa fa-eye"></i> <small>Tampil</small>
-                                        </div>
+                                        <button class="badge badge-light">
+                                            <i class="fa fa-eye"></i> Ditampilkan
+                                        </button>
                                     @else
-                                        <div>
-                                            <i class="fa fa-eye-slash"></i> <small>Tidak tampil</small>
-                                        </div>
+                                        <button class="badge badge-light">
+                                            <i class="fa fa-eye-slash"></i> Tidak ditampilkan
+                                        </button>
                                     @endif
                                 </div>
-                                <div class="p-1">
-                                    <a href="{{ $client->link }}" target="_blank">{{ $client->link }}</a>
-                                </div>
+                                @if ($client->link != null)
+                                    <div class="p-1">
+                                        <small>
+                                            Link: <a href="{{ $client->link }}" target="_blank">{{ $client->link }}</a>
+                                        </small>
+                                    </div>
+                                @endif
+                                <hr>
                                 <div class="d-flex">
                                     <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm btn-block m-1">
                                         <i class="ion ion-eye"></i> Detail

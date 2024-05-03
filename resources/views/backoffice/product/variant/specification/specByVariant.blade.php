@@ -33,8 +33,8 @@
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#variantSpecAdd">
-                        <span class="fas fa-plus"></span>
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#variantSpecAdd">
+                        <span class="fas fa-plus"></span> Tambah
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.product.variant.specification.modal.add')
@@ -80,7 +80,7 @@
                             <td>
                                 <!-- Button trigger modal -->
                                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#variantSpecEdit{{ $pvSpecification->id }}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
+                                    <span><i class="fas fa-edit"></i> Ubah</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.variant.specification.modal.edit')

@@ -40,13 +40,13 @@
                                             <input class="form-control" type="text"
                                                 placeholder="Cari judul" name="title" aria-label="Search">
                                             <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="submit">
+                                                <button class="btn btn-success" type="submit">
                                                     <i class="fas fa-search"></i>
                                                 </button>
                                             </div>
                                             @if ( $title != null )
                                             <div class="input-group-append">
-                                                <a href="/backoffice/post" class="btn btn-outline-secondary">Lihat semua</a>
+                                                <a href="/backoffice/post" class="btn btn-outline-secondary"><span class="fa fa-arrows-rotate"></span> Lihat semua</a>
                                             </div>
                                             @endif
                                         </div>
@@ -55,8 +55,8 @@
                                 <div class="card-tools">
                             
                                     @if (auth()->user()->role_id == 2)
-                                    <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#postAdd">
-                                        <span class="fa fa-plus"></span>
+                                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#postAdd">
+                                        <span class="fa fa-plus"></span> Tambah
                                     </button>
                                     @include('backoffice.post.modal.add')
                                     @endif
@@ -209,9 +209,9 @@
                         <h3 class="card-title">Kategori</h3>
                         <div class="card-tools">
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal"
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
                                 data-target="#postCategoryAdd">
-                                <span><i class="ion ion-plus"></i></span>
+                                <span><i class="fas fa-plus"></i> Tambah</span>
                             </button>
                             {{-- Modal --}}
                             @include('backoffice.post.category.modal.add')
@@ -228,12 +228,12 @@
                             <div class="d-flex justify-content-between">
                                 <a href="/backoffice/post/category/{{ $postCategory->id }}">{{ $postCategory->name }} ( {{ $postCategory->post->count() }} )</a>
                                 <div>
-                                    <button title="Edit" type="button" class="btn btn-warning btn-sm" data-toggle="modal"
+                                    <button title="Ubah" type="button" class="btn btn-warning btn-sm" data-toggle="modal"
                                         data-target="#postCategoryEdit{{ $postCategory->id }}">
-                                        <span><i class="ion ion-android-create"></i></span>
+                                        <span><i class="fas fa-edit"></i></span>
                                     </button>
                                     @include('backoffice.post.category.modal.edit')
-                                    <button type="button" title="Delete" class="btn btn-danger btn-sm" data-toggle="modal"
+                                    <button type="button" title="Hapus" class="btn btn-danger btn-sm" data-toggle="modal"
                                         data-target="#postCategoryDelete{{ $postCategory->id }}">
                                         <span><i class="ion ion-android-delete"></i></span>
                                     </button>

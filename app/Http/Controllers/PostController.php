@@ -112,7 +112,7 @@ class PostController extends Controller
         $post->save();
 
         Session::flash('post', 'success');
-        Session::flash('message', 'Edit artikel berhasil');
+        Session::flash('message', 'Ubah artikel berhasil');
         
         return redirect()->back();
     }

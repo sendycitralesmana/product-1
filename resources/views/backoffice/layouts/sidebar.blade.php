@@ -140,12 +140,12 @@
                             <p>Pesan</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="/backoffice/about/content" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*') ? 'active' : '' }}">
                           <i class="fa fa-columns nav-icon"></i>
                           <p>Konten</p>
                         </a>
-                      </li>
+                    </li> --}}
                     {{-- <li class="nav-item has-treeview">
                         <a href="#" class="nav-link {{ request()->is('backoffice/about/content', 'backoffice/about/content/*', 'backoffice/about/history', 'backoffice/about/history/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-th"></i>

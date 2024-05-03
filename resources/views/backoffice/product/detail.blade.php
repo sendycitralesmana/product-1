@@ -73,7 +73,7 @@
                                     <!-- Button trigger modal -->
                                     <button type="button" class="btn btn-warning btn-sm" title="Edit" data-toggle="modal"
                                         data-target="#productEdit{{ $product->id }}">
-                                        <span><i class="ion ion-android-create"></i></span>
+                                        <span><i class="fas fa-edit"></i></span> Ubah
                                     </button>
                                     {{-- Modal --}}
                                     @include('backoffice.product.modal.edit')

@@ -3,17 +3,16 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
+use App\Models\Gallery;
 use Illuminate\Http\Request;
 
-class ApplicationController extends Controller
+class GalleryController extends Controller
 {
-
     public function index(Request $request) {
-        $qApplications = Application::query();
+        $qGalleries = Gallery::query();
 
         if ($request->search) {
-            $qApplications->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
+            $qGalleries->where('name', 'LIKE', '%' . $request->search . '%');
         }
 
         if ($request->perPage) {
@@ -22,24 +21,23 @@ class ApplicationController extends Controller
             $perPage = 10;
         }
 
-        $applications = $qApplications->paginate($perPage);
+        $galleries = $qGalleries->paginate($perPage);
 
         return response()->json([
-            $applications
+            $galleries
         ], 200);
     }
 
     public function detail($id) {
-        $application = Application::find($id);
-        if ($application) {
+        $gallery = Gallery::find($id);
+        if ($gallery) {
             return response()->json([
-                $application
+                 $gallery
             ], 200);
         } else {
             return response()->json([
-                'message' => 'No application found'
+                'message' => 'No gallery found'
             ], 404);
         }
     }
-
 }

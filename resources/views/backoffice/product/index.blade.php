@@ -34,8 +34,8 @@
                         <h3 class="card-title">Data</h3>
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">
-                                <span class="fas fa-plus"></span>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#productAdd">
+                                <span class="fas fa-plus"></span> Tambah
                             </button>
                             @include('backoffice.product.modal.add')
                             @endif
@@ -134,8 +134,8 @@
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
                             <!-- Button trigger modal -->
-                            <button title="Tambah kategori" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#categoryAdd">
-                                <span class="fas fa-plus"></span>
+                            <button title="Tambah kategori" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#categoryAdd">
+                                <span class="fas fa-plus"></span> Tambah
                             </button>
                             {{-- Modal --}}
                             @include('backoffice.product.category.modal.add')
@@ -165,7 +165,7 @@
                                 <div class="d-flex justify-content-between">
                                     <a href="/backoffice/product/category/{{ $productCategory->id }}">{{ $productCategory->name }} ( {{ $productCategory->product->count() }} )</a>
                                     <button title="Edit" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
-                                        <span><i class="ion ion-android-create"></i> </span>
+                                        <span><i class="fas fa-edit"></i> </span> Ubah
                                     </button>
                                     @include('backoffice.product.category.modal.edit')
                                 </div>

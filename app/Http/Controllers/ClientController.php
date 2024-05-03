@@ -82,7 +82,7 @@ class ClientController extends Controller
         $client->save();
 
         Session::flash('client', 'success');
-        Session::flash('message', 'Edit klien berhasil');
+        Session::flash('message', 'Ubah klien berhasil');
         
         return redirect()->back();
         // return redirect('/backoffice/client/'. $client->id .'/detail');

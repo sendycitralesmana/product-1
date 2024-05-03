@@ -3,17 +3,17 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
-use App\Models\Application;
+use App\Models\ProductCategory;
 use Illuminate\Http\Request;
 
-class ApplicationController extends Controller
+class ProductCategoryController extends Controller
 {
-
     public function index(Request $request) {
-        $qApplications = Application::query();
+        $qPCategories = ProductCategory::query();
+        $qPCategories->orderBy('created_at', 'desc');
 
         if ($request->search) {
-            $qApplications->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
+            $qPCategories->where('name', 'like', '%'. $request->search . '%');
         }
 
         if ($request->perPage) {
@@ -22,24 +22,23 @@ class ApplicationController extends Controller
             $perPage = 10;
         }
 
-        $applications = $qApplications->paginate($perPage);
+        $pCategories = $qPCategories->paginate($perPage);
 
         return response()->json([
-            $applications
+            $pCategories
         ], 200);
     }
 
     public function detail($id) {
-        $application = Application::find($id);
-        if ($application) {
+        $pCategory = ProductCategory::find($id);
+        if ($pCategory) {
             return response()->json([
-                $application
+                $pCategory
             ], 200);
         } else {
             return response()->json([
-                'message' => 'No application found'
+                'message' => 'No product category found'
             ], 404);
         }
     }
-
 }

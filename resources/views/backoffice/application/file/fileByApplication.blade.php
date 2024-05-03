@@ -32,8 +32,8 @@
                 <h3 class="card-title"> Berkas</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#fileAdd">
-                        <span>+</span>
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#fileAdd">
+                        <span class="fa fa-plus"></span> Tambah
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.application.file.modal.add')
@@ -82,7 +82,7 @@
                                 <div class="d-flex">
                                     <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                         data-target="#fileEdit{{$file->id}}">
-                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                        <span><i class="fas fa-edit"></i> Ubah</span>
                                     </button>
                                     @include('backoffice.application.file.modal.edit')
                                     <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"

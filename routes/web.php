@@ -108,6 +108,8 @@ Route::get('/about', [AboutFEController::class, 'index']);
 Route::get('/contact', [ContactFEController::class, 'index']);
 Route::post('/contact/send', [ContactFEController::class, 'send']);
 
+// backoffice
+
 Route::group(['middleware' => 'auth'], function(){
 
     // Auth

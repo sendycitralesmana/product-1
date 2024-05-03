@@ -41,8 +41,8 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>
+                    <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Simpan</button>
                 </div>
             </form>
         </div>

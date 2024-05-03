@@ -109,7 +109,7 @@ class ApplicationController extends Controller
         $application->save();
 
         Session::flash('application', 'success');
-        Session::flash('message', 'Edit proyek berhasil');
+        Session::flash('message', 'Ubah proyek berhasil');
         
         return redirect('/backoffice/application/'. $application->id .'/detail');
     }

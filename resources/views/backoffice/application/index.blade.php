@@ -37,13 +37,13 @@
                                 <input class="form-control" type="text"
                                     placeholder="Cari judul" name="title" aria-label="Search">
                                 <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">
+                                    <button class="btn btn-success" type="submit">
                                         <i class="fas fa-search"></i>
                                     </button>
                                 </div>
                                 @if ( $title != null )
                                 <div class="input-group-append">
-                                    <a href="/backoffice/application" class="btn btn-outline-secondary">Lihat semua</a>
+                                    <a href="/backoffice/application" class="btn btn-outline-secondary"><span class="arrows-rotate"></span> Lihat semua</a>
                                 </div>
                                 @endif
                             </div>
@@ -53,8 +53,8 @@
                         <div class="card-tools">
                             @if (auth()->user()->role_id == 2)
                             <!-- Button trigger modal -->
-                            <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
-                                <span>+</span>
+                            <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#applicationAdd">
+                                <span class="fas fa-plus"></span> Tambah
                             </button>
                             {{-- Modal --}}
                             @include('backoffice.application.modal.add')

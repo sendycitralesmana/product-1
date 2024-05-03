@@ -29,14 +29,14 @@
                                 <span class="help-block" style="color: red">{{ $errors->first('image[]') }}</span>
                                 @endif
                             </td>
-                            <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></td>
+                            <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success"><span class="fas fa-plus"></span></button></td>
                         </tr>
                     </table>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>
+                    <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Simpan</button>
                 </div>
             </form>
         </div>

@@ -31,8 +31,8 @@
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
-                    <button type="button" title="Tambah data" class="btn btn-default" data-toggle="modal" data-target="#galleryAdd">
-                        <span class="fa fa-plus"></span>
+                    <button type="button" title="Tambah data" class="btn btn-success btn-sm" data-toggle="modal" data-target="#galleryAdd">
+                        <span class="fa fa-plus"></span> Tambah
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.gallery.modal.add')
@@ -84,7 +84,7 @@
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                     data-target="#galleryEdit{{$gallery->id}}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
+                                    <span><i class="fas fa-edit"></i> Ubah</span>
                                 </button>
                                 @include('backoffice.gallery.modal.edit')
                                 <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"

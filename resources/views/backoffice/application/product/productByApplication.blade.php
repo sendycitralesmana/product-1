@@ -32,8 +32,8 @@
                 <h3 class="card-title">Produk</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#productAdd">
-                        <span class="fa fa-plus"></span>
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#productAdd">
+                        <span class="fa fa-plus"></span> Tambah
                     </button>
                     {{-- Modal --}}
                     @include('backoffice.application.product.modal.add')

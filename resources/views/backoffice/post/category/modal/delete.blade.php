@@ -12,9 +12,9 @@
                     
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>
                     {{-- <button type="submit" class="btn btn-success">Save changes</button> --}}
-                    <a href="/backoffice/post/category/{{ $postCategory->id }}/delete" class="btn btn-success">Hapus</a>
+                    <a href="/backoffice/post/category/{{ $postCategory->id }}/delete" class="btn btn-danger"><span class="fas fa-trash"></span> Hapus</a>
                 </div>
             </form>
         </div>

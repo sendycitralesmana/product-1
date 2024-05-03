@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/application/media/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah gambar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Gambar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -23,15 +23,17 @@
                                 <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                                 @endif
                             </td>
-                            <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></td>
+                            <td>
+                                <button type="button" name="add" id="add-btnVariant" class="btn btn-success"><span class="fa fa-plus"></span></button>
+                            </td>
                         </tr>
                     </table>
                     <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Kembali</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Simpan</button>
                 </div>
             </form>
         </div>

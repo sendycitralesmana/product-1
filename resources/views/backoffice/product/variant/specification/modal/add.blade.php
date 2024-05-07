@@ -19,8 +19,9 @@
                         <tr>
                             <td>
                                 <input type="hidden" name="product_variant_id[]" value="{{ $productVariant->id }}">
-                                <select name="specification_id[]" id="" class="form-control" required>
-                                    <option value="">-- Select Specification --</option>
+                                <select name="specification_id[]" id="" class="form-control " required
+                                        oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus dipilih')">
+                                    <option value="">-- Pilih Spesifikasi --</option>
                                     @foreach ($specifications as $specification)
                                         <option value="{{ $specification->id }}">{{ $specification->name }}</option>
                                     @endforeach
@@ -30,7 +31,8 @@
                                 @endif
                             </td>
                             <td>
-                                <input type="text" name="value[]" class="form-control" placeholder="Enter Value" required>
+                                <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
+                                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
                                 @if($errors->has('value[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                                 @endif
@@ -51,6 +53,11 @@
 </div>
 
 {{--  --}}
+<script>
+    $('.select2').select2({
+        theme: 'bootstrap4'
+    })
+</script>
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script type="text/javascript">
     var i = 0;
@@ -63,8 +70,9 @@
             `<tr>
                 <td>
                     <input type="hidden" name="product_variant_id[]" value="{{ $productVariant->id }}">
-                    <select name="specification_id[]" id="" class="form-control" required>
-                        <option value="">-- Select Specification --</option>
+                    <select name="specification_id[]" id="" class="form-control select2" required
+                            oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus dipilih')">
+                        <option value="">-- Pilih Spesifikasi --</option>
                         @foreach ($specifications as $specification)
                             <option value="{{ $specification->id }}">{{ $specification->name }}</option>
                         @endforeach
@@ -74,13 +82,14 @@
                     @endif
                 </td>
                 <td>
-                    <input type="text" name="value[]" class="form-control" placeholder="Enter value" required>
+                    <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
+                        oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
                     @if($errors->has('value[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                     @endif
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
             );

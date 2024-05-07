@@ -30,7 +30,7 @@ class ProductCategoryController extends Controller
     }
 
     public function detail($id) {
-        $pCategory = ProductCategory::find($id);
+        $pCategory = ProductCategory::with(['product'])->find($id);
         if ($pCategory) {
             return response()->json([
                 $pCategory

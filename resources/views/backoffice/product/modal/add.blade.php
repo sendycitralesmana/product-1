@@ -14,10 +14,10 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Kategori <span class="text-danger">*</span></label>
-                                <select name="product_category_id" class="form-control" required 
+                                <select name="product_category_id" class="form-control select2" required 
                                 oninvalid="this.setCustomValidity('Product Category harus dipilih!')"
                                 oninput="this.setCustomValidity('')">
-                                    <option value="">-- Select Category --</option>
+                                    <option value="">-- Pilih Kategori --</option>
                                     @foreach ($productCategories as $productCategory)
                                         <option value="{{ $productCategory->id }}" @selected(old('product_category_id') == $productCategory->id) >{{ $productCategory->name }}</option>
                                     @endforeach
@@ -90,10 +90,10 @@
         $("#dynamicAddRemoveVariant").append(
             `<tr>
                 <td>
-                    <select name="application_id[]" required class="form-control"
+                    <select name="application_id[]" required class="form-control select2"
                         oninvalid="this.setCustomValidity('Proyek harus dipilih!')"
                         oninput="this.setCustomValidity('')">
-                        <option value="">-- Select application --</option>
+                        <option value="">-- Pilih Proyek --</option>
                         @foreach ($applications as $application)
                             <option value="{{ $application->id }}">{{ $application->name }}</option>
                         @endforeach
@@ -103,7 +103,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fas fa-trash"></span></button>
                 </td>
             </tr>`
         );

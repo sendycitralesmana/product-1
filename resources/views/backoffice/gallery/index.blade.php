@@ -79,7 +79,7 @@
                                 </a>
                             </div>
                             <div class="p-1">
-                                {{ $gallery->name }}
+                                {{ $gallery->image }}
                             </div>
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"

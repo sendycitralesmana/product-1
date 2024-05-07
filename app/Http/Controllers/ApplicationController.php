@@ -41,8 +41,8 @@ class ApplicationController extends Controller
 
         $newName = null;
         if($request->file('thumbnail')) {
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/application/', str_replace(' ', '_', $newName));
         }
 
@@ -52,7 +52,7 @@ class ApplicationController extends Controller
         $application->description = $request->description;
         $application->area = $request->area;
         $application->time = $request->time;
-        $application->thumbnail = $newName;
+        $application->thumbnail = str_replace(' ', '_', $newName);
         $application->save();
 
         $applicationId = Application::orderBy('id', 'desc')->first();
@@ -86,8 +86,8 @@ class ApplicationController extends Controller
             if ($request->oldImage) {
                 Storage::delete('image/application/' . $request->oldImage);
             }
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/application/', str_replace(' ', '_', $newName));
         }
 
@@ -101,10 +101,10 @@ class ApplicationController extends Controller
             if ($request->file('thumbnail') == "") {
                 $application->thumbnail = $request->oldImage;
             } else {
-                $application->thumbnail = $newName;
+                $application->thumbnail = str_replace(' ', '_', $newName);
             }
         } else {
-            $application->thumbnail = $newName;
+            $application->thumbnail = str_replace(' ', '_', $newName);
         }
         $application->save();
 
@@ -157,6 +157,7 @@ class ApplicationController extends Controller
     public function delete($id) {
 
         $application = Application::find($id);
+        Storage::delete('image/application/' . $application->thumbnail);
         $application->media()->delete();
         $application->video()->delete();
         $application->applicationPivot()->delete();

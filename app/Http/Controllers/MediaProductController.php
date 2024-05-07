@@ -52,12 +52,14 @@ class MediaProductController extends Controller
         foreach ($request->file('media') as $key => $file) {
             // $type = $request->type_id[$key];
             $fileName = $file->getClientOriginalName();
-            $url = now()->timestamp . '-' . str_replace(' ', '_', $fileName);
-            $file->storeAs('product/media/', $url);
+            $fileUrl = $file->getClientOriginalExtension();
+            $name = 'image-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
+            $url = 'image-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileUrl);
+            $file->storeAs('image/product/media/', $url);
             $data2 = array(
                 'product_id' => $request->product_id,
                 'type_id' => 1,
-                'name' => $fileName,
+                'name' => str_replace(' ', '_', $name),
                 'url' => str_replace(' ', '_', $url),
             );
             MediaProduct::create($data2);
@@ -80,12 +82,14 @@ class MediaProductController extends Controller
         foreach ($request->file('media') as $key => $file) {
             // $type = $request->type_id[$key];
             $fileName = $file->getClientOriginalName();
-            $url = now()->timestamp . '-' . str_replace(' ', '_', $fileName);
-            $file->storeAs('product/media/', $url);
+            $fileUrl = $file->getClientOriginalExtension();
+            $name = 'file-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
+            $url = 'file-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileUrl);
+            $file->storeAs('image/product/media/', $url);
             $data2 = array(
                 'product_id' => $request->product_id,
                 'type_id' => 2,
-                'name' => $fileName,
+                'name' => str_replace(' ', '_', $name),
                 'url' => str_replace(' ', '_', $url),
             );
             MediaProduct::create($data2);
@@ -103,12 +107,13 @@ class MediaProductController extends Controller
     {
         if($request->file('media')) {
             if ($request->oldName && $request->oldUrl) {
-                Storage::delete('product/media/' . $request->oldUrl);
+                Storage::delete('image/product/media/' . $request->oldUrl);
             }
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
-            $url = now()->timestamp . '-' . $fileName;
-            $request->file('media')->storeAs('product/media/', str_replace(' ', '_', $url));
+            $name = 'image-' . now()->timestamp . '-' . $fileName;
+            $url = 'image-' . now()->timestamp . '.' . $extension;
+            $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
         }
 
         $productCategory = MediaProduct::find($id);
@@ -124,14 +129,14 @@ class MediaProductController extends Controller
                 //     $productCategory->type_id = 2;
                 // }
                 $productCategory->type_id = 1;
-                $productCategory->name = $fileName;
+                $productCategory->name = str_replace(' ', '_', $name);
                 $productCategory->url = str_replace(' ', '_', $url);
             }
         }
         $productCategory->save();
 
         Session::flash('media', 'success');
-        Session::flash('message', 'Edit gambar berhasil');
+        Session::flash('message', 'Ubah gambar berhasil');
         // return redirect('/backoffice/product/media/'. $request->product_id);
         return redirect()->back();
     }
@@ -140,12 +145,13 @@ class MediaProductController extends Controller
     {
         if($request->file('media')) {
             if ($request->oldName && $request->oldUrl) {
-                Storage::delete('product/media/' . $request->oldUrl);
+                Storage::delete('image/product/media/' . $request->oldUrl);
             }
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
-            $url = now()->timestamp . '-' . $fileName;
-            $request->file('media')->storeAs('product/media/', str_replace(' ', '_', $url));
+            $name = 'file-' . now()->timestamp . '.' . $fileName;
+            $url = 'file-' . now()->timestamp . '.' . $extension;
+            $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
         }
 
         $productCategory = MediaProduct::find($id);
@@ -161,14 +167,14 @@ class MediaProductController extends Controller
                 //     $productCategory->type_id = 2;
                 // }
                 $productCategory->type_id = 2;
-                $productCategory->name = $fileName;
+                $productCategory->name = str_replace(' ', '_', $name);
                 $productCategory->url = str_replace(' ', '_', $url);
             }
         }
         $productCategory->save();
 
         Session::flash('media', 'success');
-        Session::flash('message', 'Edit berkas berhasil');
+        Session::flash('message', 'Ubah berkas berhasil');
         // return redirect('/backoffice/product/media/'. $request->product_id);
         return redirect()->back();
     }
@@ -228,7 +234,7 @@ class MediaProductController extends Controller
     public function delete($id)
     {
         $mediaProduct = MediaProduct::find($id);
-        Storage::delete('product/media/' . $mediaProduct->url);
+        Storage::delete('image/product/media/' . $mediaProduct->url);
         $mediaProduct->delete();
 
         Session::flash('media', 'success');

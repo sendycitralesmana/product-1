@@ -46,11 +46,15 @@ class ProductController extends Controller
         // }
 
 
-        $qProducts = Product::with(['category', 'media', 'video', 'variant']);
+        $qProducts = Product::query();
         $qProducts->orderBy('created_at', 'desc');
 
         if ($request->search) {
             $qProducts->where('name', 'like', '%'. $request->search . '%');
+        }
+
+        if ($request->categoryId) {
+            $qProducts->where('product_category_id', $request->categoryId);
         }
 
         if ($request->perPage) {
@@ -62,12 +66,16 @@ class ProductController extends Controller
         $products = $qProducts->paginate($perPage);
 
         return response()->json([
-            $products
+            "total" => $products->total(),
+            "current_page" => $products->currentPage(),
+            "per_page" => $products->perPage(),
+            "total_pages" => $products->lastPage(),
+            "data" => $products->items(),
         ], 200);
     }
 
     public function detail($id) {
-        $product = Product::with(['category', 'media', 'video', 'variant'])->find($id);
+        $product = Product::with(['category', 'media', 'video', 'variant', 'variant.spec', 'variant.spec.specification', 'application'])->find($id);
         if ($product) {
             return response()->json([$product
             ], 200);

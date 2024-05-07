@@ -23,7 +23,7 @@
                                 <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                                 @endif
                             </td>
-                            <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success">+</button></td>
+                            <td><button type="button" name="add" id="add-btnVariant" class="btn btn-success"><span class="fa fa-plus"></span></button></td>
                         </tr>
                     </table>
                     <!-- /.card-body -->
@@ -66,7 +66,7 @@
                     @endif
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
         );

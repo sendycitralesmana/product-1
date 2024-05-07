@@ -74,8 +74,8 @@
                         <div class="col-md-3 gallery">
                             <div class="card">
                                 <div class="">
-                                    <a href="{{asset('storage/product/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
-                                        <img src="{{asset('storage/product/media/'.$image->url)}}" alt="" 
+                                    <a href="{{asset('storage/image/product/media/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
+                                        <img src="{{asset('storage/image/product/media/'.$image->url)}}" alt="" 
                                         class="img-fluid rounded" style="height: 200px; width: 100%">
                                     </a>
                                 </div>

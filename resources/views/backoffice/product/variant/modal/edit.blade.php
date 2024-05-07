@@ -23,7 +23,7 @@
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
-                        <div class="form-group">
+                        {{-- <div class="form-group">
                             <label>Price</label>
                             <input type="number" name="price" class="form-control" value="{{ $productVariant->price}}">
                             @if($errors->has('price'))
@@ -57,14 +57,14 @@
                             @if($errors->has('height'))
                             <span class="help-block" style="color: red">{{ $errors->first('height') }}</span>
                             @endif
-                        </div>
+                        </div> --}}
                     </div>
                     <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Kembali</button>
-                    <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Simpan</button>
+                    <button type="submit" class="btn btn-success"><span class="fas fa-edit"></span> Ubah</button>
                 </div>
             </form>
         </div>

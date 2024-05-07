@@ -59,8 +59,8 @@ class PostController extends Controller
 
         $newName = null;
         if($request->file('thumbnail')) {
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
         }
 
@@ -91,8 +91,8 @@ class PostController extends Controller
             if ($request->oldImage) {
                 Storage::delete('image/post/' . $request->oldImage);
             }
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
         }
 

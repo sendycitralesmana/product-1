@@ -24,7 +24,12 @@ class ClientController extends Controller
         $clients = $qClients->paginate($perPage);
 
         return response()->json([
-            $clients
+            // $clients
+            "total" => $clients->total(),
+            "current_page" => $clients->currentPage(),
+            "per_page" => $clients->perPage(),
+            "total_pages" => $clients->lastPage(),
+            "data" => $clients->items(),
         ], 200);
     }
 

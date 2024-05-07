@@ -20,7 +20,7 @@
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                         @endif
                     </div>
-                    <div class="form-group">
+                    {{-- <div class="form-group">
                         <label>Price</label>
                         <input type="number" min="1" name="price" class="form-control" placeholder="Enter price" value="{{ old('price') }}"
                         oninvalid="this.setCustomValidity('Harus diisi')"
@@ -56,7 +56,7 @@
                         @if($errors->has('height'))
                         <span class="help-block" style="color: red">{{ $errors->first('height') }}</span>
                         @endif
-                    </div>
+                    </div> --}}
 
                     {{-- <table class="table table-bordered" id="dynamicAddRemoveVariant">
                         <tr>

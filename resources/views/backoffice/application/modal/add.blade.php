@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/application/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah proyek</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Proyek</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -14,7 +14,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Judul <span class="text-danger">*</span></label>
-                                <input type="text" name="name" class="form-control" placeholder="Enter name" required
+                                <input type="text" name="name" class="form-control" placeholder="Masukkan judul" required
                                 oninvalid="this.setCustomValidity('Judul harus diisi!')"
                                 oninput="this.setCustomValidity('')">
                                 @if($errors->has('name'))
@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Area <span class="text-danger">*</span></label>
-                                <input type="text" name="area" class="form-control" placeholder="Enter Area" required
+                                <input type="text" name="area" class="form-control" placeholder="Masukkan Area" required
                                 oninvalid="this.setCustomValidity('Area harus diisi!')"
                                 oninput="this.setCustomValidity('')">
                                 @if($errors->has('area'))
@@ -104,10 +104,10 @@
         $("#dynamicAddRemoveVariant").append(
             `<tr>
                 <td>
-                    <select name="product_id[]" required class="form-control"
+                    <select name="product_id[]" required class="form-control select2"
                         oninvalid="this.setCustomValidity('Produk harus dipilih!')"
                         oninput="this.setCustomValidity('')">
-                        <option value="">-- Select Product --</option>
+                        <option value="">-- Pilih Produk --</option>
                         @foreach ($products as $product)
                             <option value="{{ $product->id }}">{{ $product->name }}</option>
                         @endforeach
@@ -117,7 +117,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
             );

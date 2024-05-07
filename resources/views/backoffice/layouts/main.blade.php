@@ -20,6 +20,9 @@
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{asset('assets/adminlte/dist/css/adminlte.min.css')}}">
+    <!-- Select2 -->
+    <link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/adminlte/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css') }}">
     <!-- SweetAlert2 -->
     {{-- <link rel="stylesheet" href=" {{ asset('assets/adminltes/plugins/sweetalert2-theme-bootstrap-4/bootstrap-4.min.css') }} "> --}}
     <!-- Google Font: Source Sans Pro -->
@@ -122,9 +125,17 @@
     <script src="{{asset('assets/adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
     <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
     <script src="{{asset('assets/adminlte/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
+    <!-- Select2 -->
+    <script src="{{ asset('assets/adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
     <!-- SweetAlert2 -->
     {{-- <script src=" {{ asset('assets/adminlte/plugins/sweetalert2/sweetalert2.min.js') }} "></script> --}}
     <!-- page script -->
+
+    <script>
+        $('.select2').select2({
+            theme: 'bootstrap4'
+        })
+    </script>
 
     <script>
         function previewImage() {
@@ -141,6 +152,11 @@
             }
         }
     </script>
+
+    {{--  --}}
+
+
+    {{--  --}}
 
     <script>
         $(function () {

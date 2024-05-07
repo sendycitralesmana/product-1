@@ -31,8 +31,8 @@
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 1)
                         <!-- Button trigger modal -->
-                        <button title="Add Variant" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#userAdd">
-                            <span class="fa fa-plus"></span>
+                        <button title="Tambah" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#userAdd">
+                            <span class="fa fa-plus"></span> Tambah
                         </button>
                         {{-- Modal --}}
                         @include('backoffice.user.modal.add')
@@ -67,7 +67,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Gambar</th>
+                            <th>Foto</th>
                             <th>Nama</th>
                             <th>Email</th>
                             <th>Peran</th>

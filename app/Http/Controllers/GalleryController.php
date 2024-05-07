@@ -25,11 +25,13 @@ class GalleryController extends Controller
 
         foreach ($request->file('image') as $key => $file) {
             $fileName = $file->getClientOriginalName();
-            $url = now()->timestamp . '-' . str_replace(' ', '_', $fileName);
-            $file->storeAs('image/gallery/', $url);
+            $fileExtension = $file->getClientOriginalExtension();
+            $name = 'image-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
+            // $url = 'image-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileExtension);
+            $file->storeAs('image/gallery/', $name);
             $data2 = array(
-                'name' => $fileName,
-                'image' => str_replace(' ', '_', $url),
+                // 'name' => str_replace(' ', '_', $name),
+                'image' => str_replace(' ', '_', $name),
             );
             // dd($data2);
             Gallery::create($data2);
@@ -62,7 +64,7 @@ class GalleryController extends Controller
                 Storage::delete('image/gallery/' . $request->oldImage);
             }
             $filename = $request->file('image')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $filename;
+            $newName = 'image-' . now()->timestamp . '-' . $filename;
             $request->file('image')->storeAs('image/gallery/', str_replace(' ', '_', $newName));
         }
 
@@ -70,14 +72,14 @@ class GalleryController extends Controller
         // $gallery->name = $filename;
         if ($request->oldImage != null) {
             if ($request->file('image') == "") {
-                $gallery->name = $request->oldName;
+                // $gallery->name = $request->oldName;
                 $gallery->image = $request->oldImage;
             } else {
-                $gallery->name = $filename;
+                // $gallery->name = $filename;
                 $gallery->image = str_replace(' ', '_', $newName);
             }
         } else {
-            $gallery->name = $filename;
+            // $gallery->name = $filename;
             $gallery->image = str_replace(' ', '_', $newName);
         }
         $gallery->save();

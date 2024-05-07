@@ -25,6 +25,7 @@ class ProductController extends Controller
         }
         $productCategories = ProductCategory::get();
         $applications = Application::get();
+        // dd($products);
         return view('backoffice.product.index', [
             'products' => $products,
             'productCategories' => $productCategories,
@@ -79,8 +80,8 @@ class ProductController extends Controller
 
         $newName = null;
         if($request->file('thumbnail')) {
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
         }
 
@@ -130,8 +131,8 @@ class ProductController extends Controller
             if ($request->oldImage) {
                 Storage::delete('image/product/' . $request->oldImage);
             }
-            $fileName = $request->file('thumbnail')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
             $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
         }
 
@@ -152,7 +153,7 @@ class ProductController extends Controller
         $product->save();
 
         Session::flash('product', 'success');
-        Session::flash('message', 'Edit produk berhasil');
+        Session::flash('message', 'Ubah produk berhasil');
         return redirect()->back();
         // return redirect('/backoffice/product/'. $product->id .'/detail');
 
@@ -161,6 +162,7 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::find($id);
+        Storage::delete('image/product/' . $product->thumbnail);
         $product->media()->delete();
         $product->video()->delete();
         // $product->variant()->delete();

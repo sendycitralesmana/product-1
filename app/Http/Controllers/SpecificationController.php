@@ -35,7 +35,7 @@ class SpecificationController extends Controller
         }
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Add data success');
+        Session::flash('message', 'Tambah spesifikasi berhasil');
         return redirect('/backoffice/product/specification');
     }
 
@@ -51,7 +51,7 @@ class SpecificationController extends Controller
         $specification->save();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Update data success');
+        Session::flash('message', 'Ubah spesifikasi berhasil');
         return redirect('/backoffice/product/specification');
     }
 
@@ -62,7 +62,7 @@ class SpecificationController extends Controller
         $specification->delete();
 
         Session::flash('status', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('message', 'Hapus spesifikasi berhasil');
         return redirect('/backoffice/product/specification');
     }
 

@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class PostController extends Controller
 {
     public function index(Request $request) {
-        $qPosts = Post::with(['user', 'category']);
+        $qPosts = Post::query();
 
         if ($request->search) {
             $qPosts->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
@@ -24,7 +24,12 @@ class PostController extends Controller
         $posts = $qPosts->paginate($perPage);
 
         return response()->json([
-            $posts
+            // $posts
+            "total" => $posts->total(),
+            "current_page" => $posts->currentPage(),
+            "per_page" => $posts->perPage(),
+            "total_pages" => $posts->lastPage(),
+            "data" => $posts->items(),
         ], 200);
     }
 

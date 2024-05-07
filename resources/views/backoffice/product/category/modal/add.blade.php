@@ -25,15 +25,23 @@
                             @if($errors->has('description'))
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                             @endif
-                        </div>
+                        </div> --}}
                         <div class="form-group">
                             <label>Thumbnail</label>
-                            <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                            <img src="" class="imgPreviewThumbnail img-fluid mb-3 col-sm-5" alt="">
+                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control" placeholder="Enter Password">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
-                        </div> --}}
+                        </div>
+                        <div class="form-group">
+                            <label>Ikon</label>
+                            <img src="" class="imgPreviewIcon img-fluid mb-3 col-sm-5" alt="">
+                            <input type="file" accept="image/*" onchange="previewIcon()" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
+                            @if($errors->has('ikon'))
+                            <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
+                            @endif
+                        </div>
                     </div>
                     <!-- /.card-body -->
 
@@ -65,7 +73,7 @@
                     @endif
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
             );
@@ -77,17 +85,34 @@
 
 </script>
 <script>
-    function previewImg() {
-        const image = document.querySelector('#image')
-        const imgPreview = document.querySelector('.img-preview')
+    // thumbnail
+    function previewThumbnail() {
+        const imageThumbnail = document.querySelector('#imageThumbnail');
+        const imgPreviewThumbnail = document.querySelector('.imgPreviewThumbnail');
 
-        imgPreview.style.display = 'block'
+        imgPreviewThumbnail.style.display = 'block';
 
-        const oFReader = new FileReader()
-        oFReader.readAsDataURL(image.files[0])
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
 
         oFReader.onload = function(oFREvent) {
-            imgPreview.src = oFREvent.target.result
+            imgPreviewThumbnail.src = oFReader.target.result;
+        }
+    }
+</script>
+<script>
+    // icon
+    function previewIcon() {
+        const imageIcon = document.querySelector('#imageIcon');
+        const imgPreviewIcon = document.querySelector('.imgPreviewIcon');
+
+        imgPreviewIcon.style.display = 'block';
+
+        const oFReader = new FileReader();
+        oFReader.readAsDataURL(image.files[0]);
+
+        oFReader.onload = function(oFREvent) {
+            imgPreviewIcon.src = oFReader.target.result;
         }
     }
 </script>

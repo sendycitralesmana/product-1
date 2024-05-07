@@ -49,9 +49,10 @@ class MediaApplicationController extends Controller
         ]);
 
         foreach ($request->file('media') as $key => $file) {
-            $fileName = $file->getClientOriginalName();
-            $url = now()->timestamp . '-' . $fileName;
-            $file->storeAs('application/media/', str_replace(' ', '_', $url));
+            $fileName = now()->timestamp . $key . '-' . $file->getClientOriginalName();
+            $fileUrl = $file->getClientOriginalExtension();
+            $url = 'image-' . now()->timestamp . $key . '.' . $fileUrl;
+            $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
             $data2 = array(
                 'application_id' => $request->application_id,
                 'type_id' => 1,
@@ -75,9 +76,10 @@ class MediaApplicationController extends Controller
         ]);
 
         foreach ($request->file('media') as $key => $file) {
-            $fileName = $file->getClientOriginalName();
-            $url = now()->timestamp . '-' . $fileName;
-            $file->storeAs('application/media/', str_replace(' ', '_', $url));
+            $fileName = now()->timestamp . $key . '-' . $file->getClientOriginalName();
+            $fileUrl = $file->getClientOriginalExtension();
+            $url = 'file-' . now()->timestamp . $key . '.' . $fileUrl;
+            $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
             $data2 = array(
                 'application_id' => $request->application_id,
                 'type_id' => 2,
@@ -141,12 +143,12 @@ class MediaApplicationController extends Controller
 
         if($request->file('media')) {
             if ($request->oldName && $request->oldUrl) {
-                Storage::delete('application/media/' . $request->oldUrl);
+                Storage::delete('image/application/media/' . $request->oldUrl);
             }
-            $fileName = $request->file('media')->getClientOriginalName();
+            $fileName = now()->timestamp . '-' . $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
-            $url = now()->timestamp . '-' . $fileName;
-            $request->file('media')->storeAs('application/media/', str_replace(' ', '_', $url));
+            $url = 'image-' .  now()->timestamp . '.' . $extension;
+            $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
         }
 
         $productCategory = MediaApplication::find($id);
@@ -162,14 +164,14 @@ class MediaApplicationController extends Controller
                 //     $productCategory->type_id = 2;
                 // }
                 $productCategory->type_id = 1;
-                $productCategory->name = $fileName;
+                $productCategory->name = str_replace(' ', '_', $fileName);
                 $productCategory->url = str_replace(' ', '_', $url);
             }
         }
         $productCategory->save();
 
         Session::flash('media', 'success');
-        Session::flash('message', 'Edit gambar berhasil');
+        Session::flash('message', 'Ubah gambar berhasil');
         return redirect()->back();
         // return redirect('/backoffice/application/media/'. $request->application_id);
     }
@@ -182,12 +184,12 @@ class MediaApplicationController extends Controller
 
         if($request->file('media')) {
             if ($request->oldName && $request->oldUrl) {
-                Storage::delete('application/media/' . $request->oldUrl);
+                Storage::delete('image/application/media/' . $request->oldUrl);
             }
-            $fileName = $request->file('media')->getClientOriginalName();
+            $fileName = now()->timestamp . '-' . $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
-            $url = now()->timestamp . '-' . $fileName;
-            $request->file('media')->storeAs('application/media/', str_replace(' ', '_', $url));
+            $url = 'file-' . now()->timestamp . '.' . $extension;
+            $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
         }
 
         $productCategory = MediaApplication::find($id);
@@ -203,14 +205,14 @@ class MediaApplicationController extends Controller
                 //     $productCategory->type_id = 2;
                 // }
                 $productCategory->type_id = 2;
-                $productCategory->name = $fileName;
+                $productCategory->name = str_replace(' ', '_', $fileName);
                 $productCategory->url = str_replace(' ', '_', $url);
             }
         }
         $productCategory->save();
 
         Session::flash('media', 'success');
-        Session::flash('message', 'Edit file berhasil');
+        Session::flash('message', 'Ubah file berhasil');
         return redirect()->back();
         // return redirect('/backoffice/application/media/'. $request->application_id);
     }
@@ -243,7 +245,7 @@ class MediaApplicationController extends Controller
     {
         $mediaApplication = MediaApplication::find($id);
         // dd($mediaApplication);
-        Storage::delete('application/media/' . $mediaApplication->url);
+        Storage::delete('image/application/media/' . $mediaApplication->url);
         $mediaApplication->delete();
 
         Session::flash('media', 'success');

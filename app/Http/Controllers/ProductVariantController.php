@@ -40,17 +40,17 @@ class ProductVariantController extends Controller
 
         $validated = $request->validate([
             'name' => 'required',
-            'price' => 'required|min:1',
+            // 'price' => 'required|min:1',
         ]);
 
         $productVariant = new ProductVariant();
         $productVariant->product_id = $request->product_id;
         $productVariant->name = $request->name;
-        $productVariant->price = $request->price;
-        $productVariant->long = $request->long;
-        $productVariant->weight = $request->weight;
-        $productVariant->width = $request->width;
-        $productVariant->height = $request->height;
+        // $productVariant->price = $request->price;
+        // $productVariant->long = $request->long;
+        // $productVariant->weight = $request->weight;
+        // $productVariant->width = $request->width;
+        // $productVariant->height = $request->height;
         // dd($productVariant);
         $productVariant->save();
 
@@ -64,25 +64,25 @@ class ProductVariantController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'price' => 'required|min:1',
-            'long' => 'required',
-            'weight' => 'required',
-            'width' => 'required',
-            'height' => 'required',
+            // 'price' => 'required|min:1',
+            // 'long' => 'required',
+            // 'weight' => 'required',
+            // 'width' => 'required',
+            // 'height' => 'required',
         ]);
 
         $productVariant = ProductVariant::find($id);
         $productVariant->name = $request->name;
-        $productVariant->price = $request->price;
-        $productVariant->long = $request->long;
-        $productVariant->weight = $request->weight;
-        $productVariant->width = $request->width;
-        $productVariant->height = $request->height;
+        // $productVariant->price = $request->price;
+        // $productVariant->long = $request->long;
+        // $productVariant->weight = $request->weight;
+        // $productVariant->width = $request->width;
+        // $productVariant->height = $request->height;
         // dd($productVariant);
         $productVariant->save();
 
         Session::flash('variant', 'success');
-        Session::flash('message', 'Edit varian berhasil');
+        Session::flash('message', 'Ubah varian berhasil');
         if(!$request->product_id) {
             return redirect('/backoffice/product-variant');
         }

@@ -115,6 +115,15 @@ Route::group(['middleware' => 'auth'], function(){
     // Auth
     Route::get('/logout', [AuthController::class, 'logout']);
 
+    // grup backoffice
+    // Route::group(['prefix' => 'backoffice'], function(){
+        
+    //     grup data produk
+    //     Route::group(['prefix' => 'product'], function(){
+    //         Route::get('/', [ProductController::class, 'index']);
+    //     }); 
+    // });
+
     // Dashboard
     Route::get('/backoffice/dashboard', [DashboardController::class, 'index']);
     
@@ -172,14 +181,14 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/backoffice/product/media', [MediaProductController::class, 'index']);
         Route::get('/backoffice/product/media/add', [MediaProductController::class, 'add']);
         Route::post('/backoffice/product/media/create', [MediaProductController::class, 'imageCreate']);
-        Route::post('/backoffice/product/file/create', [MediaProductController::class, 'fileCreate']);
         Route::post('/backoffice/product/media/createMultiple', [MediaProductController::class, 'createMultiple']);
         Route::get('/backoffice/product/media/{id}/edit', [MediaProductController::class, 'edit']);
         Route::put('/backoffice/product/media/{id}/update', [MediaProductController::class, 'update']);
         Route::put('/backoffice/product/media/{id}/update', [MediaProductController::class, 'imageUpdate']);
-        Route::put('/backoffice/product/file/{id}/update', [MediaProductController::class, 'fileUpdate']);
         Route::get('/backoffice/product/media/{id}/delete', [MediaProductController::class, 'delete']);
         Route::get('/backoffice/product/media/{id}', [MediaProductController::class, 'mediaByProduct']);
+        Route::post('/backoffice/product/file/create', [MediaProductController::class, 'fileCreate']);
+        Route::put('/backoffice/product/file/{id}/update', [MediaProductController::class, 'fileUpdate']);
         Route::get('/backoffice/product/file/{id}', [MediaProductController::class, 'fileByProduct']);
         Route::get('/backoffice/product/file/download/{id}', [MediaProductController::class, 'downloadFile']);
 

@@ -25,12 +25,17 @@ class ApplicationController extends Controller
         $applications = $qApplications->paginate($perPage);
 
         return response()->json([
-            $applications
+            // $applications
+            "total" => $applications->total(),
+            "current_page" => $applications->currentPage(),
+            "per_page" => $applications->perPage(),
+            "total_pages" => $applications->lastPage(),
+            "data" => $applications->items(),
         ], 200);
     }
 
     public function detail($id) {
-        $application = Application::find($id);
+        $application = Application::with(['media', 'video', 'product', 'client'])->find($id);
         if ($application) {
             return response()->json([
                 $application

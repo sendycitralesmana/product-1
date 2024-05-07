@@ -32,7 +32,7 @@
                 <h3 class="card-title">Varian</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
-                    <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
+                    {{-- <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a> --}}
                     <button title="Add Variant" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addProductVariant">
                         <span class="fas fa-plus"></span> Tambah
                     </button>
@@ -61,11 +61,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Nama</th>
-                            <th>Price</th>
+                            {{-- <th>Price</th>
                             <th>Long</th>
                             <th>Weight</th>
                             <th>Width</th>
-                            <th>Height</th>
+                            <th>Height</th> --}}
                             <th>Opsi</th>
                         </tr>
                     </thead>
@@ -74,7 +74,7 @@
                         <tr>
                             <td> {{ $productVariant->id }} </td>
                             <td> {{ $productVariant->name }} </td>
-                            <td> Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
+                            {{-- <td> Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
                             @if ( $productVariant->long == null )
                                 <td> tidak ada </td>
                             @else
@@ -94,7 +94,7 @@
                                 <td> tidak ada </td>
                             @else
                                 <td> {{ $productVariant->height }} </td>
-                            @endif
+                            @endif --}}
                             <td>
                                 <a href="/backoffice/product/variant/{{ $productVariant->id }}/export-pdf" target="_blank"
                                     class="btn btn-outline-danger btn-sm m-1">
@@ -120,11 +120,11 @@
                         <tr>
                             <th>ID</th>
                             <th>Nama</th>
-                            <th>Price</th>
+                            {{-- <th>Price</th>
                             <th>Long</th>
                             <th>Weight</th>
                             <th>Width</th>
-                            <th>Height</th>
+                            <th>Height</th> --}}
                             <th>Opsi</th>
                         </tr>
                     </tfoot>

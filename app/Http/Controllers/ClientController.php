@@ -32,7 +32,7 @@ class ClientController extends Controller
         $newName = "";
         if($request->file('image')) {
             $fileName = $request->file('image')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $newName = 'image-' . now()->timestamp . '-' . $fileName;
             $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
         }
 
@@ -62,7 +62,7 @@ class ClientController extends Controller
                 Storage::delete('image/client/' . $request->oldImage);
             }
             $fileName = $request->file('image')->getClientOriginalName();
-            $newName = now()->timestamp . '-' . $fileName;
+            $newName = 'image-' . now()->timestamp . '-' . $fileName;
             $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
         }
 
@@ -99,6 +99,9 @@ class ClientController extends Controller
     public function delete($id) {
 
         $client = Client::find($id);
+        if ($client->image) {
+            Storage::delete('image/client/' . $client->image);
+        }
 
         $applications = Application::where('client_id', $client->id)->get();
         foreach ($applications as $application) {

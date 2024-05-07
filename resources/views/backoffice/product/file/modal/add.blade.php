@@ -59,7 +59,7 @@
                     @endif
                 </td>
                 <td>
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
             );

@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/gallery/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah galeri</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Gambar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -62,7 +62,7 @@
                                 @endif
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger remove-tr">-</button>
+                                <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                             </td>
                         </tr>`
             );

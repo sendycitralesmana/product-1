@@ -51,6 +51,31 @@
                     </a>
                 </li>
                 @if (auth()->user()->role_id == 1)
+                {{-- <li class="nav-item has-treeview {{ request()->is('backoffice/pengguna/*') ? 'menu-open' : '' }}">
+                    <a href="#" class="nav-link {{ request()->is('backoffice/pengguna/*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Data Pengguna
+                            <i class="fas fa-angle-left right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="/backoffice/pengguna/admin"
+                                class="nav-link {{ request()->is('backoffice/pengguna/admin', 'backoffice/pengguna/admin/*') ? 'active' : '' }}">
+                                <i class="fa fa-circle fa-regular nav-icon"></i>
+                                <p>Admin</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="/backoffice/pengguna/operator"
+                                class="nav-link {{ request()->is('backoffice/pengguna/operator', 'backoffice/pengguna/operator/*') ? 'active' : '' }}">
+                                <i class="fa fa-circle fa-regular nav-icon"></i>
+                                <p>Operator</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li> --}}
                 <li class="nav-item">
                     <a href="/backoffice/user" class="nav-link {{ request()->is('backoffice/user') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
@@ -88,6 +113,31 @@
                                 <a href="/backoffice/product/specification"
                                     class="nav-link {{ request()->is('backoffice/product/specification') ? 'active' : '' }}">
                                     <i class="nav-icon far fa-circle"></i>
+                                    <p>Spesifikasi</p>
+                                </a>
+                            </li>
+                        </ul>
+                    </li> --}}
+                    {{-- <li class="nav-item has-treeview {{ request()->is('backoffice/pengguna/*') ? 'menu-open' : '' }}">
+                        <a href="#" class="nav-link {{ request()->is('backoffice/pengguna/*') ? 'active' : '' }}">
+                            <i class="nav-icon fas fa-display"></i>
+                            <p>
+                                Data Produk
+                                <i class="fas fa-angle-left right"></i>
+                            </p>
+                        </a>
+                        <ul class="nav nav-treeview">
+                            <li class="nav-item">
+                                <a href="/backoffice/pengguna/admin"
+                                    class="nav-link {{ request()->is('backoffice/pengguna/admin', 'backoffice/pengguna/admin/*') ? 'active' : '' }}">
+                                    <i class="fa fa-circle fa-regular nav-icon"></i>
+                                    <p>Produk</p>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a href="/backoffice/pengguna/operator"
+                                    class="nav-link {{ request()->is('backoffice/pengguna/operator', 'backoffice/pengguna/operator/*') ? 'active' : '' }}">
+                                    <i class="fa fa-circle fa-regular nav-icon"></i>
                                     <p>Spesifikasi</p>
                                 </a>
                             </li>

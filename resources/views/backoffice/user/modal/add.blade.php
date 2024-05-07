@@ -39,21 +39,12 @@
                             <span class="help-block" style="color: red">{{ $errors->first('password') }}</span>
                             @endif
                         </div>
-                        <div class="form-group">
-                            <label>Gambar</label>
-                            <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="avatar" class="form-control" placeholder="Enter Password" id="image">
-                            @if($errors->has('avatar'))
-                            <span class="help-block" style="color: red">{{ $errors->first('avatar') }}</span>
-                            @endif
-                        </div>
                     </div>
-                    <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Kembali</button>
-                    <button type="submit" class="btn btn-success">Simpan</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Kembali</button>
+                    <button type="submit" class="btn btn-success"><span class="fa fa-save"></span> Simpan</button>
                 </div>
             </form>
         </div>

@@ -33,6 +33,7 @@
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
+                    <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#variantSpecAdd">
                         <span class="fas fa-plus"></span> Tambah
                     </button>

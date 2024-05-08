@@ -50,6 +50,10 @@
                 width: 100% !important;
                 order: 1 !important;
             }
+
+            /* .active {
+                color: #F97316 !important;
+            } */
         }
 
     </style>

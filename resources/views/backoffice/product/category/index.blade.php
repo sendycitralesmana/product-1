@@ -80,9 +80,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($productsCategories as $productCategory)
+                        @foreach ($productsCategories as $key => $productCategory)
                         <tr>
-                            <td> {{ $productCategory->id }} </td>
+                            <td> {{ $key + 1 }} </td>
                             <td> 
                                 @if( $productCategory->icon != null )
                                     <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">

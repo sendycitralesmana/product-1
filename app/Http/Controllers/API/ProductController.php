@@ -5,7 +5,9 @@ namespace App\Http\Controllers\API;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\Product\DetailProductResource;
+use App\Http\Resources\Product\ListProductResource;
+use App\Http\Resources\Product\ProductResource;
 
 class ProductController extends Controller
 {
@@ -46,7 +48,7 @@ class ProductController extends Controller
         // }
 
 
-        $qProducts = Product::query();
+        $qProducts = Product::with(['category:id,name,thumbnail,icon,created_at']);
         $qProducts->orderBy('created_at', 'desc');
 
         if ($request->search) {
@@ -65,20 +67,36 @@ class ProductController extends Controller
 
         $products = $qProducts->paginate($perPage);
 
+        $resource = ListProductResource::collection($products);
+
         return response()->json([
             "total" => $products->total(),
-            "current_page" => $products->currentPage(),
-            "per_page" => $products->perPage(),
-            "total_pages" => $products->lastPage(),
-            "data" => $products->items(),
+            "currentPage" => $products->currentPage(),
+            "perPage" => $products->perPage(),
+            "totalPages" => $products->lastPage(),
+            "data" => $resource,
+            // "data" => $products->items(),
         ], 200);
     }
 
     public function detail($id) {
-        $product = Product::with(['category', 'media', 'video', 'variant', 'variant.spec', 'variant.spec.specification', 'application'])->find($id);
+        $product = Product::with(
+            ['category:id,name,thumbnail,icon,created_at', 
+            'media:id,product_id,type_id,url,created_at', 
+            'media.mediaType:id,name,created_at',
+            'video', 
+            'variant:id,product_id,name,created_at', 
+            'variant.spec:id,product_variant_id,specification_id,value,created_at', 
+            'variant.spec.specification:id,name,created_at', 
+            'application']
+            )->find($id);
         if ($product) {
-            return response()->json([$product
-            ], 200);
+
+            return new DetailProductResource($product);
+
+            // return response()->json([
+            //     $product
+            // ], 200);
         } else {
             return response()->json([
                 'message' => 'No product found'

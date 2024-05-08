@@ -25,7 +25,7 @@ class ProductCategoryController extends Controller
             // 'thumbnail' => 'image',
         ]);
 
-        $newName = null;
+        $thumbnail = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;

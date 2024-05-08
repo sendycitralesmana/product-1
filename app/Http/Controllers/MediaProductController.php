@@ -55,12 +55,14 @@ class MediaProductController extends Controller
             $fileUrl = $file->getClientOriginalExtension();
             $name = 'image-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
             $url = 'image-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileUrl);
-            $file->storeAs('image/product/media/', $url);
+            // $file->storeAs('image/product/media/', $url);
+            $file = $request->file('media')[$key];
+            $path = Storage::disk('s3')->put("", $file);
             $data2 = array(
                 'product_id' => $request->product_id,
                 'type_id' => 1,
                 'name' => str_replace(' ', '_', $name),
-                'url' => str_replace(' ', '_', $url),
+                'url' => str_replace(' ', '_', $path),
             );
             MediaProduct::create($data2);
         }
@@ -85,12 +87,14 @@ class MediaProductController extends Controller
             $fileUrl = $file->getClientOriginalExtension();
             $name = 'file-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
             $url = 'file-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileUrl);
-            $file->storeAs('image/product/media/', $url);
+            // $file->storeAs('image/product/media/', $url);
+            $file = $request->file('media')[$key];
+            $path = Storage::disk('s3')->put("", $file);
             $data2 = array(
                 'product_id' => $request->product_id,
                 'type_id' => 2,
                 'name' => str_replace(' ', '_', $name),
-                'url' => str_replace(' ', '_', $url),
+                'url' => str_replace(' ', '_', $path),
             );
             MediaProduct::create($data2);
         }
@@ -105,15 +109,19 @@ class MediaProductController extends Controller
 
     public function imageUpdate(Request $request, $id)
     {
+
         if($request->file('media')) {
-            if ($request->oldName && $request->oldUrl) {
-                Storage::delete('image/product/media/' . $request->oldUrl);
+            if ($request->oldUrl) {
+                // Storage::delete('image/product/media/' . $request->oldUrl);
+                Storage::disk('s3')->delete("" . $request->oldUrl);
             }
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $name = 'image-' . now()->timestamp . '-' . $fileName;
             $url = 'image-' . now()->timestamp . '.' . $extension;
-            $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
+            // $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
+            $file = $request->file('media');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $productCategory = MediaProduct::find($id);
@@ -123,14 +131,9 @@ class MediaProductController extends Controller
                 $productCategory->name = $request->oldName;
                 $productCategory->url = $request->oldUrl;
             } else {
-                // if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-                //     $productCategory->type_id = 1;
-                // } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-                //     $productCategory->type_id = 2;
-                // }
                 $productCategory->type_id = 1;
                 $productCategory->name = str_replace(' ', '_', $name);
-                $productCategory->url = str_replace(' ', '_', $url);
+                $productCategory->url = str_replace(' ', '_', $path);
             }
         }
         $productCategory->save();
@@ -144,14 +147,17 @@ class MediaProductController extends Controller
     public function fileUpdate(Request $request, $id)
     {
         if($request->file('media')) {
-            if ($request->oldName && $request->oldUrl) {
-                Storage::delete('image/product/media/' . $request->oldUrl);
+            if ($request->oldUrl) {
+                // Storage::delete('image/product/media/' . $request->oldUrl);
+                Storage::disk('s3')->delete("" . $request->oldUrl);
             }
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $name = 'file-' . now()->timestamp . '.' . $fileName;
             $url = 'file-' . now()->timestamp . '.' . $extension;
-            $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
+            // $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
+            $file = $request->file('media');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $productCategory = MediaProduct::find($id);
@@ -161,14 +167,9 @@ class MediaProductController extends Controller
                 $productCategory->name = $request->oldName;
                 $productCategory->url = $request->oldUrl;
             } else {
-                // if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-                //     $productCategory->type_id = 1;
-                // } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-                //     $productCategory->type_id = 2;
-                // }
                 $productCategory->type_id = 2;
                 $productCategory->name = str_replace(' ', '_', $name);
-                $productCategory->url = str_replace(' ', '_', $url);
+                $productCategory->url = str_replace(' ', '_', $path);
             }
         }
         $productCategory->save();
@@ -234,7 +235,8 @@ class MediaProductController extends Controller
     public function delete($id)
     {
         $mediaProduct = MediaProduct::find($id);
-        Storage::delete('image/product/media/' . $mediaProduct->url);
+        // Storage::delete('image/product/media/' . $mediaProduct->url);
+        Storage::disk('s3')->delete("" . $mediaProduct->url);
         $mediaProduct->delete();
 
         Session::flash('media', 'success');

@@ -87,7 +87,7 @@
                             <div class="card-body">
                                 <div class="text-center">
                                     @if ( $product->thumbnail != null )
-                                        <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" alt="" class="img-fluid rounded" style="height: 300px">
+                                        <img src="{{ asset('http://103.127.96.59:9000/mled/'. $product->thumbnail) }}" alt="" class="img-fluid rounded" style="height: 300px">
                                     @else
                                         <img src="{{ asset('images/default.png') }}" alt="" class="img-fluid rounded" style="height: 300px">
                                     @endif

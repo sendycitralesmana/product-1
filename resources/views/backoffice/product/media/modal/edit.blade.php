@@ -21,7 +21,7 @@
                             {{-- <p> {{ $image->url }} </p> --}}
                             {{-- <img src="{{ asset('storage/image/gallery/'. $image->url) }}" name="oldValue" value="{{ $image->url }}" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt=""> --}}
                             @if ($image->url)
-                                <img src="{{ asset('storage/product/media/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
                                 class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">

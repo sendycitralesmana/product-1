@@ -28,10 +28,14 @@ class GalleryController extends Controller
             $fileExtension = $file->getClientOriginalExtension();
             $name = 'image-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
             // $url = 'image-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileExtension);
-            $file->storeAs('image/gallery/', $name);
+            // $file->storeAs('image/gallery/', $name);
+
+            $file = $request->file('image')[$key];
+            $path = Storage::disk('s3')->put("", $file);
+
             $data2 = array(
                 // 'name' => str_replace(' ', '_', $name),
-                'image' => str_replace(' ', '_', $name),
+                'image' => str_replace(' ', '_', $path),
             );
             // dd($data2);
             Gallery::create($data2);
@@ -61,11 +65,15 @@ class GalleryController extends Controller
 
         if ($request->file('image')) {
             if ($request->oldImage) {
-                Storage::delete('image/gallery/' . $request->oldImage);
+                // Storage::delete('image/gallery/' . $request->oldImage);
+                Storage::disk('s3')->delete($request->oldImage);
             }
             $filename = $request->file('image')->getClientOriginalName();
             $newName = 'image-' . now()->timestamp . '-' . $filename;
-            $request->file('image')->storeAs('image/gallery/', str_replace(' ', '_', $newName));
+            // $request->file('image')->storeAs('image/gallery/', str_replace(' ', '_', $newName));
+
+            $file = $request->file('image');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $gallery = Gallery::find($id);
@@ -76,11 +84,11 @@ class GalleryController extends Controller
                 $gallery->image = $request->oldImage;
             } else {
                 // $gallery->name = $filename;
-                $gallery->image = str_replace(' ', '_', $newName);
+                $gallery->image = str_replace(' ', '_', $path);
             }
         } else {
             // $gallery->name = $filename;
-            $gallery->image = str_replace(' ', '_', $newName);
+            $gallery->image = str_replace(' ', '_', $path);
         }
         $gallery->save();
 
@@ -94,7 +102,8 @@ class GalleryController extends Controller
     public function delete($id) {
         $gallery = Gallery::find($id);
         if($gallery->image) {
-            Storage::delete('image/gallery/' . $gallery->image);
+            // Storage::delete('image/gallery/' . $gallery->image);
+            Storage::disk('s3')->delete($gallery->image);
         }
         $gallery->delete();
 

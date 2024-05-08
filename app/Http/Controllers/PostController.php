@@ -61,7 +61,9 @@ class PostController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
+            // $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $application = new Post();
@@ -69,7 +71,7 @@ class PostController extends Controller
         $application->user_id = auth()->user()->id;
         $application->title = $request->title;
         $application->content = $request->content;
-        $application->thumbnail = str_replace(' ', '_', $newName);
+        $application->thumbnail = str_replace(' ', '_', $path);
         $application->save();
 
         Session::flash('post', 'success');
@@ -89,11 +91,14 @@ class PostController extends Controller
         $newName = null;
         if($request->file('thumbnail')) {
             if ($request->oldImage) {
-                Storage::delete('image/post/' . $request->oldImage);
+                // Storage::delete('image/post/' . $request->oldImage);
+                Storage::disk('s3')->delete($request->oldImage);
             }
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
+            // $request->file('thumbnail')->storeAs('image/post/', str_replace(' ', '_', $newName));
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $post = Post::find($id);
@@ -104,10 +109,10 @@ class PostController extends Controller
             if ($request->file('thumbnail') == "") {
                 $post->thumbnail = $request->oldImage;
             } else {
-                $post->thumbnail = str_replace(' ', '_', $newName);
+                $post->thumbnail = str_replace(' ', '_', $path);
             }
         } else {
-            $post->thumbnail = str_replace(' ', '_', $newName);
+            $post->thumbnail = str_replace(' ', '_', $path);
         }
         $post->save();
 
@@ -128,6 +133,10 @@ class PostController extends Controller
 
     public function delete($id) {
         $post = Post::find($id);
+        if($post->thumbnail) {
+            // Storage::delete('image/post/' . $post->thumbnail);
+            Storage::disk('s3')->delete($post->thumbnail);
+        }
         $post->delete();
 
         Session::flash('post', 'success');

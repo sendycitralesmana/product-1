@@ -10,11 +10,11 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Category Data</h1>
+                    <h1>Produk Kategori</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item active">Category</li>
+                    <li class="breadcrumb-item active">Produk Kategori</li>
                   </ol>
                 </div>
             </div>
@@ -27,12 +27,12 @@
         <!-- Default box -->
         <div class="card">
             <div class="card-header">
-                <h3 class="card-title">Category</h3>
+                <h3 class="card-title">Kategori</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                         <!-- Button trigger modal -->
-                        <button title="Add Variant" type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#categoryAdd">
-                            <span>+</span>
+                        <button title="Tambah" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#categoryAdd">
+                            <span class="fa fa-plus"></span> Tambah
                         </button>
                         {{-- Modal --}}
                         @include('backoffice.product.category.modal.add')
@@ -71,18 +71,25 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
+                            <th>Ikon</th>
                             <th>Thumbnail</th>
-                            <th>Option</th>
+                            <th>Kategori</th>
+                            <th>Produk</th>
+                            {{-- <th>Description</th> --}}
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($productsCategories as $productCategory)
                         <tr>
                             <td> {{ $productCategory->id }} </td>
-                            <td> {{ $productCategory->name }} </td>
-                            <td> {!! html_entity_decode($productCategory->description) !!} </td>
+                            <td> 
+                                @if( $productCategory->icon != null )
+                                    <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
+                                @else
+                                    <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
+                                @endif
+                            </td>
                             <td> 
                                 @if( $productCategory->thumbnail != null )
                                     <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
@@ -90,12 +97,21 @@
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
                                 @endif
                             </td>
+                            <td> {{ $productCategory->name }} </td>
+                            <td> 
+                                <a href="/backoffice/product/category/{{ $productCategory->id }}/product" title="Lihat">
+                                    <button class="badge badge-light">
+                                        Lihat {{ $productCategory->product->count() }} Data <i class="fas fa-arrow-right"></i> 
+                                    </button>
+                                </a>    
+                            </td>
+                            {{-- <td> {!! html_entity_decode($productCategory->description) !!} </td> --}}
                             <td>
                                 {{-- <a href="/product-category/{{ $productCategory->id }}/detail" class="btn btn-primary btn-sm">Detail</a> --}}
                                 @if (auth()->user()->role_id == 2)
                                     <!-- Button trigger modal -->
                                     <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
-                                        <span><i class="ion ion-android-create"></i> Edit</span>
+                                        <span><i class="fa fa-edit"></i> Ubah</span>
                                     </button>
                                     {{-- Modal --}}
                                     @include('backoffice.product.category.modal.edit')
@@ -109,10 +125,11 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>Description</th>
+                            <th>Ikon</th>
                             <th>Thumbnail</th>
-                            <th>Option</th>
+                            <th>Kategori</th>
+                            <th>Produk</th>
+                            <th>Aksi</th>
                         </tr>
                     </tfoot>
                 </table>

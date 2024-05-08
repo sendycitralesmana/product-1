@@ -25,12 +25,19 @@ class ProductController extends Controller
         }
         $productCategories = ProductCategory::get();
         $applications = Application::get();
-        // dd($products);
         return view('backoffice.product.index', [
             'products' => $products,
             'productCategories' => $productCategories,
             'applications' => $applications
         ]);
+
+        // cara 2
+        // $pCategory = ProductCategory::find($category_id);
+        // $products = Product::where('product_category_id', $category_id)->get();
+        // return view('backoffice.product.index', [
+        //     'products' => $products,
+        //     'pCategory' => $pCategory,
+        // ]);
     }
 
     public function category($id) {
@@ -80,16 +87,20 @@ class ProductController extends Controller
 
         $newName = null;
         if($request->file('thumbnail')) {
-            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+            $file = $request->file('thumbnail');
+            $fileName = $file->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
+
+            // simpan gambar ke disk 
+            $path = Storage::disk('s3')->put("", $file);
+            // $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
         }
 
         $product = new product;
         $product->product_category_id = $request->product_category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->thumbnail = str_replace(' ', '_', $newName);
+        $product->thumbnail = str_replace(' ', '_', $path);
         $product->save();
 
         $productId = Product::orderBy('id', 'desc')->first();
@@ -129,11 +140,19 @@ class ProductController extends Controller
         $newName = null;
         if($request->file('thumbnail')) {
             if ($request->oldImage) {
-                Storage::delete('image/product/' . $request->oldImage);
+                // Storage::delete('image/product/' . $request->oldImage);
+
+                // update thumbnail from s3
+                Storage::disk('s3')->delete("" . $request->oldImage);
+                // Storage::disk('s3')->delete("" . $product->thumbnail);
             }
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
+            // $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
+
+            // simpan gambar ke disk 
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $product = product::find($id);
@@ -144,10 +163,10 @@ class ProductController extends Controller
             if ($request->file('thumbnail') == "") {
                 $product->thumbnail = $request->oldImage;
             } else {
-                $product->thumbnail = str_replace(' ', '_', $newName);
+                $product->thumbnail = str_replace(' ', '_', $path);
             }
         } else {
-            $product->thumbnail = str_replace(' ', '_', $newName);
+            $product->thumbnail = str_replace(' ', '_', $path);
         }
         // dd($product);
         $product->save();
@@ -162,7 +181,11 @@ class ProductController extends Controller
     public function delete($id)
     {
         $product = Product::find($id);
-        Storage::delete('image/product/' . $product->thumbnail);
+        // Storage::delete('image/product/' . $product->thumbnail);
+
+        // delete from s3
+        Storage::disk('s3')->delete("" . $product->thumbnail);
+
         $product->media()->delete();
         $product->video()->delete();
         // $product->variant()->delete();

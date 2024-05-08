@@ -41,8 +41,8 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="{{asset('storage/image/client/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
-                            <img src="{{asset('storage/image/client/'.$client->image)}}" alt="" 
+                        <a href="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
+                            <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
                             class="img-fluid rounded" style="height: 200px; width: 100%">
                         </a>
                         <div class="status mt-2 text-center">

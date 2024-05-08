@@ -42,7 +42,7 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $product->thumbnail }}">
                             @if ($product->thumbnail)
-                                <img src="{{ asset('storage/image/product/'. $product->thumbnail) }}" name="oldValue" value="$product->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $product->thumbnail) }}" name="oldValue" value="$product->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif

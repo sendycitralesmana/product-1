@@ -33,12 +33,15 @@ class ClientController extends Controller
         if($request->file('image')) {
             $fileName = $request->file('image')->getClientOriginalName();
             $newName = 'image-' . now()->timestamp . '-' . $fileName;
-            $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
+            // $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
+
+            $file = $request->file('image');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $client = new Client();
         $client->name = $request->name;
-        $client->image = str_replace(' ', '_', $newName);
+        $client->image = str_replace(' ', '_', $path);
         $client->link = $request->link;
         $client->is_hidden = "0";
         $client->save();
@@ -59,11 +62,15 @@ class ClientController extends Controller
         $newName = "";
         if($request->file('image')) {
             if ($request->oldImage) {
-                Storage::delete('image/client/' . $request->oldImage);
+                // Storage::delete('image/client/' . $request->oldImage);
+                Storage::disk('s3')->delete($request->oldImage);
             }
             $fileName = $request->file('image')->getClientOriginalName();
             $newName = 'image-' . now()->timestamp . '-' . $fileName;
-            $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
+            // $request->file('image')->storeAs('image/client/', str_replace(' ', '_', $newName));
+
+            $file = $request->file('image');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $client = Client::find($id);
@@ -72,10 +79,10 @@ class ClientController extends Controller
             if ($request->file('image') == "") {
                 $client->image = $request->oldImage;
             } else {
-                $client->image = str_replace(' ', '_', $newName);
+                $client->image = str_replace(' ', '_', $path);
             }
         } else {
-            $client->image = str_replace(' ', '_', $newName);
+            $client->image = str_replace(' ', '_', $path);
         }
         $client->link = $request->link;
         $client->is_hidden = $request->is_hidden;
@@ -100,7 +107,8 @@ class ClientController extends Controller
 
         $client = Client::find($id);
         if ($client->image) {
-            Storage::delete('image/client/' . $client->image);
+            // Storage::delete('image/client/' . $client->image);
+            Storage::disk('s3')->delete($client->image);
         }
 
         $applications = Application::where('client_id', $client->id)->get();

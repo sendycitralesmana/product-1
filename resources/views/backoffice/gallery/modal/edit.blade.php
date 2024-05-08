@@ -25,7 +25,7 @@
                             <input type="hidden" name="oldImage" value="{{ $gallery->image }}">
                             <input type="hidden" name="oldName" value="{{ $gallery->name }}">
                             @if ($gallery->image)
-                                <img src="{{ asset('storage/image/gallery/'.$gallery->image) }}" name="oldValue" value="$image->thumbnail" 
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'.$gallery->image) }}" name="oldValue" value="$image->thumbnail" 
                                 class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">

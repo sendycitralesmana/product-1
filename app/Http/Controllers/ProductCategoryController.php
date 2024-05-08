@@ -29,20 +29,26 @@ class ProductCategoryController extends Controller
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $newName));
+            // $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $newName));
+            // simpan gambar ke disk 
+            $fThumbnail = $request->file('thumbnail');
+            $thumbnail = Storage::disk('s3')->put("", $fThumbnail);
         }
 
         $ikon = null;
         if ($request->file('ikon')) {
             $fileName = $request->file('ikon')->getClientOriginalExtension();
-            $ikon = 'ikon-' . now()->timestamp . '.' . $fileName;
-            $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
+            // $ikon = 'ikon-' . now()->timestamp . '.' . $fileName;
+            // $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
+            // simpan gambar ke disk
+            $fIkon = $request->file('ikon');
+            $ikon = Storage::disk('s3')->put("", $fIkon);
         }
 
         $productCategory = new ProductCategory();
         $productCategory->name = $request->name;
         $productCategory->description = '-';
-        $productCategory->thumbnail = str_replace(' ', '_', $newName);
+        $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
         $productCategory->icon = str_replace(' ', '_', $ikon);
         $productCategory->save();
 
@@ -72,28 +78,43 @@ class ProductCategoryController extends Controller
         $productCategory->name = $request->name;
         $productCategory->description = '-';
         if ($request->file('thumbnail')) {
-            Storage::delete('image/product/category/' . $productCategory->thumbnail);
+            // Storage::delete('image/product/category/' . $productCategory->thumbnail);
+            Storage::disk('s3')->delete("" . $productCategory->thumbnail);
             $fileNameThumbnail = $request->file('thumbnail')->getClientOriginalExtension();
-            $thumbnail = 'thumbnail-' . now()->timestamp . '.' . $fileNameThumbnail;
-            $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $thumbnail));
+            // $thumbnail = 'thumbnail-' . now()->timestamp . '.' . $fileNameThumbnail;
+            // $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $thumbnail));
+            $fThumbnail = $request->file('thumbnail');
+            $thumbnail = Storage::disk('s3')->put("", $fThumbnail);
             $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
         }
         if ($request->file('ikon')) {
-            Storage::delete('image/product/category/' . $productCategory->icon);
+            // Storage::delete('image/product/category/' . $productCategory->icon);
+            Storage::disk('s3')->delete("" . $productCategory->icon);
             $fileNameIkon = $request->file('ikon')->getClientOriginalExtension();
             $ikon = 'ikon-' . now()->timestamp . '.' . $fileNameIkon;
-            $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
+            // $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
+            $fIkon = $request->file('ikon');
+            $ikon = Storage::disk('s3')->put("", $fIkon);
             $productCategory->icon = str_replace(' ', '_', $ikon);
         }
-        // if ($request->oldImage != null) {
-        //     if ($request->file('thumbnail') == "") {
-        //         $productCategory->thumbnail = $request->oldImage;
-        //     } else {
-        //         $productCategory->thumbnail = str_replace(' ', '_', $newName);
-        //     }
-        // } else {
-        //     $productCategory->thumbnail = str_replace(' ', '_', $newName);
-        // }
+        if ($request->oldImage != null) {
+            if ($request->file('thumbnail') == "") {
+                $productCategory->thumbnail = $request->oldImage;
+            } else {
+                $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
+            }
+        } else {
+            $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
+        }
+        if ($request->oldImage != null) {
+            if ($request->file('ikon') == "") {
+                $productCategory->icon = $request->oldImage;
+            } else {
+                $productCategory->icon = str_replace(' ', '_', $ikon);
+            }
+        } else {
+            $productCategory->icon = str_replace(' ', '_', $ikon);
+        }
         $productCategory->save();
 
         Session::flash('category', 'success');
@@ -107,8 +128,11 @@ class ProductCategoryController extends Controller
         
         $productCategory = ProductCategory::find($id);
         if ($productCategory->thumbnail) {
-            Storage::delete('image/product/category/' . $productCategory->thumbnail);
+            // Storage::delete('image/product/category/' . $productCategory->thumbnail);
+            Storage::disk('s3')->delete("" . $productCategory->thumbnail);
+            Storage::disk('s3')->delete("" . $productCategory->icon);
         }
+        // $productCategory->product()->delete();
         $productCategory->delete();
 
         Session::flash('status', 'success');

@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Kategori</label>
                             <input type="text" name="name" class="form-control" value="{{ $productCategory->name }}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -24,6 +24,19 @@
                             <textarea name="description" id="editor1" class="form-control">{{ $productCategory->description }}</textarea>
                             @if($errors->has('description'))
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
+                            @endif
+                        </div> --}}
+                        <div class="form-group">
+                            <label>Ikon</label>
+                            <input type="hidden" name="oldImage" value="{{ $productCategory->ikon }}">
+                            @if ($productCategory->ikon)
+                                <img src="{{ asset('storage/image/category/'. $productCategory->ikon) }}" name="oldValue" value="$productCategory->ikon" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                            @else
+                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                            @endif
+                            <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="image">
+                            @if($errors->has('ikon'))
+                            <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
@@ -38,7 +51,7 @@
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
-                        </div> --}}
+                        </div>
                     </div>
                     <!-- /.card-body -->
 

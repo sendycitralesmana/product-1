@@ -12,13 +12,7 @@
                 <div class="modal-body">
 
                     <div class="card-body">
-                        <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" required name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}">
-                            @if($errors->has('name'))
-                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
-                            @endif
-                        </div>
+                        
                         {{-- <div class="form-group">
                             <label>Description</label>
                             <textarea name="description" id="editor" value="{{ old('description') }}" class="form-control"></textarea>
@@ -27,11 +21,11 @@
                             @endif
                         </div> --}}
                         <div class="form-group">
-                            <label>Thumbnail</label>
-                            <img src="" class="imgPreviewThumbnail img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control" placeholder="Enter Password">
-                            @if($errors->has('thumbnail'))
-                            <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
+                            <label>Kategori</label>
+                            <input type="text" required name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}"
+                            oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Kategori harus diisi')">
+                            @if($errors->has('name'))
+                            <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
                         </div>
                         <div class="form-group">
@@ -42,8 +36,15 @@
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif
                         </div>
+                        <div class="form-group">
+                            <label>Thumbnail</label>
+                            <img src="" class="imgPreviewThumbnail img-fluid mb-3 col-sm-5" alt="">
+                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control" placeholder="Enter Password">
+                            @if($errors->has('thumbnail'))
+                            <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
+                            @endif
+                        </div>
                     </div>
-                    <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">

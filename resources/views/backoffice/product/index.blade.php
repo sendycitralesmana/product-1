@@ -85,7 +85,9 @@
                                     <td> {{ $product->id }} </td>
                                     <td>
                                         @if( $product->thumbnail != null )
-                                        <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" alt=""
+                                        {{-- <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" alt=""
+                                            width="100px" height="100px"> --}}
+                                        <img src="{{asset('http://103.127.96.59:9000/mled/'.$product->thumbnail)}}" alt=""
                                             width="100px" height="100px">
                                         @else
                                         <img src="{{asset('storage/image/default.png')}}" alt="" width="100px"

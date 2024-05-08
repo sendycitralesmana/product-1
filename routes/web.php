@@ -120,7 +120,35 @@ Route::group(['middleware' => 'auth'], function(){
         
     //     grup data produk
     //     Route::group(['prefix' => 'product'], function(){
-    //         Route::get('/', [ProductController::class, 'index']);
+
+    //         grup category
+    //         Route::group(['prefix' => 'category'], function(){
+    //             Route::get('/', [ProductCategoryController::class, 'index']);
+    //             Route::post('/create', [ProductCategoryController::class, 'create']);
+    //             Route::get('/category/{category_id}', [ProductCategoryController::class, 'index']);
+                
+    //             grup category_id
+    //             Route::group(['prefix' => '{category_id}'], function(){
+    //                 Route::get('/update', [ProductCategoryController::class, 'update']);
+    //                 Route::get('/delete', [ProductCategoryController::class, 'delete']);
+                    
+    //                 grup product
+    //                 Route::group(['prefix' => 'product'], function(){
+    //                     Route::get('/', [ProductController::class, 'index']);
+    //                     Route::get('/create', [ProductController::class, 'create']);
+
+    //                     grup product_id
+    //                     Route::group(['prefix' => '{product_id}'], function(){
+    //                         Route::get('/update', [ProductController::class, 'update']);
+    //                         Route::get('/delete', [ProductController::class, 'delete']);
+    //                     });
+                    
+    //                 });
+                
+    //             });
+            
+    //         });
+            
     //     }); 
     // });
 

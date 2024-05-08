@@ -52,12 +52,16 @@ class MediaApplicationController extends Controller
             $fileName = now()->timestamp . $key . '-' . $file->getClientOriginalName();
             $fileUrl = $file->getClientOriginalExtension();
             $url = 'image-' . now()->timestamp . $key . '.' . $fileUrl;
-            $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
+            // $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
+
+            $file = $request->file('media')[$key];
+            $path = Storage::disk('s3')->put("", $file);
+
             $data2 = array(
                 'application_id' => $request->application_id,
                 'type_id' => 1,
                 'name' => str_replace(' ', '_', $fileName),
-                'url' => str_replace(' ', '_', $url),
+                'url' => str_replace(' ', '_', $path),
                 
             );
             MediaApplication::create($data2);
@@ -79,12 +83,16 @@ class MediaApplicationController extends Controller
             $fileName = now()->timestamp . $key . '-' . $file->getClientOriginalName();
             $fileUrl = $file->getClientOriginalExtension();
             $url = 'file-' . now()->timestamp . $key . '.' . $fileUrl;
-            $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
+            // $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
+
+            $file = $request->file('media')[$key];
+            $path = Storage::disk('s3')->put("", $file);
+
             $data2 = array(
                 'application_id' => $request->application_id,
                 'type_id' => 2,
                 'name' => str_replace(' ', '_', $fileName),
-                'url' => str_replace(' ', '_', $url),
+                'url' => str_replace(' ', '_', $path),
                 
             );
             MediaApplication::create($data2);
@@ -142,13 +150,17 @@ class MediaApplicationController extends Controller
         ]);
 
         if($request->file('media')) {
-            if ($request->oldName && $request->oldUrl) {
-                Storage::delete('image/application/media/' . $request->oldUrl);
+            if ($request->oldUrl) {
+                // Storage::delete('image/application/media/' . $request->oldUrl);
+                Storage::disk('s3')->delete($request->oldUrl);
             }
             $fileName = now()->timestamp . '-' . $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $url = 'image-' .  now()->timestamp . '.' . $extension;
-            $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
+            // $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
+
+            $file = $request->file('media');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $productCategory = MediaApplication::find($id);
@@ -158,14 +170,9 @@ class MediaApplicationController extends Controller
                 $productCategory->name = $request->oldName;
                 $productCategory->url = $request->oldUrl;
             } else {
-                // if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-                //     $productCategory->type_id = 1;
-                // } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-                //     $productCategory->type_id = 2;
-                // }
                 $productCategory->type_id = 1;
                 $productCategory->name = str_replace(' ', '_', $fileName);
-                $productCategory->url = str_replace(' ', '_', $url);
+                $productCategory->url = str_replace(' ', '_', $path);
             }
         }
         $productCategory->save();
@@ -183,13 +190,17 @@ class MediaApplicationController extends Controller
         ]);
 
         if($request->file('media')) {
-            if ($request->oldName && $request->oldUrl) {
-                Storage::delete('image/application/media/' . $request->oldUrl);
+            if ($request->oldUrl) {
+                // Storage::delete('image/application/media/' . $request->oldUrl);
+                Storage::disk('s3')->delete($request->oldUrl);
             }
             $fileName = now()->timestamp . '-' . $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $url = 'file-' . now()->timestamp . '.' . $extension;
-            $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
+            // $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
+
+            $file = $request->file('media');
+            $path = Storage::disk('s3')->put("", $file);
         }
 
         $productCategory = MediaApplication::find($id);
@@ -199,14 +210,9 @@ class MediaApplicationController extends Controller
                 $productCategory->name = $request->oldName;
                 $productCategory->url = $request->oldUrl;
             } else {
-                // if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-                //     $productCategory->type_id = 1;
-                // } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-                //     $productCategory->type_id = 2;
-                // }
                 $productCategory->type_id = 2;
                 $productCategory->name = str_replace(' ', '_', $fileName);
-                $productCategory->url = str_replace(' ', '_', $url);
+                $productCategory->url = str_replace(' ', '_', $path);
             }
         }
         $productCategory->save();
@@ -244,8 +250,8 @@ class MediaApplicationController extends Controller
     public function delete($id)
     {
         $mediaApplication = MediaApplication::find($id);
-        // dd($mediaApplication);
-        Storage::delete('image/application/media/' . $mediaApplication->url);
+        // Storage::delete('image/application/media/' . $mediaApplication->url);
+        Storage::disk('s3')->delete($mediaApplication->url);
         $mediaApplication->delete();
 
         Session::flash('media', 'success');

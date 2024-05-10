@@ -177,7 +177,7 @@
                                             <div class="">
                                                 @if ($application->client != null)
                                                     <a href="/backoffice/client/{{ $application->client->id }}/detail">
-                                                        <img src="{{ asset('storage/image/client/'.$application->client->image) }}" class="img-fluid rounded" 
+                                                        <img src="{{ asset('http://103.127.96.59:9000/mled/'.$application->client->image) }}" class="img-fluid rounded" 
                                                         alt="" style="width: 100px; height: 100px">
                                                         <p class="text-center">{{ $application->client->name }}</p>
                                                     </a>

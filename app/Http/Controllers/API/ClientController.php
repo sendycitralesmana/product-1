@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Client\DetailClientResource;
+use App\Http\Resources\Client\ListClientResource;
 use App\Models\Client;
 use Illuminate\Http\Request;
 
@@ -22,6 +24,7 @@ class ClientController extends Controller
         }
 
         $clients = $qClients->paginate($perPage);
+        $resource = ListClientResource::collection($clients);
 
         return response()->json([
             // $clients
@@ -29,15 +32,22 @@ class ClientController extends Controller
             "current_page" => $clients->currentPage(),
             "per_page" => $clients->perPage(),
             "total_pages" => $clients->lastPage(),
-            "data" => $clients->items(),
+            // "data" => $clients->items(),
+            "data" => $resource,
         ], 200);
     }
 
     public function detail($id) {
-        $client = Client::find($id);
+        $client = Client::with([
+            'application:id,client_id,name,area,time,created_at',
+        ])->find($id);
         if ($client) {
+
+            $resource = new DetailClientResource($client);
+
             return response()->json([
-                $client
+                // $client
+                $resource
             ], 200);
         } else {
             return response()->json([

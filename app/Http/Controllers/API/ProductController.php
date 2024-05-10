@@ -88,8 +88,9 @@ class ProductController extends Controller
             'variant:id,product_id,name,created_at', 
             'variant.spec:id,product_variant_id,specification_id,value,created_at', 
             'variant.spec.specification:id,name,created_at', 
-            'application']
+            'application:id,name,area,description,created_at',]
             )->find($id);
+
         if ($product) {
 
             return new DetailProductResource($product);

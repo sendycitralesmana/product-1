@@ -10,11 +10,13 @@ use App\Http\Controllers\API\GalleryController;
 use App\Http\Controllers\API\HistoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ApplicationController;
+use App\Http\Controllers\API\PostCategoryController;
 use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\ProductMediaController;
 use App\Http\Controllers\API\ProductVariantController;
 use App\Http\Controllers\API\PVSpecificationtController;
 use App\Http\Controllers\API\SpecificationController;
+use App\Http\Controllers\API\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +32,10 @@ use App\Http\Controllers\API\SpecificationController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+// user
+Route::get('/user', [UserController::class, 'index']);
+Route::get('/user/{id}', [UserController::class, 'detail']);
 
 // product
 Route::get('/product', [ProductController::class, 'index']);
@@ -58,6 +64,10 @@ Route::get('/product/{product_id}/variant/{variant_id}/spec/{spec_id}', [PVSpeci
 // post / artikel
 Route::get('/post', [PostController::class, 'index']);
 Route::get('/post/{id}', [PostController::class, 'detail']);
+
+// post-category
+Route::get('/post-category', [PostCategoryController::class, 'index']);
+Route::get('/post-category/{id}', [PostCategoryController::class, 'detail']);
 
 // application / proyek
 Route::get('/application', [ApplicationController::class, 'index']);

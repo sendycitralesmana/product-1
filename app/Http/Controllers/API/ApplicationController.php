@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\API;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Application\DetailApplicationResource;
+use App\Http\Resources\Application\ListApplicationResource;
 use App\Models\Application;
 use Illuminate\Http\Request;
 
@@ -23,6 +25,7 @@ class ApplicationController extends Controller
         }
 
         $applications = $qApplications->paginate($perPage);
+        $resource = ListApplicationResource::collection($applications);
 
         return response()->json([
             // $applications
@@ -30,15 +33,25 @@ class ApplicationController extends Controller
             "current_page" => $applications->currentPage(),
             "per_page" => $applications->perPage(),
             "total_pages" => $applications->lastPage(),
-            "data" => $applications->items(),
+            // "data" => $applications->items(),
+            "data" => $resource,
         ], 200);
     }
 
     public function detail($id) {
-        $application = Application::with(['media', 'video', 'product', 'client'])->find($id);
+        $application = Application::with(
+            ['media:id,application_id,type_id,created_at', 
+            'media.type:id,name,created_at',
+            'video', 
+            'product', 
+            'client:id,name,image,link,is_hidden,created_at']
+            )->find($id);
         if ($application) {
+
+            $resource = new DetailApplicationResource($application);
+
             return response()->json([
-                $application
+                $resource
             ], 200);
         } else {
             return response()->json([

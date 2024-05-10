@@ -1,11 +1,11 @@
 <?php
 
-namespace App\Http\Resources\Product;
+namespace App\Http\Resources\Post\Category;
 
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class DetailProductResource extends JsonResource
+class DetailtPostCategoryResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -18,12 +18,8 @@ class DetailProductResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'thumbnail' => $this->thumbnail,
-            'created_at' => $this->created_at->format('Y-m-d H:i:s'),
-            'category' => $this->category,
-            'media' => $this->media,
-            'variant' => $this->variant,
-            'application' => $this->application
+            'created_at' => $this->created_at,
+            'post' => $this->post
         ];
     }
 }

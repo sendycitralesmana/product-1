@@ -11,10 +11,10 @@ class Post extends Model
 {
     use HasFactory;
 
-    public $appends = [
-        'thumbnail_url',
-        'human_readable_created_at'
-    ];
+    // public $appends = [
+    //     'thumbnail_url',
+    //     'human_readable_created_at'
+    // ];
 
     public function user(): BelongsTo
     {
@@ -36,13 +36,13 @@ class Post extends Model
         return $this->hasMany(Comment::class, 'post_id', 'id');
     }
 
-    public function getThumbnailUrlAttribute() 
-    {
-        return asset('storage/image/post/'. $this->thumbnail);
-    }
+    // public function getThumbnailUrlAttribute() 
+    // {
+    //     return asset('storage/image/post/'. $this->thumbnail);
+    // }
     
-    public function getHumanReadableCreatedAtAttribute() 
-    {
-        return $this->created_at->diffForHumans();
-    }
+    // public function getHumanReadableCreatedAtAttribute() 
+    // {
+    //     return $this->created_at->diffForHumans();
+    // }
 }

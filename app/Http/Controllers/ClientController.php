@@ -86,7 +86,7 @@ class ClientController extends Controller
         }
         $client->link = $request->link;
         $client->is_hidden = $request->is_hidden;
-        $client->save();
+        $client->update();
 
         Session::flash('client', 'success');
         Session::flash('message', 'Ubah klien berhasil');

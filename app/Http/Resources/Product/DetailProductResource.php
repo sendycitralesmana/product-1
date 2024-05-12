@@ -19,6 +19,7 @@ class DetailProductResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'thumbnail' => $this->thumbnail,
+            'description' => $this->description,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),
             'category' => $this->category,
             'media' => $this->media,

@@ -106,7 +106,7 @@
                                 </a>
                             </div>
                             <div class="p-1" style="height: 160px">
-                                <small>{{ $application->time }}</small>
+                                <small>{{ $application->date }}</small>
                                 <h5 class="" style="overflow: hidden;
                                 text-overflow: ellipsis;
                                 -webkit-line-clamp: 2;

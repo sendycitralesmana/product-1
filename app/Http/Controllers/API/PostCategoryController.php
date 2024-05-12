@@ -33,9 +33,9 @@ class PostCategoryController extends Controller
 
         return response()->json([
             "total" => $pCategories->total(),
-            "currentPage" => $pCategories->currentPage(),
-            "perPage" => $pCategories->perPage(),
-            "totalPages" => $pCategories->lastPage(),
+            "current_page" => $pCategories->currentPage(),
+            "per_page" => $pCategories->perPage(),
+            "total_pages" => $pCategories->lastPage(),
             "data" => $resources,
         ], 200);
     }

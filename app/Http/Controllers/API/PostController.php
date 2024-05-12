@@ -46,11 +46,11 @@ class PostController extends Controller
             ])->find($id);
         if ($post) {
 
-            $resource = new DetailPostResource($post);
+            return new DetailPostResource($post);
 
-            return response()->json([
-                $resource
-            ], 200);
+            // return response()->json([
+            //     $resource
+            // ], 200);
         } else {
             return response()->json([
                 'message' => 'No post found'

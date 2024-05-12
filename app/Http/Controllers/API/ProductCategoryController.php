@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ProductCategoryController extends Controller
 {
     public function index(Request $request) {
-        $qPCategories = ProductCategory::with('product:id,product_category_id,name,thumbnail,created_at');
+        $qPCategories = ProductCategory::with('product:id,product_category_id,name,thumbnail,description,created_at');
         $qPCategories->orderBy('created_at', 'desc');
 
         if ($request->search) {
@@ -30,15 +30,15 @@ class ProductCategoryController extends Controller
 
         return response()->json([
             "total" => $pCategories->total(),
-            "currentPage" => $pCategories->currentPage(),
-            "perPage" => $pCategories->perPage(),
-            "totalPages" => $pCategories->lastPage(),
+            "current_page" => $pCategories->currentPage(),
+            "per_page" => $pCategories->perPage(),
+            "total_pages" => $pCategories->lastPage(),
             "data" => $resources,
         ], 200);
     }
 
     public function detail($id) {
-        $pCategory = ProductCategory::with(['product:id,product_category_id,name'])->find($id);
+        $pCategory = ProductCategory::with(['product:id,product_category_id,name,thumbnail,description,created_at'])->find($id);
         if ($pCategory) {
 
             return new DetailProductCategoryResource($pCategory);

@@ -32,9 +32,9 @@ class UserController extends Controller
         return response()->json([
             // $User
             "total" => $User->total(),
-            "currentPage" => $User->currentPage(),
-            "perPage" => $User->perPage(),
-            "totalPages" => $User->lastPage(),
+            "current_page" => $User->currentPage(),
+            "per_page" => $User->perPage(),
+            "total_pages" => $User->lastPage(),
             "data" => $resource,
         ], 200);
     }

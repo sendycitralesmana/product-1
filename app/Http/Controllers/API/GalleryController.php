@@ -30,9 +30,9 @@ class GalleryController extends Controller
         return response()->json([
             // $galleries
             "total" => $galleries->total(),
-            "currentPage" => $galleries->currentPage(),
-            "perPage" => $galleries->perPage(),
-            "totalPages" => $galleries->lastPage(),
+            "current_page" => $galleries->currentPage(),
+            "per_page" => $galleries->perPage(),
+            "total_pages" => $galleries->lastPage(),
             "data" => $resource,
         ], 200);
     }

@@ -71,25 +71,25 @@ class ProductController extends Controller
 
         return response()->json([
             "total" => $products->total(),
-            "currentPage" => $products->currentPage(),
-            "perPage" => $products->perPage(),
-            "totalPages" => $products->lastPage(),
+            "current_page" => $products->currentPage(),
+            "per_page" => $products->perPage(),
+            "total_pages" => $products->lastPage(),
             "data" => $resource,
             // "data" => $products->items(),
         ], 200);
     }
 
     public function detail($id) {
-        $product = Product::with(
-            ['category:id,name,thumbnail,icon,created_at', 
+        $product = Product::with([
+            'category:id,name,thumbnail,icon,created_at', 
             'media:id,product_id,type_id,url,created_at', 
             'media.mediaType:id,name,created_at',
             'video', 
             'variant:id,product_id,name,created_at', 
             'variant.spec:id,product_variant_id,specification_id,value,created_at', 
             'variant.spec.specification:id,name,created_at', 
-            'application:id,name,area,description,created_at',]
-            )->find($id);
+            'application:id,name,area,description,created_at',
+            ])->find($id);
 
         if ($product) {
 

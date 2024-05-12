@@ -21,6 +21,7 @@ class DetailtUserResource extends JsonResource
             'email' => $this->email,
             'avatar' => $this->avatar,
             'created_at' => $this->created_at,
+            'role_id' => $this->role_id,
             'role' => $this->role,
             'post' => $this->post
         ];

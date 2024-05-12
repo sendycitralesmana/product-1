@@ -36,7 +36,7 @@ class ApplicationController extends Controller
             'name' => 'required',
             'description' => 'required',
             'area' => 'required',
-            'time' => 'required',
+            'date' => 'required',
         ]);
 
         $newName = null;
@@ -53,7 +53,7 @@ class ApplicationController extends Controller
         $application->name = $request->name;
         $application->description = $request->description;
         $application->area = $request->area;
-        $application->time = $request->time;
+        $application->date = $request->date;
         $application->thumbnail = str_replace(' ', '_', $path);
         $application->save();
 
@@ -80,7 +80,7 @@ class ApplicationController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'area' => 'required',
-            'time' => 'required',
+            'date' => 'required',
         ]);
 
         $newName = null;
@@ -101,7 +101,7 @@ class ApplicationController extends Controller
         $application->name = $request->name;
         $application->description = $request->description;
         $application->area = $request->area;
-        $application->time = $request->time;
+        $application->date = $request->date;
         if ($request->oldImage != null) {
             if ($request->file('thumbnail') == "") {
                 $application->thumbnail = $request->oldImage;

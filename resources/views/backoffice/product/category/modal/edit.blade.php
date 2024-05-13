@@ -1,7 +1,8 @@
 <div class="modal fade" id="categoryEdit{{ $productCategory->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/category/{{ $productCategory->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $productCategory->id }}/update" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -28,9 +29,9 @@
                         </div> --}}
                         <div class="form-group">
                             <label>Ikon</label>
-                            <input type="hidden" name="oldImage" value="{{ $productCategory->ikon }}">
+                            <input type="hidden" name="oldIcon" value="{{ $productCategory->ikon }}">
                             @if ($productCategory->ikon)
-                                <img src="{{ asset('storage/image/category/'. $productCategory->ikon) }}" name="oldValue" value="$productCategory->ikon" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('shttp://103.127.96.59:9000/mled/'. $productCategory->ikon) }}" name="oldValue" value="$productCategory->ikon" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
@@ -43,7 +44,7 @@
                             <label>Thumbnail</label>
                             <input type="hidden" name="oldImage" value="{{ $productCategory->thumbnail }}">
                             @if ($productCategory->thumbnail)
-                                <img src="{{ asset('storage/image/category/'. $productCategory->thumbnail) }}" name="oldValue" value="$productCategory->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('shttp://103.127.96.59:9000/mled/'. $productCategory->thumbnail) }}" name="oldValue" value="$productCategory->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif

@@ -1,7 +1,7 @@
 <div class="modal fade" id="store_media" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/media/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/image/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Gambar</h5>
@@ -18,7 +18,8 @@
                         <tr>
                             <td>
                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
-                                <input type="file" name="media[]" id="file" accept="image/*" class="form-control" placeholder="Enter media" required>
+                                <input type="file" name="media[]" id="file" accept="image/*" class="form-control" placeholder="Enter media" required
+                                oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Gambar harus diisi')">
                                 @if($errors->has('media[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                                 @endif
@@ -55,7 +56,8 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="file" name="media[]" accept="image/*" class="form-control" placeholder="Enter media" required>
+                    <input type="file" name="media[]" accept="image/*" class="form-control" placeholder="Enter media" required
+                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Gambar harus diisi')">
                     @if($errors->has('media[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('media[]') }}</span>
                     @endif

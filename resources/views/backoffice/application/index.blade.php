@@ -102,7 +102,7 @@
                             <div class="">
                                 <a href="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
                                     <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 250px; width: 100%">
+                                    class="img-fluid rounded" style="height: 230px; width: 100%">
                                 </a>
                             </div>
                             <div class="p-1" style="height: 160px">

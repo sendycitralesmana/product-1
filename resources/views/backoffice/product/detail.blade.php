@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
+                        <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product" class="">Produk</a></li>
                         <li class="breadcrumb-item active">Detail</li>
                     </ol>
                 </div>
@@ -25,10 +25,22 @@
     <!-- Main content -->
     <section class="content">
 
-        {{-- Product Start --}}
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
-                <h3 class="card-title">Data</h3>
+                <div class="d-flex justify-between">
+                    <div class="fakultas mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        {{-- Product Start --}}
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title">Produk</h3>
                 <div class="card-tools">
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                         title="Collapse">
@@ -65,13 +77,13 @@
                         <div class="card card-widget">
                             <div class="card-header">
                                 <div class="user-block">
-                                    <h5>{{ $product->name }}</h5>
+                                    <h5><b>{{ $product->name }}</b></h5>
                                     <small>{{ $product->category->name }}</small>
                                 </div>
                                 <!-- /.user-block -->
                                 <div class="card-tools">
                                     <!-- Button trigger modal -->
-                                    <button type="button" class="btn btn-warning btn-sm" title="Edit" data-toggle="modal"
+                                    <button type="button" class="btn btn-warning btn-sm" title="Ubah" data-toggle="modal"
                                         data-target="#productEdit{{ $product->id }}">
                                         <span><i class="fas fa-edit"></i></span> Ubah
                                     </button>
@@ -89,7 +101,7 @@
                                     @if ( $product->thumbnail != null )
                                         <img src="{{ asset('http://103.127.96.59:9000/mled/'. $product->thumbnail) }}" alt="" class="img-fluid rounded" style="height: 300px">
                                     @else
-                                        <img src="{{ asset('images/default.png') }}" alt="" class="img-fluid rounded" style="height: 300px">
+                                        <img src="{{ asset('images/no-image.jpg') }}" alt="" class="img-fluid rounded" style="height: 200px">
                                     @endif
                                 </div>
 
@@ -122,7 +134,7 @@
                             <div class="card-body">
                                 <div class="gambar-body">
                                     <div class="d-flex justify-content-between">
-                                        <a href="/backoffice/product/media/{{ $product->id }}">
+                                        <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/image">
                                             <div class="">
                                                 Gambar
                                             </div>
@@ -135,7 +147,7 @@
                                 </div>
                                 <div class="gambar-body">
                                     <div class="d-flex justify-content-between">
-                                        <a href="/backoffice/product/file/{{ $product->id }}">
+                                        <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/file">
                                             <div class="">
                                                 Berkas
                                             </div>
@@ -161,7 +173,7 @@
                                 </div> --}}
                                 <div class="variant-body">
                                     <div class="d-flex justify-content-between">
-                                        <a href="/backoffice/product/variant/{{ $product->id }}">
+                                        <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant">
                                             <div class="">
                                                 Varian
                                             </div>
@@ -174,7 +186,7 @@
                                 </div>
                                 <div class="application-body">
                                     <div class="d-flex justify-content-between">
-                                        <a href="/backoffice/product/application/{{ $product->id }}">
+                                        <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/application">
                                             <div class="">
                                                 Proyek
                                             </div>

@@ -13,7 +13,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Kembali</button>
                     {{-- <button type="submit" class="btn btn-success">Save changes</button> --}}
-                    <a href="/backoffice/product/variant/{{ $productVariant->id }}/delete" class="btn btn-danger"><span class="fa fa-trash"></span> Hapus</a>
+                    <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $productVariant->id }}/delete" class="btn btn-danger"><span class="fa fa-trash"></span> Hapus</a>
                 </div>
             </form>
         </div>

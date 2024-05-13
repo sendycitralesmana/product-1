@@ -17,27 +17,22 @@ use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
-    public function index(Request $request)
+    public function index(Request $request, $category_id = null)
     {
-        $products = Product::all();
+        $products = Product::orderBy('id', 'desc')->where('product_category_id', $category_id)->get();
         if ($request->category) {
             $products = $products->where('category_id', $request->category);
         }
         $productCategories = ProductCategory::get();
         $applications = Application::get();
+        $pCategory = ProductCategory::find($category_id);
         return view('backoffice.product.index', [
             'products' => $products,
             'productCategories' => $productCategories,
-            'applications' => $applications
+            'applications' => $applications,
+            'pCategory' => $pCategory
         ]);
 
-        // cara 2
-        // $pCategory = ProductCategory::find($category_id);
-        // $products = Product::where('product_category_id', $category_id)->get();
-        // return view('backoffice.product.index', [
-        //     'products' => $products,
-        //     'pCategory' => $pCategory,
-        // ]);
     }
 
     public function category($id) {
@@ -55,7 +50,7 @@ class ProductController extends Controller
         ]);
     }
     
-    public function detail($id)
+    public function detail($category_id, $id)
     {
         $product = Product::with(['category', 'application', 'variant', 'media', 'video'])->find($id);
         $images = MediaProduct::where('product_id', $id)->where('type_id', 1)->get();
@@ -63,6 +58,9 @@ class ProductController extends Controller
         $productCategories = ProductCategory::get();
         $mediaTypes = MediaType::get();
         $applications = Application::get();
+
+        $pCategory = ProductCategory::find($category_id);
+
         return view('backoffice.product.detail', [
             'product' => $product,
             'images' => $images,
@@ -70,37 +68,31 @@ class ProductController extends Controller
             'applications' => $applications,
             'productCategories' => $productCategories,
             'mediaTypes' => $mediaTypes,
+            'pCategory' => $pCategory
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request, $category_id)
     {
         $validated = $request->validate([
-            'product_category_id' => 'required',
+            // 'product_category_id' => 'required',
             'name' => 'required',
             // 'description' => 'required',
         ], [
-            'product_category_id.required' => 'Produk kategori harus dipilih',
+            // 'product_category_id.required' => 'Produk kategori harus dipilih',
             'name.required' => 'Nama produk harus diisi',
             // 'description.required' => 'Deskripsi produk harus diisi',
         ]);
 
-        $newName = null;
-        if($request->file('thumbnail')) {
-            $file = $request->file('thumbnail');
-            $fileName = $file->getClientOriginalExtension();
-            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-
-            // simpan gambar ke disk 
-            $path = Storage::disk('s3')->put("", $file);
-            // $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
-        }
-
         $product = new product;
-        $product->product_category_id = $request->product_category_id;
+        $product->product_category_id = $category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        $product->thumbnail = str_replace(' ', '_', $path);
+        if ($request->file('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
+            $product->thumbnail = $path;
+        }
         $product->save();
 
         $productId = Product::orderBy('id', 'desc')->first();
@@ -117,7 +109,8 @@ class ProductController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Tambah produk berhasil');
-        return redirect('/backoffice/product');
+        // return redirect('/backoffice/product');
+        return redirect()->back();
     }
 
     public function edit($id)
@@ -130,51 +123,27 @@ class ProductController extends Controller
         ]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id, $id)
     {
         $validated = $request->validate([
-            'product_category_id' => 'required',
             'name' => 'required',
         ]);
-
-        $newName = null;
-        if($request->file('thumbnail')) {
-            if ($request->oldImage) {
-                // Storage::delete('image/product/' . $request->oldImage);
-
-                // update thumbnail from s3
-                Storage::disk('s3')->delete("" . $request->oldImage);
-                // Storage::disk('s3')->delete("" . $product->thumbnail);
-            }
-            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            // $request->file('thumbnail')->storeAs('image/product/', str_replace(' ', '_', $newName));
-
-            // simpan gambar ke disk 
-            $file = $request->file('thumbnail');
-            $path = Storage::disk('s3')->put("", $file);
-        }
 
         $product = product::find($id);
         $product->product_category_id = $request->product_category_id;
         $product->name = $request->name;
         $product->description = $request->description;
-        if ($request->oldImage != null) {
-            if ($request->file('thumbnail') == "") {
-                $product->thumbnail = $request->oldImage;
-            } else {
-                $product->thumbnail = str_replace(' ', '_', $path);
-            }
-        } else {
-            $product->thumbnail = str_replace(' ', '_', $path);
+        if ($request->file('thumbnail')) {
+            Storage::disk('s3')->delete("" . $product->thumbnail);
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
+            $product->thumbnail = $path;
         }
-        // dd($product);
-        $product->save();
+        $product->update();
 
         Session::flash('product', 'success');
         Session::flash('message', 'Ubah produk berhasil');
         return redirect()->back();
-        // return redirect('/backoffice/product/'. $product->id .'/detail');
 
     }
 
@@ -202,7 +171,8 @@ class ProductController extends Controller
 
         Session::flash('status', 'success');
         Session::flash('message', 'Hapus produk berhasil');
-        return redirect('/backoffice/product');
+        // return redirect('/backoffice/product');
+        return redirect()->back();
     }
 
     public function applicationByProduct(Request $request, $id) {

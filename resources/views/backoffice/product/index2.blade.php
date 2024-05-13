@@ -14,7 +14,6 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/backoffice/product/kategori" class="">Kategori</a></li>
                         <li class="breadcrumb-item active">Produk</li>
                     </ol>
                 </div>
@@ -25,23 +24,23 @@
     <!-- Main content -->
     <section class="content">
 
-        <div class="row">
-
-            <div class="col-md-12">
-
-                <div class="card card-outline card-primary">
-                    <div class="card-header">
-                        <div class="d-flex justify-between">
-                            <div class="fakultas mr-4">
-                                <h5>
-                                    Kategori: <b>{{ $pCategory->name }}</b>
-                                </h5>
-                            </div>
-                        </div>
+        {{-- <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="fakultas mr-4">
+                        <h5>
+                            Fakultas: <b>{{ $fakultas->fakultas }}</b>
+                        </h5>
                     </div>
                 </div>
+            </div>
+        </div> --}}
+
+        <div class="row">
+
+            <div class="col-md-8">
                 
-                <div class="card card-outline card-primary">
+                <div class="card">
                     <div class="card-header">
 
                         <h3 class="card-title">Data</h3>
@@ -88,11 +87,7 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Gambar</th>
-                                    <th>Produk</th>
-                                    <th>Gambar</th>
-                                    <th>Berkas</th>
-                                    <th>Varian</th>
-                                    <th>Proyek</th>
+                                    <th>Nama</th>
                                     <th>Opsi</th>
                                 </tr>
                             </thead>
@@ -107,42 +102,14 @@
                                         <img src="{{asset('http://103.127.96.59:9000/mled/'.$product->thumbnail)}}" alt=""
                                             width="100px" height="100px">
                                         @else
-                                        <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"
+                                        <img src="{{asset('storage/image/default.png')}}" alt="" width="100px"
                                             height="100px">
                                         @endif
                                     </td>
                                     <td> {{ $product->name }} </td>
-                                    <td> 
-                                        @if ($product->media->where('type_id', 1)->count() != 0)
-                                            {{ $product->media->where('type_id', 1)->count() }} Data
-                                        @else
-                                            Tidak ada
-                                        @endif
-                                    </td>
-                                    <td> 
-                                        @if ($product->media->where('type_id', 2)->count() != 0)
-                                            {{ $product->media->where('type_id', 2)->count() }} Data
-                                        @else
-                                            Tidak ada
-                                        @endif
-                                    </td>
-                                    <td> 
-                                        @if ($product->variant->count() != 0)
-                                            {{ $product->variant->count() }} Data
-                                        @else
-                                            Tidak ada
-                                        @endif
-                                    </td>
-                                    <td> 
-                                        @if ($product->media->count() != 0)
-                                            {{ $product->media->count() }} Data
-                                        @else
-                                            Tidak ada
-                                        @endif
-                                    </td>
                                     <td>
-                                        <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/detail"
-                                            class="btn btn-primary btn-sm"><i class="ion ion-eye"></i> Detail</a>
+                                        <a href="/backoffice/product/{{ $product->id }}/detail"
+                                            class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
                                         @if (auth()->user()->role_id == 2)
                                         <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
                                             data-target="#productDelete{{ $product->id }}">
@@ -154,17 +121,81 @@
                                 </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Gambar</th>
+                                    <th>Nama</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </tfoot>
                         </table>
+
+
+                    </div>
+                    <div class="card-footer">
 
                     </div>
                 </div>
                 
             </div>
 
+            <div class="col-md-4">
+                <div class="card">
+                    <div class="card-header">
+
+                        <h3 class="card-title">Kategori</h3>
+                        <div class="card-tools">
+                            @if (auth()->user()->role_id == 2)
+                            <!-- Button trigger modal -->
+                            <button title="Tambah kategori" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#categoryAdd">
+                                <span class="fas fa-plus"></span> Tambah
+                            </button>
+                            {{-- Modal --}}
+                            @include('backoffice.product.category.modal.add')
+                            @endif
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
+                                title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        @if (Session::has('category'))
+                        <script type="text/javascript">
+                            document.addEventListener('DOMContentLoaded', function () {
+                                Swal.fire({
+                                    title: "Good job!",
+                                    text: "{{Session::get('message')}}",
+                                    icon: "success"
+                                });
+                            });
+
+                        </script>
+                        @endif
+
+                        @foreach ($productCategories as $productCategory)
+                            <div class="">
+                                <div class="d-flex justify-content-between">
+                                    <a href="/backoffice/product/category/{{ $productCategory->id }}">{{ $productCategory->name }} ( {{ $productCategory->product->count() }} )</a>
+                                    <button title="Edit" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
+                                        <span><i class="fas fa-edit"></i> </span> Ubah
+                                    </button>
+                                    @include('backoffice.product.category.modal.edit')
+                                </div>
+                            <div>
+                            <hr>
+                        @endforeach
+
+                    </div>
+                </div>
+            </div>
+
         </div>
 
 
     </section>
-    
+    <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->
 @endsection

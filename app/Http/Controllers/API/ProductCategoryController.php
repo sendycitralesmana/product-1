@@ -18,13 +18,13 @@ class ProductCategoryController extends Controller
             $qPCategories->where('name', 'like', '%'. $request->search . '%');
         }
 
-        if ($request->perPage) {
-            $perPage = $request->perPage;
+        if ($request->per_page) {
+            $per_page = $request->per_page;
         } else {
-            $perPage = 10;
+            $per_page = 10;
         }
 
-        $pCategories = $qPCategories->paginate($perPage);
+        $pCategories = $qPCategories->paginate($per_page);
 
         $resources = ListProductCategoryResource::collection($pCategories);
 

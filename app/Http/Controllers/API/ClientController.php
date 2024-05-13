@@ -27,12 +27,10 @@ class ClientController extends Controller
         $resource = ListClientResource::collection($clients);
 
         return response()->json([
-            // $clients
             "total" => $clients->total(),
             "current_page" => $clients->currentPage(),
             "per_page" => $clients->perPage(),
             "total_pages" => $clients->lastPage(),
-            // "data" => $clients->items(),
             "data" => $resource,
         ], 200);
     }

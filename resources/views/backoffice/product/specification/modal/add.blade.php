@@ -1,7 +1,7 @@
 <div class="modal fade" id="specAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/specification/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $variant->id }}/variant-specification/specification/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Spesifikasi</h5>
@@ -13,12 +13,13 @@
 
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
-                            <th>Nama</th>
-                            <th>Aksi</th>
+                            <th>Spesifikasi</th>
+                            <th>Opsi</th>
                         </tr>
                         <tr>
                             <td>
-                                <input type="text" name="name[]" class="form-control" placeholder="Enter Name" required>
+                                <input type="text" name="name[]" class="form-control" placeholder="Spesifikasi" required
+                                oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus diisi')">
                                 @if($errors->has('name[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
                                 @endif
@@ -52,7 +53,8 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="text" name="name[]" class="form-control" placeholder="Enter Name" required>
+                    <input type="text" name="name[]" class="form-control" placeholder="Spesifikasi" required
+                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus diisi')">
                     @if($errors->has('name[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('name[]') }}</span>
                     @endif

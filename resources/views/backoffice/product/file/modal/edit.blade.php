@@ -1,7 +1,9 @@
 <div class="modal fade" id="fileEdit{{ $file->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/file/{{ $file->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" 
+                action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/file/{{ $file->id }}/update" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -19,7 +21,7 @@
                             <label>Berkas</label>
                             <input type="hidden" name="oldName" value="{{ $file->name }}">
                             <input type="hidden" name="oldUrl" value="{{ $file->url }}">
-                            <p> {{ $file->url }} </p>
+                            {{-- <p> {{ $file->url }} </p> --}}
                             <input type="file" accept=".pdf" name="media" class="form-control" value="{{ $file->name}}">
                             @if($errors->has('media'))
                             <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>

@@ -1,7 +1,8 @@
 <div class="modal fade" id="addProductVariant" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/variant/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/create" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Varian</h5>
@@ -12,9 +13,9 @@
                 <div class="modal-body">
                     <input type="hidden" name="product_id" value="{{ $product->id }}">
                     <div class="form-group">
-                        <label>Nama</label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}"
-                        oninvalid="this.setCustomValidity('Nama harus diisi!')"
+                        <label>Varian</label>
+                        <input type="text" name="name" class="form-control" placeholder="Varian" value="{{ old('name') }}"
+                        oninvalid="this.setCustomValidity('Varian harus diisi!')"
                         oninput="this.setCustomValidity('')" required>
                         @if($errors->has('name'))
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>

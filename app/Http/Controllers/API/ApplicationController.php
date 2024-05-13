@@ -15,16 +15,16 @@ class ApplicationController extends Controller
         $qApplications = Application::query();
 
         if ($request->search) {
-            $qApplications->where('title', 'LIKE', '%' . $request->search . '%')->orWhere('content', 'LIKE', '%' . $request->search . '%');
+            $qApplications->where('name', 'LIKE', '%' . $request->search . '%');
         }
 
-        if ($request->perPage) {
-            $perPage = $request->perPage;
+        if ($request->per_page) {
+            $per_page = $request->per_page;
         } else {
-            $perPage = 10;
+            $per_page = 10;
         }
 
-        $applications = $qApplications->paginate($perPage);
+        $applications = $qApplications->paginate($per_page);
         $resource = ListApplicationResource::collection($applications);
 
         return response()->json([

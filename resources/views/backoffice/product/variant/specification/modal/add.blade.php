@@ -1,7 +1,9 @@
 <div class="modal fade" id="variantSpecAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/vs/create" enctype="multipart/form-data">
+            <form role="form" method="POST" 
+                action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $variant->id }}/variant-specification/create" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Spesifikasi</h5>
@@ -18,7 +20,6 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="product_variant_id[]" value="{{ $productVariant->id }}">
                                 <select name="specification_id[]" id="" class="form-control " required
                                         oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus dipilih')">
                                     <option value="">-- Pilih Spesifikasi --</option>
@@ -31,8 +32,11 @@
                                 @endif
                             </td>
                             <td>
-                                <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
+                                {{-- <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
+                                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')"> --}}
+                                <textarea name="value[]" class="form-control" id="" required
                                     oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
+                                </textarea>
                                 @if($errors->has('value[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                                 @endif
@@ -69,7 +73,6 @@
         $("#dynamicAddRemove").append(
             `<tr>
                 <td>
-                    <input type="hidden" name="product_variant_id[]" value="{{ $productVariant->id }}">
                     <select name="specification_id[]" id="" class="form-control select2" required
                             oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus dipilih')">
                         <option value="">-- Pilih Spesifikasi --</option>
@@ -82,8 +85,9 @@
                     @endif
                 </td>
                 <td>
-                    <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
+                    <textarea name="value[]" class="form-control" id="" required
                         oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
+                    </textarea>
                     @if($errors->has('value[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                     @endif

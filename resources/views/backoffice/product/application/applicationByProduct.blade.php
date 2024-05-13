@@ -10,7 +10,7 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} proyek data</h1>
+                    <h1>Data Proyek</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
@@ -26,14 +26,31 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="produk mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Produk: <b>{{ $product->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Proyek</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
-                    <button type="button" class="btn btn-default" data-toggle="modal" data-target="#applicationAdd">
-                        <span>+</span>
+                    <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#applicationAdd">
+                        <span class="fa fa-plus"></span> Tambah
                     </button>
                     @include('backoffice.product.application.modal.add')
                     @endif
@@ -45,11 +62,22 @@
                 
             </div>
             <div class="card-body">
-                @if (Session::has('application'))
+                {{-- @if (Session::has('application'))
                 <div class="alert alert-success" role="alert">
                     <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
                     {{Session::get('message')}}
                 </div>
+                @endif --}}
+                @if (Session::has('application'))
+                <script type="text/javascript">
+                    document.addEventListener('DOMContentLoaded', function () {
+                        Swal.fire({
+                        title: "Good job!",
+                        text: "{{Session::get('message')}}",
+                        icon: "success"
+                        });
+                    });
+                </script>
                 @endif
 
                 {{-- @if ( url()->full() != url('/backoffice/product/application/'. $product->id ) )
@@ -123,11 +151,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($appProducts as $application)
+                        @foreach ($pApplications as $key => $application)
                         <tr>
-                            <td> {{ $application->id }} </td>
+                            <td> {{ $key + 1 }} </td>
                             <td>
-                                <img src="{{asset('storage/image/application/'.$application->application->thumbnail)}}" alt="" style="height: 80px; width: 80px" >
+                                <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->application->thumbnail)}}" alt="" 
+                                style="height: 100px; width: 100px" >
                             </td>
                             <td>
                                 <b style="overflow: hidden;
@@ -150,8 +179,8 @@
                             <td>
                                 @if (auth()->user()->role_id == 2)
                                 <a href="/backoffice/application/{{ $application->application->id }}/detail" class="btn btn-info btn-sm m-1"> <i class="fa fa-eye"></i> Detail</a>
-                                <button title="Delete" type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
+                                <button title="Hapus" type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
+                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 @include('backoffice.product.application.modal.delete')
                                 @endif
@@ -159,14 +188,6 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Proyek</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

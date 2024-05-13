@@ -1,7 +1,9 @@
 <div class="modal fade" id="mediaEdit{{ $image->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/media/{{ $image->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" 
+                action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/image/{{ $image->id }}/update" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -22,7 +24,7 @@
                             {{-- <img src="{{ asset('storage/image/gallery/'. $image->url) }}" name="oldValue" value="{{ $image->url }}" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt=""> --}}
                             @if ($image->url)
                                 <img src="{{ asset('http://103.127.96.59:9000/mled/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
-                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
@@ -51,6 +53,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} Berkas Data</h1>
+                    <h1>Data Berkas</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Product</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/detail" class="">Detail Produk</a></li>
                     <li class="breadcrumb-item active">Berkas</li>
                   </ol>
                 </div>
@@ -26,10 +26,27 @@
     <!-- Main content -->
     <section class="content">
 
-        <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
-                <h3 class="card-title"> Data</h3>
+                <div class="d-flex justify-between">
+                    <div class="produk mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Produk: <b>{{ $product->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Default box -->
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <h3 class="card-title"> Berkas</h3>
                 <div class="card-tools">
                     <!-- Button trigger modal -->
                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#fileAdd">
@@ -72,9 +89,9 @@
                     @foreach ($files as $file)
                     <div class="col-md-3 gallery">
                         <div class="card">
-                            <div class="">
+                            <div class="p-4 text-center">
                                 <img src="{{asset('images/pdf.png')}}" alt="" 
-                                    class="img-fluid rounded" style="height: 200px; width: 100%">
+                                    class="img-fluid rounded" style="height: 150; width: 150px">
                             </div>
                             <div class="p-1">
                                 {{ $file->name }}
@@ -82,12 +99,12 @@
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                     data-target="#fileEdit{{$file->id}}">
-                                    <span><i class="ion ion-android-create"></i> Ubah</span>
+                                    <span><i class="edit"></i> Ubah</span>
                                 </button>
                                 @include('backoffice.product.file.modal.edit')
                                 <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
                                     data-target="#fileDelete{{$file->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
+                                    <span><i class="trash"></i> Hapus</span>
                                 </button>
                                 @include('backoffice.product.file.modal.delete')
                             </div>

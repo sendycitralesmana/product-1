@@ -14,6 +14,8 @@
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant" class="">Varian</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant-specification" class="">Varian Spesifikasi</a></li>
                     <li class="breadcrumb-item active">Spesifikasi</li>
                   </ol>
                 </div>
@@ -25,7 +27,7 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Spesifikasi</h3>
                 <div class="card-tools">
@@ -60,7 +62,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama</th>
+                            <th>Spesifikasi</th>
                             @if (auth()->user()->role_id == 2)
 
                             <th>Opsi</th>
@@ -75,13 +77,17 @@
                             @if (auth()->user()->role_id == 2)
                             <td>
                                 <!-- Button trigger modal -->
-                                <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#specEdit{{ $specification->id }}">
+                                <button title="Ubah" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#specEdit{{ $specification->id }}">
                                     <span><i class="fas fa-edit"></i> Ubah</span>
+                                </button>
+                                <button title="Hapus" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#specDelete{{ $specification->id }}">
+                                    <span><i class="fas fa-trash"></i> Hapus</span>
                                 </button>
                                 {{-- Modal --}}
                                 @include('backoffice.product.specification.modal.edit')
-                                <a href="/backoffice/product/specification/{{ $specification->id }}/delete"
-                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm"><i class="ion ion-android-delete"></i> Hapus</a>
+                                @include('backoffice.product.specification.modal.delete')
+                                {{-- <a href="/backoffice/product/specification/{{ $specification->id }}/delete"
+                                    onclick="return confirm('Are you sure?')" class="btn btn-danger btn-sm"><i class="ion ion-android-delete"></i> Hapus</a> --}}
                             </td>
 
                             @endif

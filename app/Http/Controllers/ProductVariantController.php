@@ -5,13 +5,26 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\ProductVariant;
+use App\Models\ProductCategory;
 use App\Models\PVSpecification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
 class ProductVariantController extends Controller
 {
-    public function create(Request $request)
+    public function index($category_id, $product_id)
+    {
+        $pCategory = ProductCategory::find($category_id);
+        $productVariants = ProductVariant::where('product_id', $product_id)->get();
+        $product = Product::find($product_id);
+        return view('backoffice.product.variant.variantByProduct', [
+            'pCategory' => $pCategory,
+            'productVariants' => $productVariants,
+            'product' => $product,
+        ]);
+    }
+
+    public function create(Request $request, $category_id, $product_id)
     {
         // $validated = $request->validate([
         //     'product_id.*' => 'required',
@@ -60,7 +73,7 @@ class ProductVariantController extends Controller
         // return redirect('/backoffice/product/variant/'. $request->product_id[0]);
     }
 
-    public function update(Request $request, $id)
+    public function update(Request $request, $category_id, $product_id, $variant_id)
     {
         $validated = $request->validate([
             'name' => 'required',
@@ -71,7 +84,7 @@ class ProductVariantController extends Controller
             // 'height' => 'required',
         ]);
 
-        $productVariant = ProductVariant::find($id);
+        $productVariant = ProductVariant::find($variant_id);
         $productVariant->name = $request->name;
         // $productVariant->price = $request->price;
         // $productVariant->long = $request->long;
@@ -90,14 +103,14 @@ class ProductVariantController extends Controller
         // return redirect('/backoffice/product/variant/'. $request->product_id[0]);
     }
 
-    public function delete($id)
+    public function delete($category_id, $product_id, $variant_id)
     {
         // $pvSpecs = PVSpecification::where('product_variant_id', $id)->get();
         // if ($pvSpecs->count() != 0) {
         //     $pvSpecs->delete();
         // }
 
-        $productVariant =ProductVariant::find($id);
+        $productVariant =ProductVariant::find($variant_id);
         $productVariant->spec()->delete();
         $productVariant->delete();
 

@@ -16,27 +16,29 @@ use App\Models\Gallery;
 class HomeController extends Controller
 {
     public function index () {
-        $galleries = Gallery::orderBy('id', 'desc')->get()->take(8);
-        $aboutTK = Content::where('id', 1)->first();
-        $aboutVM = Content::where('id', 2)->first();
-        $posts = Post::orderBy('id', 'desc')->get()->take(3);
-        $products = Product::orderBy('id', 'desc')->get();
-        $productCategories = ProductCategory::all();
-        $applications = Application::orderBy('id', 'desc')->get()->take(3);
-        $applicationC = Application::get();
-        $clients = Client::get();
+        // $galleries = Gallery::orderBy('id', 'desc')->get()->take(8);
+        // $aboutTK = Content::where('id', 1)->first();
+        // $aboutVM = Content::where('id', 2)->first();
+        // $posts = Post::orderBy('id', 'desc')->get()->take(3);
+        // $products = Product::orderBy('id', 'desc')->get();
+        // $productCategories = ProductCategory::all();
+        // $applications = Application::orderBy('id', 'desc')->get()->take(3);
+        // $applicationC = Application::get();
+        // $clients = Client::get();
 
-        return view('front.homepage.index', [
-            'galleries' => $galleries,
-            'aboutTK' => $aboutTK,
-            'aboutVM' => $aboutVM,
-            'posts' => $posts,
-            'products' => $products,
-            'productCategories' => $productCategories,
-            'applications' => $applications,
-            'applicationC' => $applicationC,
-            'clients' => $clients
-        ]);
+        // return view('front.homepage.index', [
+        //     'galleries' => $galleries,
+        //     'aboutTK' => $aboutTK,
+        //     'aboutVM' => $aboutVM,
+        //     'posts' => $posts,
+        //     'products' => $products,
+        //     'productCategories' => $productCategories,
+        //     'applications' => $applications,
+        //     'applicationC' => $applicationC,
+        //     'clients' => $clients
+        // ]);
+
+        return redirect('/login');
     }
 
     public function search(Request $request) {

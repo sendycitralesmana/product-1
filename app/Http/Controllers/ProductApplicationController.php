@@ -2,13 +2,29 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
 use App\Models\Application;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Session;
 
 class ProductApplicationController extends Controller
 {
+    public function applicationByProduct( $category_id, $product_id )
+    {
+        $pCategory = ProductCategory::find($category_id);
+        $product = Product::find($product_id);
+        $pApplications = ProductApplication::where('product_id', $product_id)->get();
+        $applications = Application::get();
+        return view('backoffice.product.application.applicationByProduct', [
+            'applications' => $applications,
+            'pCategory' => $pCategory,
+            'product' => $product,
+            'pApplications' => $pApplications
+        ]);
+    }
+
     public function createApplication(Request $request)
     {
         $validated = $request->validate([
@@ -49,8 +65,8 @@ class ProductApplicationController extends Controller
         // return redirect('/backoffice/application/product/'. $request->application_id);
     }
 
-    public function deleteApplication($id) {
-        $application = ProductApplication::find($id);
+    public function deleteApplication($category_id, $product_id, $application_id) {
+        $application = ProductApplication::find($application_id);
         $application->delete();
 
         Session::flash('application', 'success');

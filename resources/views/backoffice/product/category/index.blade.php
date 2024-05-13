@@ -25,7 +25,7 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Kategori</h3>
                 <div class="card-tools">
@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="card-body">
-                @if (Session::has('status'))
+                @if (Session::has('category'))
                 {{-- <div class="alert alert-success" role="alert">
                     <button type="button" class="btn btn-success close" data-dismiss="alert" sty>&times;</button>
                     {{Session::get('message')}}
@@ -85,16 +85,16 @@
                             <td> {{ $key + 1 }} </td>
                             <td> 
                                 @if( $productCategory->icon != null )
-                                    <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$productCategory->icon)}}" alt="" width="100px" height="100px">
                                 @else
-                                    <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                 @endif
                             </td>
                             <td> 
                                 @if( $productCategory->thumbnail != null )
-                                    <img src="{{asset('storage/image/category/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
-                                    <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
+                                    <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                 @endif
                             </td>
                             <td> {{ $productCategory->name }} </td>
@@ -110,11 +110,18 @@
                                 {{-- <a href="/product-category/{{ $productCategory->id }}/detail" class="btn btn-primary btn-sm">Detail</a> --}}
                                 @if (auth()->user()->role_id == 2)
                                     <!-- Button trigger modal -->
-                                    <button title="Add Variant" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
+                                    <button title="Ubah" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#categoryEdit{{ $productCategory->id }}">
                                         <span><i class="fa fa-edit"></i> Ubah</span>
                                     </button>
+                                    @if ( $productCategory->product->count() == 0 )
+                                        <button title="Hapus" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#categoryHapus{{ $productCategory->id }}">
+                                            <span><i class="fa fa-trash"></i> Hapus</span>
+                                        </button>
+                                    @endif
+                                        
                                     {{-- Modal --}}
                                     @include('backoffice.product.category.modal.edit')
+                                    @include('backoffice.product.category.modal.delete')
                                     {{-- <a href="/product-category/{{ $data->id }}/delete" onclick="return confirm('Are you sure?')"
                                         class="btn btn-danger btn-sm">Delete</a> --}}
                                 @endif
@@ -122,28 +129,11 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Ikon</th>
-                            <th>Thumbnail</th>
-                            <th>Kategori</th>
-                            <th>Produk</th>
-                            <th>Aksi</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                Footer
-            </div>
-            <!-- /.card-footer-->
+            
         </div>
-        <!-- /.card -->
 
     </section>
-    <!-- /.content -->
 </div>
-<!-- /.content-wrapper -->
 @endsection

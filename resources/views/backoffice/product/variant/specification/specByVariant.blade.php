@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>Varian {{ $productVariant->name }} spesifikasi data</h1>
+                    <h1>Data Varian Spesifikasi</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/variant/{{ $product->id }}" class="">Varian</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/detail" class="">Detail Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant" class="">Varian</a></li>
                     <li class="breadcrumb-item active">Spesifikasi</li>
                   </ol>
                 </div>
@@ -26,14 +26,37 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="produk mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Produk: <b>{{ $product->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Varian: <b>{{ $variant->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Data</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     <!-- Button trigger modal -->
-                    <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
+                    <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $variant->id }}/variant-specification/specification"
+                        class="btn btn-primary btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a>
                     <button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#variantSpecAdd">
                         <span class="fas fa-plus"></span> Tambah
                     </button>
@@ -71,9 +94,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($pvSpecifications as $pvSpecification)
+                        @foreach ($pvSpecifications as $key => $pvSpecification)
                         <tr>
-                            <td> {{ $pvSpecification->id }} </td>
+                            <td> {{ $key + 1 }} </td>
                             <td> {{ $pvSpecification->specification->name }} </td>
                             <td> {{ $pvSpecification->value }} </td>
                             @if (auth()->user()->role_id == 2)

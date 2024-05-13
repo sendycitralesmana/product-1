@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} varian data</h1>
+                    <h1>Data Varian</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/detail" class="">Detail Produk</a></li>
                     <li class="breadcrumb-item active">Varian</li>
                   </ol>
                 </div>
@@ -26,14 +26,31 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="produk mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Produk: <b>{{ $product->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Varian</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
                     {{-- <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a> --}}
-                    <button title="Add Variant" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addProductVariant">
+                    <button title="Tambah" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addProductVariant">
                         <span class="fas fa-plus"></span> Tambah
                     </button>
                     @include('backoffice.product.variant.modal.add')
@@ -60,7 +77,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Nama</th>
+                            <th>Varian</th>
                             {{-- <th>Price</th>
                             <th>Long</th>
                             <th>Weight</th>
@@ -70,9 +87,9 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($productVariants as $productVariant)
+                        @foreach ($productVariants as $key => $productVariant)
                         <tr>
-                            <td> {{ $productVariant->id }} </td>
+                            <td> {{ $key + 1 }} </td>
                             <td> {{ $productVariant->name }} </td>
                             {{-- <td> Rp. {{ number_format($productVariant->price, 2, ",", ".") }} </td>
                             @if ( $productVariant->long == null )
@@ -100,8 +117,8 @@
                                     class="btn btn-outline-danger btn-sm m-1">
                                     <i class="fa fa-file-pdf"></i> Export pdf
                                 </a>
-                                <a href="/backoffice/product/{{ $productVariant->product_id }}/vs/{{ $productVariant->id }}"
-                                    class="btn btn-info btn-sm m-1">
+                                <a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $productVariant->id }}/variant-specification"
+                                    class="btn btn-primary btn-sm m-1">
                                     <i class="ion ion-eye"></i> Spesifikasi
                                 </a>
                                 <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#editProductVariant{{ $productVariant->id }}">

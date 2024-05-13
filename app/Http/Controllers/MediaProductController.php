@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Models\MediaType;
 use App\Models\MediaProduct;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
@@ -43,7 +44,7 @@ class MediaProductController extends Controller
     //     return redirect('/backoffice/product/media/'. $request->product_id[0]);
 
     // }
-    public function imageCreate(Request $request)
+    public function imageCreate(Request $request, $category_id, $product_id)
     {
         $validated = $request->validate([
             'media.*' => 'required',
@@ -75,7 +76,7 @@ class MediaProductController extends Controller
 
     }
     
-    public function fileCreate(Request $request)
+    public function fileCreate(Request $request, $category_id, $product_id)
     {
         $validated = $request->validate([
             'media.*' => 'required',
@@ -85,7 +86,7 @@ class MediaProductController extends Controller
             // $type = $request->type_id[$key];
             $fileName = $file->getClientOriginalName();
             $fileUrl = $file->getClientOriginalExtension();
-            $name = 'file-' . now()->timestamp . $key . '-' . str_replace(' ', '_', $fileName);
+            $name = str_replace(' ', '_', $fileName);
             $url = 'file-' . now()->timestamp . $key . '.' . str_replace(' ', '_', $fileUrl);
             // $file->storeAs('image/product/media/', $url);
             $file = $request->file('media')[$key];
@@ -107,7 +108,7 @@ class MediaProductController extends Controller
 
     }
 
-    public function imageUpdate(Request $request, $id)
+    public function imageUpdate(Request $request, $category_id, $product_id, $image_id)
     {
 
         if($request->file('media')) {
@@ -124,7 +125,7 @@ class MediaProductController extends Controller
             $path = Storage::disk('s3')->put("", $file);
         }
 
-        $productCategory = MediaProduct::find($id);
+        $productCategory = MediaProduct::find($image_id);
         if ($request->oldName != null && $request->oldUrl != null) {
             if ($request->file('media') == "") {
                 $productCategory->type_id = 1;
@@ -136,7 +137,7 @@ class MediaProductController extends Controller
                 $productCategory->url = str_replace(' ', '_', $path);
             }
         }
-        $productCategory->save();
+        $productCategory->update();
 
         Session::flash('media', 'success');
         Session::flash('message', 'Ubah gambar berhasil');
@@ -144,7 +145,7 @@ class MediaProductController extends Controller
         return redirect()->back();
     }
 
-    public function fileUpdate(Request $request, $id)
+    public function fileUpdate(Request $request, $category_id, $product_id, $image_id)
     {
         if($request->file('media')) {
             if ($request->oldUrl) {
@@ -153,14 +154,14 @@ class MediaProductController extends Controller
             }
             $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
-            $name = 'file-' . now()->timestamp . '.' . $fileName;
+            $name = $fileName;
             $url = 'file-' . now()->timestamp . '.' . $extension;
             // $request->file('media')->storeAs('image/product/media/', str_replace(' ', '_', $url));
             $file = $request->file('media');
             $path = Storage::disk('s3')->put("", $file);
         }
 
-        $productCategory = MediaProduct::find($id);
+        $productCategory = MediaProduct::find($image_id);
         if ($request->oldName != null && $request->oldUrl != null) {
             if ($request->file('media') == "") {
                 $productCategory->type_id = 2;
@@ -172,67 +173,14 @@ class MediaProductController extends Controller
                 $productCategory->url = str_replace(' ', '_', $path);
             }
         }
-        $productCategory->save();
+        $productCategory->update();
 
         Session::flash('media', 'success');
         Session::flash('message', 'Ubah berkas berhasil');
         // return redirect('/backoffice/product/media/'. $request->product_id);
         return redirect()->back();
     }
-
-    // public function update(Request $request, $id)
-    // {
-    //     $validated = $request->validate([
-    //         'type_id' => 'required',
-    //     ]);
-
-    //     if($request->file('media')) {
-    //         if ($request->oldName && $request->oldUrl) {
-    //             Storage::delete('product/media/' . $request->oldUrl);
-    //         }
-    //         $fileName = $request->file('media')->getClientOriginalName();
-    //         $extension = $request->file('media')->getClientOriginalExtension();
-    //         $url = now()->timestamp . '-' . $fileName;
-    //         $request->file('media')->storeAs('product/media/', str_replace(' ', '_', $url));
-    //     }
-
-    //     $productCategory = MediaProduct::find($id);
-    //     if ($request->oldName != null && $request->oldUrl != null) {
-    //         if ($request->file('media') == "") {
-    //             $productCategory->type_id = $request->type_id;
-    //             $productCategory->name = $request->oldName;
-    //             $productCategory->url = $request->oldUrl;
-    //         } else {
-    //             if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-    //                 $productCategory->type_id = 1;
-    //             } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-    //                 $productCategory->type_id = 2;
-    //             }
-    //             $productCategory->name = $fileName;
-    //             $productCategory->url = str_replace(' ', '_', $url);
-    //         }
-    //     }
-    //     $productCategory->save();
-
-    //     Session::flash('media', 'success');
-    //     Session::flash('message', 'Update data success');
-    //     // return redirect('/backoffice/product/media/'. $request->product_id);
-    //     return redirect()->back();
-
-
-    // }
-
-    // public function delete($id)
-    // {
-    //     $mediaProduct = MediaProduct::find($id);
-    //     Storage::delete('product/media/' . $mediaProduct->url);
-    //     $mediaProduct->delete();
-
-    //     Session::flash('media', 'success');
-    //     Session::flash('message', 'Delete data success');
-    //     return redirect('/backoffice/product/media/'. $mediaProduct->product_id);
-    // }
-    public function delete($id)
+    public function delete($category_id, $product_id, $id)
     {
         $mediaProduct = MediaProduct::find($id);
         // Storage::delete('image/product/media/' . $mediaProduct->url);
@@ -245,26 +193,31 @@ class MediaProductController extends Controller
         // return redirect('/backoffice/product/media/'. $mediaProduct->product_id);
     }
 
-    public function mediaByProduct($id) {
+    public function mediaByProduct($category_id, $id) {
+        $pCategory = ProductCategory::find($category_id);
         $product = Product::find($id);
         $mediaTypes = MediaType::get();
         $images = MediaProduct::where('product_id', $id)
                             ->where('type_id', 1)
                             ->orderBy('id', 'desc')
                             ->with(['product'])
+                            ->orderBy('id', 'desc')
                             ->paginate(12);
         return view('backoffice.product.media.mediaByProduct', [
+            'pCategory' => $pCategory,
             'product' => $product,
             'mediaTypes' => $mediaTypes,
             'images' => $images,
         ]);
     }
     
-    public function fileByProduct($id) {
+    public function fileByProduct($category_id, $id) {
+        $pCategory = ProductCategory::find($category_id);
         $product = Product::find($id);
         $mediaTypes = MediaType::get();
-        $files = MediaProduct::where('product_id', $id)->where('type_id', 2)->with(['product'])->paginate(12);
+        $files = MediaProduct::where('product_id', $id)->where('type_id', 2)->with(['product'])->orderBy('id', 'desc')->paginate(12);
         return view('backoffice.product.file.fileByProduct', [
+            'pCategory' => $pCategory,
             'product' => $product,
             'mediaTypes' => $mediaTypes,
             'files' => $files,

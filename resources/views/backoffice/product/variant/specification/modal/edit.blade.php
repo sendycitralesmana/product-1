@@ -1,7 +1,9 @@
 <div class="modal fade" id="variantSpecEdit{{ $pvSpecification->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/vs/{{ $pvSpecification->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" 
+                action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $variant->id }}/variant-specification/{{ $pvSpecification->id }}/update" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -12,7 +14,6 @@
                 </div>
                 <div class="modal-body">
                     <div class="card-body">
-                        <input type="hidden" name="product_variant_id" value="{{ $productVariant->id }}">
                         <div class="form-group">
                             <label>Spesifikasi <span class="text-danger">*</span></label>
                             {{-- <input type="text" name="specification_id" class="form-control" value="{{ $pvSpecification->specification->name}}" readonly> --}}

@@ -22,7 +22,7 @@
                         </div> --}}
                         <div class="form-group">
                             <label>Kategori</label>
-                            <input type="text" required name="name" class="form-control" placeholder="Enter Name" value="{{ old('name') }}"
+                            <input type="text" required name="name" class="form-control" placeholder="Kategori" value="{{ old('name') }}"
                             oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Kategori harus diisi')">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -30,7 +30,7 @@
                         </div>
                         <div class="form-group">
                             <label>Ikon</label>
-                            <img src="" class="imgPreviewIcon img-fluid mb-3 col-sm-5" alt="">
+                            <img src="" class="imageIcon img-fluid mb-3 col-sm-5" alt="">
                             <input type="file" accept="image/*" onchange="previewIcon()" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
@@ -38,8 +38,8 @@
                         </div>
                         <div class="form-group">
                             <label>Thumbnail</label>
-                            <img src="" class="imgPreviewThumbnail img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control" placeholder="Enter Password">
+                            <img src="" class="imageThumbnailPC img-fluid mb-3 col-sm-5" alt="">
+                            <input type="file" accept="image/*" onchange="previewThumbnailPC()" id="imageThumbnailPC" name="thumbnail" class="form-control">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -87,17 +87,17 @@
 </script>
 <script>
     // thumbnail
-    function previewThumbnail() {
-        const imageThumbnail = document.querySelector('#imageThumbnail');
-        const imgPreviewThumbnail = document.querySelector('.imgPreviewThumbnail');
+    function previewThumbnailPC() {
+        const imageThumbnailPC = document.querySelector('#imageThumbnailPC');
+        const imgPreviewThumbnailPC = document.querySelector('.imageThumbnailPC');
 
-        imgPreviewThumbnail.style.display = 'block';
+        imgPreviewThumbnailPC.style.display = 'block';
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
 
         oFReader.onload = function(oFREvent) {
-            imgPreviewThumbnail.src = oFReader.target.result;
+            imgPreviewThumbnailPC.src = oFReader.target.result;
         }
     }
 </script>
@@ -105,7 +105,7 @@
     // icon
     function previewIcon() {
         const imageIcon = document.querySelector('#imageIcon');
-        const imgPreviewIcon = document.querySelector('.imgPreviewIcon');
+        const imgPreviewIcon = document.querySelector('.imageIcon');
 
         imgPreviewIcon.style.display = 'block';
 

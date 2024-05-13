@@ -1,7 +1,8 @@
 <div class="modal fade" id="editProductVariant{{ $productVariant->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/variant/{{ $productVariant->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/variant/{{ $productVariant->id }}/update" 
+                enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -17,7 +18,7 @@
                         <input type="hidden" name="product_id" value="{{ $product->id }}">
                         @endif
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Varian</label>
                             <input type="text" name="name" class="form-control" value="{{ $productVariant->name}}">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>

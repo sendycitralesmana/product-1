@@ -116,41 +116,123 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/logout', [AuthController::class, 'logout']);
 
     // grup backoffice
-    // Route::group(['prefix' => 'backoffice'], function(){
+    Route::group(['prefix' => 'backoffice'], function(){
         
-    //     grup data produk
-    //     Route::group(['prefix' => 'product'], function(){
+        // grup data produk
+        Route::group(['prefix' => 'product'], function(){
 
-    //         grup category
-    //         Route::group(['prefix' => 'category'], function(){
-    //             Route::get('/', [ProductCategoryController::class, 'index']);
-    //             Route::post('/create', [ProductCategoryController::class, 'create']);
-    //             Route::get('/category/{category_id}', [ProductCategoryController::class, 'index']);
+            // grup category
+            Route::group(['prefix' => 'category'], function(){
+                Route::get('/', [ProductCategoryController::class, 'index']);
+                Route::post('/create', [ProductCategoryController::class, 'create']);
+                Route::get('/category/{category_id}', [ProductCategoryController::class, 'index']);
                 
-    //             grup category_id
-    //             Route::group(['prefix' => '{category_id}'], function(){
-    //                 Route::get('/update', [ProductCategoryController::class, 'update']);
-    //                 Route::get('/delete', [ProductCategoryController::class, 'delete']);
+                // grup category_id
+                Route::group(['prefix' => '{category_id}'], function(){
+                    Route::put('/update', [ProductCategoryController::class, 'update']);
+                    Route::get('/delete', [ProductCategoryController::class, 'delete']);
                     
-    //                 grup product
-    //                 Route::group(['prefix' => 'product'], function(){
-    //                     Route::get('/', [ProductController::class, 'index']);
-    //                     Route::get('/create', [ProductController::class, 'create']);
+                    // grup product
+                    Route::group(['prefix' => 'product'], function(){
+                        Route::get('/', [ProductController::class, 'index']);
+                        Route::post('/create', [ProductController::class, 'create']);
 
-    //                     grup product_id
-    //                     Route::group(['prefix' => '{product_id}'], function(){
-    //                         Route::get('/update', [ProductController::class, 'update']);
-    //                         Route::get('/delete', [ProductController::class, 'delete']);
-    //                     });
+                        // grup product_id
+                        Route::group(['prefix' => '{product_id}'], function(){
+                            Route::get('/detail', [ProductController::class, 'detail']);
+                            Route::put('/update', [ProductController::class, 'update']);
+                            Route::get('/delete', [ProductController::class, 'delete']);
+
+                            // grup image
+                            Route::group(['prefix' => 'image'], function(){
+                                Route::get('/', [MediaProductController::class, 'mediaByProduct']);
+                                Route::post('/create', [MediaProductController::class, 'imageCreate']);
+
+                                // grup image_id
+                                Route::group(['prefix' => '{image_id}'], function(){
+                                    Route::put('/update', [MediaProductController::class, 'imageUpdate']);
+                                    Route::get('/delete', [MediaProductController::class, 'delete']);
+                                });
+
+                            });
+
+                            // grup file
+                            Route::group(['prefix' => 'file'], function(){
+                                Route::get('/', [MediaProductController::class, 'fileByProduct']);
+                                Route::post('/create', [MediaProductController::class, 'fileCreate']);
+
+                                // grup file_id
+                                Route::group(['prefix' => '{file_id}'], function(){
+                                    Route::get('/download', [MediaProductController::class, 'downloadFile']);
+                                    Route::put('/update', [MediaProductController::class, 'fileUpdate']);
+                                    Route::get('/delete', [MediaProductController::class, 'delete']);
+                                });
+
+                            });
+
+                            // grup variant
+                            Route::group(['prefix' => 'variant'], function(){
+                                Route::get('/', [ProductVariantController::class, 'index']);
+                                Route::post('/create', [ProductVariantController::class, 'create']);
+
+                                // grup variant_id
+                                Route::group(['prefix' => '{variant_id}'], function(){
+                                    Route::get('/export-pdf', [ProductVariantController::class, 'exportPdf']);
+                                    Route::put('/update', [ProductVariantController::class, 'update']);
+                                    Route::get('/delete', [ProductVariantController::class, 'delete']);
+
+                                    // grup variant spesifikasi
+                                    Route::group(['prefix' => 'variant-specification'], function(){
+                                        Route::get('/', [PVSpecificationController::class, 'index']);
+                                        Route::post('/create', [PVSpecificationController::class, 'create']);
+
+                                        // grup specification
+                                        Route::group(['prefix' => 'specification'], function(){
+                                            Route::get('/', [SpecificationController::class, 'index']);
+                                            Route::post('/create', [SpecificationController::class, 'create']);
+
+                                            // grup specification_id
+                                            Route::group(['prefix' => '{specification_id}'], function(){
+                                                Route::put('/update', [SpecificationController::class, 'update']);
+                                                Route::get('/delete', [SpecificationController::class, 'delete']);
+                                            });
+                                            
+                                        });
+
+                                        // grup variant_specification_id
+                                        Route::group(['prefix' => '{variant_specification_id}'], function(){
+                                            Route::put('/update', [PVSpecificationController::class, 'update']);
+                                            Route::get('/delete', [PVSpecificationController::class, 'delete']);
+                                        });
+
+                                    });
+
+                                });
+
+                            });
+
+                            // grup application
+                            Route::group(['prefix' => 'application'], function(){
+                                Route::get('/', [ProductApplicationController::class, 'applicationByProduct']);
+                                Route::post('/create', [ProductApplicationController::class, 'createApplication']);
+
+                                // grup application_id
+                                Route::group(['prefix' => '{application_id}'], function(){
+                                    Route::get('/delete', [ProductApplicationController::class, 'deleteApplication']);
+                                });
+
+                            });
+
+                        });
                     
-    //                 });
+                    });
                 
-    //             });
+                });
             
-    //         });
+            });
             
-    //     }); 
-    // });
+        }); 
+    });
 
     // Dashboard
     Route::get('/backoffice/dashboard', [DashboardController::class, 'index']);
@@ -166,76 +248,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/backoffice/user/{id}/update-password', [UserController::class, 'updatePassword']);
     Route::get('/backoffice/user/{id}/delete', [UserController::class, 'delete']);
     Route::put('/backoffice/user/update-profile', [UserController::class, 'updateProfile']);
-    
-    // Product
-    Route::get('/backoffice/product', [ProductController::class, 'index']);
-    Route::get('/backoffice/product/add', [ProductController::class, 'add']);
-    Route::post('/backoffice/product/create', [ProductController::class, 'create']);
-    Route::get('/backoffice/product/{id}/edit', [ProductController::class, 'edit']);
-    Route::put('/backoffice/product/{id}/update', [ProductController::class, 'update']);
-    Route::get('/backoffice/product/{id}/delete', [ProductController::class, 'delete']);
-    Route::get('/backoffice/product/{id}/detail', [ProductController::class, 'detail']);
-        
-        Route::get('/backoffice/product/application/{id}', [ProductController::class, 'applicationByProduct']);
-        Route::get('/backoffice/product/application/{id}/delete', [ProductApplicationController::class, 'deleteApplication']);
-        Route::post('/backoffice/product/application/create', [ProductApplicationController::class, 'createApplication']);
-
-        Route::get('/backoffice/product/category/{id}', [ProductController::class, 'category']);
-        Route::get('/backoffice/product/category', [ProductCategoryController::class, 'index']);
-        Route::get('/backoffice/product/category/add', [ProductCategoryController::class, 'add']);
-        Route::post('/backoffice/product/category/create', [ProductCategoryController::class, 'create']);
-        Route::get('/backoffice/product/category/{id}/edit', [ProductCategoryController::class, 'edit']);
-        Route::put('/backoffice/product/category/{id}/update', [ProductCategoryController::class, 'update']);
-        Route::get('/backoffice/product/category/{id}/delete', [ProductCategoryController::class, 'delete']);
-        Route::get('/backoffice/product/category/{id}/detail', [ProductCategoryController::class, 'detail']);
-
-        Route::get('/backoffice/product/variant', [ProductVariantController::class, 'index']);
-        Route::get('/backoffice/product/variant/add', [ProductVariantController::class, 'add']);
-        Route::post('/backoffice/product/variant/create', [ProductVariantController::class, 'create']);
-        Route::post('/backoffice/product/variant/store', [ProductVariantController::class, 'store']);
-        Route::get('/backoffice/product/variant/{id}/edit', [ProductVariantController::class, 'edit']);
-        Route::put('/backoffice/product/variant/{id}/update', [ProductVariantController::class, 'update']);
-        Route::get('/backoffice/product/variant/{id}/delete', [ProductVariantController::class, 'delete']);
-        Route::get('/backoffice/product/variant/{id}', [ProductVariantController::class, 'variantByProduct']);
-        Route::get('/backoffice/product/variant/{id}/export-pdf', [ProductVariantController::class, 'exportPdf']);
-
-        Route::get('/backoffice/product/specification', [SpecificationController::class, 'index']);
-        Route::get('/backoffice/product/specification/add', [SpecificationController::class, 'add']);
-        Route::post('/backoffice/product/specification/create', [SpecificationController::class, 'create']);
-        Route::get('/backoffice/product/specification/{id}/edit', [SpecificationController::class, 'edit']);
-        Route::put('/backoffice/product/specification/{id}/update', [SpecificationController::class, 'update']);
-        Route::get('/backoffice/product/specification/{id}/delete', [SpecificationController::class, 'delete']);
-
-        Route::get('/backoffice/product/media', [MediaProductController::class, 'index']);
-        Route::get('/backoffice/product/media/add', [MediaProductController::class, 'add']);
-        Route::post('/backoffice/product/media/create', [MediaProductController::class, 'imageCreate']);
-        Route::post('/backoffice/product/media/createMultiple', [MediaProductController::class, 'createMultiple']);
-        Route::get('/backoffice/product/media/{id}/edit', [MediaProductController::class, 'edit']);
-        Route::put('/backoffice/product/media/{id}/update', [MediaProductController::class, 'update']);
-        Route::put('/backoffice/product/media/{id}/update', [MediaProductController::class, 'imageUpdate']);
-        Route::get('/backoffice/product/media/{id}/delete', [MediaProductController::class, 'delete']);
-        Route::get('/backoffice/product/media/{id}', [MediaProductController::class, 'mediaByProduct']);
-        Route::post('/backoffice/product/file/create', [MediaProductController::class, 'fileCreate']);
-        Route::put('/backoffice/product/file/{id}/update', [MediaProductController::class, 'fileUpdate']);
-        Route::get('/backoffice/product/file/{id}', [MediaProductController::class, 'fileByProduct']);
-        Route::get('/backoffice/product/file/download/{id}', [MediaProductController::class, 'downloadFile']);
-
-        Route::get('/backoffice/product/video', [ProductVideoController::class, 'index']);
-        Route::get('/backoffice/product/video/add', [ProductVideoController::class, 'add']);
-        Route::post('/backoffice/product/video/create', [ProductVideoController::class, 'create']);
-        Route::get('/backoffice/product/video/{id}/edit', [ProductVideoController::class, 'edit']);
-        Route::put('/backoffice/product/video/{id}/update', [ProductVideoController::class, 'update']);
-        Route::get('/backoffice/product/video/{id}/delete', [ProductVideoController::class, 'delete']);
-        Route::get('/backoffice/product/video/{id}', [ProductVideoController::class, 'videoByProduct']);
-
-        Route::get('/backoffice/product/vs', [PVSpecificationController::class, 'index']);
-        Route::get('/backoffice/product/vs/add', [PVSpecificationController::class, 'add']);
-        Route::post('/backoffice/product/vs/create', [PVSpecificationController::class, 'create']);
-        Route::get('/backoffice/product/vs/{id}/edit', [PVSpecificationController::class, 'edit']);
-        Route::put('/backoffice/product/vs/{id}/update', [PVSpecificationController::class, 'update']);
-        Route::get('/backoffice/product/vs/{id}/delete', [PVSpecificationController::class, 'delete']);
-        Route::get('/backoffice/product/{product}/vs/{id}', [PVSpecificationController::class, 'specByVariant']);
-    // Product End
     
     // Media Type 
     Route::get('/backoffice/media-type', [MediaTypeController::class, 'index']);

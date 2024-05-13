@@ -11,7 +11,7 @@ class ProductCategoryController extends Controller
 {
     public function index()
     {
-        $productsCategories = ProductCategory::all();
+        $productsCategories = ProductCategory::orderBy('id', 'desc')->get();
         return view('backoffice.product.category.index', [
             'productsCategories' => $productsCategories
         ]);
@@ -85,7 +85,7 @@ class ProductCategoryController extends Controller
             // $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $thumbnail));
             $fThumbnail = $request->file('thumbnail');
             $thumbnail = Storage::disk('s3')->put("", $fThumbnail);
-            $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
+            $productCategory->thumbnail = $thumbnail;
         }
         if ($request->file('ikon')) {
             // Storage::delete('image/product/category/' . $productCategory->icon);
@@ -95,27 +95,27 @@ class ProductCategoryController extends Controller
             // $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
             $fIkon = $request->file('ikon');
             $ikon = Storage::disk('s3')->put("", $fIkon);
-            $productCategory->icon = str_replace(' ', '_', $ikon);
+            $productCategory->icon = $ikon;
         }
-        if ($request->oldImage != null) {
-            if ($request->file('thumbnail') == "") {
-                $productCategory->thumbnail = $request->oldImage;
-            } else {
-                $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
-            }
-        } else {
-            $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
-        }
-        if ($request->oldImage != null) {
-            if ($request->file('ikon') == "") {
-                $productCategory->icon = $request->oldImage;
-            } else {
-                $productCategory->icon = str_replace(' ', '_', $ikon);
-            }
-        } else {
-            $productCategory->icon = str_replace(' ', '_', $ikon);
-        }
-        $productCategory->save();
+        // if ($request->oldImage != null) {
+        //     if ($request->file('thumbnail') == "") {
+        //         $productCategory->thumbnail = $request->oldImage;
+        //     } else {
+        //         $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
+        //     }
+        // } else {
+        //     $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
+        // }
+        // if ($request->oldIcon != null) {
+        //     if ($request->file('ikon') == "") {
+        //         $productCategory->icon = $request->oldImage;
+        //     } else {
+        //         $productCategory->icon = str_replace(' ', '_', $ikon);
+        //     }
+        // } else {
+        //     $productCategory->icon = str_replace(' ', '_', $ikon);
+        // }
+        $productCategory->update();
 
         Session::flash('category', 'success');
         Session::flash('message', 'Ubah kategori berhasil');
@@ -135,8 +135,8 @@ class ProductCategoryController extends Controller
         // $productCategory->product()->delete();
         $productCategory->delete();
 
-        Session::flash('status', 'success');
-        Session::flash('message', 'Delete data success');
+        Session::flash('category', 'success');
+        Session::flash('message', 'Hapus data kategori berhasil');
         return redirect('/backoffice/product/category');
     }
 

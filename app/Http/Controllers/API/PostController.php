@@ -28,13 +28,11 @@ class PostController extends Controller
         $resource = ListPostResource::collection($posts);
 
         return response()->json([
-            // $posts
             "total" => $posts->total(),
             "current_page" => $posts->currentPage(),
             "per_page" => $posts->perPage(),
             "total_pages" => $posts->lastPage(),
             "data" => $resource,
-            // "data" => $posts->items(),
         ], 200);
     }
 

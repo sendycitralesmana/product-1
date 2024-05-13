@@ -10,12 +10,12 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $product->name }} Gambar Data</h1>
+                    <h1>Data Gambar</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
-                    <li class="breadcrumb-item"><a href="/backoffice/product" class="">Produk</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/product/{{ $product->id }}/detail" class="">Detail</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product" class="">Produk</a></li>
+                    <li class="breadcrumb-item"><a href="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/detail" class="">Detail Produk</a></li>
                     <li class="breadcrumb-item active">Gambar</li>
                   </ol>
                 </div>
@@ -26,8 +26,25 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="produk mr-4">
+                        <h5>
+                            Kategori: <b>{{ $pCategory->name }}</b>
+                        </h5>
+                    </div>
+                    <div class="produk mr-4">
+                        <h5>
+                            Produk: <b>{{ $product->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title"> Gambar</h3>
                 <div class="card-tools">
@@ -73,15 +90,15 @@
                         @foreach ($images as $image)
                         <div class="col-md-3 gallery">
                             <div class="card">
-                                <div class="">
+                                <div class="p-4 text-center">
                                     <a href="{{asset('http://103.127.96.59:9000/mled/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
                                         <img src="{{asset('http://103.127.96.59:9000/mled/'.$image->url)}}" alt="" 
-                                        class="img-fluid rounded" style="height: 200px; width: 100%">
+                                        class="img-fluid rounded" style="height: 150px; width: 150px">
                                     </a>
                                 </div>
-                                <div class="p-1">
+                                {{-- <div class="p-1">
                                     {{ $image->name }}
-                                </div>
+                                </div> --}}
                                 <div class="d-flex">
                                     <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                         data-target="#mediaEdit{{$image->id}}">

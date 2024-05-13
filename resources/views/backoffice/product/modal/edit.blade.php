@@ -1,7 +1,7 @@
 <div class="modal fade" id="productEdit{{ $product->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/{{ $product->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/{{ $product->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -42,11 +42,12 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $product->thumbnail }}">
                             @if ($product->thumbnail)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $product->thumbnail) }}" name="oldValue" value="$product->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $product->thumbnail) }}" name="oldValue" value="$product->thumbnail" 
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" style="width: 150px; height: 150px" alt="">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -69,6 +70,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

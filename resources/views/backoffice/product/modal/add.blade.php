@@ -1,7 +1,7 @@
 <div class="modal fade" id="productAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/product/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/product/category/{{ $pCategory->id }}/product/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-md-7">
-                            <div class="form-group">
+                            {{-- <div class="form-group">
                                 <label>Kategori <span class="text-danger">*</span></label>
                                 <select name="product_category_id" class="form-control select2" required 
                                 oninvalid="this.setCustomValidity('Product Category harus dipilih!')"
@@ -26,10 +26,10 @@
                                 <span class="help-block"
                                     style="color: red">{{ $errors->first('product_category_id') }}</span>
                                 @endif
-                            </div>
+                            </div> --}}
                             <div class="form-group">
-                                <label>Nama <span class="text-danger">*</span></label>
-                                <input type="text" name="name" required class="form-control" placeholder="Enter Name"
+                                <label>Produk <span class="text-danger">*</span></label>
+                                <input type="text" name="name" required class="form-control" placeholder="Produk"
                                 oninvalid="this.setCustomValidity('Nama harus diisi!')"
                                 oninput="this.setCustomValidity('')"
                                     value="{{ old('name') }}">
@@ -49,8 +49,7 @@
                                 <label>Gambar <span class="text-danger">*</span></label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                                 <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" 
-                                    id="image" required oninvalid="this.setCustomValidity('Gambar harus diisi!')"
-                                    oninput="this.setCustomValidity('')">
+                                    id="image">
                                 @if($errors->has('thumbnail'))
                                 <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                                 @endif
@@ -120,6 +119,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

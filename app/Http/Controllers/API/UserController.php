@@ -19,13 +19,13 @@ class UserController extends Controller
             $qUser->where('name', 'LIKE', '%' . $request->search . '%');
         }
 
-        if ($request->perPage) {
-            $perPage = $request->perPage;
+        if ($request->per_page) {
+            $per_page = $request->per_page;
         } else {
-            $perPage = 10;
+            $per_page = 10;
         }
 
-        $User = $qUser->paginate($perPage);
+        $User = $qUser->paginate($per_page);
 
         $resource = ListUserResource::collection($User);
 

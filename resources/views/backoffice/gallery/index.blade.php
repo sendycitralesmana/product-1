@@ -25,7 +25,7 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Data</h3>
                 <div class="card-tools">
@@ -71,16 +71,16 @@
                 <div class="row">
                     @foreach ($galleries as $gallery)
                     <div class="col-md-3 gallery">
-                        <div class="card">
+                        <div class="card card-outline card-primary">
                             <div class="">
                                 <a href="{{asset('http://103.127.96.59:9000/mled/'.$gallery->image)}}" data-title="{{ $gallery->name }}" data-lightbox="mygallery">
                                     <img src="{{asset('http://103.127.96.59:9000/mled/'.$gallery->image)}}" alt="" 
                                     class="img-fluid rounded" style="height: 200px; width: 100%">
                                 </a>
                             </div>
-                            <div class="p-1">
+                            {{-- <div class="p-1">
                                 {{ $gallery->image }}
-                            </div>
+                            </div> --}}
                             <div class="d-flex">
                                 <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                     data-target="#galleryEdit{{$gallery->id}}">

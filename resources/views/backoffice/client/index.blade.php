@@ -111,7 +111,7 @@
                 <div class="row">
                     @foreach ($clients as $client)
                     <div class="col-md-3 client">
-                        <div class="card">
+                        <div class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">{{ $client->name }}</h3>
                                 <div class="card-tools">

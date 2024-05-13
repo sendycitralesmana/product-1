@@ -11,9 +11,9 @@
                 </div>
                 <div class="modal-body">
                     <div class="form-group">
-                        <label>Nama <span class="text-danger">*</span></label>
+                        <label>Klien <span class="text-danger">*</span></label>
                         <input type="text" name="name" class="form-control" placeholder="Enter name" value="{{ old('name') }}" required
-                        oninvalid="this.setCustomValidity('Nama harus diisi!')"
+                        oninvalid="this.setCustomValidity('Klien harus diisi!')"
                         oninput="this.setCustomValidity('')">
                         @if($errors->has('name'))
                         <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
@@ -57,6 +57,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

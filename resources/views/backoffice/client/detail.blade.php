@@ -28,7 +28,7 @@
         <div class="row">
 
             <div class="col-md-3">
-                <div class="card">
+                <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">{{ $client->name }}</h3>
                         <div class="card-tools">
@@ -41,10 +41,12 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <a href="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
-                            <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
-                            class="img-fluid rounded" style="height: 200px; width: 100%">
-                        </a>
+                        <div class="text-center">
+                            <a href="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
+                                <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
+                                class="img-fluid rounded" style="height: 130px; width: 130px">
+                            </a>
+                        </div>
                         <div class="status mt-2 text-center">
                             @if ( $client->is_hidden == 0 )
                                 <button class="badge badge-light">
@@ -79,7 +81,7 @@
             </div>
 
             <div class="col-md-9">
-                <div class="card">
+                <div class="card card-outline card-primary">
                     <div class="card-header">
                         <h3 class="card-title">Proyek Data</h3>
                         <div class="card-tools">

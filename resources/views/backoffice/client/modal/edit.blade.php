@@ -14,8 +14,9 @@
 
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Nama</label>
-                            <input type="text" name="name" required class="form-control" value="{{ $client->name}}">
+                            <label>Klien</label>
+                            <input type="text" name="name" required class="form-control" value="{{ $client->name}}"
+                            oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Klien harus diisi!')">
                             @if($errors->has('name'))
                             <span class="help-block" style="color: red">{{ $errors->first('name') }}</span>
                             @endif
@@ -41,7 +42,8 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $client->image }}">
                             @if ($client->image)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $client->image) }}" name="oldValue" value="$client->image" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $client->image) }}" name="oldValue" value="$client->image" 
+                                class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">
                             @endif
@@ -69,6 +71,8 @@
         const imgPreview = document.querySelector('.img-previewP')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

@@ -142,7 +142,7 @@
                                                 -webkit-box-orient: vertical;">
                                                     <p> {!! html_entity_decode($post->content) !!} </p>
                                                 </div>
-                                                <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-info btn-sm"><i
+                                                <a href="/backoffice/post/{{ $post->id }}/detail" class="btn btn-primary btn-sm"><i
                                                         class="ion ion-eye"></i> Detail</a>
                                                 @if ($post->user_id == auth()->user()->id)
                                                     <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"

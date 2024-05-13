@@ -48,11 +48,11 @@ class ApplicationController extends Controller
             )->find($id);
         if ($application) {
 
-            $resource = new DetailApplicationResource($application);
+            return new DetailApplicationResource($application);
 
-            return response()->json([
-                $resource
-            ], 200);
+            // return response()->json([
+            //     $resource
+            // ], 200);
         } else {
             return response()->json([
                 'message' => 'No application found'

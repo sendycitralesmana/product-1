@@ -32,9 +32,10 @@
                         @endif
                     </div>
                     <div class="form-group">
-                        <label>Berita <span class="text-danger">*</span></label>
+                        <label>Artikel <span class="text-danger">*</span></label>
                         <textarea name="content" id="editor" value="{{ old('content') }}"
-                            class="form-control"></textarea>
+                            class="form-control" required
+                            oninput="this.setCustomValidity('') oninvalid="this.setCustomValidity('Artikel harus diisi!')"></textarea>
                         @if($errors->has('content'))
                         <span class="help-block" style="color: red">{{ $errors->first('content') }}</span>
                         @endif
@@ -51,7 +52,7 @@
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>
+                    <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>
                     <button type="submit" class="btn btn-success"><span class="fas fa-save"></span> Simpan</button>
                 </div>
             </form>

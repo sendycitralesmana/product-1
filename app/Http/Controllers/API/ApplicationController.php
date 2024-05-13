@@ -40,7 +40,7 @@ class ApplicationController extends Controller
 
     public function detail($id) {
         $application = Application::with(
-            ['media:id,application_id,type_id,created_at', 
+            ['media:id,application_id,type_id,url,created_at', 
             'media.type:id,name,created_at',
             'video', 
             'product', 

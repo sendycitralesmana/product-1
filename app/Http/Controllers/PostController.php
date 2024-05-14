@@ -55,9 +55,12 @@ class PostController extends Controller
         $validated = $request->validate([
             'title' => 'required',
             'content' => 'required',
+        ], [
+            'title.required' => 'Judul harus diisi',
+            'content.required' => 'Artikel harus diisi',
         ]);
 
-        $newName = null;
+        $path = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;

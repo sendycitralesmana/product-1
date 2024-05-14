@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Storage;
 class ApplicationController extends Controller
 {
     public function index(Request $request) {
-        $applications = Application::paginate(9);
+        $applications = Application::orderBy('id', 'desc')->paginate(9);
         if ($request->title) {
             $applications = Application::where('name', 'LIKE', '%' . $request->title . '%')->paginate(9);
         }
@@ -37,16 +37,21 @@ class ApplicationController extends Controller
             'description' => 'required',
             'area' => 'required',
             'date' => 'required',
+        ], [
+            'name.required' => 'Proyek harus diisi',
+            'description.required' => 'Deskripsi harus diisi',
+            'area.required' => 'Area harus diisi',
+            'date.required' => 'Waktu harus diisi',
         ]);
 
-        $newName = null;
-        if($request->file('thumbnail')) {
-            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            // $request->file('thumbnail')->storeAs('image/application/', str_replace(' ', '_', $newName));
-            $file = $request->file('thumbnail');
-            $path = Storage::disk('s3')->put("", $file);
-        }
+        // $newName = null;
+        // if($request->file('thumbnail')) {
+        //     $fileName = $request->file('thumbnail')->getClientOriginalExtension();
+        //     $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
+        //     $request->file('thumbnail')->storeAs('image/application/', str_replace(' ', '_', $newName));
+        //     $file = $request->file('thumbnail');
+        //     $path = Storage::disk('s3')->put("", $file);
+        // }
 
         $application = new Application;
         $application->client_id = $request->client_id;
@@ -54,7 +59,12 @@ class ApplicationController extends Controller
         $application->description = $request->description;
         $application->area = $request->area;
         $application->date = $request->date;
-        $application->thumbnail = str_replace(' ', '_', $path);
+        if ($request->file('thumbnail')) {
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
+            $application->thumbnail = $path;
+        }
+        // $application->thumbnail = str_replace(' ', '_', $path);
         $application->save();
 
         $applicationId = Application::orderBy('id', 'desc')->first();
@@ -162,8 +172,9 @@ class ApplicationController extends Controller
     public function delete($id) {
 
         $application = Application::find($id);
-        // Storage::delete('image/application/' . $application->thumbnail);
-        Storage::disk('s3')->delete($application->thumbnail);
+        if ($application->thumbnail) {
+            Storage::disk('s3')->delete($application->thumbnail);
+        }
         $application->media()->delete();
         $application->video()->delete();
         $application->applicationPivot()->delete();

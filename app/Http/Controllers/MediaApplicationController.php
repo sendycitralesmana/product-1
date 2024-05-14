@@ -13,36 +13,7 @@ use function Laravel\Prompts\alert;
 
 class MediaApplicationController extends Controller
 {
-
-    // public function create(Request $request)
-    // {
-    //     $validated = $request->validate([
-    //         'application_id.*' => 'required',
-    //         'type_id.*' => 'required',
-    //         'media.*' => 'required',
-    //     ]);
-
-    //     foreach ($request->file('media') as $key => $file) {
-    //         $type = $request->type_id[$key];
-    //         $fileName = $file->getClientOriginalName();
-    //         $url = now()->timestamp . '-' . $fileName;
-    //         $file->storeAs('application/media/', str_replace(' ', '_', $url));
-    //         $data2 = array(
-    //             'application_id' => $request->application_id,
-    //             'type_id' => $type,
-    //             'name' => str_replace(' ', '_', $fileName),
-    //             'url' => str_replace(' ', '_', $url),
-                
-    //         );
-    //         MediaApplication::create($data2);
-    //     }
-
-    //     Session::flash('media', 'success');
-    //     Session::flash('message', 'Add data success');
-    //     // return redirect('/product-variant');
-    //     return redirect()->back();
-    // }
-    public function imageCreate(Request $request)
+    public function imageCreate(Request $request, $application_id)
     {
         $validated = $request->validate([
             'media.*' => 'required',
@@ -80,7 +51,7 @@ class MediaApplicationController extends Controller
         ]);
 
         foreach ($request->file('media') as $key => $file) {
-            $fileName = now()->timestamp . $key . '-' . $file->getClientOriginalName();
+            $fileName = $file->getClientOriginalName();
             $fileUrl = $file->getClientOriginalExtension();
             $url = 'file-' . now()->timestamp . $key . '.' . $fileUrl;
             // $file->storeAs('image/application/media/', str_replace(' ', '_', $url));
@@ -104,48 +75,10 @@ class MediaApplicationController extends Controller
         return redirect()->back();
     }
 
-    // public function update(Request $request, $id)
-    // {
-    //     $validated = $request->validate([
-    //         'application_id' => 'required',
-    //     ]);
-
-    //     if($request->file('media')) {
-    //         if ($request->oldName && $request->oldUrl) {
-    //             Storage::delete('application/media/' . $request->oldUrl);
-    //         }
-    //         $fileName = $request->file('media')->getClientOriginalName();
-    //         $extension = $request->file('media')->getClientOriginalExtension();
-    //         $url = now()->timestamp . '-' . $fileName;
-    //         $request->file('media')->storeAs('application/media/', str_replace(' ', '_', $url));
-    //     }
-
-    //     $productCategory = MediaApplication::find($id);
-    //     if ($request->oldName != null && $request->oldUrl != null) {
-    //         if ($request->file('media') == "") {
-    //             $productCategory->type_id = $request->type_id;
-    //             $productCategory->name = $request->oldName;
-    //             $productCategory->url = $request->oldUrl;
-    //         } else {
-    //             if (($extension == "jpeg") || ($extension == "jpg") || ($extension == "png") ) {
-    //                 $productCategory->type_id = 1;
-    //             } else if (($extension == "pdf") || ($extension == "xls") || ($extension == "doc"))  {
-    //                 $productCategory->type_id = 2;
-    //             }
-    //             $productCategory->name = $fileName;
-    //             $productCategory->url = str_replace(' ', '_', $url);
-    //         }
-    //     }
-    //     $productCategory->save();
-
-    //     Session::flash('media', 'success');
-    //     Session::flash('message', 'Update data success');
-        
-    //     return redirect('/backoffice/application/media/'. $request->application_id);
-    // }
-    public function imageUpdate(Request $request, $id)
+    public function imageUpdate(Request $request, $application_id, $media_id)
     {
-        $validated = $request->validate([
+
+        $request->validate([
             'application_id' => 'required',
         ]);
 
@@ -163,19 +96,18 @@ class MediaApplicationController extends Controller
             $path = Storage::disk('s3')->put("", $file);
         }
 
-        $productCategory = MediaApplication::find($id);
-        if ($request->oldName != null && $request->oldUrl != null) {
-            if ($request->file('media') == "") {
-                $productCategory->type_id = 1;
-                $productCategory->name = $request->oldName;
-                $productCategory->url = $request->oldUrl;
-            } else {
-                $productCategory->type_id = 1;
-                $productCategory->name = str_replace(' ', '_', $fileName);
-                $productCategory->url = str_replace(' ', '_', $path);
-            }
+        $media = MediaApplication::find($media_id);
+
+        if ($request->file('media') == "") {
+            $media->name = $request->oldName;
+            $media->url = $request->oldUrl;
+        } else {
+            $media->name = str_replace(' ', '_', $fileName);
+            $media->url = $path;
         }
-        $productCategory->save();
+        // if ($request->oldUrl != null) {
+        // }
+        $media->save();
 
         Session::flash('media', 'success');
         Session::flash('message', 'Ubah gambar berhasil');
@@ -183,7 +115,7 @@ class MediaApplicationController extends Controller
         // return redirect('/backoffice/application/media/'. $request->application_id);
     }
     
-    public function fileUpdate(Request $request, $id)
+    public function fileUpdate(Request $request, $application_id, $media_id)
     {
         $validated = $request->validate([
             'application_id' => 'required',
@@ -194,7 +126,7 @@ class MediaApplicationController extends Controller
                 // Storage::delete('image/application/media/' . $request->oldUrl);
                 Storage::disk('s3')->delete($request->oldUrl);
             }
-            $fileName = now()->timestamp . '-' . $request->file('media')->getClientOriginalName();
+            $fileName = $request->file('media')->getClientOriginalName();
             $extension = $request->file('media')->getClientOriginalExtension();
             $url = 'file-' . now()->timestamp . '.' . $extension;
             // $request->file('media')->storeAs('image/application/media/', str_replace(' ', '_', $url));
@@ -203,7 +135,7 @@ class MediaApplicationController extends Controller
             $path = Storage::disk('s3')->put("", $file);
         }
 
-        $productCategory = MediaApplication::find($id);
+        $productCategory = MediaApplication::find($media_id);
         if ($request->oldName != null && $request->oldUrl != null) {
             if ($request->file('media') == "") {
                 $productCategory->type_id = 2;
@@ -212,7 +144,7 @@ class MediaApplicationController extends Controller
             } else {
                 $productCategory->type_id = 2;
                 $productCategory->name = str_replace(' ', '_', $fileName);
-                $productCategory->url = str_replace(' ', '_', $path);
+                $productCategory->url = $path;
             }
         }
         $productCategory->save();
@@ -223,9 +155,9 @@ class MediaApplicationController extends Controller
         // return redirect('/backoffice/application/media/'. $request->application_id);
     }
 
-    public function mediaByApplication($id) {
-        $application = Application::find($id);
-        $images = MediaApplication::where('application_id', $id)->where('type_id', 1)->paginate(12);
+    public function mediaByApplication($application_id) {
+        $application = Application::find($application_id);
+        $images = MediaApplication::where('application_id', $application_id)->where('type_id', 1)->paginate(12);
         $mediaTypes = MediaType::get();
 
         return view('backoffice.application.media.mediaByApplication', [
@@ -235,9 +167,9 @@ class MediaApplicationController extends Controller
         ]);
     }
     
-    public function fileByApplication($id) {
-        $application = Application::find($id);
-        $files = MediaApplication::where('application_id', $id)->where('type_id', 2)->paginate(12);
+    public function fileByApplication($application_id) {
+        $application = Application::find($application_id);
+        $files = MediaApplication::where('application_id', $application_id)->where('type_id', 2)->paginate(12);
         $mediaTypes = MediaType::get();
 
         return view('backoffice.application.file.fileByApplication', [
@@ -247,9 +179,9 @@ class MediaApplicationController extends Controller
         ]);
     }
 
-    public function delete($id)
+    public function delete($application_id, $media_id)
     {
-        $mediaApplication = MediaApplication::find($id);
+        $mediaApplication = MediaApplication::find($media_id);
         // Storage::delete('image/application/media/' . $mediaApplication->url);
         Storage::disk('s3')->delete($mediaApplication->url);
         $mediaApplication->delete();
@@ -260,8 +192,8 @@ class MediaApplicationController extends Controller
         // return redirect('/backoffice/application/media/'. $mediaApplication->application_id);
     }
 
-    public function downloadFile($id) {
-        $mediaApplication = MediaApplication::find($id);
+    public function downloadFile($application_id, $media_id) {
+        $mediaApplication = MediaApplication::find($media_id);
         // $pathToFile = public_path('storage/application/media/'. $mediaApplication->url);
         // return response()->download($pathToFile);
 

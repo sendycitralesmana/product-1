@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $applications->name }} Produk Data</h1>
+                    <h1>Data Produk</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/backoffice/application" class="">Proyek</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $applications->id }}/detail" class="">Detail</a></li>
-                    <li class="breadcrumb-item active">Produk</li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $application->id }}/detail" class="">Detail Proyek</a></li>
+                    <li class="breadcrumb-item active">Data Produk</li>
                   </ol>
                 </div>
             </div>
@@ -26,8 +26,20 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="fakultas mr-4">
+                        <h5>
+                            Proyek: <b>{{ $application->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Produk</h3>
                 <div class="card-tools">
@@ -60,14 +72,14 @@
                         <tr>
                             <th>ID</th>
                             <th>Gambar</th>
-                            <th>Nama</th>
+                            <th>Produk</th>
                             <th>Opsi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($productApps as $product)
+                        @foreach ($aProducts as $key => $product)
                         <tr>
-                            <td> {{ $product->product->id }} </td>
+                            <td> {{ $key + 1 }} </td>
                             <td>
                                 <img src="{{asset('http://103.127.96.59:9000/mled/'. $product->product->thumbnail)}}" alt="" width="80px" height="80px">
                             </td>
@@ -84,14 +96,6 @@
                         </tr>
                         @endforeach
                     </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </tfoot>
                 </table>
             </div>
         </div>

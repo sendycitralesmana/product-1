@@ -10,13 +10,13 @@
         <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
-                    <h1>{{ $application->name }} Berkas Data</h1>
+                    <h1>Data Berkas</h1>
                 </div>
                 <div class="col-sm-6">
                   <ol class="breadcrumb float-sm-right">
                     <li class="breadcrumb-item"><a href="/backoffice/application" class="">Proyek</a></li>
-                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $application->id }}/detail" class="">Detail</a></li>
-                    <li class="breadcrumb-item active">Berkas</li>
+                    <li class="breadcrumb-item"><a href="/backoffice/application/{{ $application->id }}/detail" class="">Detail Proyek</a></li>
+                    <li class="breadcrumb-item active">Data Berkas</li>
                   </ol>
                 </div>
             </div>
@@ -26,8 +26,20 @@
     <!-- Main content -->
     <section class="content">
 
+        <div class="card card-outline card-primary">
+            <div class="card-header">
+                <div class="d-flex justify-between">
+                    <div class="fakultas mr-4">
+                        <h5>
+                            Proyek: <b>{{ $application->name }}</b>
+                        </h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title"> Berkas</h3>
                 <div class="card-tools">
@@ -71,15 +83,15 @@
                     @else
                         @foreach ($files as $file)
                         <div class="col-md-3 gallery">
-                            <div class="card">
-                                <div class="">
+                            <div class="card card-outline card-primary">
+                                <div class="p-4 text-center">
                                     <img src="{{asset('images/pdf.png')}}" alt="" 
-                                        class="img-fluid rounded" style="height: 200px; width: 100%">
+                                        class="img-fluid rounded" style="height: 150px; width: 90%">
                                 </div>
-                                <div class="p-1">
+                                <div class="p-2">
                                     {{ $file->name }}
                                 </div>
-                                <div class="d-flex">
+                                <div class="d-flex" style="border-top: 2px solid #0d6efd">
                                     <button type="button" class="btn btn-warning btn-sm btn-block m-1" data-toggle="modal"
                                         data-target="#fileEdit{{$file->id}}">
                                         <span><i class="fas fa-edit"></i> Ubah</span>

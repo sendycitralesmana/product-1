@@ -43,11 +43,12 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $post->thumbnail }}">
                             @if ($post->thumbnail)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" 
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -71,6 +72,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

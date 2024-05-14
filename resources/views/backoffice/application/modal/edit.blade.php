@@ -65,7 +65,8 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $application->thumbnail }}">
                             @if ($application->thumbnail)
-                                <img src="{{ asset('storage/image/application/'. $application->thumbnail) }}" name="oldValue" value="$application->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ Storage::disk('s3')->url($application->thumbnail) }}" name="oldValue" value="$application->thumbnail" 
+                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
@@ -75,7 +76,6 @@
                             @endif
                         </div>
                     </div>
-                    <!-- /.card-body -->
 
                 </div>
                 <div class="modal-footer">
@@ -92,6 +92,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

@@ -1,7 +1,7 @@
 <div class="modal fade" id="productAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/application/product/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/application/{{ $application->id }}/product/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Produk</h5>
@@ -17,7 +17,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <input type="hidden" name="application_id" value="{{ $applications->id }}">
+                                <input type="hidden" name="application_id" value="{{ $application->id }}">
                                 <select name="product_id[]" class="form-control" required>
                                     <option value="">-- Pilih produk --</option>
                                     @foreach ($products as $product)
@@ -28,7 +28,7 @@
                                 <span class="help-block" style="color: red">{{ $errors->first('product_id[]') }}</span>
                                 @endif
                             </td>
-                            <td class="text-center"><button type="button" name="add" id="add-btn" class="btn btn-success">+</button></td>
+                            <td class="text-center"><button type="button" name="add" id="add-btn" class="btn btn-success"><span class="fa fa-plus"></span></button></td>
                         </tr>
                     </table>
                 </div>
@@ -64,7 +64,7 @@
                     @endif
                 </td>
                 <td class="text-center">
-                    <button type="button" class="btn btn-danger remove-tr">-</button>
+                    <button type="button" class="btn btn-danger remove-tr"><span class="fa fa-trash"></span></button>
                 </td>
             </tr>`
             );

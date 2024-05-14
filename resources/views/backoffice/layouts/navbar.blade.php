@@ -18,7 +18,7 @@
         <!-- Notifications Dropdown Menu -->
         @if (Auth()->user())
 
-        <li class="nav-item dropdown">
+        <li class="nav-item dropdown" style="border-left: 3px solid #0d6efd">
             <a class="nav-link" data-toggle="dropdown" href="#">
                 {{-- <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" width="30px" height="30px" class="mr-1 img-circle elevation-2" alt="User Image"> --}}
                 {{-- {{ auth()->user()->name }}</i> --}}

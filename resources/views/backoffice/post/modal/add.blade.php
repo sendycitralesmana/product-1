@@ -1,3 +1,11 @@
+@if ($errors->any())
+    <script>
+        jQuery(function() {
+            $('#postAdd').modal('show');
+        });
+    </script>
+@endif
+
 <div class="modal fade" id="postAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg ">
         <div class="modal-content">
@@ -25,7 +33,7 @@
                     </div>
                     <div class="form-group">
                         <label>Judul <span class="text-danger">*</span></label>
-                        <input type="text" name="title" required class="form-control" placeholder="Enter title"
+                        <input type="text" name="title" required class="form-control" placeholder="Judul"
                             value="{{ old('title') }}">
                         @if($errors->has('title'))
                         <span class="help-block" style="color: red">{{ $errors->first('title') }}</span>
@@ -34,8 +42,7 @@
                     <div class="form-group">
                         <label>Artikel <span class="text-danger">*</span></label>
                         <textarea name="content" id="editor" value="{{ old('content') }}"
-                            class="form-control" required
-                            oninput="this.setCustomValidity('') oninvalid="this.setCustomValidity('Artikel harus diisi!')"></textarea>
+                            class="form-control"></textarea>
                         @if($errors->has('content'))
                         <span class="help-block" style="color: red">{{ $errors->first('content') }}</span>
                         @endif
@@ -43,7 +50,7 @@
                     <div class="form-group">
                         <label>Gambar</label>
                         <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
-                        <input type="file" accept=".jpg, .jpeg, .png, .svg" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                        <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
                         @if($errors->has('thumbnail'))
                         <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                         @endif
@@ -91,6 +98,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

@@ -232,6 +232,59 @@ Route::group(['middleware' => 'auth'], function(){
             });
             
         }); 
+
+        // grup application
+        Route::group(['prefix' => 'application'], function(){
+            Route::get('/', [ApplicationController::class, 'index']);
+            Route::post('/create', [ApplicationController::class, 'create']);
+
+            // grup application_id
+            Route::group(['prefix' => '{application_id}'], function(){
+                Route::get('/detail', [ApplicationController::class, 'detail']);
+                Route::get('/delete', [ApplicationController::class, 'delete']);
+
+                // grup image
+                Route::group(['prefix' => 'image'], function(){
+                    Route::get('/', [MediaApplicationController::class, 'mediaByApplication']);
+                    Route::post('/create', [MediaApplicationController::class, 'imageCreate']);
+
+                    // grup image_id
+                    Route::group(['prefix' => '{image_id}'], function(){
+                        Route::put('/update', [MediaApplicationController::class, 'imageUpdate']);
+                        Route::get('/delete', [MediaApplicationController::class, 'delete']);
+                    });
+
+                });
+
+                // grup file
+                Route::group(['prefix' => 'file'], function(){
+                    Route::get('/', [MediaApplicationController::class, 'fileByApplication']);
+                    Route::post('/create', [MediaApplicationController::class, 'fileCreate']);
+
+                    // grup file_id
+                    Route::group(['prefix' => '{file_id}'], function(){
+                        Route::put('/update', [MediaApplicationController::class, 'fileUpdate']);
+                        Route::get('/delete', [MediaApplicationController::class, 'delete']);
+                    });
+
+                });
+
+                // grup product
+                Route::group(['prefix' => 'product'], function(){
+                    Route::get('/', [ProductApplicationController::class, 'productByApplication']);
+                    Route::post('/create', [ProductApplicationController::class, 'createProduct']);
+
+                    // grup product_id
+                    Route::group(['prefix' => '{product_id}'], function(){
+                        Route::get('/delete', [ProductApplicationController::class, 'deleteProduct']);
+                    });
+
+                });
+
+            });
+
+        });
+
     });
 
     // Dashboard
@@ -256,38 +309,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/media-type/{id}/edit', [MediaTypeController::class, 'edit']);
     Route::put('/backoffice/media-type/{id}/update', [MediaTypeController::class, 'update']);
     Route::get('/backoffice/media-type/{id}/delete', [MediaTypeController::class, 'delete']);
-    
-    // Application
-    Route::get('/backoffice/application', [ApplicationController::class, 'index']);
-    Route::get('/backoffice/application/add', [ApplicationController::class, 'add']);
-    Route::post('/backoffice/application/create', [ApplicationController::class, 'create']);
-    Route::get('/backoffice/application/{id}/edit', [ApplicationController::class, 'edit']);
-    Route::put('/backoffice/application/{id}/update', [ApplicationController::class, 'update']);
-    Route::get('/backoffice/application/{id}/delete', [ApplicationController::class, 'delete']);
-    Route::get('/backoffice/application/{id}/detail', [ApplicationController::class, 'detail']);
-    Route::get('/backoffice/application/product/{id}', [ApplicationController::class, 'productByApplication']);
-    
-    Route::post('/backoffice/application/media/create', [MediaApplicationController::class, 'imageCreate']);
-    Route::post('/backoffice/application/file/create', [MediaApplicationController::class, 'fileCreate']);
-    Route::get('/backoffice/application/media/{id}/edit', [MediaApplicationController::class, 'edit']);
-    Route::put('/backoffice/application/media/{id}/update', [MediaApplicationController::class, 'imageUpdate']);
-    Route::put('/backoffice/application/file/{id}/update', [MediaApplicationController::class, 'fileUpdate']);
-    Route::get('/backoffice/application/media/{id}/delete', [MediaApplicationController::class, 'delete']);
-    Route::get('/backoffice/application/media/{id}', [MediaApplicationController::class, 'mediaByApplication']);
-    Route::get('/backoffice/application/file/{id}', [MediaApplicationController::class, 'fileByApplication']);
-    Route::get('/backoffice/application/file/download/{id}', [MediaApplicationController::class, 'downloadFile']);
-
-    Route::post('/backoffice/application/video/create', [VideoApplicationController::class, 'create']);
-    Route::get('/backoffice/application/video/{id}/edit', [VideoApplicationController::class, 'edit']);
-    Route::put('/backoffice/application/video/{id}/update', [VideoApplicationController::class, 'update']);
-    Route::get('/backoffice/application/video/{id}/delete', [VideoApplicationController::class, 'delete']);
-    Route::get('/backoffice/application/video/{id}', [VideoApplicationController::class, 'videoByApplication']);
-    
-    Route::post('/backoffice/application/product/create', [ProductApplicationController::class, 'createProduct']);
-    Route::get('/backoffice/application/product/{id}/delete', [ProductApplicationController::class, 'deleteProduct']);
-    // Route::get('/backoffice/application/product-application/{id}', [ProductApplicationController::class, 'productByApplication']);
-    // Application End
-
 
     // Post
     Route::get('/backoffice/post', [PostController::class, 'index']);

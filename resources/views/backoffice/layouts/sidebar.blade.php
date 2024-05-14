@@ -1,5 +1,5 @@
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-light-primary elevation-4">
     <!-- Brand Logo -->
     {{-- <a href="/backoffice/dashboard" class="brand-text text-center ">
         <img src="{{ asset('images/logo.png') }}" alt="AdminLTE Logo" class="brand-image mt-2" style="opacity: .8">

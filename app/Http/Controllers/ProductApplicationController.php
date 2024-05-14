@@ -25,6 +25,18 @@ class ProductApplicationController extends Controller
         ]);
     }
 
+    public function productByApplication( $application_id )
+    {
+        $application = Application::find($application_id);
+        $aProducts = ProductApplication::where('application_id', $application_id)->get();
+        $products = Product::get();
+        return view('backoffice.application.product.productByApplication', [
+            'application' => $application,
+            'aProducts' => $aProducts,
+            'products' => $products
+        ]);
+    }
+
     public function createApplication(Request $request)
     {
         $validated = $request->validate([
@@ -75,8 +87,8 @@ class ProductApplicationController extends Controller
         // return redirect('/backoffice/product/application/'. $application->product_id);
     } 
     
-    public function deleteProduct($id) {
-        $product = ProductApplication::find($id);
+    public function deleteProduct($application_id, $product_id) {
+        $product = ProductApplication::find($product_id);
         $product->delete();
 
         Session::flash('product', 'success');

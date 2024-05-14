@@ -17,7 +17,7 @@
                     <div class="card-header">
                         <div class="row">
 
-                            <h3 class="card-title">Data artikel</h3>
+                            <h3 class="card-title">Data Artikel</h3>
                         </div>
                         {{-- <div class="card-tools">
                             
@@ -108,7 +108,7 @@
                             @else
                                 @foreach ($posts as $post)
                                     <div class="">
-                                        <div class="card card-widget mt-1 mr-2 ml-2">
+                                        <div class="card card-widget mt-1 mr-2 ml-2 card-outline card-primary">
                                             <div class="card-header">
                                                 <div class="user-block">
                                                     @if ( $post->user->avatar != null )

@@ -12,7 +12,7 @@
                 <div class="modal-body">
                     <div class="form-group">
                         <label>Klien <span class="text-danger">*</span></label>
-                        <input type="text" name="name" class="form-control" placeholder="Enter name" value="{{ old('name') }}" required
+                        <input type="text" name="name" class="form-control" placeholder="Klien" value="{{ old('name') }}" required
                         oninvalid="this.setCustomValidity('Klien harus diisi!')"
                         oninput="this.setCustomValidity('')">
                         @if($errors->has('name'))
@@ -21,7 +21,7 @@
                     </div>
                     <div class="form-group">
                         <label>Link</label>
-                        <input type="url" name="link" class="form-control" placeholder="Enter link"
+                        <input type="url" name="link" class="form-control" placeholder="Link"
                             value="{{ old('link') }}">
                         @if($errors->has('link'))
                         <span class="help-block" style="color: red">{{ $errors->first('link') }}</span>

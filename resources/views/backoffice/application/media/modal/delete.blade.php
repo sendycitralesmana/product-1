@@ -14,7 +14,7 @@
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fa fa-arrow-left"></span> Kembali</button>
                     {{-- <button type="submit" class="btn btn-success">Save changes</button> --}}
-                    <a href="/backoffice/application/media/{{ $image->id }}/delete" class="btn btn-danger"><span class="fas fa-trash"></span> Hapus</a>
+                    <a href="/backoffice/application/{{ $application->id }}/image/{{ $image->id }}/delete" class="btn btn-danger"><span class="fas fa-trash"></span> Hapus</a>
                 </div>
             </form>
         </div>

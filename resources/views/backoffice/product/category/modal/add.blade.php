@@ -92,6 +92,8 @@
         const imgPreviewThumbnailPC = document.querySelector('.imageThumbnailPC');
 
         imgPreviewThumbnailPC.style.display = 'block';
+        imgPreviewThumbnailPC.style.width = '150px';
+        imgPreviewThumbnailPC.style.height = '150px';
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);
@@ -108,6 +110,8 @@
         const imgPreviewIcon = document.querySelector('.imageIcon');
 
         imgPreviewIcon.style.display = 'block';
+        imgPreviewIcon.style.width = '150px';
+        imgPreviewIcon.style.height = '150px';
 
         const oFReader = new FileReader();
         oFReader.readAsDataURL(image.files[0]);

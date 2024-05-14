@@ -1,7 +1,7 @@
 <div class="modal fade" id="fileAdd" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md ">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/application/file/create" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/application/{{ $application->id }}/file/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
                     <h5 class="modal-title" id="exampleModalLabel">Tambah Berkas</h5>

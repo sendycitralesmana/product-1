@@ -25,7 +25,7 @@
     <section class="content">
 
         <!-- Default box -->
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <div class="d-flex justify-content-between">
                     <h3 class="card-title">Data</h3>
@@ -81,6 +81,18 @@
                 </script>
                 @endif
 
+                @if ($errors->any())
+                    <div class="alert alert-danger" role="alert">
+                        <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
+                        <ul>
+                            <span>Tambah data gagal</span>
+                            @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
+
                 @if ( $title != null )
                     <div class="text-center">
                         <p>
@@ -98,14 +110,21 @@
                 <div class="row">
                     @foreach ($applications as $application)
                     <div class="col-md-4 application">
-                        <div class="card">
-                            <div class="">
-                                <a href="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
-                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 230px; width: 100%">
-                                </a>
+                        <div class="card card-outline card-primary">
+                            <div class="p-4 text-center">
+                                @if ( $application->thumbnail != null )
+                                    <a href="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
+                                        <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" alt="" 
+                                        class="img-fluid rounded" style="height: 210px; width: 90%">
+                                    </a>
+                                @else
+                                    <a href="{{asset('images/no-image.jpg')}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
+                                        <img src="{{asset('images/no-image.jpg')}}" alt="" 
+                                        class="img-fluid rounded" style="height: 210px; width: 90%">
+                                    </a>
+                                @endif
                             </div>
-                            <div class="p-1" style="height: 160px">
+                            <div class="p-2 mb-2" style="height: 160px">
                                 <small>{{ $application->date }}</small>
                                 <h5 class="" style="overflow: hidden;
                                 text-overflow: ellipsis;
@@ -122,7 +141,7 @@
                                     {!! html_entity_decode($application->description) !!}
                                 </div>
                             </div>
-                            <div class="d-flex">
+                            <div class="d-flex" style="border-top: 2px solid #0d6efd">
                                 <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm btn-block m-1">
                                     <i class="ion ion-ios-eye"></i> Detail
                                 </a>

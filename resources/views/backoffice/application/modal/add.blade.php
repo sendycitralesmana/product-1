@@ -63,9 +63,7 @@
                                 <label>Gambar </label>
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
                                 <input type="file" accept="image/*" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" 
-                                id="image" required
-                                oninvalid="this.setCustomValidity('Gambar harus diisi!')"
-                                oninput="this.setCustomValidity('')">
+                                id="image">
                                 @if($errors->has('thumbnail'))
                                 <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                                 @endif
@@ -134,6 +132,8 @@
         const imgPreview = document.querySelector('.img-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

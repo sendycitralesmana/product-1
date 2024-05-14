@@ -61,7 +61,7 @@
                     <div class="row">
                         <div class="col-md-8">
                             <!-- Box Comment -->
-                            <div class="card card-widget">
+                            <div class="card card-widget card-outline card-primary">
                                 <div class="card-header">
                                     <div class="user-block">
                                         <h5>Proyek</h5>
@@ -106,7 +106,7 @@
     
                         <div class="col-md-4">
                             {{-- Media Start --}}
-                            <div class="card">
+                            <div class="card card-outline card-primary">
                                 <div class="card-header">
                                     <h3 class="card-title">Keterangan</h3>
                                     <div class="card-tools">
@@ -119,7 +119,7 @@
                                 <div class="card-body">
                                     <div class="image-body">
                                         <div class="d-flex justify-content-between">
-                                            <a href="/backoffice/application/media/{{ $application->id }}">
+                                            <a href="/backoffice/application/{{ $application->id }}/image">
                                                 <div class="">
                                                     Gambar
                                                 </div>
@@ -132,7 +132,7 @@
                                     </div>
                                     <div class="file-body">
                                         <div class="d-flex justify-content-between">
-                                            <a href="/backoffice/application/file/{{ $application->id }}">
+                                            <a href="/backoffice/application/{{ $application->id }}/file">
                                                 <div class="">
                                                     Berkas
                                                 </div>
@@ -158,7 +158,7 @@
                                     </div> --}}
                                     <div class="application-body">
                                         <div class="d-flex justify-content-between">
-                                            <a href="/backoffice/application/product/{{ $application->id }}">
+                                            <a href="/backoffice/application/{{ $application->id }}/product">
                                                 <div class="">
                                                     Produk
                                                 </div>

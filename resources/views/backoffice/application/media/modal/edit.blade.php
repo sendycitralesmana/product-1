@@ -1,7 +1,7 @@
 <div class="modal fade" id="mediaEdit{{ $image->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-md">
         <div class="modal-content">
-            <form role="form" method="POST" action="/backoffice/application/media/{{ $image->id }}/update" enctype="multipart/form-data">
+            <form role="form" method="POST" action="/backoffice/application/{{ $application->id }}/image/{{ $image->id }}/update" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
@@ -21,11 +21,11 @@
                             {{-- <p> {{ $image->url }} </p> --}}
                             @if ($image->url)
                                 <img src="{{ asset('http://103.127.96.59:9000/mled/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
-                                class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                class="image-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
-                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="image-preview img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                                <input type="file" accept="image/*" id="image" onchange="previewImg()" name="media" class="form-control" value="{{ $image->name}}">
+                                <input type="file" accept="image/*" id="imag-prewiew" onchange="previewImg()" name="media" class="form-control" value="{{ $image->name}}">
                             @if($errors->has('media'))
                             <span class="help-block" style="color: red">{{ $errors->first('media') }}</span>
                             @endif
@@ -45,10 +45,12 @@
 
 <script>
     function previewImg() {
-        const image = document.querySelector('#image')
-        const imgPreview = document.querySelector('.img-preview')
+        const image = document.querySelector('#image-preview')
+        const imgPreview = document.querySelector('.image-preview')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

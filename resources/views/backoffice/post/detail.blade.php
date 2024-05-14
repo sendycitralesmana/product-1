@@ -26,7 +26,7 @@
     <section class="content">
 
         {{-- Produk Start --}}
-        <div class="card">
+        <div class="card card-outline card-primary">
             <div class="card-header">
                 <h3 class="card-title">Artikel</h3>
                 <div class="card-tools">
@@ -61,7 +61,7 @@
                 <div class="row">
                     <div class="col-md-7">
                         <!-- Box Comment -->
-                        <div class="card card-widget">
+                        <div class="card card-widget card-outline card-primary">
                             <div class="card-header">
                                 <div class="user-block">
                                     @if ( $post->user->avatar != null )
@@ -91,8 +91,8 @@
                                 <div class="text-center">
                                     <img src="{{ asset('http://103.127.96.59:9000/mled/'.$post->thumbnail) }}" class="img-fluid" alt=""
                                         style="height: 300px">
-                                    @endif
-                                </div>
+                                    </div>
+                                @endif
                                 <h4 class="mt-3"> {{ $post->title }} </h4>
                                 <p> {!! html_entity_decode($post->content) !!} </p>
                                 <span class="float-right text-muted">{{ $post->comment->count() }} Komentar</span>
@@ -102,7 +102,7 @@
                     </div>
 
                     <div class="col-md-5">
-                        <div class="card">
+                        <div class="card card-outline card-primary">
                             <div class="card-header">
                                 <h3 class="card-title">Komentar ( {{ $post->comment->count() }} )</h3>
                                 <div class="card-tools">

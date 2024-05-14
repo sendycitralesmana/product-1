@@ -21,16 +21,12 @@ class ProductCategoryController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            // 'description' => 'required',
-            // 'thumbnail' => 'image',
         ]);
 
         $thumbnail = null;
         if($request->file('thumbnail')) {
             $fileName = $request->file('thumbnail')->getClientOriginalExtension();
             $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            // $request->file('thumbnail')->storeAs('image/product/category', str_replace(' ', '_', $newName));
-            // simpan gambar ke disk 
             $fThumbnail = $request->file('thumbnail');
             $thumbnail = Storage::disk('s3')->put("", $fThumbnail);
         }
@@ -38,9 +34,6 @@ class ProductCategoryController extends Controller
         $ikon = null;
         if ($request->file('ikon')) {
             $fileName = $request->file('ikon')->getClientOriginalExtension();
-            // $ikon = 'ikon-' . now()->timestamp . '.' . $fileName;
-            // $request->file('ikon')->storeAs('image/product/category', str_replace(' ', '_', $ikon));
-            // simpan gambar ke disk
             $fIkon = $request->file('ikon');
             $ikon = Storage::disk('s3')->put("", $fIkon);
         }
@@ -50,12 +43,12 @@ class ProductCategoryController extends Controller
         $productCategory->description = '-';
         $productCategory->thumbnail = str_replace(' ', '_', $thumbnail);
         $productCategory->icon = str_replace(' ', '_', $ikon);
+
         $productCategory->save();
 
         Session::flash('category', 'success');
         Session::flash('message', 'Tambah kategori berhasil');
         return redirect()->back();
-        // return redirect('/backoffice/product/category');
     }
 
     public function update(Request $request, $id)

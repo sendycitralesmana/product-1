@@ -37,16 +37,15 @@ class ClientController extends Controller
 
     public function detail($id) {
         $client = Client::with([
-            'application:id,client_id,name,area,time,created_at',
+            'application:id,client_id,name,area,date,created_at',
         ])->find($id);
         if ($client) {
 
-            $resource = new DetailClientResource($client);
+            return new DetailClientResource($client);
 
-            return response()->json([
-                // $client
-                $resource
-            ], 200);
+            // return response()->json([
+            //     $resource
+            // ], 200);
         } else {
             return response()->json([
                 'message' => 'No client found'

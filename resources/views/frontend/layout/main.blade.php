@@ -22,7 +22,7 @@
     <link rel="stylesheet" href="{{asset('assets/front-end/css/nice-select.css')}}">
     <link rel="stylesheet" href="{{asset('assets/front-end/css/style.css')}}">
 
-    @vite(['resources/sass/app.scss', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body>

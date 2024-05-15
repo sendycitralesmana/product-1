@@ -153,7 +153,9 @@ class ProductController extends Controller
         // Storage::delete('image/product/' . $product->thumbnail);
 
         // delete from s3
-        Storage::disk('s3')->delete("" . $product->thumbnail);
+        if ($product->thumbnail) {
+            Storage::disk('s3')->delete("" . $product->thumbnail);
+        }
 
         $product->media()->delete();
         $product->video()->delete();

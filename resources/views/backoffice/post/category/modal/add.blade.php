@@ -4,7 +4,7 @@
             <form role="form" method="POST" action="/backoffice/post/category/create" enctype="multipart/form-data">
                 {{ csrf_field() }}
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Tambah kategori</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Tambah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
 
                     <table class="table table-bordered" id="dynamicAddRemove">
                         <tr>
-                            <th>Nama</th>
+                            <th>Kategori</th>
                             <th>Aksi</th>
                         </tr>
                         <tr>

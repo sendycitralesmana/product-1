@@ -142,26 +142,56 @@ class UserController extends Controller
         return redirect('/backoffice/dashboard');
     }
 
-    public function updatePassword(Request $request) {
-        $validated = $request->validate([
-            'password_lama' => 'required',
-            'password_baru' => 'required|min:8',
-            'konfirmasi_password_baru' => 'required|min:8|same:password_baru',
-        ], [
-            'password_lama.required' => 'Password lama harus diisi',
-            'password_baru.required' => 'Password baru harus diisi',
-            'konfirmasi_password_baru.required' => 'Konfirmasi password baru harus diisi',
-            'konfirmasi_password_baru.same' => 'Konfirmasi password baru harus sama dengan password baru',
-            'konfirmasi_password_baru.min' => 'Konfirmasi password baru harus minimal 8 karakter',
-            'password_baru.min' => 'Password baru harus minimal 8 karakter',
+    public function updateData(Request $request, $id) {
+        $request->validate([
+            'name' => 'required',
         ]);
-        $user = User::find(auth()->user()->id);
 
-        // cek password lama
-        if (!Hash::check($request->password_lama, $user->password)) {
-            Session::flash('password_lama', 'error');
-            Session::flash('message', 'Password lama tidak sesuai');
-            return redirect()->back();
+        $user = User::find($id);
+        $user->name = $request->name;
+        $user->gender = $request->gender;
+        $user->religion = $request->religion;
+        $user->place_birth = $request->place_birth;
+        $user->date_birth = $request->date_birth;
+        $user->address = $request->address;
+        $user->no_hp = $request->no_hp;
+        if ($request->file('avatar')) {
+            if ($user->avatar) {
+                Storage::disk('s3')->delete($user->avatar);
+            }
+            $file = $request->file('avatar');
+            $path = Storage::disk('s3')->put('', $file);
+            $user->avatar = $path;
+        }
+        $user->save();
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Update profile success');
+        // return redirect('/backoffice/dashboard');
+        return redirect()->back();
+    }
+
+    public function updatePassword(Request $request, $id) {
+
+        $request->validate([
+            'password_sekarang' => 'required',
+            'password_baru' => 'required|min:8|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/',
+            'konfirmasi_password' => 'required|min:8|regex:/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)/|same:password_baru',
+        ], [
+            'password_sekarang.required' => 'Password sekarang harus diisi',
+            'password_baru.required' => 'Password baru harus diisi',
+            'password_baru.min' => 'Password baru minimal 8 karakter',
+            'password_baru.regex' => 'Password baru harus terdiri dari huruf kecil, huruf besar, dan angka',
+            'konfirmasi_password.required' => 'Konfirmasi password harus diisi',
+            'konfirmasi_password.regex' => 'Password harus terdiri dari huruf kecil, huruf besar, dan angka',
+            'konfirmasi_password.min' => 'Password minimal 8 karakter',
+            'konfirmasi_password.same' => 'Password baru dan konfirmasi password tidak sama',
+        ]);
+        
+        $user = User::find($id);
+        // check if password sekarang != $user->password
+        if (!Hash::check($request->password_sekarang, $user->password)) {
+            return redirect()->back()->with('error', 'Password sekarang tidak sesuai');
         }
 
         // cek konfirmasi password

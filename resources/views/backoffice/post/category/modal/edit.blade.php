@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Edit kategori</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Kategori</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -13,7 +13,7 @@
                 <div class="modal-body">
                     <div class="card-body">
                         <div class="form-group">
-                            <label>Nama</label>
+                            <label>Kategori</label>
                             <input type="text" name="name" class="form-control" value="{{ $postCategory->name}}" required>
                             {{-- <input type="text" name="name" class="form-control" value="{{ $pvpostCategory->name}}" required oninvalid="this.setCustomValidity('Enter User Name Here')"> --}}
                             @if($errors->has('name'))

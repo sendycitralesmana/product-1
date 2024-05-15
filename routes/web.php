@@ -291,6 +291,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/dashboard', [DashboardController::class, 'index']);
     
     Route::get('/backoffice/profile/{id}', [UserController::class, 'profile']);
+    Route::put('/backoffice/profile/{id}/update-data', [UserController::class, 'updateData']);
+    Route::put('/backoffice/profile/{id}/update-password', [UserController::class, 'updatePassword']);
 
     // User
     Route::get('/backoffice/user', [UserController::class, 'index']);
@@ -301,6 +303,8 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/backoffice/user/{id}/update-password', [UserController::class, 'updatePassword']);
     Route::get('/backoffice/user/{id}/delete', [UserController::class, 'delete']);
     Route::put('/backoffice/user/update-profile', [UserController::class, 'updateProfile']);
+
+
     
     // Media Type 
     Route::get('/backoffice/media-type', [MediaTypeController::class, 'index']);

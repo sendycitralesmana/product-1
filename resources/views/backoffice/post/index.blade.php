@@ -19,19 +19,6 @@
 
                             <h3 class="card-title">Data Artikel</h3>
                         </div>
-                        {{-- <div class="card-tools">
-                            
-                            @if (auth()->user()->role_id == 2)
-                            <button type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#postAdd">
-                                <span class="fa fa-plus"></span>
-                            </button>
-                            @include('backoffice.post.modal.add')
-                            @endif
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div> --}}
                         <div class="mt-2">
                             <div class="d-flex justify-content-between">
                                 <div>
@@ -112,7 +99,9 @@
                                             <div class="card-header">
                                                 <div class="user-block">
                                                     @if ( $post->user->avatar != null )
-                                                    <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
+                                                        <img src="{{ Storage::disk('s3')->url($post->user->avatar) }}" alt="">
+                                                    @else
+                                                        <img src="{{ asset('images/profile.png') }}" alt="">
                                                     @endif
                                                     <span class="username"><p>{{ $post->user->name }}</p></span>
                                                     <span class="description">Menambahkan berita -
@@ -171,38 +160,6 @@
             </div>
 
             <div class="col-md-4">
-                {{-- <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Filter</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse"
-                                data-toggle="tooltip" title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <form class="form-inline" action="/backoffice/post">
-                            <div class="input-group input-group-sm">
-                                <div class="input-group-append">
-                                    <button class="btn btn-default" type="submit">
-                                        Judul
-                                    </button>
-                                </div>
-                                <input class="form-control" type="text"
-                                    placeholder="Search" name="title" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </div>
-                                <div class="input-group-append">
-                                    <a href="/backoffice/post" class="btn btn-outline-secondary">Lihat semua</a>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div> --}}
 
                 <div class="card card-outline card-primary">
                     <div class="card-header">

@@ -23,7 +23,7 @@
                 {{-- <img src="{{ asset('storage/image/user/'. auth()->user()->avatar) }}" width="30px" height="30px" class="mr-1 img-circle elevation-2" alt="User Image"> --}}
                 {{-- {{ auth()->user()->name }}</i> --}}
                 {{-- <i class="fa fa-cog"></i> {{ auth()->user()->role->name }} --}}
-                <i class="fa fa-cog"></i> <b>Akun</b>
+                <i class="fa fa-user"></i> <b>Akun</b>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
                 <span class="dropdown-item dropdown-header">Pengaturan</span>

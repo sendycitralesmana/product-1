@@ -177,7 +177,7 @@
                                             <div class="">
                                                 @if ($application->client != null)
                                                     <a href="/backoffice/client/{{ $application->client->id }}/detail">
-                                                        <img src="{{ asset('http://103.127.96.59:9000/mled/'.$application->client->image) }}" class="img-fluid rounded" 
+                                                        <img src="{{ Storage::disk('s3')->url($application->client->image) }}" class="img-fluid rounded" 
                                                         alt="" style="width: 100px; height: 100px">
                                                         <p class="text-center">{{ $application->client->name }}</p>
                                                     </a>
@@ -198,90 +198,6 @@
             </div>
         </div>
         {{-- Product End --}}
-
-        {{-- Media Type Start--}}
-        {{-- <div class="row">
-
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Product</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="small-box">
-                            <div class="inner">
-                                <h3>{{ $application->product->count() }}</h3>
-                                <p>Data</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-android-apps"></i>
-                            </div>
-                            <a href="/backoffice/application/product/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Media</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="small-box">
-                            <div class="inner">
-                                <h3>{{ $mediaApplicationsC }}</h3>
-                                <p>Data</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-android-folder"></i>
-                            </div>
-                            <a href="/backoffice/application/media/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="col-md-4">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Video</h3>
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
-                                title="Collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="small-box">
-                            <div class="inner">
-                                <h3>{{ $videoApplicationsC }}</h3>
-                                <p>Data</p>
-                            </div>
-                            <div class="icon">
-                                <i class="ion ion-android-folder"></i>
-                            </div>
-                            <a href="/backoffice/application/video/{{ $application->id }}" class="small-box-footer bg-info">More info <i class="fas fa-arrow-circle-right"></i></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div> --}}
-        {{-- Media Type End --}}
     </section>
     <!-- /.content -->
 </div>

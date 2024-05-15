@@ -125,8 +125,6 @@
                             </div>
                             <div class="card-body">
                                 <a href="{{Storage::disk('s3')->url($client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
-                                    {{-- <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 100px; width: 100%"> --}}
                                     <img src="{{ Storage::disk('s3')->url($client->image) }}" alt="" class="img-fluid object-fit-contain rounded" 
                                     style="height: 80px; display: block; margin-left: auto; margin-right: auto">
                                 </a>
@@ -170,68 +168,7 @@
                     {{ $clients->links() }}
                 </div>
 
-                {{-- <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Link</th>
-                            <th>Status</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($clients as $client)
-                        <tr>
-                            <td> {{ $client->id }} </td>
-                            <td>
-                                <img src="{{asset('storage/image/client/'.$client->image)}}" height="100px" alt="">
-                            </td>
-                            <td> {{ $client->name }} </td>
-                            <td>
-                                <a href="{{ $client->link }}" target="_blank">{{ $client->link }}</a>
-                            </td>
-                            <td>
-                                @if ($client->is_hidden == "0")
-                                    <button class="btn btn-success btn-sm rounded btn-block">Tampilkan</button>
-                                @else
-                                    <button class="btn btn-danger btn-sm rounded btn-block">Tidak tampil</button>
-                                @endif
-                            </td>
-                            <td>
-                                <a href="/backoffice/client/{{ $client->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-eye"></i> Detail</a>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#clientEdit{{ $client->id }}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                @include('backoffice.client.modal.edit')
-                                @if (auth()->user()->role_id == 2)
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#clientDelete{{$client->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.client.modal.delete')
-                                    
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Link</th>
-                            <th>Status</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </tfoot>
-                </table> --}}
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

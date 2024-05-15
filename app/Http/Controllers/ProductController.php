@@ -147,9 +147,9 @@ class ProductController extends Controller
 
     }
 
-    public function delete($id)
+    public function delete($category_id, $product_id)
     {
-        $product = Product::find($id);
+        $product = Product::find($product_id);
         // Storage::delete('image/product/' . $product->thumbnail);
 
         // delete from s3
@@ -161,7 +161,7 @@ class ProductController extends Controller
         $product->video()->delete();
         // $product->variant()->delete();
         
-        $variantProds = ProductVariant::with(['spec'])->where('product_id', $id)->get();
+        $variantProds = ProductVariant::with(['spec'])->where('product_id', $product_id)->get();
         if ($variantProds->count() != 0) {
             foreach ($variantProds as $variant) {
                 $variant->spec()->delete();

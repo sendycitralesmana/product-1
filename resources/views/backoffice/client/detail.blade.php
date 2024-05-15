@@ -42,8 +42,8 @@
                     </div>
                     <div class="card-body">
                         <div class="text-center">
-                            <a href="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
-                                <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
+                            <a href="{{Storage::disk('s3')->url('mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
+                                <img src="{{Storage::disk('s3')->url('mled/'.$client->image)}}" alt="" 
                                 class="img-fluid rounded" style="height: 110px; width: 110px">
                             </a>
                         </div>

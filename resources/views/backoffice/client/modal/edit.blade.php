@@ -42,7 +42,7 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $client->image }}">
                             @if ($client->image)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $client->image) }}" name="oldValue" value="$client->image" 
+                                <img src="{{ Storage::disk('s3')->url($client->image) }}" name="oldValue" value="$client->image" 
                                 class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">

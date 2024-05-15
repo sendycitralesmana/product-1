@@ -85,14 +85,14 @@
                             <td> {{ $key + 1 }} </td>
                             <td> 
                                 @if( $productCategory->icon != null )
-                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$productCategory->icon)}}" alt="" width="100px" height="100px">
+                                    <img src="{{Storage::disk('s3')->url($productCategory->icon)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                 @endif
                             </td>
                             <td> 
                                 @if( $productCategory->thumbnail != null )
-                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$productCategory->thumbnail)}}" alt="" width="100px" height="100px">
+                                    <img src="{{Storage::disk('s3')->url($productCategory->thumbnail)}}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                 @endif

@@ -113,8 +113,8 @@
                         <div class="card card-outline card-primary">
                             <div class="p-4 text-center">
                                 @if ( $application->thumbnail != null )
-                                    <a href="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
-                                        <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->thumbnail)}}" alt="" 
+                                    <a href="{{Storage::disk('s3')->url($application->thumbnail)}}" data-title="{{ $application->name }}" data-lightbox="myapplication">
+                                        <img src="{{Storage::disk('s3')->url($application->thumbnail)}}" alt="" 
                                         class="img-fluid rounded" style="height: 210px; width: 90%">
                                     </a>
                                 @else
@@ -160,60 +160,7 @@
                     {{ $applications->links() }}
                 </div>
 
-                {{-- <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Judul</th>
-                            <th>Area</th>
-                            <th>Waktu</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($applications as $application)
-                        <tr>
-                            <td> {{ $application->id }} </td>
-                            <td> 
-                                @if( $application->thumbnail != '' )
-                                    <img src="{{asset('storage/image/application/'.$application->thumbnail)}}" alt="" width="100px" height="100px">
-                                @else
-                                    <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
-                                @endif
-                            </td>
-                            <td> {{ $application->name }} </td>
-                            <td> {{ $application->area }} </td>
-                            <td> {{ $application->time }} </td>
-                            <td>
-                                @if (auth()->user()->role_id == 2)
-                                <a href="/backoffice/application/{{ $application->id }}/detail" class="btn btn-info btn-sm"><i class="ion ion-ios-eye"></i> Detail</a>
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#applicationDelete{{ $application->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.application.modal.delete')  
-                                @endif
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Judul</th>
-                            <th>Area</th>
-                            <th>Waktu</th>
-                            <th>Opsi</th>
-                        </tr>
-                    </tfoot>
-                </table> --}}
             </div>
-            <!-- /.card-body -->
-            <div class="card-footer">
-                
-            </div>
-            <!-- /.card-footer-->
         </div>
         <!-- /.card -->
 

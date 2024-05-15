@@ -91,8 +91,8 @@
                         <div class="col-md-3 gallery">
                             <div class="card">
                                 <div class="p-4 text-center">
-                                    <a href="{{asset('http://103.127.96.59:9000/mled/'.$image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
-                                        <img src="{{asset('http://103.127.96.59:9000/mled/'.$image->url)}}" alt="" 
+                                    <a href="{{Storage::disk('s3')->url($image->url)}}" data-title="{{ $image->name }}" data-lightbox="mygallery">
+                                        <img src="{{Storage::disk('s3')->url($image->url)}}" alt="" 
                                         class="img-fluid rounded" style="height: 150px; width: 150px">
                                     </a>
                                 </div>
@@ -121,62 +121,6 @@
                     </div>
                 @endif
 
-
-                {{-- <table id="example1" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Url</th>
-                            @if (auth()->user()->role_id == 2)
-
-                            <th>Opsi</th>
-                            @endif
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($mediaProducts as $mediaProduct)
-                        <tr>
-                            <td> {{ $mediaProduct->id }} </td>
-                            <td> 
-                                @if ($mediaProduct->mediaType->name == "Image")
-                                <img src="{{asset('storage/product/media/'.$mediaProduct->url)}}" alt="" width="80px" height="80px">
-                                @else
-                                    <a href="/backoffice/product/media/download/{{ $mediaProduct->id }}" class="btn btn-sm btn-success">Download</a>
-                                @endif    
-                            </td>
-                            <td> {{ $mediaProduct->name }} </td>
-                            <td style=""> {{ $mediaProduct->url }} </td>
-                            @if (auth()->user()->role_id == 2)
-
-                            <td>
-                                <button type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#store_media{{ $mediaProduct->id }}">
-                                    <span><i class="ion ion-android-create"></i> Edit</span>
-                                </button>
-                                @include('backoffice.product.media.modal.edit')
-                                <button type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#mediaDelete{{ $mediaProduct->id }}">
-                                    <span><i class="ion ion-android-delete"></i> Delete</span>
-                                </button>
-                                @include('backoffice.product.media.modal.delete')
-                            </td>
-                            @endif
-                        </tr>
-                        @endforeach
-                    </tbody>
-                    <tfoot>
-                        <tr>
-                            <th>ID</th>
-                            <th>Gambar</th>
-                            <th>Nama</th>
-                            <th>Url</th>
-                            @if (auth()->user()->role_id == 2)
-
-                            <th>Option</th>
-                            @endif
-                        </tr>
-                    </tfoot>
-                </table> --}}
             </div>
         </div>
         <!-- /.card -->

@@ -73,8 +73,8 @@
                     <div class="col-md-3 gallery">
                         <div class="card card-outline card-primary">
                             <div class="">
-                                <a href="{{asset('http://103.127.96.59:9000/mled/'.$gallery->image)}}" data-title="{{ $gallery->name }}" data-lightbox="mygallery">
-                                    <img src="{{asset('http://103.127.96.59:9000/mled/'.$gallery->image)}}" alt="" 
+                                <a href="{{Storage::disk('s3')->url($gallery->image)}}" data-title="{{ $gallery->name }}" data-lightbox="mygallery">
+                                    <img src="{{Storage::disk('s3')->url($gallery->image)}}" alt="" 
                                     class="img-fluid rounded" style="height: 200px; width: 100%">
                                 </a>
                             </div>

@@ -81,7 +81,7 @@
                         <tr>
                             <td> {{ $key + 1 }} </td>
                             <td>
-                                <img src="{{asset('http://103.127.96.59:9000/mled/'. $product->product->thumbnail)}}" alt="" width="80px" height="80px">
+                                <img src="{{Storage::disk('s3')->url($product->product->thumbnail)}}" alt="" width="80px" height="80px">
                             </td>
                             <td> {{ $product->product->name }} </td>
                             <td>

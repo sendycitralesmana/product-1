@@ -23,7 +23,7 @@
                             {{-- <p> {{ $image->url }} </p> --}}
                             {{-- <img src="{{ asset('storage/image/gallery/'. $image->url) }}" name="oldValue" value="{{ $image->url }}" class="img-previewP img-fluid mb-3 col-sm-5 d-block" alt=""> --}}
                             @if ($image->url)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'.$image->url) }}" name="oldValue" value="$image->thumbnail" 
+                                <img src="{{ Storage::disk('s3')->url($image->url) }}" name="oldValue" value="$image->thumbnail" 
                                 class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">

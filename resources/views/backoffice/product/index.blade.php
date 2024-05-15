@@ -14,7 +14,7 @@
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
-                        <li class="breadcrumb-item"><a href="/backoffice/product/kategori" class="">Kategori</a></li>
+                        <li class="breadcrumb-item"><a href="/backoffice/product/category" class="">Kategori</a></li>
                         <li class="breadcrumb-item active">Produk</li>
                     </ol>
                 </div>
@@ -104,7 +104,7 @@
                                         @if( $product->thumbnail != null )
                                         {{-- <img src="{{asset('storage/image/product/'.$product->thumbnail)}}" alt=""
                                             width="100px" height="100px"> --}}
-                                        <img src="{{asset('http://103.127.96.59:9000/mled/'.$product->thumbnail)}}" alt=""
+                                        <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
                                             width="100px" height="100px">
                                         @else
                                         <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"

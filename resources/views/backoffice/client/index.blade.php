@@ -124,10 +124,10 @@
                                 </div>
                             </div>
                             <div class="card-body">
-                                <a href="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
+                                <a href="{{Storage::disk('s3')->url($client->image)}}" data-title="{{ $client->name }}" data-lightbox="myclient">
                                     {{-- <img src="{{asset('http://103.127.96.59:9000/mled/'.$client->image)}}" alt="" 
                                     class="img-fluid rounded" style="height: 100px; width: 100%"> --}}
-                                    <img src="{{ asset('http://103.127.96.59:9000/mled/'.$client->image) }}" alt="" class="img-fluid object-fit-contain rounded" 
+                                    <img src="{{ Storage::disk('s3')->url($client->image) }}" alt="" class="img-fluid object-fit-contain rounded" 
                                     style="height: 80px; display: block; margin-left: auto; margin-right: auto">
                                 </a>
                                 <div class="status mt-2 text-center">

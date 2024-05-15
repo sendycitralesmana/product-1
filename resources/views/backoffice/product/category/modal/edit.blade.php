@@ -29,13 +29,14 @@
                         </div> --}}
                         <div class="form-group">
                             <label>Ikon</label>
-                            <input type="hidden" name="oldIcon" value="{{ $productCategory->ikon }}">
-                            @if ($productCategory->ikon)
-                                <img src="{{ asset('shttp://103.127.96.59:9000/mled/'. $productCategory->ikon) }}" name="oldValue" value="$productCategory->ikon" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                            <input type="hidden" name="oldIcon" value="{{ $productCategory->icon }}">
+                            @if ($productCategory->icon)
+                                <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue" value="$productCategory->ikon" 
+                                class="ikon img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
-                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="ikon img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="ikon">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif
@@ -44,11 +45,12 @@
                             <label>Thumbnail</label>
                             <input type="hidden" name="oldImage" value="{{ $productCategory->thumbnail }}">
                             @if ($productCategory->thumbnail)
-                                <img src="{{ asset('shttp://103.127.96.59:9000/mled/'. $productCategory->thumbnail) }}" name="oldValue" value="$productCategory->thumbnail" class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="">
+                                <img src="{{ Storage::disk('s3')->url($productCategory->thumbnail) }}" name="oldValue" 
+                                class="thumbnail img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
-                                <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="thumbnail img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept=".jpg, .jpeg, .png, .svg, .webp" onchange="previewImg()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="image">
+                            <input type="file" accept="image/*" onchange="thumbnailR()" id="image" name="thumbnail" class="form-control" placeholder="Enter Password" id="thumbnail">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -66,11 +68,30 @@
     </div>
 </div>
 <script>
-    function previewImg() {
-        const image = document.querySelector('#image')
-        const imgPreview = document.querySelector('.img-preview')
+    function ikonR() {
+        const image = document.querySelector('#ikon')
+        const imgPreview = document.querySelector('.ikon')
 
         imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
+
+        const oFReader = new FileReader()
+        oFReader.readAsDataURL(image.files[0])
+
+        oFReader.onload = function(oFREvent) {
+            imgPreview.src = oFREvent.target.result
+        }
+    }
+</script>
+<script>
+    function thumbnailR() {
+        const image = document.querySelector('#thumbnail')
+        const imgPreview = document.querySelector('.thumbnail')
+
+        imgPreview.style.display = 'block'
+        imgPreview.style.width = '150px'
+        imgPreview.style.height = '150px'
 
         const oFReader = new FileReader()
         oFReader.readAsDataURL(image.files[0])

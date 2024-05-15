@@ -86,7 +86,7 @@
 
                                     <div class="text-center">
                                         @if ( $application->thumbnail != null )
-                                        <img src="{{ asset('http://103.127.96.59:9000/mled/'.$application->thumbnail) }}" class="img-fluid" alt="" style="height: 300px;">
+                                        <img src="{{ Storage::disk('s3')->url($application->thumbnail) }}" class="img-fluid" alt="" style="height: 300px;">
                                         @else
                                         <img src="{{ asset('images/default.png') }}" class="img-fluid" alt="" style="height: 300px">
                                         @endif

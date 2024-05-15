@@ -43,7 +43,7 @@
                             <label>Gambar</label>
                             <input type="hidden" name="oldImage" value="{{ $post->thumbnail }}">
                             @if ($post->thumbnail)
-                                <img src="{{ asset('http://103.127.96.59:9000/mled/'. $post->thumbnail) }}" name="oldValue" value="$post->thumbnail" 
+                                <img src="{{ Storage::disk('s3')->url($post->thumbnail) }}" name="oldValue" value="$post->thumbnail" 
                                 class="img-preview img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="img-preview img-fluid mb-3 col-sm-5" alt="">

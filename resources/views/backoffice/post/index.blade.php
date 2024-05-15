@@ -115,7 +115,7 @@
                                             </div>
                                             <div class="card-body">
                                                 @if ( $post->thumbnail != null )
-                                                <img src="{{ asset('http://103.127.96.59:9000/mled/'.$post->thumbnail) }}" class="img-fluid"
+                                                <img src="{{ Storage::disk('s3')->url($post->thumbnail) }}" class="img-fluid"
                                                     alt="" height="300px">
                                                 @endif
                                                 <h4 class="mt-2"> 

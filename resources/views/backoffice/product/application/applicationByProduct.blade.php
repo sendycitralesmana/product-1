@@ -80,67 +80,6 @@
                 </script>
                 @endif
 
-                {{-- @if ( url()->full() != url('/backoffice/product/application/'. $product->id ) )
-                    <div class="text-center">
-                        <p>
-                            Hasil pencarian dari: <b>{{ $title }}</b>
-                        </p>
-                    </div>
-                @endif
-                @if ( $appProducts->count() == 0 )
-                    <div class="text-center">
-                        <h2>
-                            <b>-- Tidak ada data --</b>
-                        </h2>
-                    </div>
-                @endif
-                <div class="row">
-                    
-                    @foreach ($appProducts as $application)
-                    <div class="col-md-4 application">
-                        <div class="card">
-                            <div class="">
-                                <a href="{{asset('storage/image/application/'.$application->application->image)}}" data-title="{{ $application->application->name }}" data-lightbox="myapplication">
-                                    <img src="{{asset('storage/image/application/'.$application->application->image)}}" alt="" 
-                                    class="img-fluid rounded" style="height: 250px; width: 100%">
-                                </a>
-                            </div>
-                            <div class="p-1" style="height: 160px">
-                                <small>{{ $application->application->time }}</small>
-                                <h5 class="" style="overflow: hidden;
-                                text-overflow: ellipsis;
-                                -webkit-line-clamp: 2;
-                                display: -webkit-box;
-                                -webkit-box-orient: vertical;">
-                                    <b>{{ $application->application->name }}</b>
-                                </h5>
-                                <div style="overflow: hidden;
-                                text-overflow: ellipsis;
-                                -webkit-line-clamp: 3;
-                                display: -webkit-box;
-                                -webkit-box-orient: vertical;">
-                                    {!! html_entity_decode($application->application->description) !!}
-                                </div>
-                            </div>
-                            <div class="d-flex">
-                                <a href="/backoffice/application/{{ $application->application->id }}/detail" class="btn btn-info btn-sm btn-block m-1">
-                                    <i class="ion ion-ios-eye"></i> Detail
-                                </a>
-                                <button type="button" class="btn btn-danger btn-sm btn-block m-1" data-toggle="modal"
-                                    data-target="#applicationDelete{{$application->id}}">
-                                    <span><i class="ion ion-android-delete"></i> Hapus</span>
-                                </button>
-                                @include('backoffice.application.modal.delete')
-                            </div>
-                        </div>
-                    </div>
-                    @endforeach
-                </div>
-
-                <div class="p-3">
-                    {{ $appProducts->links() }}
-                </div> --}}
-
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -155,7 +94,7 @@
                         <tr>
                             <td> {{ $key + 1 }} </td>
                             <td>
-                                <img src="{{asset('http://103.127.96.59:9000/mled/'.$application->application->thumbnail)}}" alt="" 
+                                <img src="{{Storage::disk('s3')->url($application->application->thumbnail)}}" alt="" 
                                 style="height: 100px; width: 100px" >
                             </td>
                             <td>

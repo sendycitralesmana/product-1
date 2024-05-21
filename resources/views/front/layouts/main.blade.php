@@ -102,7 +102,6 @@
     @yield('main')
 
     <a href="https://wa.me/6285523782593" class="" target="_blank" style="position: fixed; left: 20px; bottom: 20px;">
-        {{-- <i class="fa fa-whatsapp" style="font-size: 40px;"></i>  --}}
         <img src="{{asset('images/wa.png')}}" alt="" style="width: 60px; height: 60px">
     </a>
 

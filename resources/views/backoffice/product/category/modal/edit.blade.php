@@ -32,11 +32,11 @@
                             <input type="hidden" name="oldIcon" value="{{ $productCategory->icon }}">
                             @if ($productCategory->icon)
                                 <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue" value="$productCategory->ikon" 
-                                class="ikon img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
+                                class="ikonR img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
-                                <img src="" class="ikon img-fluid mb-3 col-sm-5" alt="">
+                                <img src="" class="ikonR img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="ikon">
+                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikonR" class="form-control" placeholder="Enter Password" id="ikon">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif
@@ -67,10 +67,10 @@
         </div>
     </div>
 </div>
-<script>
+{{-- <script>
     function ikonR() {
-        const image = document.querySelector('#ikon')
-        const imgPreview = document.querySelector('.ikon')
+        const image = document.querySelector('#ikonR')
+        const imgPreview = document.querySelector('.ikonR')
 
         imgPreview.style.display = 'block'
         imgPreview.style.width = '150px'
@@ -100,4 +100,4 @@
             imgPreview.src = oFREvent.target.result
         }
     }
-</script>
+</script> --}}

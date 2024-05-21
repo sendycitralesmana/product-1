@@ -38,8 +38,8 @@
                         </div>
                         <div class="form-group">
                             <label>Thumbnail</label>
-                            <img src="" class="imageThumbnailPC img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewThumbnailPC()" id="imageThumbnailPC" name="thumbnail" class="form-control">
+                            <img src="" class="imageThumbnail img-fluid mb-3 col-sm-5" alt="">
+                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif
@@ -87,38 +87,38 @@
 </script>
 <script>
     // thumbnail
-    function previewThumbnailPC() {
-        const imageThumbnailPC = document.querySelector('#imageThumbnailPC');
-        const imgPreviewThumbnailPC = document.querySelector('.imageThumbnailPC');
+    // function previewThumbnail() {
+    //     const imageThumbnail = document.querySelector('#imageThumbnail');
+    //     const imgPreviewThumbnail = document.querySelector('.imageThumbnail');
 
-        imgPreviewThumbnailPC.style.display = 'block';
-        imgPreviewThumbnailPC.style.width = '150px';
-        imgPreviewThumbnailPC.style.height = '150px';
+    //     imgPreviewThumbnail.style.display = 'block';
+    //     imgPreviewThumbnail.style.width = '150px';
+    //     imgPreviewThumbnail.style.height = '150px';
 
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
+    //     const oFReader = new FileReader();
+    //     oFReader.readAsDataURL(image.files[0]);
 
-        oFReader.onload = function(oFREvent) {
-            imgPreviewThumbnailPC.src = oFReader.target.result;
-        }
-    }
+    //     oFReader.onload = function(oFREvent) {
+    //         imgPreviewThumbnail.src = oFReader.target.result;
+    //     }
+    // }
 </script>
 <script>
     // icon
-    function previewIcon() {
-        const imageIcon = document.querySelector('#imageIcon');
-        const imgPreviewIcon = document.querySelector('.imageIcon');
+    // function previewIcon() {
+    //     const imageIcon = document.querySelector('#imageIcon');
+    //     const imgPreviewIcon = document.querySelector('.imageIcon');
 
-        imgPreviewIcon.style.display = 'block';
-        imgPreviewIcon.style.width = '150px';
-        imgPreviewIcon.style.height = '150px';
+    //     imgPreviewIcon.style.display = 'block';
+    //     imgPreviewIcon.style.width = '150px';
+    //     imgPreviewIcon.style.height = '150px';
 
-        const oFReader = new FileReader();
-        oFReader.readAsDataURL(image.files[0]);
+    //     const oFReader = new FileReader();
+    //     oFReader.readAsDataURL(image.files[0]);
 
-        oFReader.onload = function(oFREvent) {
-            imgPreviewIcon.src = oFReader.target.result;
-        }
-    }
+    //     oFReader.onload = function(oFREvent) {
+    //         imgPreviewIcon.src = oFReader.target.result;
+    //     }
+    // }
 </script>
 {{--  --}}

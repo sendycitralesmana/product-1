@@ -141,7 +141,7 @@
         })
     </script>
 
-    <script>
+    {{-- <script>
         function previewImage() {
             const image = document.querySelector('#image');
             const imgPreview = document.querySelector('.img-preview');
@@ -155,7 +155,7 @@
                 imgPreview.src = oFReader.target.result;
             }
         }
-    </script>
+    </script> --}}
 
     {{--  --}}
 

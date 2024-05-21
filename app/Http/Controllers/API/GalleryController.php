@@ -44,7 +44,7 @@ class GalleryController extends Controller
             $resource = new DetailGalleryResource($gallery);
 
             return response()->json([
-                 $resource
+                $resource
             ], 200);
         } else {
             return response()->json([

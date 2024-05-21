@@ -42,7 +42,7 @@
         </div>
     </div>
 </div>
-
+{{-- 
 <script>
     function previewImg() {
         const image = document.querySelector('#image-preview')
@@ -59,4 +59,4 @@
             imgPreview.src = oFREvent.target.result
         }
     }
-</script>
+</script> --}}

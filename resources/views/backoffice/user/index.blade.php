@@ -80,7 +80,7 @@
                             <td> {{ $user->id }} </td>
                             <td>
                                 @if( $user->avatar != null )
-                                    <img src="{{asset('storage/image/user/'.$user->avatar)}}" alt="" width="100px" height="100px">
+                                    <img src="{{ Storage::disk('s3')->url($user->avatar) }}" alt="" width="100px" height="100px">
                                 @else
                                     <img src="{{asset('storage/image/default.png')}}" alt="" width="100px" height="100px">
                                 @endif    

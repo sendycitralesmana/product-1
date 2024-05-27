@@ -10,6 +10,7 @@ use App\Http\Controllers\API\GalleryController;
 use App\Http\Controllers\API\HistoryController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\ApplicationController;
+use App\Http\Controllers\API\CarouselController;
 use App\Http\Controllers\API\PostCategoryController;
 use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\ProductMediaController;
@@ -36,6 +37,9 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 // user
 Route::get('/user', [UserController::class, 'index']);
 Route::get('/user/{id}', [UserController::class, 'detail']);
+
+// carousel
+Route::get('/carousel', [CarouselController::class, 'index']);
 
 // product
 Route::get('/product', [ProductController::class, 'index']);

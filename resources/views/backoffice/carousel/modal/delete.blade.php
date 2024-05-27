@@ -8,8 +8,11 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    Anda yakin akan hapus {{$carousel->title}}
-                    
+                    <img src="{{ Storage::disk('s3')->url($carousel->image) }}" class="img-fluid rounded" alt=""
+                    style="width: 100%; height: 300px">
+                    <p class="">
+                        <b>Anda yakin akan hapus?</b>
+                    </p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-warning" data-dismiss="modal"><span class="fas fa-arrow-left"></span> Kembali</button>

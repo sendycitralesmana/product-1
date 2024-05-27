@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label>Ikon</label>
                             <img src="" class="imageIcon img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewIcon()" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept="image/*" onchange="" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif
@@ -39,7 +39,7 @@
                         <div class="form-group">
                             <label>Thumbnail</label>
                             <img src="" class="imageThumbnail img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="previewThumbnail()" id="imageThumbnail" name="thumbnail" class="form-control">
+                            <input type="file" accept="image/*" onchange="" id="imageThumbnail" name="thumbnail" class="form-control">
                             @if($errors->has('thumbnail'))
                             <span class="help-block" style="color: red">{{ $errors->first('thumbnail') }}</span>
                             @endif

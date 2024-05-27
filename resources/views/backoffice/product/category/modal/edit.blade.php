@@ -27,16 +27,16 @@
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                             @endif
                         </div> --}}
-                        <div class="form-group">
+                        <div class="form-group" style="background-color: blue">
                             <label>Ikon</label>
                             <input type="hidden" name="oldIcon" value="{{ $productCategory->icon }}">
                             @if ($productCategory->icon)
-                                <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue" value="$productCategory->ikon" 
+                                <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue"
                                 class="ikonR img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                             @else
                                 <img src="" class="ikonR img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikonR" class="form-control" placeholder="Enter Password" id="ikon">
+                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="ikon">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif

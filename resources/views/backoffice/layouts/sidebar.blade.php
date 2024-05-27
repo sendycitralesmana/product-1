@@ -144,6 +144,13 @@
                         </ul>
                     </li> --}}
                     <li class="nav-item">
+                        <a href="/backoffice/carousel"
+                            class="nav-link {{ request()->is('backoffice/carousel', 'backoffice/carousel/*') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-panorama"></i>
+                            <p>Carousel</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/backoffice/product/category"
                             class="nav-link {{ request()->is('backoffice/product/category', 'backoffice/product/category/*') ? 'active' : '' }}">
                             <i class="nav-icon fa fa-display"></i>

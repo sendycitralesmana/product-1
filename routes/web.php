@@ -20,6 +20,7 @@ use App\Http\Controllers\FE\PostFEController;
 use App\Http\Controllers\MediaTypeController;
 use App\Http\Controllers\FE\AboutFEController;
 use App\Http\Controllers\ApplicationController;
+use App\Http\Controllers\BackOffice\CarouselController;
 use App\Http\Controllers\ContentAltController;
 use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\ContactFEController;
@@ -117,6 +118,18 @@ Route::group(['middleware' => 'auth'], function(){
 
     // grup backoffice
     Route::group(['prefix' => 'backoffice'], function(){
+
+        // grup carousel
+        Route::group(['prefix' => 'carousel'], function(){
+            Route::get('/', [CarouselController::class, 'index']);
+            Route::post('/store', [CarouselController::class, 'store']);
+
+            // grup carousel_id
+            Route::group(['prefix' => '{carousel_id}'], function(){
+                Route::put('/update', [CarouselController::class, 'update']);
+                Route::get('/delete', [CarouselController::class, 'delete']);
+            });  
+        });
         
         // grup data produk
         Route::group(['prefix' => 'product'], function(){

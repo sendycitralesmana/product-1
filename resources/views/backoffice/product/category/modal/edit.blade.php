@@ -27,7 +27,7 @@
                             <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                             @endif
                         </div> --}}
-                        <div class="form-group" style="background-color: blue">
+                        <div class="form-group">
                             <label>Ikon</label>
                             <input type="hidden" name="oldIcon" value="{{ $productCategory->icon }}">
                             @if ($productCategory->icon)

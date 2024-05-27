@@ -31,12 +31,18 @@
                             <label>Ikon</label>
                             <input type="hidden" name="oldIcon" value="{{ $productCategory->icon }}">
                             @if ($productCategory->icon)
+                                {{-- <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue"
+                                class="ikonR img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px"> --}}
+
+                                {{-- img src change color  --}}
                                 <img src="{{ Storage::disk('s3')->url($productCategory->icon) }}" name="oldValue"
-                                class="ikonR img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
+                                class="ikonR img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px; 
+                                filter: brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(13%) hue-rotate(69deg) brightness(117%) contrast(100%);">
+
                             @else
                                 <img src="" class="ikonR img-fluid mb-3 col-sm-5" alt="">
                             @endif
-                            <input type="file" accept="image/*" onchange="ikonR()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="ikon">
+                            <input type="file" accept=".svg" onchange="ikonR()" id="image" name="ikon" class="form-control" placeholder="Enter Password" id="ikon">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif

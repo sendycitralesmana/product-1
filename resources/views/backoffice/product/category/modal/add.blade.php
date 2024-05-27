@@ -31,7 +31,7 @@
                         <div class="form-group">
                             <label>Ikon</label>
                             <img src="" class="imageIcon img-fluid mb-3 col-sm-5" alt="">
-                            <input type="file" accept="image/*" onchange="" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
+                            <input type="file" accept=".svg" onchange="" id="imageIcon" name="ikon" class="form-control" placeholder="Enter Password">
                             @if($errors->has('ikon'))
                             <span class="help-block" style="color: red">{{ $errors->first('ikon') }}</span>
                             @endif

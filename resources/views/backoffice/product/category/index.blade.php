@@ -85,7 +85,8 @@
                             <td> {{ $key + 1 }} </td>
                             <td> 
                                 @if( $productCategory->icon != null )
-                                    <img src="{{Storage::disk('s3')->url($productCategory->icon)}}" alt="" width="100px" height="100px">
+                                    <img src="{{Storage::disk('s3')->url($productCategory->icon)}}" alt="" width="100px" height="100px"
+                                    style="filter: brightness(0) saturate(100%) invert(0%) sepia(1%) saturate(13%) hue-rotate(69deg) brightness(117%) contrast(100%);">
                                 @else
                                     <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                 @endif

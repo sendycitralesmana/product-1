@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Storage;
 class ClientController extends Controller
 {
     public function index(Request $request) {
-        $clients = Client::paginate(12);
+        $clients = Client::orderBy('id', 'desc')->paginate(12);
         if ($request->search) {
             $clients = Client::where('name', 'like', '%' . $request->search . '%')->paginate(12);
         }
@@ -122,4 +122,21 @@ class ClientController extends Controller
         Session::flash('message', 'Hapus klien berhasil');
         return redirect('/backoffice/client');
     }
+
+    public function show($id) {
+        $client = Client::find($id);
+        $client->is_hidden = "0";
+        $client->save();
+
+        return redirect('/backoffice/client');
+    }
+
+    public function hide($id) {
+        $client = Client::find($id);
+        $client->is_hidden = "1";
+        $client->save();
+
+        return redirect('/backoffice/client');
+    }
+
 }

@@ -177,12 +177,12 @@
                           <p>Artikel</p>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    {{-- <li class="nav-item">
                         <a href="/backoffice/gallery" class="nav-link {{ request()->is('backoffice/gallery', 'backoffice/gallery/*') ? 'active' : '' }}">
                           <i class="nav-icon fas fa-image"></i>
                           <p>Galeri</p>
                         </a>
-                    </li>
+                    </li> --}}
                     <li class="nav-item">
                         <a href="/backoffice/client"
                             class="nav-link {{ request()->is('backoffice/client', 'backoffice/client/*') ? 'active' : '' }}">

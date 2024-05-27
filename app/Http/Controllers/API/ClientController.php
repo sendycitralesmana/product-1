@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ClientController extends Controller
 {
     public function index(Request $request) {
-        $qClients = Client::query();
+        $qClients = Client::where('is_hidden', "0")->orderBy('id', 'desc');
 
         if ($request->search) {
             $qClients->where('name', 'LIKE', '%' . $request->search . '%');

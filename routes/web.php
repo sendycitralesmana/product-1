@@ -255,6 +255,7 @@ Route::group(['middleware' => 'auth'], function(){
             Route::group(['prefix' => '{application_id}'], function(){
                 Route::get('/detail', [ApplicationController::class, 'detail']);
                 Route::get('/delete', [ApplicationController::class, 'delete']);
+                Route::put('/update', [ApplicationController::class, 'update']);
 
                 // grup image
                 Route::group(['prefix' => 'image'], function(){
@@ -345,10 +346,10 @@ Route::group(['middleware' => 'auth'], function(){
     // Post End
 
     // Gallery
-    Route::get('/backoffice/gallery', [GalleryController::class, 'index']);
-    Route::post('/backoffice/gallery/create', [GalleryController::class, 'create']);
-    Route::put('/backoffice/gallery/{id}/update', [GalleryController::class, 'update']);
-    Route::get('/backoffice/gallery/{id}/delete', [GalleryController::class, 'delete']);
+    // Route::get('/backoffice/gallery', [GalleryController::class, 'index']);
+    // Route::post('/backoffice/gallery/create', [GalleryController::class, 'create']);
+    // Route::put('/backoffice/gallery/{id}/update', [GalleryController::class, 'update']);
+    // Route::get('/backoffice/gallery/{id}/delete', [GalleryController::class, 'delete']);
 
     // Client
     Route::get('/backoffice/client', [ClientController::class, 'index']);
@@ -356,6 +357,9 @@ Route::group(['middleware' => 'auth'], function(){
     Route::put('/backoffice/client/{id}/update', [ClientController::class, 'update']);
     Route::get('/backoffice/client/{id}/delete', [ClientController::class, 'delete']);
     Route::get('/backoffice/client/{id}/detail', [ClientController::class, 'detail']);
+
+    Route::get('/backoffice/client/{id}/show', [ClientController::class, 'show']);
+    Route::get('/backoffice/client/{id}/hide', [ClientController::class, 'hide']);
     
     // Feedback
     Route::get('/backoffice/feedback', [ContactUsController::class, 'index']);

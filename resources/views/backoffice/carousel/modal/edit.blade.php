@@ -5,7 +5,7 @@
                 {{ csrf_field() }}
                 @method('put')
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ubah gambar</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Ubah Gambar</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -15,24 +15,22 @@
                         <div class="card-body">
                             <div class="form-group">
                                 <label for="title">Judul</label>
-                                <input type="text" name="title" class="form-control">
+                                <input type="text" name="title" class="form-control" value="{{ $carousel->title }}">
                                 @if($errors->has('title'))
                                 <span class="help-block" style="color: red">{{ $errors->first('title') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label for="description">Deskripsi</label>
-                                <textarea name="description" class="form-control"></textarea>
+                                <textarea name="description" class="form-control">{{ $carousel->description }}</textarea>
                                 @if($errors->has('description'))
                                 <span class="help-block" style="color: red">{{ $errors->first('description') }}</span>
                                 @endif
                             </div>
                             <div class="form-group">
                                 <label>Gambar</label>
-                                <input type="hidden" name="oldImage" value="{{ $carousel->image }}">
-                                <input type="hidden" name="oldName" value="{{ $carousel->name }}">
                                 @if ($carousel->image)
-                                    <img src="{{ Storage::disk('s3')->url($carousel->image) }}" name="oldValue" value="$image->thumbnail" 
+                                    <img src="{{ Storage::disk('s3')->url($carousel->image) }}" 
                                     class="img-previewP rounded img-fluid mb-3 col-sm-5 d-block" alt="" style="width: 150px; height: 150px">
                                 @else
                                     <img src="" class="img-previewP img-fluid mb-3 col-sm-5" alt="">

@@ -67,6 +67,7 @@
                         @endforeach
                     </div>
                 @endif
+
                 <table id="example1" class="table table-bordered table-striped">
                     <thead>
                         <tr>

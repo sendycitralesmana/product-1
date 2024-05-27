@@ -41,10 +41,8 @@
                             @endif
                         </div>
                         <div class="form-group">
-                            <label>Tanggal <span class="text-danger">*</span></label>
-                            <input type="date" name="date" class="form-control" value="{{ $application->date }}" required
-                            oninvalid="this.setCustomValidity('Tanggal harus diisi!')"
-                                oninput="this.setCustomValidity('')">
+                            <label>Tanggal</label>
+                            <input type="date" name="date" class="form-control" value="{{ $application->date }}">
                             @if($errors->has('date'))
                             <span class="help-block" style="color: red">{{ $errors->first('date') }}</span>
                             @endif

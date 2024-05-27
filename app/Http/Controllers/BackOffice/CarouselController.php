@@ -19,7 +19,7 @@ class CarouselController extends Controller
     public function index()
     {
         try {
-            $carousels = $this->carouselRepository->getAllByPagination();
+            $carousels = $this->carouselRepository->getAll();
             return view('backoffice.carousel.index', compact('carousels'));
         } catch (\Throwable $th) {
             throw $th;

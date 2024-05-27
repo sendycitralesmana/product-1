@@ -129,13 +129,17 @@
                                     style="height: 80px; display: block; margin-left: auto; margin-right: auto">
                                 </a>
                                 <div class="status mt-2 text-center">
-                                    @if ( $client->is_hidden == 0 )
+                                    @if ( $client->is_hidden == "0" )
                                         <button class="badge badge-light">
-                                            <i class="fa fa-eye"></i> Ditampilkan
+                                            <a href="/backoffice/client/{{ $client->id }}/hide">
+                                                <i class="fa fa-eye"></i> Ditampilkan
+                                            </a>
                                         </button>
                                     @else
                                         <button class="badge badge-light">
-                                            <i class="fa fa-eye-slash"></i> Tidak ditampilkan
+                                            <a href="/backoffice/client/{{ $client->id }}/show">
+                                                <i class="fa fa-eye-slash"></i> Tidak ditampilkan
+                                            </a>
                                         </button>
                                     @endif
                                 </div>

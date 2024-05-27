@@ -10,7 +10,7 @@ class CarouselRepository
     public function getAll()
     {
         try {
-            return Carousel::get();
+            return Carousel::orderBy('id', 'desc')->get();
         } catch (\Throwable $th) {
             throw $th;
         }

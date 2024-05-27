@@ -36,12 +36,10 @@ class ApplicationController extends Controller
             'name' => 'required',
             'description' => 'required',
             'area' => 'required',
-            'date' => 'required',
         ], [
             'name.required' => 'Proyek harus diisi',
             'description.required' => 'Deskripsi harus diisi',
             'area.required' => 'Area harus diisi',
-            'date.required' => 'Waktu harus diisi',
         ]);
 
         // $newName = null;
@@ -90,21 +88,7 @@ class ApplicationController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'area' => 'required',
-            'date' => 'required',
         ]);
-
-        $newName = null;
-        if($request->file('thumbnail')) {
-            if ($request->oldImage) {
-                // Storage::delete('image/application/' . $request->oldImage);
-                Storage::disk('s3')->delete($request->oldImage);
-            }
-            $fileName = $request->file('thumbnail')->getClientOriginalExtension();
-            $newName = 'thumbnail-' . now()->timestamp . '.' . $fileName;
-            // $request->file('thumbnail')->storeAs('image/application/', str_replace(' ', '_', $newName));
-            $file = $request->file('thumbnail');
-            $path = Storage::disk('s3')->put("", $file);
-        }
 
         $application = Application::find($id);
         $application->client_id = $request->client_id;
@@ -112,14 +96,13 @@ class ApplicationController extends Controller
         $application->description = $request->description;
         $application->area = $request->area;
         $application->date = $request->date;
-        if ($request->oldImage != null) {
-            if ($request->file('thumbnail') == "") {
-                $application->thumbnail = $request->oldImage;
-            } else {
-                $application->thumbnail = str_replace(' ', '_', $path);
+        if ($request->file('thumbnail')) {
+            if ($application->thumbnail) {
+                Storage::disk('s3')->delete($application->thumbnail);
             }
-        } else {
-            $application->thumbnail = str_replace(' ', '_', $path);
+            $file = $request->file('thumbnail');
+            $path = Storage::disk('s3')->put("", $file);
+            $application->thumbnail = $path;
         }
         $application->save();
 

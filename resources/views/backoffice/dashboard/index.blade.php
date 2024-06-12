@@ -77,7 +77,7 @@
                 </div>
             </div>
             <!-- ./col -->
-            <div class="col-lg-3 col-6">
+            {{-- <div class="col-lg-3 col-6">
                 <!-- small box -->
                 <div class="small-box bg-danger">
                     <div class="inner">
@@ -92,11 +92,11 @@
                         <a href="/backoffice/gallery" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                     @endif
                 </div>
-            </div>
+            </div> --}}
             <!-- ./col -->
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-warning">
+                <div class="small-box bg-danger">
                     <div class="inner">
                         <h3>{{ $clients->count() }}</h3>
 
@@ -113,7 +113,7 @@
 
             <div class="col-lg-3 col-6">
                 <!-- small box -->
-                <div class="small-box bg-danger">
+                <div class="small-box bg-info">
                     <div class="inner">
                         <h3>{{ $feedbacks->count() }}</h3>
 

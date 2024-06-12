@@ -5,11 +5,23 @@
 @section('content')
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
-
+    <section class="content-header">
+        <div class="container-fluid">
+            <div class="row mb-2">
+                <div class="col-sm-6">
+                    <h1>Detail Artikel</h1>
+                </div>
+                <div class="col-sm-6">
+                    <ol class="breadcrumb float-sm-right">
+                        <li class="breadcrumb-item active">Artikel</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Main content -->
     <section class="content">
-        <hr>
         <div class="row">
 
             <div class="col-md-8">
@@ -17,7 +29,7 @@
                     <div class="card-header">
                         <div class="row">
 
-                            <h3 class="card-title">Data Artikel</h3>
+                            <h3 class="card-title">Artikel</h3>
                         </div>
                         <div class="mt-2">
                             <div class="d-flex justify-content-between">
@@ -80,7 +92,7 @@
                         </div>
                         @endif
 
-                        <div class="post-position" style=" height:490px; overflow-y: scroll">
+                        <div class="post-position" style=" height:590px; overflow-y: scroll">
                             @if ( $title != null )
                                 <div class="text-center">
                                     <p>
@@ -115,8 +127,10 @@
                                             </div>
                                             <div class="card-body">
                                                 @if ( $post->thumbnail != null )
-                                                <img src="{{ Storage::disk('s3')->url($post->thumbnail) }}" class="img-fluid"
-                                                    alt="" height="300px">
+                                                <div class="text-left">
+                                                    <img src="{{ Storage::disk('s3')->url($post->thumbnail) }}" class="img-fluidn rounded"
+                                                        alt="" style="width: 60%; height: 370px">
+                                                </div>
                                                 @endif
                                                 <h4 class="mt-2"> 
                                                     <b>{{ $post->title }}</b>  

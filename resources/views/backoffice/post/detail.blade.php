@@ -7,7 +7,7 @@
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
     <section class="content-header">
-    <div class="container-fluid">
+        <div class="container-fluid">
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Detail Artikel</h1>
@@ -19,7 +19,7 @@
                     </ol>
                 </div>
             </div>
-        </div><!-- /.container-fluid -->
+        </div>
     </section>
 
     <!-- Main content -->
@@ -65,7 +65,7 @@
                             <div class="card-header">
                                 <div class="user-block">
                                     @if ( $post->user->avatar != null )
-                                        <img src="{{ asset('storage/image/user/'.$post->user->avatar) }}" alt="">
+                                        <img src="{{ Storage::disk('s3')->url($post->user->avatar) }}" alt="">
                                     @endif
                                     {{-- <img class="img-circle" src="../dist/img/user1-128x128.jpg" alt="User Image"> --}}
                                     <span class="username"><p>{{ $post->user->name }}</p></span>

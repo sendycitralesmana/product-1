@@ -152,7 +152,7 @@
                                     <div class="carousel-inner">
                                         @foreach ($carousels as $key => $carousel)
                                         <div class="carousel-item @if ($key == 0) active @endif">
-                                            <img class="d-block w-100"
+                                            <img class="d-block w-100 rounded"
                                                 src="{{ Storage::disk('s3')->url($carousel->image) }}"
                                                 alt="First slide">
                                         </div>

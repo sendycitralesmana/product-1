@@ -104,4 +104,26 @@ class ProductController extends Controller
             ], 404);
         }
     }
+
+    // findBySlug
+    public function findBySlug($slug) {
+        $product = Product::with([
+            'category:id,name,thumbnail,icon,created_at', 
+            'media:id,product_id,type_id,url,created_at', 
+            'media.mediaType:id,name,created_at',
+            'video', 
+            'variant:id,product_id,name,created_at', 
+            'variant.spec:id,product_variant_id,specification_id,value,created_at', 
+            'variant.spec.specification:id,name,created_at', 
+            'application:id,name,area,date,description,thumbnail,created_at',
+            ])->where('slug', $slug)->first();
+
+        if ($product) {
+            return new DetailProductResource($product);
+        } else {
+            return response()->json([
+                'message' => 'No product found'
+            ], 404);
+        }
+    }
 }

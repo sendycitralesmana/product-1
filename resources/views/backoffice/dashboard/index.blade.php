@@ -38,7 +38,7 @@
                         <i class="fa fa-list"></i>
                     </div>
                     @if ( auth()->user()->role_id == 2 && $products->count() > 0 )
-                        <a href="/backoffice/product" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
+                        <a href="/backoffice/product/category" class="small-box-footer">Lihat lebih <i class="fas fa-arrow-circle-right"></i></a>
                     @endif
                 </div>
             </div>

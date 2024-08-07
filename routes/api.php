@@ -44,6 +44,7 @@ Route::get('/carousel', [CarouselController::class, 'index']);
 // product
 Route::get('/product', [ProductController::class, 'index']);
 Route::get('/product/{id}', [ProductController::class, 'detail']);
+Route::get('/product/slug/{slug}', [ProductController::class, 'findBySlug']);
 
 // product-category
 Route::get('/product-category', [ProductCategoryController::class, 'index']);

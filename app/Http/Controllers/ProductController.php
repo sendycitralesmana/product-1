@@ -5,18 +5,29 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\MediaType;
 use App\Models\Application;
+use Illuminate\Support\Str;
 use App\Models\MediaProduct;
 use App\Models\ProductVideo;
 use Illuminate\Http\Request;
 use App\Models\ProductVariant;
 use App\Models\ProductCategory;
-use App\Models\ProductApplication;
 use App\Models\PVSpecification;
+use App\Models\ProductApplication;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductController extends Controller
 {
+
+    public function updateAllSlug()
+    {
+        $products = Product::get();
+        foreach ($products as $product) {
+            $product->slug = Str::slug($product->name, '-');
+            $product->update();
+        }
+    }
+
     public function index(Request $request, $category_id = null)
     {
         $products = Product::orderBy('id', 'desc')->where('product_category_id', $category_id)->get();

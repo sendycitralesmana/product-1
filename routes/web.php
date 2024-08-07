@@ -57,6 +57,7 @@ Route::get('/cek', function () {
     return view('backoffice.auth.resetPassword');
 });
 
+// Route::get('/updateAllSlug', [ProductController::class, 'updateAllSlug']);
 
 // All role
 Route::group(['middleware' => 'guest'], function(){

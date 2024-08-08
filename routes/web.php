@@ -58,6 +58,7 @@ Route::get('/cek', function () {
 });
 
 // Route::get('/updateAllSlug', [ProductController::class, 'updateAllSlug']);
+// Route::get('/updateAllSlug', [ProductCategoryController::class, 'updateAllSlug']);
 
 // All role
 Route::group(['middleware' => 'guest'], function(){

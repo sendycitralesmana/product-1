@@ -52,4 +52,15 @@ class ProductCategoryController extends Controller
             ], 404);
         }
     }
+
+    public function findBySlug($slug) {
+        $pCategory = ProductCategory::with(['product:id,product_category_id,name,thumbnail,description,created_at'])->where('slug', $slug)->first();
+        if ($pCategory) {
+            return new DetailProductCategoryResource($pCategory);
+        } else {
+            return response()->json([
+                'message' => 'No product category found'
+            ], 404);
+        }
+    }
 }

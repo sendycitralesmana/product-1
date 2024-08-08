@@ -49,6 +49,7 @@ Route::get('/product/slug/{slug}', [ProductController::class, 'findBySlug']);
 // product-category
 Route::get('/product-category', [ProductCategoryController::class, 'index']);
 Route::get('/product-category/{id}', [ProductCategoryController::class, 'detail']);
+Route::get('/product-category/slug/{slug}', [ProductCategoryController::class, 'findBySlug']);
 
 // product-media
 Route::get('/product/{product_id}/media', [ProductMediaController::class, 'index']);

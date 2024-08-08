@@ -2,13 +2,24 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ProductCategory;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use App\Models\ProductCategory;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 
 class ProductCategoryController extends Controller
 {
+
+    public function updateAllSlug()
+    {
+        $productsCategories = ProductCategory::whereNull('slug')->get();
+        foreach ($productsCategories as $productCategory) {
+            $productCategory->slug = Str::slug($productCategory->name, '-');
+            $productCategory->update();
+        }
+    }
+
     public function index()
     {
         $productsCategories = ProductCategory::orderBy('id', 'desc')->get();

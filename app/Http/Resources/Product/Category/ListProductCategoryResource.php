@@ -18,6 +18,7 @@ class ListProductCategoryResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'slug' => $this->slug,
             'thumbnail' => $this->thumbnail,
             'icon' => $this->icon,
             'created_at' => $this->created_at->format('Y-m-d H:i:s'),

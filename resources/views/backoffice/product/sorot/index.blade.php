@@ -5,7 +5,7 @@
 @section('content')
 
 <div class="content-wrapper">
-    
+
     <section class="content-header">
         <div class="container-fluid">
             <div class="row mb-2">
@@ -55,15 +55,21 @@
                                         <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
                                             width="100px" height="100px">
                                         @else
-                                        <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"
-                                            height="100px">
+                                        <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
                                         @endif
                                     </td>
                                     <td> {{ $product->name }} </td>
                                     <td>
-                                        <a href="/backoffice/product/{{ $product->id }}/sorotAktif" class="btn btn-success btn-sm">
-                                            <i class="fas fa-check"></i> Sorot Produk
-                                        </a>
+                                        {{-- <a href="/backoffice/sorot-product/{{ $product->id }}/sorot" class="btn
+                                        btn-success btn-sm ">
+                                        <i class="fas fa-check"></i> Sorot Produk
+                                        </a> --}}
+                                        <button type="button" class="btn btn-success btn-sm" data-toggle="modal"
+                                            data-target="#productSorot{{ $product->id }}">
+                                            <span><i class="fas fa-check"></i> Sorot Produk</span>
+                                        </button>
+                                        @include('backoffice.product.sorot.modal.sorot')
+
                                     </td>
                                 </tr>
                                 @endforeach
@@ -77,7 +83,10 @@
             <div class="col-md-6">
                 <div class="card card-outline card-primary">
                     <div class="card-header">
-                        <h3 class="card-title">Produk Yang Disorot</h3>
+                        <h3 class="card-title">Produk Yang Disorot
+                            <span class="badge badge-primary">{{ $productsSorot->count() }}</span> / <span
+                                class="badge badge-primary">10</span>
+                        </h3>
                         <div class="card-tools">
                             <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"
                                 title="Collapse">
@@ -95,12 +104,13 @@
                                     icon: "success"
                                 });
                             });
+
                         </script>
                         @endif
                         @if ($errors->any())
                         <div class="alert alert-danger" role="alert">
                             <button type="button" class="btn btn-danger close" data-dismiss="alert" sty>&times;</button>
-                            <ul> 
+                            <ul>
                                 <span>Gagal tambah data</span>
                                 @foreach ($errors->all() as $error)
                                 <li>{{ $error }}</li>
@@ -115,42 +125,47 @@
                                     <th>ID</th>
                                     <th>Gambar</th>
                                     <th>Produk</th>
-                                    <th>opsi</th>
+                                    <th>Opsi</th>
                                 </tr>
                             </thead>
                             @if ($productsSorot->isEmpty())
-                                <tbody>
-                                    <tr>
-                                        <td colspan="4" class="text-center">
-                                            <p>
-                                                <b> -- Tidak ada data -- </b>
-                                            </p>
-                                        </td>
-                                    </tr>
-                                </tbody>
+                            <tbody>
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        <p>
+                                            <b> -- Tidak ada data -- </b>
+                                        </p>
+                                    </td>
+                                </tr>
+                            </tbody>
                             @else
-                                <tbody>
-                                    @foreach ($productsSorot as $key => $product)
-                                    <tr>
-                                        <td> {{ $key + 1 }} </td>
-                                        <td>
-                                            @if( $product->thumbnail != null )
-                                            <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
-                                                width="100px" height="100px">
-                                            @else
-                                            <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"
-                                                height="100px">
-                                            @endif
-                                        </td>
-                                        <td> {{ $product->name }} </td>
-                                        <td>
-                                            <a href="/backoffice/product/{{ $product->id }}/sorotNonAktif" class="btn btn-danger btn-sm">
-                                                <i class="fas fa-times"></i> Hapus Sorot Produk
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    @endforeach
-                                </tbody>
+                            <tbody>
+                                @foreach ($productsSorot as $key => $product)
+                                <tr>
+                                    <td> {{ $key + 1 }} </td>
+                                    <td>
+                                        @if( $product->thumbnail != null )
+                                        <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
+                                            width="100px" height="100px">
+                                        @else
+                                        <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px" height="100px">
+                                        @endif
+                                    </td>
+                                    <td> {{ $product->name }} </td>
+                                    <td>
+                                        {{-- <a href="/backoffice/sorot-product/{{ $product->id }}/non-sorot" class="btn
+                                        btn-danger btn-sm">
+                                        <i class="fas fa-times"></i> Hapus Sorot Produk
+                                        </a> --}}
+                                        <button type="button" class="btn btn-danger btn-sm" data-toggle="modal"
+                                            data-target="#productSorotHapus{{ $product->id }}">
+                                            <span><i class="fas fa-times"></i> Hapus Sorot Produk</span>
+                                        </button>
+                                        @include('backoffice.product.sorot.modal.non-sorot')
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
                             @endif
                         </table>
 
@@ -160,6 +175,6 @@
         </div>
 
     </section>
-    
+
 </div>
 @endsection

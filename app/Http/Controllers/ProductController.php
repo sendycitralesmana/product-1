@@ -203,17 +203,31 @@ class ProductController extends Controller
 
     public function sorotProduct()
     {
-        $products = Product::get();
-        $productsNonSorot = Product::where('sorot', null)->get();
-        $productsSorot = Product::where('sorot', 'sorot')->get();
+        $products = Product::orderBy('id', 'desc')->get();
+        $productsNonSorot = Product::where('sorot', null)->orderBy('id', 'desc')->get();
+        $productsSorot = Product::where('sorot', 'sorot')->orderBy('id', 'desc')->get();
         return view('backoffice.product.sorot.index', compact('products', 'productsNonSorot', 'productsSorot'));
     }
 
-    public function sorot(Request $request)
+    public function sorot($id)
     {
-        $product = Product::find($request->product_id);
-        $product->sorot = $request->sorot;
+        $product = Product::find($id);
+        $product->sorot = 'sorot';
         $product->update();
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Sorot produk ditambahkan');
+        return redirect()->back();
+    }
+
+    public function nonSorot($id)
+    {
+        $product = Product::find($id);
+        $product->sorot = null;
+        $product->update();
+
+        Session::flash('status', 'success');
+        Session::flash('message', 'Sorot produk dihapus');
         return redirect()->back();
     }
 

@@ -165,6 +165,13 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="/backoffice/management-content"
+                            class="nav-link {{ request()->is('backoffice/management-content') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-gears"></i>
+                            <p>Manajemen Konten</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="/backoffice/application"
                             class="nav-link {{ request()->is('backoffice/application', 'backoffice/application/*') ? 'active' : '' }}">
                             <i class="nav-icon fas fa-tasks"></i>

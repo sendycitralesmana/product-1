@@ -18,10 +18,9 @@ use App\Http\Controllers\ContactUsController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\FE\PostFEController;
 use App\Http\Controllers\MediaTypeController;
+use App\Http\Controllers\ContentAltController;
 use App\Http\Controllers\FE\AboutFEController;
 use App\Http\Controllers\ApplicationController;
-use App\Http\Controllers\BackOffice\CarouselController;
-use App\Http\Controllers\ContentAltController;
 use App\Http\Controllers\FE\HomepageController;
 use App\Http\Controllers\FE\ContactFEController;
 use App\Http\Controllers\FE\GalleryFEController;
@@ -39,7 +38,9 @@ use App\Http\Controllers\PVSpecificationController;
 use App\Http\Controllers\FE\ApplicationFEController;
 use App\Http\Controllers\MediaApplicationController;
 use App\Http\Controllers\VideoApplicationController;
+use App\Http\Controllers\ManagementContentController;
 use App\Http\Controllers\ProductApplicationController;
+use App\Http\Controllers\BackOffice\CarouselController;
 use App\Http\Controllers\FE\GoogleTranslateFEController;
 
 /*
@@ -254,9 +255,19 @@ Route::group(['middleware' => 'auth'], function(){
 
             // grup sorot-product_id
             Route::group(['prefix' => '{sorot_product_id}'], function(){
-                Route::put('/sorot', [CarouselController::class, 'sorot']);
-                Route::get('/nonSorot', [CarouselController::class, 'nonSorot']);
+                Route::get('/sorot', [ProductController::class, 'sorot']);
+                Route::get('/non-sorot', [ProductController::class, 'nonSorot']);
             }); 
+        });
+
+        // grup management content
+        Route::group(['prefix' => 'management-content'], function(){
+            Route::get('/', [ManagementContentController::class, 'index']);
+
+            // grup management_content_id
+            Route::group(['prefix' => '{management_content_id}'], function(){
+                Route::put('/edit', [ManagementContentController::class, 'edit']);
+            });
         });
 
         // grup application

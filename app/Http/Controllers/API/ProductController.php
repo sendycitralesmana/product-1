@@ -48,7 +48,7 @@ class ProductController extends Controller
         // }
 
 
-        $qProducts = Product::with(['category:id,name,thumbnail,icon,created_at']);
+        $qProducts = Product::with(['category:id,name,slug,thumbnail,icon,created_at']);
         $qProducts->orderBy('created_at', 'desc');
 
         if ($request->search) {
@@ -90,7 +90,7 @@ class ProductController extends Controller
 
     public function detail($id) {
         $product = Product::with([
-            'category:id,name,thumbnail,icon,created_at', 
+            'category:id,name,slug,thumbnail,icon,created_at', 
             'media:id,product_id,type_id,url,created_at', 
             'media.mediaType:id,name,created_at',
             'video', 
@@ -117,7 +117,7 @@ class ProductController extends Controller
     // findBySlug
     public function findBySlug($slug) {
         $product = Product::with([
-            'category:id,name,thumbnail,icon,created_at', 
+            'category:id,name,slug,thumbnail,icon,created_at', 
             'media:id,product_id,type_id,url,created_at', 
             'media.mediaType:id,name,created_at',
             'video', 
@@ -134,5 +134,14 @@ class ProductController extends Controller
                 'message' => 'No product found'
             ], 404);
         }
+    }
+
+    public function sorot() 
+    {
+        $productsSorot = Product::with(['category:id,name,slug,thumbnail,icon,created_at'])->
+                                    where('sorot', 'sorot')->orderBy('id', 'desc')->get();
+        $resource = ListProductResource::collection($productsSorot);
+        return response()->json($resource, 200);
+
     }
 }

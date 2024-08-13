@@ -3,21 +3,22 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\PostController;
+use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ClientController;
 use App\Http\Controllers\API\CommentController;
 use App\Http\Controllers\API\ContentController;
 use App\Http\Controllers\API\GalleryController;
 use App\Http\Controllers\API\HistoryController;
 use App\Http\Controllers\API\ProductController;
-use App\Http\Controllers\API\ApplicationController;
 use App\Http\Controllers\API\CarouselController;
+use App\Http\Controllers\API\ApplicationController;
 use App\Http\Controllers\API\PostCategoryController;
-use App\Http\Controllers\API\ProductCategoryController;
 use App\Http\Controllers\API\ProductMediaController;
-use App\Http\Controllers\API\ProductVariantController;
-use App\Http\Controllers\API\PVSpecificationtController;
 use App\Http\Controllers\API\SpecificationController;
-use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ProductVariantController;
+use App\Http\Controllers\API\ProductCategoryController;
+use App\Http\Controllers\API\PVSpecificationtController;
+use App\Http\Controllers\API\ManagementContentController;
 
 /*
 |--------------------------------------------------------------------------
@@ -50,6 +51,13 @@ Route::get('/product/slug/{slug}', [ProductController::class, 'findBySlug']);
 Route::get('/product-category', [ProductCategoryController::class, 'index']);
 Route::get('/product-category/{id}', [ProductCategoryController::class, 'detail']);
 Route::get('/product-category/slug/{slug}', [ProductCategoryController::class, 'findBySlug']);
+
+// sorot product
+Route::get('/sorot-product', [ProductController::class, 'sorot']);
+
+// management content
+Route::get('/management-content', [ManagementContentController::class, 'index']);
+Route::get('/management-content/slug/{slug}', [ManagementContentController::class, 'findBySlug']);
 
 // product-media
 Route::get('/product/{product_id}/media', [ProductMediaController::class, 'index']);

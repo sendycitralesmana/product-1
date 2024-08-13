@@ -209,4 +209,12 @@ class ProductController extends Controller
         return view('backoffice.product.sorot.index', compact('products', 'productsNonSorot', 'productsSorot'));
     }
 
+    public function sorot(Request $request)
+    {
+        $product = Product::find($request->product_id);
+        $product->sorot = $request->sorot;
+        $product->update();
+        return redirect()->back();
+    }
+
 }

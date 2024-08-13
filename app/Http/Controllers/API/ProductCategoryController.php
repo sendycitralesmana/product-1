@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 class ProductCategoryController extends Controller
 {
     public function index(Request $request) {
-        $qPCategories = ProductCategory::with('product:id,product_category_id,name,thumbnail,description,created_at');
+        $qPCategories = ProductCategory::with('product:id,product_category_id,name,slug,thumbnail,description,created_at');
         $qPCategories->orderBy('created_at', 'desc');
 
         if ($request->search) {
@@ -38,7 +38,7 @@ class ProductCategoryController extends Controller
     }
 
     public function detail($id) {
-        $pCategory = ProductCategory::with(['product:id,product_category_id,name,thumbnail,description,created_at'])->find($id);
+        $pCategory = ProductCategory::with(['product:id,product_category_id,name,slug,thumbnail,description,created_at'])->find($id);
         if ($pCategory) {
 
             return new DetailProductCategoryResource($pCategory);
@@ -54,7 +54,7 @@ class ProductCategoryController extends Controller
     }
 
     public function findBySlug($slug) {
-        $pCategory = ProductCategory::with(['product:id,product_category_id,name,thumbnail,description,created_at'])->where('slug', $slug)->first();
+        $pCategory = ProductCategory::with(['product:id,product_category_id,name,slug,thumbnail,description,created_at'])->where('slug', $slug)->first();
         if ($pCategory) {
             return new DetailProductCategoryResource($pCategory);
         } else {

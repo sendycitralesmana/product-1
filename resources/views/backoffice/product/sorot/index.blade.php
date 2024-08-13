@@ -118,28 +118,40 @@
                                     <th>opsi</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                @foreach ($products as $key => $product)
-                                <tr>
-                                    <td> {{ $key + 1 }} </td>
-                                    <td>
-                                        @if( $product->thumbnail != null )
-                                        <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
-                                            width="100px" height="100px">
-                                        @else
-                                        <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"
-                                            height="100px">
-                                        @endif
-                                    </td>
-                                    <td> {{ $product->name }} </td>
-                                    <td>
-                                        <a href="/backoffice/product/{{ $product->id }}/sorotNonAktif" class="btn btn-danger btn-sm">
-                                            <i class="fas fa-times"></i> Hapus Sorot Produk
-                                        </a>
-                                    </td>
-                                </tr>
-                                @endforeach
-                            </tbody>
+                            @if ($productsSorot->isEmpty())
+                                <tbody>
+                                    <tr>
+                                        <td colspan="4" class="text-center">
+                                            <p>
+                                                <b> -- Tidak ada data -- </b>
+                                            </p>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            @else
+                                <tbody>
+                                    @foreach ($productsSorot as $key => $product)
+                                    <tr>
+                                        <td> {{ $key + 1 }} </td>
+                                        <td>
+                                            @if( $product->thumbnail != null )
+                                            <img src="{{Storage::disk('s3')->url($product->thumbnail)}}" alt=""
+                                                width="100px" height="100px">
+                                            @else
+                                            <img src="{{asset('images/no-image.jpg')}}" alt="" width="100px"
+                                                height="100px">
+                                            @endif
+                                        </td>
+                                        <td> {{ $product->name }} </td>
+                                        <td>
+                                            <a href="/backoffice/product/{{ $product->id }}/sorotNonAktif" class="btn btn-danger btn-sm">
+                                                <i class="fas fa-times"></i> Hapus Sorot Produk
+                                            </a>
+                                        </td>
+                                    </tr>
+                                    @endforeach
+                                </tbody>
+                            @endif
                         </table>
 
                     </div>

@@ -251,6 +251,12 @@ Route::group(['middleware' => 'auth'], function(){
         // grup sorot product
         Route::group(['prefix' => 'sorot-product'], function(){
             Route::get('/', [ProductController::class, 'sorotProduct']);
+
+            // grup sorot-product_id
+            Route::group(['prefix' => '{sorot_product_id}'], function(){
+                Route::put('/sorot', [CarouselController::class, 'sorot']);
+                Route::get('/nonSorot', [CarouselController::class, 'nonSorot']);
+            }); 
         });
 
         // grup application

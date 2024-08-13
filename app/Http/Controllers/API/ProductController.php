@@ -59,6 +59,15 @@ class ProductController extends Controller
             $qProducts->where('product_category_id', $request->categoryId);
         }
 
+        // if ($request->categorySlug) {
+        //     $qProducts->where('category.slug', $request->categorySlug);
+        // }
+        if ($request->categorySlug) {
+            $qProducts->whereHas('category', function($query) use($request) {
+                $query->where('slug', $request->categorySlug);
+            });
+        }
+
         if ($request->perPage) {
             $perPage = $request->perPage;
         } else {

@@ -157,13 +157,13 @@
                             <p>Produk</p>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
-                        <a href="/backoffice/product/specification"
-                            class="nav-link {{ request()->is('backoffice/product/specification') ? 'active' : '' }}">
-                            <i class="nav-icon fa fa-list"></i>
-                            <p>Spesifikasi</p>
+                    <li class="nav-item">
+                        <a href="/backoffice/sorot-product"
+                            class="nav-link {{ request()->is('backoffice/sorot-product') ? 'active' : '' }}">
+                            <i class="nav-icon fa fa-chalkboard"></i>
+                            <p>Sorot Produk</p>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a href="/backoffice/application"
                             class="nav-link {{ request()->is('backoffice/application', 'backoffice/application/*') ? 'active' : '' }}">

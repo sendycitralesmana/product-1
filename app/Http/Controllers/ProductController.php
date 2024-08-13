@@ -201,4 +201,12 @@ class ProductController extends Controller
         ]);
     }
 
+    public function sorotProduct()
+    {
+        $products = Product::get();
+        $productsNonSorot = Product::where('sorot', null)->get();
+        $productsSorot = Product::where('sorot', 'sorot')->get();
+        return view('backoffice.product.sorot.index', compact('products', 'productsNonSorot', 'productsSorot'));
+    }
+
 }

@@ -49,7 +49,6 @@
                 <h3 class="card-title">Varian</h3>
                 <div class="card-tools">
                     @if (auth()->user()->role_id == 2)
-                    {{-- <a href="/backoffice/product/specification/" class="btn btn-info btn-sm"><i class="fa fa-list"></i> Daftar spesifikasi</a> --}}
                     <button title="Tambah" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addProductVariant">
                         <span class="fas fa-plus"></span> Tambah
                     </button>
@@ -129,6 +128,10 @@
                                     <span><i class="ion ion-android-delete"></i> Hapus</span>
                                 </button>
                                 @include('backoffice.product.variant.modal.delete')
+                                {{-- <button title="Tambah" type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#addCopyProductVariant{{ $productVariant->id }}">
+                                    <span class="fas fa-plus"></span> Copy dan tambah
+                                </button>
+                                @include('backoffice.product.variant.modal.add-copy') --}}
                             </td>
                         </tr>
                         @endforeach

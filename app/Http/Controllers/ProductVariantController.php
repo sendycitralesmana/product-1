@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\ProductVariant;
 use App\Models\ProductCategory;
 use App\Models\PVSpecification;
+use App\Models\Specification;
 use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Support\Facades\Session;
 
@@ -17,10 +18,12 @@ class ProductVariantController extends Controller
         $pCategory = ProductCategory::find($category_id);
         $productVariants = ProductVariant::where('product_id', $product_id)->get();
         $product = Product::find($product_id);
+        $specifications = Specification::get();
         return view('backoffice.product.variant.variantByProduct', [
             'pCategory' => $pCategory,
             'productVariants' => $productVariants,
             'product' => $product,
+            'specifications' => $specifications
         ]);
     }
 

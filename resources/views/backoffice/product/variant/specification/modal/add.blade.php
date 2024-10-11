@@ -20,7 +20,7 @@
                         </tr>
                         <tr>
                             <td>
-                                <select name="specification_id[]" id="" class="form-control " required
+                                <select name="specification_id[]" id="" class="form-control select2" required
                                         oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Spesifikasi harus dipilih')">
                                     <option value="">-- Pilih Spesifikasi --</option>
                                     @foreach ($specifications as $specification)
@@ -85,9 +85,7 @@
                     @endif
                 </td>
                 <td>
-                    <textarea name="value[]" class="form-control" id="" required
-                        oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
-                    </textarea>
+                    <textarea name="value[]" class="form-control" id="" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')"></textarea>
                     @if($errors->has('value[]'))
                     <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                     @endif

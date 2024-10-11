@@ -122,7 +122,12 @@ Route::group(['middleware' => 'auth'], function(){
     // grup backoffice
     Route::group(['prefix' => 'backoffice'], function(){
 
-        // grup carousel
+        // ajax
+        Route::get('/variant/{variant_id}/spec', [PVSpecificationController::class, 'specByVariant2']);
+        Route::get('/variant/{variant_id}/req-variant/{req_variant_id}/copy-spec', [PVSpecificationController::class, 'copySpec2']);
+        Route::post('/variant/{variant_id}/req-variant/{req_variant_id}/copy-spec-action', [PVSpecificationController::class, 'copySpec2Action']);
+
+        // grup carousel 
         Route::group(['prefix' => 'carousel'], function(){
             Route::get('/', [CarouselController::class, 'index']);
             Route::post('/store', [CarouselController::class, 'store']);
@@ -147,6 +152,9 @@ Route::group(['middleware' => 'auth'], function(){
                 Route::group(['prefix' => '{category_id}'], function(){
                     Route::put('/update', [ProductCategoryController::class, 'update']);
                     Route::get('/delete', [ProductCategoryController::class, 'delete']);
+
+                    // 
+                    Route::get('/productCategory', [PVSpecificationController::class, 'productByCategory']);
                     
                     // grup product
                     Route::group(['prefix' => 'product'], function(){
@@ -191,15 +199,21 @@ Route::group(['middleware' => 'auth'], function(){
                                 Route::get('/', [ProductVariantController::class, 'index']);
                                 Route::post('/create', [ProductVariantController::class, 'create']);
 
+                                // 
+                                Route::get('/productVariant', [PVSpecificationController::class, 'variantByProduct']);
+
                                 // grup variant_id
                                 Route::group(['prefix' => '{variant_id}'], function(){
                                     Route::get('/export-pdf', [ProductVariantController::class, 'exportPdf']);
                                     Route::put('/update', [ProductVariantController::class, 'update']);
                                     Route::get('/delete', [ProductVariantController::class, 'delete']);
 
+                                    Route::get('/copy-spec', [PVSpecificationController::class, 'copySpec']);
+
                                     // grup variant spesifikasi
                                     Route::group(['prefix' => 'variant-specification'], function(){
                                         Route::get('/', [PVSpecificationController::class, 'index']);
+                                        Route::get('/copy-specification', [PVSpecificationController::class, 'copySpecification']);
                                         Route::post('/create', [PVSpecificationController::class, 'create']);
 
                                         // grup specification
@@ -369,12 +383,6 @@ Route::group(['middleware' => 'auth'], function(){
         Route::get('/backoffice/post/category/{id}/delete', [PostCategoryController::class, 'delete']);
     // Post End
 
-    // Gallery
-    // Route::get('/backoffice/gallery', [GalleryController::class, 'index']);
-    // Route::post('/backoffice/gallery/create', [GalleryController::class, 'create']);
-    // Route::put('/backoffice/gallery/{id}/update', [GalleryController::class, 'update']);
-    // Route::get('/backoffice/gallery/{id}/delete', [GalleryController::class, 'delete']);
-
     // Client
     Route::get('/backoffice/client', [ClientController::class, 'index']);
     Route::post('/backoffice/client/create', [ClientController::class, 'create']);
@@ -390,13 +398,6 @@ Route::group(['middleware' => 'auth'], function(){
     Route::get('/backoffice/feedback/{id}/delete', [ContactUsController::class, 'delete']);
     Route::get('/backoffice/feedback/{id}/detail', [ContactUsController::class, 'detail']);
         Route::post('/backoffice/feedback/{id}/send', [MessageEmailController::class, 'send']);
-    
-    // Content
-    // Route::get('/backoffice/about/content', [ContentController::class, 'index']);
-    // Route::post('/backoffice/about/content/create', [ContentController::class, 'create']);
-    // Route::get('/backoffice/about/content/{id}/edit', [ContentController::class, 'edit']);
-    // Route::put('/backoffice/about/content/{id}/update', [ContentController::class, 'update']);
-    // Route::get('/backoffice/about/content/{id}/delete', [ContentController::class, 'delete']);
 
     Route::get('/backoffice/about/content', [ContentAltController::class, 'index']);
     Route::get('/backoffice/about/content/{id}/edit', [ContentAltController::class, 'edit']);

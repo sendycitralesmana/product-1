@@ -34,9 +34,7 @@
                             <td>
                                 {{-- <input type="text" name="value[]" class="form-control" placeholder="Keterangan" required
                                     oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')"> --}}
-                                <textarea name="value[]" class="form-control" id="" required
-                                    oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')">
-                                </textarea>
+                                <textarea name="value[]" class="form-control" id="" required oninput="this.setCustomValidity('')" oninvalid="this.setCustomValidity('Keterangan harus diisi')"></textarea>
                                 @if($errors->has('value[]'))
                                 <span class="help-block" style="color: red">{{ $errors->first('value[]') }}</span>
                                 @endif

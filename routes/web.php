@@ -216,6 +216,8 @@ Route::group(['middleware' => 'auth'], function(){
                                         Route::get('/copy-specification', [PVSpecificationController::class, 'copySpecification']);
                                         Route::post('/create', [PVSpecificationController::class, 'create']);
 
+                                        Route::get('/clear', [PVSpecificationController::class, 'clearSpecByVariant']);
+
                                         // grup specification
                                         Route::group(['prefix' => 'specification'], function(){
                                             Route::get('/', [SpecificationController::class, 'index']);

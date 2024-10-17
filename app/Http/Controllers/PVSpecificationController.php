@@ -179,4 +179,14 @@ class PVSpecificationController extends Controller
         return redirect('/backoffice/product/category/'. $variant->product->product_category_id . '/product/'. $variant->product_id . '/variant/'. $variant_id . '/variant-specification');
     }
 
+    public function clearSpecByVariant ($category_id, $product_id, $variant_id) {
+        // PVSpecification::where('product_variant_id', $variant_id)->delete();
+        $specs = PVSpecification::where('product_variant_id', $variant_id)->get();
+        foreach ($specs as $spec) {
+            $spec->delete();
+        }
+
+        return redirect('/backoffice/product/category/'. $category_id . '/product/'. $product_id . '/variant/'. $variant_id . '/variant-specification')->with('status', 'success')->with('message', 'Hapus spesifikasi berhasil');
+    }
+
 }

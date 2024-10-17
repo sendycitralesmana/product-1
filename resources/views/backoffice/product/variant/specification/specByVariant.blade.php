@@ -72,6 +72,11 @@
                             <span class="fas fa-plus"></span> Copy spesifikasi
                         </button>
                         @include('backoffice.product.variant.specification.modal.copySpec2') --}}
+                    @else
+                        <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#variantSpecClear{{ $variant->id }}">
+                            <span><i class="ion ion-trash-a"></i> Hapus semua spesifikasi</span>
+                        </button>
+                        @include('backoffice.product.variant.specification.modal.clear')
                     @endif
                     @endif
                     <button type="button" class="btn btn-tool" data-card-widget="collapse" data-toggle="tooltip"

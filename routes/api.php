@@ -104,7 +104,6 @@ Route::get('/comment', [CommentController::class, 'index']);
 Route::get('/comment/{id}', [CommentController::class, 'detail']);
 
 
-
 // Route::get('/content', [ContentController::class, 'index']);
 // Route::get('/content/{id}', [ContentController::class, 'detail']);
 

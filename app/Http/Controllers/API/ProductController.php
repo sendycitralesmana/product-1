@@ -13,6 +13,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
+
         // $products = Product::with(['category', 'media', 'video', 'variant']);
         
         // if ($request->search) {

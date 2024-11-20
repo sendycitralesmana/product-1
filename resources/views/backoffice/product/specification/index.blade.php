@@ -80,9 +80,16 @@
                                 <button title="Ubah" type="button" class="btn btn-warning btn-sm" data-toggle="modal" data-target="#specEdit{{ $specification->id }}">
                                     <span><i class="fas fa-edit"></i> Ubah</span>
                                 </button>
-                                <button title="Hapus" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#specDelete{{ $specification->id }}">
+                                {{-- <button title="Hapus" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#specDelete{{ $specification->id }}">
                                     <span><i class="fas fa-trash"></i> Hapus</span>
-                                </button>
+                                </button> --}}
+                                {{-- cek if $specification->specV count != 0 --}}
+                                @if ($specification->specV->count() == 0)
+                                    <button title="Hapus" type="button" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#specDelete{{ $specification->id }}">
+                                        <span><i class="fas fa-trash"></i> Hapus</span>
+                                    </button>
+                                @endif
+
                                 {{-- Modal --}}
                                 @include('backoffice.product.specification.modal.edit')
                                 @include('backoffice.product.specification.modal.delete')
@@ -97,7 +104,7 @@
                     <tfoot>
                         <tr>
                             <th>ID</th>
-                            <th>Nama</th>
+                            <th>Spesifikasi</th>
                             @if (auth()->user()->role_id == 2)
 
                             <th>Opsi</th>

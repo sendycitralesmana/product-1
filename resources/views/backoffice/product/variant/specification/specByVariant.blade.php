@@ -101,7 +101,7 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Category </th>
+                            <th>Spesifikasi </th>
                             <th>Keterangan</th>
                             @if (auth()->user()->role_id == 2)
 

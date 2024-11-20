@@ -14,7 +14,7 @@ class SpecificationController extends Controller
 {
     public function index($category_id, $product_id, $variant_id)
     {
-        $specifications = Specification::all();
+        $specifications = Specification::orderBy('updated_at', 'desc')->get();
         $pCategory = ProductCategory::find($category_id);
         $product = Product::find($product_id);
         $variant = ProductVariant::find($variant_id);

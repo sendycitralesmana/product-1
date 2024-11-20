@@ -23,7 +23,7 @@ class PVSpecificationController extends Controller
         $product = Product::find($product_id);
         $variant = ProductVariant::find($variant_id);
         $specifications = Specification::get();
-        $pvSpecifications = PVSpecification::where('product_variant_id', $variant_id)->with(['productVariant', 'specification'])->get();
+        $pvSpecifications = PVSpecification::where('product_variant_id', $variant_id)->with(['productVariant', 'specification'])->orderBy('updated_at', 'desc')->get();
         // dd($pvSpecifications);
         return view('backoffice.product.variant.specification.specByVariant', [
             'variantAktif' => $variantAktif,
